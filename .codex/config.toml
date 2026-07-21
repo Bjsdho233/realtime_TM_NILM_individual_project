@@ -1,0 +1,20 @@
+# Project-specific Codex defaults.
+# Task scope and phase authorisation remain defined in AGENTS.md.
+
+# Use read-only access by default.
+sandbox_mode = "read-only"
+
+# Any action outside the sandbox must be approved by Tianhang.
+approval_policy = "on-request"
+approvals_reviewer = "user"
+
+# External browsing is disabled during the current governance phase.
+web_search = "disabled"
+
+# AGENTS.md can identify the project root before Git is initialised.
+project_root_markers = [".git", "AGENTS.md"]
+
+# If workspace-write is authorised later, shell network access remains disabled
+# unless it is enabled separately for an approved task.
+[sandbox_workspace_write]
+network_access = false

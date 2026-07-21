@@ -1,0 +1,166 @@
+# TM NILM ISTM Lab
+# These rules reduce accidental tracking only.
+# They do not authorise data access, implementation, experiments, or deployment.
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.stackdump
+
+# Editor and IDE state
+.vscode/
+.idea/
+*.code-workspace
+*.swp
+*.swo
+*~
+~$*
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+!.env.template
+/secrets/
+/credentials/
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+secrets*.json
+/config.local.*
+/paths.local.*
+/settings.local.*
+
+# Python caches and environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+ENV/
+.python-version
+.ipynb_checkpoints/
+
+# Python packaging
+.eggs/
+*.egg
+*.egg-info/
+pip-wheel-metadata/
+dist/
+
+# Tests, coverage, and static-analysis caches
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.pyre/
+.pytype/
+
+# Node or tool-managed dependencies
+node_modules/
+
+# Raw and local datasets
+# docs/data/ remains trackable for reviewed human-readable reports.
+/data/
+/datasets/
+/raw_data/
+/raw-data/
+/REDD/
+/redd/
+**/low_freq/
+**/high_freq/
+
+# Local external repository checkouts
+/external/
+/vendor/
+/third_party/
+
+# Generated research outputs
+/runs/
+/results/
+/outputs/
+/models/
+/checkpoints/
+/exports/
+/captures/
+/logs/
+wandb/
+mlruns/
+
+# Generated artifacts are excluded by default.
+# Reviewed machine-readable manifests remain trackable.
+/artifacts/*
+!/artifacts/manifests/
+!/artifacts/manifests/**
+
+# Common model and array outputs
+*.ckpt
+*.pkl
+*.pickle
+*.joblib
+*.npy
+*.npz
+*.onnx
+*.tflite
+*.pt
+*.pth
+*.safetensors
+*.h5
+
+# C, C++, Arduino, Pico, and PlatformIO build outputs
+**/build/
+**/.pio/
+**/.pioenvs/
+**/.piolibdeps/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CMakeUserPresets.json
+compile_commands.json
+*.o
+*.obj
+*.d
+*.dep
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
+*.exe
+*.out
+*.elf
+*.hex
+*.bin
+*.uf2
+*.eep
+*.map
+*.lst
+
+# Temporary files and local caches
+.cache/
+/tmp/
+/temp/
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# Local Codex state
+# .codex/config.toml remains trackable.
+/.codex/cache/
+/.codex/logs/
+/.codex/tmp/
+/.codex/state/
+/.codex/sessions/
+/.codex/*.local.toml
