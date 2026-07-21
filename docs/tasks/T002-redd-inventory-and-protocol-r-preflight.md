@@ -6,7 +6,8 @@
 **Last updated:** 2026-07-21\
 **Task type:** Data inventory and evaluation preflight\
 **Dependencies:** T001 completion, explicit T002 authorisation and phase transition, and the exact local REDD root path\
-**Current authorisation:** Specification review only
+**Current authorisation:** None; execution remains unauthorised\
+**Dependency state:** T001 completion: Satisfied. Explicit T002 authorisation and phase transition: Not satisfied. Exact local REDD root path: Not provided.
 
 ## 1. Objective
 

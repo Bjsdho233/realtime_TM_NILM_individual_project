@@ -454,8 +454,8 @@ Detailed specifications belong in `docs/tasks/`. This table records only task pu
 
 | ID | Task | Exit condition | Status |
 |---|---|---|---|
-| T001 | Governance review and repository bootstrap | Governance files approved and validated; Git actions performed only after explicit authorisation. | In progress — Gate C authorised on 2026-07-21; two commits and final verification pending. |
-| T002 | REDD inventory and Protocol R preflight | Reviewable data inventory and candidate split manifest produced without training or model scoring. | Not started — blocked by T001 completion, explicit T002 authorisation and phase transition, and the exact local REDD root path. |
+| T001 | Governance review and repository bootstrap | Governance files approved and validated; Git actions performed only after explicit authorisation. | Complete — 2026-07-21. |
+| T002 | REDD inventory and Protocol R preflight | Reviewable data inventory and candidate split manifest produced without training or model scoring. | Not started — Blocked. T001 completion: Satisfied. Explicit T002 authorisation and phase transition: Not satisfied. Exact local REDD root path: Not provided. |
 | T003 | Han reference audit and minimum reproduction contract | Reference revision, workflow stages, reusable components, deviations, and deployment boundary approved. | Pending |
 | T004 | Protocol R split approval and freeze | Tianhang approves the split manifest and hash; candidate test becomes locked test. | Pending |
 | T005 | Han-compatible local training and export | A locally trained smoke model is saved, reloaded, exported, and accompanied by fixed fixtures. | Pending |
@@ -512,7 +512,10 @@ Current reported state:
 - no algorithm code or REDD data has been imported;
 - no model has been trained;
 - no firmware has been compiled or tested;
-- Gate C local Git bootstrap and T001 closure were explicitly authorised by Tianhang on 2026-07-21;
-- no Git repository, commit, or remote has yet been created for this project.
+- Gate B reconciliation and local Git bootstrap are complete;
+- the initial governance baseline commit is `df8451b4eea59e1b9a3af78fa7aac72f614de8b7`;
+- the T001 closure record has been created;
+- T001 is complete;
+- no remote, tag, push, or GitHub operation occurred.
 
-The only authorised next action is T001 Gate C local Git bootstrap, the two specified commits, and final verification. T002, T003, and all other tasks remain unauthorised.
+There is no active execution task. The project is paused pending Tianhang's next explicit authorisation and phase transition. T002, T003, and all other tasks remain unauthorised.

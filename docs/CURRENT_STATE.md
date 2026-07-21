@@ -2,9 +2,9 @@
 
 **Status:** Current governance snapshot\
 **Last updated:** 2026-07-21\
-**Current phase:** T001 Gate C local Git bootstrap and closure\
-**Active task:** T001 — Governance Review and Repository Bootstrap\
-**Local verification:** T001 Gate B consolidated read-only inspection and reconciliation completed; Tianhang explicitly authorised Gate C on 2026-07-21.
+**Current phase:** Paused pending explicit authorisation and phase transition\
+**Active execution task:** None\
+**Local verification:** T001 Gate B reconciliation and Gate C local Git bootstrap completed on 2026-07-21.
 
 ## 1. Purpose
 
@@ -50,12 +50,12 @@ If this file conflicts with the actual worktree or locally generated outputs, th
 
 | Task | State |
 |---|---|
-| T001 | In progress. Gate B is complete. Gate C is explicitly authorised; both commits and final verification remain pending. |
-| T002 | Not started — Blocked by T001 completion, explicit T002 authorisation and phase transition, and the exact local REDD root path. |
+| T001 | Complete — 2026-07-21. Gate B reconciliation, local Git bootstrap, the initial governance baseline commit, and the T001 closure record are complete. |
+| T002 | Not started — Blocked. T001 completion: Satisfied. Explicit T002 authorisation and phase transition: Not satisfied. Exact local REDD root path: Not provided. |
 | T003 | Not started. No Han reference revision or reusable component has been approved. |
 | T004–T013 | Not started. |
 
-T002 and T003 must not begin automatically after document review. The current phase lock must first be explicitly changed.
+T002 and T003 must not begin automatically. Tianhang must explicitly authorise the next task and phase transition.
 
 ## 5. Verified Project Evidence
 
@@ -65,7 +65,9 @@ The inspection found no algorithm code, REDD data, generated results, models, fi
 
 Gate B identified three short filenames that differed from the canonical long filenames referenced by the governance documents. Tianhang selected the long filenames, and the files were renamed and reconciled under explicit authorisation without rewriting the body of the initial progress record.
 
-No implementation, dataset, experiment, model, firmware, hardware, or Git operation has yet been admitted as verified evidence in the new project.
+The local Git repository uses branch `main`. The initial governance baseline commit is `df8451b4eea59e1b9a3af78fa7aac72f614de8b7` and contains the approved 12 governance files. The T001 closure record has been created.
+
+No implementation, dataset, experiment, model, firmware, or hardware operation has yet been admitted as verified evidence in the new project. No remote, tag, push, or GitHub operation occurred.
 
 The following evidence is therefore not currently available:
 
@@ -78,7 +80,7 @@ The following evidence is therefore not currently available:
 - host-native inference results;
 - Pico compilation, flashing, or runtime results;
 - formal experiment results;
-- a verified Git repository, commit, remote, or GitHub state.
+- a remote or GitHub repository.
 
 This section records the absence of accepted technical evidence and the verified Gate B governance state.
 
@@ -106,31 +108,14 @@ No task may silently infer these decisions from historical experiments or conver
 
 ## 7. Current Authorisation and Restrictions
 
-Tianhang authorised only the following T001 Gate C work on 2026-07-21:
-
-- local Git initialisation at the verified project root with initial branch `main`;
-- staging and checking the specified allowlists;
-- the specified initial governance baseline commit;
-- T001 closure governance updates;
-- the specified T001 closure commit;
-- final Gate C verification.
-
-T001 remains `In progress` until both commits and final verification succeed.
+There is no active execution task. The project is paused pending Tianhang's next explicit authorisation and phase transition.
 
 T002, T003, and all other later tasks remain unauthorised. Do not create a remote, push, access GitHub, access REDD or external repositories, create or migrate algorithms, run training or experiments, or perform firmware, Pico, or hardware work.
 
-## 8. Remaining T001 Work
+## 8. T001 Completion
 
-Before T001 can be completed:
-
-- execute the authorised Gate C Git bootstrap and initial governance baseline commit;
-- complete and commit the T001 closure governance update;
-- perform final Gate C verification and record the resulting commit identifiers.
-
-T002, T003, and all other later tasks remain unauthorised for execution.
+T001 Gate B reconciliation, local Git bootstrap, the initial governance baseline commit, and the T001 closure record are complete. The closure commit identifier is reported in the Gate C execution report because a commit cannot record its own final hash.
 
 ## 9. Immediate Next Action
 
-Execute the explicitly authorised T001 Gate C local Git bootstrap, both specified commits, and final verification.
-
-No later project phase or task is authorised.
+Wait for Tianhang's next explicit task authorisation and phase transition. No later project phase or task is currently authorised.

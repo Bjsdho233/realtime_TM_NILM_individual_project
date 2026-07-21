@@ -24,18 +24,9 @@
 
 ## Current Phase Lock
 
-Tianhang explicitly authorised T001 Gate C on 2026-07-21.
+T001 completed on 2026-07-21 after Gate B reconciliation, local Git bootstrap, the initial governance baseline commit, and the T001 closure record.
 
-The only currently authorised work is:
-
-- initialise a local Git repository at `D:\projects\tm-nilm-pico-research` with initial branch `main`;
-- stage and verify only the specified file allowlists;
-- create the specified initial governance baseline commit;
-- perform the specified T001 closure governance update;
-- create the specified T001 closure commit;
-- perform the final T001 Gate C verification.
-
-T001 remains `In progress` until both authorised commits and the final verification succeed.
+There is currently no active execution task. The project is paused pending Tianhang's next explicit authorisation and phase transition.
 
 The following remain unauthorised:
 
@@ -47,7 +38,7 @@ The following remain unauthorised:
 - firmware, Pico, or hardware work;
 - tags or additional branches.
 
-No later project phase begins automatically after T001. A phase transition requires Tianhang's next explicit authorisation.
+No later project phase begins automatically after T001.
 
 ## Git and External Actions
 

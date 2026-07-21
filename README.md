@@ -8,9 +8,11 @@ Earlier experiments and external implementations remain useful references, but t
 
 ## Current Status
 
-The project is currently in the governance-review and repository-bootstrap phase.
+T001 governance review and local repository bootstrap are complete.
 
-**Active task:** [T001 — Governance Review and Repository Bootstrap](docs/tasks/T001-governance-review-and-repository-bootstrap.md)
+**Active execution task:** None.
+
+[T001 — Governance Review and Repository Bootstrap](docs/tasks/T001-governance-review-and-repository-bootstrap.md) is complete. T002 remains blocked and unauthorised.
 
 No algorithm implementation, REDD dataset, trained model, formal experiment result, firmware result, or hardware result has yet been accepted as verified evidence in this repository.
 
@@ -18,7 +20,8 @@ For the latest verified status, see:
 
 - [Current State](docs/CURRENT_STATE.md)
 - [Project Plan](PROJECT_PLAN.md)
-- [Active Task](docs/tasks/T001-governance-review-and-repository-bootstrap.md)
+- [Completed T001](docs/tasks/T001-governance-review-and-repository-bootstrap.md)
+- [Blocked T002](docs/tasks/T002-redd-inventory-and-protocol-r-preflight.md)
 
 ## Project Goals
 

@@ -1,12 +1,13 @@
 # T001 — Governance Review and Repository Bootstrap
 
-**Status:** In progress\
+**Status:** Complete\
 **Owner:** Tianhang Tan\
 **Created:** 2026-07-21\
 **Last updated:** 2026-07-21\
+**Completed:** 2026-07-21\
 **Task type:** Governance and repository setup\
 **Dependencies:** None\
-**Current authorisation:** T001 Gate C local Git bootstrap and closure only
+**Current authorisation:** None; T001 is closed and there is no active execution task
 
 ## 1. Objective
 
@@ -115,9 +116,9 @@ The inspection must not modify, delete, rename, initialise, stage, or commit any
 
 Git bootstrap requires separate explicit authorisation from Tianhang after the inspection results have been reported.
 
-Tianhang supplied that explicit authorisation on 2026-07-21. The authorisation is limited to local initialisation on `main`, the specified allowlist checks, the initial governance baseline commit, the T001 closure governance update, the T001 closure commit, and final verification.
+Tianhang supplied that explicit authorisation on 2026-07-21. The authorised local repository bootstrap used `main`. The initial governance baseline commit is `df8451b4eea59e1b9a3af78fa7aac72f614de8b7`.
 
-T001 remains `In progress` until both commits and final verification succeed. T002, T003, remotes, push, GitHub, REDD, external repositories, algorithms, training, firmware, Pico, and hardware work remain unauthorised.
+T001 is complete after Gate B reconciliation, local Git bootstrap, the initial governance baseline commit, and the T001 closure record. T002, T003, remotes, push, GitHub, REDD, external repositories, algorithms, training, firmware, Pico, and hardware work remain unauthorised.
 
 Before authorisation, do not run:
 
@@ -234,26 +235,26 @@ Update T001 and `docs/CURRENT_STATE.md` to reflect the completed state. Add a da
 
 T001 is complete only when all applicable criteria are satisfied:
 
-- [ ] All required governance files have been reviewed.
-- [ ] `PROJECT_PLAN.md` has been explicitly accepted or retains an accurate review status.
-- [ ] D001 and D002 remain recorded as accepted decisions.
-- [ ] T001 and T002 have clear scope, inputs, restrictions, and exit conditions.
-- [ ] The complete project tree has been inspected locally.
-- [ ] `docs/CURRENT_STATE.md` matches the inspected worktree.
-- [ ] Unexpected files have been classified and resolved.
-- [ ] No REDD data, credentials, algorithm code, generated experiment output, or firmware artefact is included unintentionally.
-- [ ] Internal filenames and Markdown links are consistent.
-- [ ] Pending decisions have not been silently filled from historical work.
-- [ ] `.gitignore` covers the known categories of local and generated files.
-- [ ] `.codex/config.toml` does not authorise work outside the current approved phase.
-- [ ] Git bootstrap received separate explicit authorisation.
-- [ ] The initial repository was created in the verified project directory.
-- [ ] Only reviewed files were included in the initial commit.
-- [ ] The initial branch and commit were verified.
-- [ ] No remote, push, pull request, or publication action occurred.
-- [ ] The final worktree state is understood and reported.
-- [ ] T001 completion is recorded in the current-state and progress documents.
-- [ ] No later task has begun without explicit approval.
+- [x] All required governance files have been reviewed.
+- [x] `PROJECT_PLAN.md` has been explicitly accepted or retains an accurate review status.
+- [x] D001 and D002 remain recorded as accepted decisions.
+- [x] T001 and T002 have clear scope, inputs, restrictions, and exit conditions.
+- [x] The complete project tree has been inspected locally.
+- [x] `docs/CURRENT_STATE.md` matches the inspected worktree.
+- [x] Unexpected files have been classified and resolved.
+- [x] No REDD data, credentials, algorithm code, generated experiment output, or firmware artefact is included unintentionally.
+- [x] Internal filenames and Markdown links are consistent.
+- [x] Pending decisions have not been silently filled from historical work.
+- [x] `.gitignore` covers the known categories of local and generated files.
+- [x] `.codex/config.toml` does not authorise work outside the current approved phase.
+- [x] Git bootstrap received separate explicit authorisation.
+- [x] The initial repository was created in the verified project directory.
+- [x] Only reviewed files were included in the initial commit.
+- [x] The initial branch and commit were verified.
+- [x] No remote, push, pull request, or publication action occurred.
+- [x] The final worktree state is understood and reported.
+- [x] T001 completion is recorded in the current-state and progress documents.
+- [x] No later task has begun without explicit approval.
 
 If Git bootstrap is deliberately deferred, the document-review portion may be reported as complete, but T001 remains open.
 
