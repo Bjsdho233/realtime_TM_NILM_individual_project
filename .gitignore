@@ -103,6 +103,8 @@ mlruns/
 /artifacts/*
 !/artifacts/manifests/
 !/artifacts/manifests/**
+!/artifacts/tables/
+!/artifacts/tables/redd_support_audit.csv
 
 # Common model and array outputs
 *.ckpt

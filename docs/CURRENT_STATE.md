@@ -2,9 +2,9 @@
 
 **Status:** Current governance snapshot\
 **Last updated:** 2026-07-21\
-**Current phase:** T002 Phase B — sequence-time contract and Protocol R preflight\
+**Current phase:** T002 Phase B — Protocol R preflight audited; closure blocked\
 **Active execution task:** T002 — REDD Inventory and Protocol R Preflight\
-**Local verification:** T001 completed. The T002 snapshot and inventory were verified, and Tianhang authorised the Phase B sequence contract, support audit, and candidate manifest on 2026-07-21.
+**Local verification:** T001 completed. T002 snapshot, inventory, sequence contract, support audit, and candidate manifest were verified on 2026-07-21.
 
 ## 1. Purpose
 
@@ -61,7 +61,7 @@ If this file conflicts with the actual worktree or locally generated outputs, th
 | Task | State |
 |---|---|
 | T001 | Complete — 2026-07-21. Gate B reconciliation, local Git bootstrap, the initial governance baseline commit, and the T001 closure record are complete. |
-| T002 | In progress. Upstream acquisition and inventory are complete. D003 and its support standard are accepted; the support audit and candidate manifest remain to be generated and validated. |
+| T002 | In progress. The support audit and candidate manifest are complete, but `electric furnace` fails the sealed-candidate-test minimum of 10 complete cycles: H2 has no `electric furnace` column and H4 has 1 complete cycle. |
 | T003 | Not started. No Han reference revision or reusable component has been approved. |
 | T004–T013 | Not started. |
 
@@ -116,7 +116,7 @@ No task may silently infer these decisions from historical experiments or conver
 
 ## 7. Current Authorisation and Restrictions
 
-T002 Phase B is the active execution task. Its authorisation is limited to the two named sources, D003 governance, a standard-library support-audit tool and synthetic tests, read-only label-support inspection of the pinned submodule, the candidate split manifest, validation, and the explicitly named local commits.
+T002 Phase B remains the active task. Its authorised evidence has been generated. Because the frozen four-class closure gate failed, no fallback, threshold change, alternate house allocation, T003, or later implementation is authorised.
 
 Do not install dependencies, run edge detection, event pairing, feature extraction, training, inference, or model scoring; modify the upstream clone; copy upstream code or CSV files; begin T003; create a project remote, tag, branch, or push; access other sources; or perform firmware, Pico, or hardware work.
 
@@ -136,9 +136,15 @@ T001 Gate B reconciliation, local Git bootstrap, the initial governance baseline
 - The submodule README describes the files as a pre-processed, synchronized REDD dataset. The chain to original raw REDD, timestamp semantics, preprocessing procedure, and original channel provenance remains `Unresolved`.
 - The limited source check supports a nominal 3-second appliance cadence, 15 W on/off threshold provenance, missing-data subsequence splitting, same-subsequence backward fill, and treatment of preprocessed CSVs as independent non-continuous long windows.
 - The source implementation can retain one short subsequence when no large split is found; this is implementation evidence only and does not prove the House 5 generation chain.
+- D003 is recorded in sequence-contract commit `5fb7f0e38c8e983969976dc4214038c77b5cafd9`.
+- Ten synthetic unit tests passed.
+- Fridge, microwave, and dish washer meet every frozen base-class minimum.
+- Electric furnace has 38 train/validation complete cycles and fold counts 10, 15, and 13, but only 1 complete cycle in the sealed candidate test; its candidate active duration is 824,943 nominal seconds.
+- Washer dryer meets the same standard as an optional exploratory class.
+- The candidate manifest canonical SHA-256 is `480a738ad799860f6cdecbba9affb1d76c365a71468b276b8b0669ea55bba11a`.
 
 The external absolute snapshot path remains machine-specific and is not stored in tracked evidence.
 
 ## 10. Immediate Next Action
 
-Commit the accepted D003 contract before reading active-support statistics, then run the authorised support audit and generate the candidate manifest. T003 and all other later tasks remain unauthorised.
+Create the authorised support-evidence commit, keep T002 `In progress`, and stop for Tianhang's decision. No fallback or later task begins automatically.

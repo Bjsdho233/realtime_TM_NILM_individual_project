@@ -1,0 +1,396 @@
+house,chunk,segment_id,source_file,appliance,class_type,protocol_role,validation_fold,row_start_inclusive,row_end_exclusive,column_present,row_count,nominal_duration_seconds,finite_samples,missing_samples,active_samples,active_duration_seconds,on_rate,rising_transitions,falling_transitions,complete_cycles,left_censored_runs,right_censored_runs,support_pass
+1,0,redd_house1_0,redd/redd_house1_0.csv,fridge,base,train_validation_pool,1,0,7768,True,7768,23304,7768,0,2025,6075,0.26068486096807414,20,19,16,0,1,True
+1,0,redd_house1_0,redd/redd_house1_0.csv,microwave,base,train_validation_pool,1,0,7768,True,7768,23304,7768,0,368,1104,0.04737384140061792,18,18,11,0,0,True
+1,0,redd_house1_0,redd/redd_house1_0.csv,dish washer,base,train_validation_pool,1,0,7768,True,7768,23304,7768,0,1195,3585,0.15383625128733264,17,16,15,0,1,True
+1,0,redd_house1_0,redd/redd_house1_0.csv,electric furnace,base,train_validation_pool,1,0,7768,False,7768,23304,0,0,0,0,0.0,0,0,0,0,0,True
+1,0,redd_house1_0,redd/redd_house1_0.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,7768,True,7768,23304,7768,0,0,0,0.0,0,0,0,0,0,True
+1,0,redd_house1_0,redd/redd_house1_0.csv,fridge,base,train_validation_pool,2,7768,15535,True,7767,23301,7767,0,1707,5121,0.2197759752800309,7,8,7,1,0,True
+1,0,redd_house1_0,redd/redd_house1_0.csv,microwave,base,train_validation_pool,2,7768,15535,True,7767,23301,7767,0,0,0,0.0,0,0,0,0,0,True
+1,0,redd_house1_0,redd/redd_house1_0.csv,dish washer,base,train_validation_pool,2,7768,15535,True,7767,23301,7767,0,661,1983,0.08510364362044548,2,3,2,1,0,True
+1,0,redd_house1_0,redd/redd_house1_0.csv,electric furnace,base,train_validation_pool,2,7768,15535,False,7767,23301,0,0,0,0,0.0,0,0,0,0,0,True
+1,0,redd_house1_0,redd/redd_house1_0.csv,washer dryer,optional_exploratory,train_validation_pool,2,7768,15535,True,7767,23301,7767,0,0,0,0.0,0,0,0,0,0,True
+1,0,redd_house1_0,redd/redd_house1_0.csv,fridge,base,train_validation_pool,3,15535,23302,True,7767,23301,7767,0,1906,5718,0.24539719325350842,10,9,7,0,1,True
+1,0,redd_house1_0,redd/redd_house1_0.csv,microwave,base,train_validation_pool,3,15535,23302,True,7767,23301,7767,0,117,351,0.015063731170336037,10,10,6,0,0,True
+1,0,redd_house1_0,redd/redd_house1_0.csv,dish washer,base,train_validation_pool,3,15535,23302,True,7767,23301,7767,0,0,0,0.0,0,0,0,0,0,True
+1,0,redd_house1_0,redd/redd_house1_0.csv,electric furnace,base,train_validation_pool,3,15535,23302,False,7767,23301,0,0,0,0,0.0,0,0,0,0,0,True
+1,0,redd_house1_0,redd/redd_house1_0.csv,washer dryer,optional_exploratory,train_validation_pool,3,15535,23302,True,7767,23301,7767,0,0,0,0.0,0,0,0,0,0,True
+1,1,redd_house1_1,redd/redd_house1_1.csv,fridge,base,train_validation_pool,1,0,8613,True,8613,25839,8613,0,2487,7461,0.2887495646116336,12,13,10,1,0,True
+1,1,redd_house1_1,redd/redd_house1_1.csv,microwave,base,train_validation_pool,1,0,8613,True,8613,25839,8613,0,128,384,0.014861256240566586,9,9,7,0,0,True
+1,1,redd_house1_1,redd/redd_house1_1.csv,dish washer,base,train_validation_pool,1,0,8613,True,8613,25839,8613,0,0,0,0.0,0,0,0,0,0,True
+1,1,redd_house1_1,redd/redd_house1_1.csv,electric furnace,base,train_validation_pool,1,0,8613,False,8613,25839,0,0,0,0,0.0,0,0,0,0,0,True
+1,1,redd_house1_1,redd/redd_house1_1.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,8613,True,8613,25839,8613,0,0,0,0.0,0,0,0,0,0,True
+1,1,redd_house1_1,redd/redd_house1_1.csv,fridge,base,train_validation_pool,2,8613,17226,True,8613,25839,8613,0,1966,5898,0.2282596075699524,16,15,14,0,1,True
+1,1,redd_house1_1,redd/redd_house1_1.csv,microwave,base,train_validation_pool,2,8613,17226,True,8613,25839,8613,0,193,579,0.022407987925229304,6,6,6,0,0,True
+1,1,redd_house1_1,redd/redd_house1_1.csv,dish washer,base,train_validation_pool,2,8613,17226,True,8613,25839,8613,0,0,0,0.0,0,0,0,0,0,True
+1,1,redd_house1_1,redd/redd_house1_1.csv,electric furnace,base,train_validation_pool,2,8613,17226,False,8613,25839,0,0,0,0,0.0,0,0,0,0,0,True
+1,1,redd_house1_1,redd/redd_house1_1.csv,washer dryer,optional_exploratory,train_validation_pool,2,8613,17226,True,8613,25839,8613,0,0,0,0.0,0,0,0,0,0,True
+1,1,redd_house1_1,redd/redd_house1_1.csv,fridge,base,train_validation_pool,3,17226,25839,True,8613,25839,8613,0,1808,5424,0.20991524439800302,8,8,7,1,1,True
+1,1,redd_house1_1,redd/redd_house1_1.csv,microwave,base,train_validation_pool,3,17226,25839,True,8613,25839,8613,0,54,162,0.006269592476489028,1,1,1,0,0,True
+1,1,redd_house1_1,redd/redd_house1_1.csv,dish washer,base,train_validation_pool,3,17226,25839,True,8613,25839,8613,0,0,0,0.0,0,0,0,0,0,True
+1,1,redd_house1_1,redd/redd_house1_1.csv,electric furnace,base,train_validation_pool,3,17226,25839,False,8613,25839,0,0,0,0,0.0,0,0,0,0,0,True
+1,1,redd_house1_1,redd/redd_house1_1.csv,washer dryer,optional_exploratory,train_validation_pool,3,17226,25839,True,8613,25839,8613,0,0,0,0.0,0,0,0,0,0,True
+1,2,redd_house1_2,redd/redd_house1_2.csv,fridge,base,train_validation_pool,1,0,9389,True,9389,28167,9389,0,2410,7230,0.2566833528597295,9,10,8,0,0,True
+1,2,redd_house1_2,redd/redd_house1_2.csv,microwave,base,train_validation_pool,1,0,9389,True,9389,28167,9389,0,53,159,0.005644903610608158,2,2,1,0,0,True
+1,2,redd_house1_2,redd/redd_house1_2.csv,dish washer,base,train_validation_pool,1,0,9389,True,9389,28167,9389,0,0,0,0.0,0,0,0,0,0,True
+1,2,redd_house1_2,redd/redd_house1_2.csv,electric furnace,base,train_validation_pool,1,0,9389,False,9389,28167,0,0,0,0,0.0,0,0,0,0,0,True
+1,2,redd_house1_2,redd/redd_house1_2.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,9389,True,9389,28167,9389,0,0,0,0.0,0,0,0,0,0,True
+1,2,redd_house1_2,redd/redd_house1_2.csv,fridge,base,train_validation_pool,2,9389,18777,True,9388,28164,9388,0,1911,5733,0.2035577332765232,9,9,9,0,0,True
+1,2,redd_house1_2,redd/redd_house1_2.csv,microwave,base,train_validation_pool,2,9389,18777,True,9388,28164,9388,0,42,126,0.004473796335747763,4,4,3,0,0,True
+1,2,redd_house1_2,redd/redd_house1_2.csv,dish washer,base,train_validation_pool,2,9389,18777,True,9388,28164,9388,0,0,0,0.0,0,0,0,0,0,True
+1,2,redd_house1_2,redd/redd_house1_2.csv,electric furnace,base,train_validation_pool,2,9389,18777,False,9388,28164,0,0,0,0,0.0,0,0,0,0,0,True
+1,2,redd_house1_2,redd/redd_house1_2.csv,washer dryer,optional_exploratory,train_validation_pool,2,9389,18777,True,9388,28164,9388,0,0,0,0.0,0,0,0,0,0,True
+1,2,redd_house1_2,redd/redd_house1_2.csv,fridge,base,train_validation_pool,3,18777,28165,True,9388,28164,9388,0,2037,6111,0.2169791222837665,10,10,9,0,0,True
+1,2,redd_house1_2,redd/redd_house1_2.csv,microwave,base,train_validation_pool,3,18777,28165,True,9388,28164,9388,0,0,0,0.0,0,0,0,0,0,True
+1,2,redd_house1_2,redd/redd_house1_2.csv,dish washer,base,train_validation_pool,3,18777,28165,True,9388,28164,9388,0,0,0,0.0,0,0,0,0,0,True
+1,2,redd_house1_2,redd/redd_house1_2.csv,electric furnace,base,train_validation_pool,3,18777,28165,False,9388,28164,0,0,0,0,0.0,0,0,0,0,0,True
+1,2,redd_house1_2,redd/redd_house1_2.csv,washer dryer,optional_exploratory,train_validation_pool,3,18777,28165,True,9388,28164,9388,0,0,0,0.0,0,0,0,0,0,True
+1,3,redd_house1_3,redd/redd_house1_3.csv,fridge,base,train_validation_pool,1,0,10071,True,10071,30213,10071,0,2010,6030,0.19958296097706285,8,8,8,0,0,True
+1,3,redd_house1_3,redd/redd_house1_3.csv,microwave,base,train_validation_pool,1,0,10071,True,10071,30213,10071,0,0,0,0.0,0,0,0,0,0,True
+1,3,redd_house1_3,redd/redd_house1_3.csv,dish washer,base,train_validation_pool,1,0,10071,True,10071,30213,10071,0,0,0,0.0,0,0,0,0,0,True
+1,3,redd_house1_3,redd/redd_house1_3.csv,electric furnace,base,train_validation_pool,1,0,10071,False,10071,30213,0,0,0,0,0.0,0,0,0,0,0,True
+1,3,redd_house1_3,redd/redd_house1_3.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,10071,True,10071,30213,10071,0,0,0,0.0,0,0,0,0,0,True
+1,3,redd_house1_3,redd/redd_house1_3.csv,fridge,base,train_validation_pool,2,10071,20142,True,10071,30213,10071,0,3141,9423,0.3118856121537087,21,20,13,0,1,True
+1,3,redd_house1_3,redd/redd_house1_3.csv,microwave,base,train_validation_pool,2,10071,20142,True,10071,30213,10071,0,174,522,0.017277330950253203,10,10,9,0,0,True
+1,3,redd_house1_3,redd/redd_house1_3.csv,dish washer,base,train_validation_pool,2,10071,20142,True,10071,30213,10071,0,1797,5391,0.17843312481382187,20,20,20,0,0,True
+1,3,redd_house1_3,redd/redd_house1_3.csv,electric furnace,base,train_validation_pool,2,10071,20142,False,10071,30213,0,0,0,0,0.0,0,0,0,0,0,True
+1,3,redd_house1_3,redd/redd_house1_3.csv,washer dryer,optional_exploratory,train_validation_pool,2,10071,20142,True,10071,30213,10071,0,1129,3387,0.11210406116572337,10,10,10,0,0,True
+1,3,redd_house1_3,redd/redd_house1_3.csv,fridge,base,train_validation_pool,3,20142,30213,True,10071,30213,10071,0,2353,7059,0.23364114785026313,7,8,6,1,0,True
+1,3,redd_house1_3,redd/redd_house1_3.csv,microwave,base,train_validation_pool,3,20142,30213,True,10071,30213,10071,0,70,210,0.006950650382285771,4,4,4,0,0,True
+1,3,redd_house1_3,redd/redd_house1_3.csv,dish washer,base,train_validation_pool,3,20142,30213,True,10071,30213,10071,0,2,6,0.0001985900109224506,2,2,0,0,0,True
+1,3,redd_house1_3,redd/redd_house1_3.csv,electric furnace,base,train_validation_pool,3,20142,30213,False,10071,30213,0,0,0,0,0.0,0,0,0,0,0,True
+1,3,redd_house1_3,redd/redd_house1_3.csv,washer dryer,optional_exploratory,train_validation_pool,3,20142,30213,True,10071,30213,10071,0,245,735,0.0243272763380002,9,9,9,0,0,True
+1,4,redd_house1_4,redd/redd_house1_4.csv,fridge,base,train_validation_pool,1,0,18800,True,18800,56400,18800,0,5256,15768,0.2795744680851064,21,21,18,0,0,True
+1,4,redd_house1_4,redd/redd_house1_4.csv,microwave,base,train_validation_pool,1,0,18800,True,18800,56400,18800,0,181,543,0.009627659574468084,15,15,11,0,0,True
+1,4,redd_house1_4,redd/redd_house1_4.csv,dish washer,base,train_validation_pool,1,0,18800,True,18800,56400,18800,0,1,3,5.319148936170213e-05,1,1,0,0,0,True
+1,4,redd_house1_4,redd/redd_house1_4.csv,electric furnace,base,train_validation_pool,1,0,18800,False,18800,56400,0,0,0,0,0.0,0,0,0,0,0,True
+1,4,redd_house1_4,redd/redd_house1_4.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,18800,True,18800,56400,18800,0,0,0,0.0,0,0,0,0,0,True
+1,4,redd_house1_4,redd/redd_house1_4.csv,fridge,base,train_validation_pool,2,18800,37600,True,18800,56400,18800,0,4649,13947,0.24728723404255318,26,25,21,0,1,True
+1,4,redd_house1_4,redd/redd_house1_4.csv,microwave,base,train_validation_pool,2,18800,37600,True,18800,56400,18800,0,394,1182,0.020957446808510638,20,20,13,0,0,True
+1,4,redd_house1_4,redd/redd_house1_4.csv,dish washer,base,train_validation_pool,2,18800,37600,True,18800,56400,18800,0,1819,5457,0.09675531914893618,20,20,19,0,0,True
+1,4,redd_house1_4,redd/redd_house1_4.csv,electric furnace,base,train_validation_pool,2,18800,37600,False,18800,56400,0,0,0,0,0.0,0,0,0,0,0,True
+1,4,redd_house1_4,redd/redd_house1_4.csv,washer dryer,optional_exploratory,train_validation_pool,2,18800,37600,True,18800,56400,18800,0,0,0,0.0,0,0,0,0,0,True
+1,4,redd_house1_4,redd/redd_house1_4.csv,fridge,base,train_validation_pool,3,37600,56399,True,18799,56397,18799,0,5042,15126,0.2682057556252992,15,16,13,1,0,True
+1,4,redd_house1_4,redd/redd_house1_4.csv,microwave,base,train_validation_pool,3,37600,56399,True,18799,56397,18799,0,232,696,0.012341081972445343,10,10,7,0,0,True
+1,4,redd_house1_4,redd/redd_house1_4.csv,dish washer,base,train_validation_pool,3,37600,56399,True,18799,56397,18799,0,1289,3867,0.0685674769934571,18,18,17,0,0,True
+1,4,redd_house1_4,redd/redd_house1_4.csv,electric furnace,base,train_validation_pool,3,37600,56399,False,18799,56397,0,0,0,0,0.0,0,0,0,0,0,True
+1,4,redd_house1_4,redd/redd_house1_4.csv,washer dryer,optional_exploratory,train_validation_pool,3,37600,56399,True,18799,56397,18799,0,0,0,0.0,0,0,0,0,0,True
+1,5,redd_house1_5,redd/redd_house1_5.csv,fridge,base,train_validation_pool,1,0,9229,True,9229,27687,9229,0,2291,6873,0.24823924585545562,9,10,7,1,0,True
+1,5,redd_house1_5,redd/redd_house1_5.csv,microwave,base,train_validation_pool,1,0,9229,True,9229,27687,9229,0,113,339,0.012244013435908549,6,6,6,0,0,True
+1,5,redd_house1_5,redd/redd_house1_5.csv,dish washer,base,train_validation_pool,1,0,9229,True,9229,27687,9229,0,0,0,0.0,0,0,0,0,0,True
+1,5,redd_house1_5,redd/redd_house1_5.csv,electric furnace,base,train_validation_pool,1,0,9229,False,9229,27687,0,0,0,0,0.0,0,0,0,0,0,True
+1,5,redd_house1_5,redd/redd_house1_5.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,9229,True,9229,27687,9229,0,0,0,0.0,0,0,0,0,0,True
+1,5,redd_house1_5,redd/redd_house1_5.csv,fridge,base,train_validation_pool,2,9229,18457,True,9228,27684,9228,0,2136,6408,0.23146944083224968,8,8,8,0,0,True
+1,5,redd_house1_5,redd/redd_house1_5.csv,microwave,base,train_validation_pool,2,9229,18457,True,9228,27684,9228,0,0,0,0.0,0,0,0,0,0,True
+1,5,redd_house1_5,redd/redd_house1_5.csv,dish washer,base,train_validation_pool,2,9229,18457,True,9228,27684,9228,0,0,0,0.0,0,0,0,0,0,True
+1,5,redd_house1_5,redd/redd_house1_5.csv,electric furnace,base,train_validation_pool,2,9229,18457,False,9228,27684,0,0,0,0,0.0,0,0,0,0,0,True
+1,5,redd_house1_5,redd/redd_house1_5.csv,washer dryer,optional_exploratory,train_validation_pool,2,9229,18457,True,9228,27684,9228,0,0,0,0.0,0,0,0,0,0,True
+1,5,redd_house1_5,redd/redd_house1_5.csv,fridge,base,train_validation_pool,3,18457,27685,True,9228,27684,9228,0,2057,6171,0.2229085392284352,6,5,5,0,1,True
+1,5,redd_house1_5,redd/redd_house1_5.csv,microwave,base,train_validation_pool,3,18457,27685,True,9228,27684,9228,0,55,165,0.0059601213697442566,1,1,1,0,0,True
+1,5,redd_house1_5,redd/redd_house1_5.csv,dish washer,base,train_validation_pool,3,18457,27685,True,9228,27684,9228,0,1,3,0.00010836584308625921,1,1,0,0,0,True
+1,5,redd_house1_5,redd/redd_house1_5.csv,electric furnace,base,train_validation_pool,3,18457,27685,False,9228,27684,0,0,0,0,0.0,0,0,0,0,0,True
+1,5,redd_house1_5,redd/redd_house1_5.csv,washer dryer,optional_exploratory,train_validation_pool,3,18457,27685,True,9228,27684,9228,0,0,0,0.0,0,0,0,0,0,True
+1,6,redd_house1_6,redd/redd_house1_6.csv,fridge,base,train_validation_pool,1,0,12091,True,12091,36273,12091,0,2964,8892,0.2451410139773385,13,13,12,0,0,True
+1,6,redd_house1_6,redd/redd_house1_6.csv,microwave,base,train_validation_pool,1,0,12091,True,12091,36273,12091,0,204,612,0.016872053593582004,8,8,6,0,0,True
+1,6,redd_house1_6,redd/redd_house1_6.csv,dish washer,base,train_validation_pool,1,0,12091,True,12091,36273,12091,0,1823,5469,0.15077330245637252,20,20,20,0,0,True
+1,6,redd_house1_6,redd/redd_house1_6.csv,electric furnace,base,train_validation_pool,1,0,12091,False,12091,36273,0,0,0,0,0.0,0,0,0,0,0,True
+1,6,redd_house1_6,redd/redd_house1_6.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,12091,True,12091,36273,12091,0,0,0,0.0,0,0,0,0,0,True
+1,6,redd_house1_6,redd/redd_house1_6.csv,fridge,base,train_validation_pool,2,12091,24182,True,12091,36273,12091,0,3434,10302,0.2840129021586304,30,30,27,0,0,True
+1,6,redd_house1_6,redd/redd_house1_6.csv,microwave,base,train_validation_pool,2,12091,24182,True,12091,36273,12091,0,320,960,0.026465966421305102,20,20,15,0,0,True
+1,6,redd_house1_6,redd/redd_house1_6.csv,dish washer,base,train_validation_pool,2,12091,24182,True,12091,36273,12091,0,2,6,0.0001654122901331569,2,2,0,0,0,True
+1,6,redd_house1_6,redd/redd_house1_6.csv,electric furnace,base,train_validation_pool,2,12091,24182,False,12091,36273,0,0,0,0,0.0,0,0,0,0,0,True
+1,6,redd_house1_6,redd/redd_house1_6.csv,washer dryer,optional_exploratory,train_validation_pool,2,12091,24182,True,12091,36273,12091,0,2625,7875,0.2171036307997684,45,45,45,0,0,True
+1,6,redd_house1_6,redd/redd_house1_6.csv,fridge,base,train_validation_pool,3,24182,36273,True,12091,36273,12091,0,2556,7668,0.2113969067901745,14,14,13,0,0,True
+1,6,redd_house1_6,redd/redd_house1_6.csv,microwave,base,train_validation_pool,3,24182,36273,True,12091,36273,12091,0,121,363,0.010007443553055993,8,8,7,0,0,True
+1,6,redd_house1_6,redd/redd_house1_6.csv,dish washer,base,train_validation_pool,3,24182,36273,True,12091,36273,12091,0,1780,5340,0.14721693821850965,20,20,19,0,0,True
+1,6,redd_house1_6,redd/redd_house1_6.csv,electric furnace,base,train_validation_pool,3,24182,36273,False,12091,36273,0,0,0,0,0.0,0,0,0,0,0,True
+1,6,redd_house1_6,redd/redd_house1_6.csv,washer dryer,optional_exploratory,train_validation_pool,3,24182,36273,True,12091,36273,12091,0,0,0,0.0,0,0,0,0,0,True
+1,7,redd_house1_7,redd/redd_house1_7.csv,fridge,base,train_validation_pool,1,0,10811,True,10811,32433,10811,0,3388,10164,0.313384515770974,16,16,15,0,0,True
+1,7,redd_house1_7,redd/redd_house1_7.csv,microwave,base,train_validation_pool,1,0,10811,True,10811,32433,10811,0,144,432,0.013319766904079178,7,7,4,0,0,True
+1,7,redd_house1_7,redd/redd_house1_7.csv,dish washer,base,train_validation_pool,1,0,10811,True,10811,32433,10811,0,1,3,9.249838127832763e-05,1,1,0,0,0,True
+1,7,redd_house1_7,redd/redd_house1_7.csv,electric furnace,base,train_validation_pool,1,0,10811,False,10811,32433,0,0,0,0,0.0,0,0,0,0,0,True
+1,7,redd_house1_7,redd/redd_house1_7.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,10811,True,10811,32433,10811,0,1117,3351,0.10332069188789196,13,13,13,0,0,True
+1,7,redd_house1_7,redd/redd_house1_7.csv,fridge,base,train_validation_pool,2,10811,21622,True,10811,32433,10811,0,2211,6633,0.20451392100638238,7,7,7,0,0,True
+1,7,redd_house1_7,redd/redd_house1_7.csv,microwave,base,train_validation_pool,2,10811,21622,True,10811,32433,10811,0,54,162,0.004994912589029692,2,2,1,0,0,True
+1,7,redd_house1_7,redd/redd_house1_7.csv,dish washer,base,train_validation_pool,2,10811,21622,True,10811,32433,10811,0,0,0,0.0,0,0,0,0,0,True
+1,7,redd_house1_7,redd/redd_house1_7.csv,electric furnace,base,train_validation_pool,2,10811,21622,False,10811,32433,0,0,0,0,0.0,0,0,0,0,0,True
+1,7,redd_house1_7,redd/redd_house1_7.csv,washer dryer,optional_exploratory,train_validation_pool,2,10811,21622,True,10811,32433,10811,0,0,0,0.0,0,0,0,0,0,True
+1,7,redd_house1_7,redd/redd_house1_7.csv,fridge,base,train_validation_pool,3,21622,32433,True,10811,32433,10811,0,2453,7359,0.22689852927573767,8,8,8,0,0,True
+1,7,redd_house1_7,redd/redd_house1_7.csv,microwave,base,train_validation_pool,3,21622,32433,True,10811,32433,10811,0,17,51,0.0015724724817315697,1,1,1,0,0,True
+1,7,redd_house1_7,redd/redd_house1_7.csv,dish washer,base,train_validation_pool,3,21622,32433,True,10811,32433,10811,0,0,0,0.0,0,0,0,0,0,True
+1,7,redd_house1_7,redd/redd_house1_7.csv,electric furnace,base,train_validation_pool,3,21622,32433,False,10811,32433,0,0,0,0,0.0,0,0,0,0,0,True
+1,7,redd_house1_7,redd/redd_house1_7.csv,washer dryer,optional_exploratory,train_validation_pool,3,21622,32433,True,10811,32433,10811,0,0,0,0.0,0,0,0,0,0,True
+1,8,redd_house1_8,redd/redd_house1_8.csv,fridge,base,train_validation_pool,1,0,8494,True,8494,25482,8494,0,1989,5967,0.23416529314810455,7,6,5,0,1,True
+1,8,redd_house1_8,redd/redd_house1_8.csv,microwave,base,train_validation_pool,1,0,8494,True,8494,25482,8494,0,48,144,0.0056510477984459614,1,1,1,0,0,True
+1,8,redd_house1_8,redd/redd_house1_8.csv,dish washer,base,train_validation_pool,1,0,8494,True,8494,25482,8494,0,0,0,0.0,0,0,0,0,0,True
+1,8,redd_house1_8,redd/redd_house1_8.csv,electric furnace,base,train_validation_pool,1,0,8494,False,8494,25482,0,0,0,0,0.0,0,0,0,0,0,True
+1,8,redd_house1_8,redd/redd_house1_8.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,8494,True,8494,25482,8494,0,0,0,0.0,0,0,0,0,0,True
+1,8,redd_house1_8,redd/redd_house1_8.csv,fridge,base,train_validation_pool,2,8494,16987,True,8493,25479,8493,0,2545,7635,0.2996585423289768,10,11,9,1,0,True
+1,8,redd_house1_8,redd/redd_house1_8.csv,microwave,base,train_validation_pool,2,8494,16987,True,8493,25479,8493,0,40,120,0.0047097609796302835,4,4,3,0,0,True
+1,8,redd_house1_8,redd/redd_house1_8.csv,dish washer,base,train_validation_pool,2,8494,16987,True,8493,25479,8493,0,1811,5433,0.2132344283527611,20,19,19,0,1,True
+1,8,redd_house1_8,redd/redd_house1_8.csv,electric furnace,base,train_validation_pool,2,8494,16987,False,8493,25479,0,0,0,0,0.0,0,0,0,0,0,True
+1,8,redd_house1_8,redd/redd_house1_8.csv,washer dryer,optional_exploratory,train_validation_pool,2,8494,16987,True,8493,25479,8493,0,0,0,0.0,0,0,0,0,0,True
+1,8,redd_house1_8,redd/redd_house1_8.csv,fridge,base,train_validation_pool,3,16987,25480,True,8493,25479,8493,0,1849,5547,0.21770870128340986,6,6,6,0,0,True
+1,8,redd_house1_8,redd/redd_house1_8.csv,microwave,base,train_validation_pool,3,16987,25480,True,8493,25479,8493,0,0,0,0.0,0,0,0,0,0,True
+1,8,redd_house1_8,redd/redd_house1_8.csv,dish washer,base,train_validation_pool,3,16987,25480,True,8493,25479,8493,0,198,594,0.023313316849169905,0,1,0,1,0,True
+1,8,redd_house1_8,redd/redd_house1_8.csv,electric furnace,base,train_validation_pool,3,16987,25480,False,8493,25479,0,0,0,0,0.0,0,0,0,0,0,True
+1,8,redd_house1_8,redd/redd_house1_8.csv,washer dryer,optional_exploratory,train_validation_pool,3,16987,25480,True,8493,25479,8493,0,0,0,0.0,0,0,0,0,0,True
+1,9,redd_house1_9,redd/redd_house1_9.csv,fridge,base,train_validation_pool,1,0,11242,True,11242,33726,11242,0,2995,8985,0.2664116705212596,12,12,11,0,0,True
+1,9,redd_house1_9,redd/redd_house1_9.csv,microwave,base,train_validation_pool,1,0,11242,True,11242,33726,11242,0,64,192,0.005692937199786515,6,6,4,0,0,True
+1,9,redd_house1_9,redd/redd_house1_9.csv,dish washer,base,train_validation_pool,1,0,11242,True,11242,33726,11242,0,0,0,0.0,0,0,0,0,0,True
+1,9,redd_house1_9,redd/redd_house1_9.csv,electric furnace,base,train_validation_pool,1,0,11242,False,11242,33726,0,0,0,0,0.0,0,0,0,0,0,True
+1,9,redd_house1_9,redd/redd_house1_9.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,11242,True,11242,33726,11242,0,0,0,0.0,0,0,0,0,0,True
+1,9,redd_house1_9,redd/redd_house1_9.csv,fridge,base,train_validation_pool,2,11242,22484,True,11242,33726,11242,0,2510,7530,0.22326988080412738,16,15,13,0,1,True
+1,9,redd_house1_9,redd/redd_house1_9.csv,microwave,base,train_validation_pool,2,11242,22484,True,11242,33726,11242,0,64,192,0.005692937199786515,3,3,2,0,0,True
+1,9,redd_house1_9,redd/redd_house1_9.csv,dish washer,base,train_validation_pool,2,11242,22484,True,11242,33726,11242,0,1,3,8.89521437466643e-05,1,1,0,0,0,True
+1,9,redd_house1_9,redd/redd_house1_9.csv,electric furnace,base,train_validation_pool,2,11242,22484,False,11242,33726,0,0,0,0,0.0,0,0,0,0,0,True
+1,9,redd_house1_9,redd/redd_house1_9.csv,washer dryer,optional_exploratory,train_validation_pool,2,11242,22484,True,11242,33726,11242,0,0,0,0.0,0,0,0,0,0,True
+1,9,redd_house1_9,redd/redd_house1_9.csv,fridge,base,train_validation_pool,3,22484,33725,True,11241,33723,11241,0,2272,6816,0.20211724935503958,10,11,8,1,0,True
+1,9,redd_house1_9,redd/redd_house1_9.csv,microwave,base,train_validation_pool,3,22484,33725,True,11241,33723,11241,0,106,318,0.009429766035050262,7,7,4,0,0,True
+1,9,redd_house1_9,redd/redd_house1_9.csv,dish washer,base,train_validation_pool,3,22484,33725,True,11241,33723,11241,0,0,0,0.0,0,0,0,0,0,True
+1,9,redd_house1_9,redd/redd_house1_9.csv,electric furnace,base,train_validation_pool,3,22484,33725,False,11241,33723,0,0,0,0,0.0,0,0,0,0,0,True
+1,9,redd_house1_9,redd/redd_house1_9.csv,washer dryer,optional_exploratory,train_validation_pool,3,22484,33725,True,11241,33723,11241,0,0,0,0.0,0,0,0,0,0,True
+1,10,redd_house1_10,redd/redd_house1_10.csv,fridge,base,train_validation_pool,1,0,9739,True,9739,29217,9739,0,3125,9375,0.32087483314508675,21,20,19,0,1,True
+1,10,redd_house1_10,redd/redd_house1_10.csv,microwave,base,train_validation_pool,1,0,9739,True,9739,29217,9739,0,348,1044,0.03573262141903686,14,14,11,0,0,True
+1,10,redd_house1_10,redd/redd_house1_10.csv,dish washer,base,train_validation_pool,1,0,9739,True,9739,29217,9739,0,2,6,0.00020535989321285552,2,2,0,0,0,True
+1,10,redd_house1_10,redd/redd_house1_10.csv,electric furnace,base,train_validation_pool,1,0,9739,False,9739,29217,0,0,0,0,0.0,0,0,0,0,0,True
+1,10,redd_house1_10,redd/redd_house1_10.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,9739,True,9739,29217,9738,1,0,0,0.0,0,0,0,0,0,True
+1,10,redd_house1_10,redd/redd_house1_10.csv,fridge,base,train_validation_pool,2,9739,19478,True,9739,29217,9739,0,2318,6954,0.23801211623369956,11,12,10,1,0,True
+1,10,redd_house1_10,redd/redd_house1_10.csv,microwave,base,train_validation_pool,2,9739,19478,True,9739,29217,9739,0,92,276,0.009446555087791355,3,3,3,0,0,True
+1,10,redd_house1_10,redd/redd_house1_10.csv,dish washer,base,train_validation_pool,2,9739,19478,True,9739,29217,9739,0,1873,5619,0.19231953999383922,20,20,19,0,0,True
+1,10,redd_house1_10,redd/redd_house1_10.csv,electric furnace,base,train_validation_pool,2,9739,19478,False,9739,29217,0,0,0,0,0.0,0,0,0,0,0,True
+1,10,redd_house1_10,redd/redd_house1_10.csv,washer dryer,optional_exploratory,train_validation_pool,2,9739,19478,True,9739,29217,9739,0,0,0,0.0,0,0,0,0,0,True
+1,10,redd_house1_10,redd/redd_house1_10.csv,fridge,base,train_validation_pool,3,19478,29217,True,9739,29217,9739,0,2620,7860,0.26902146010884076,18,17,12,0,1,True
+1,10,redd_house1_10,redd/redd_house1_10.csv,microwave,base,train_validation_pool,3,19478,29217,True,9739,29217,9739,0,164,492,0.016839511243454154,15,15,8,0,0,True
+1,10,redd_house1_10,redd/redd_house1_10.csv,dish washer,base,train_validation_pool,3,19478,29217,True,9739,29217,9739,0,1,3,0.00010267994660642776,1,1,0,0,0,True
+1,10,redd_house1_10,redd/redd_house1_10.csv,electric furnace,base,train_validation_pool,3,19478,29217,False,9739,29217,0,0,0,0,0.0,0,0,0,0,0,True
+1,10,redd_house1_10,redd/redd_house1_10.csv,washer dryer,optional_exploratory,train_validation_pool,3,19478,29217,True,9739,29217,9739,0,262,786,0.026902146010884073,6,6,5,0,0,True
+2,0,redd_house2_0,redd/redd_house2_0.csv,fridge,base,sealed_candidate_test,,0,34429,True,34429,103287,34429,0,13760,41280,0.39966307473350954,49,49,44,1,1,True
+2,0,redd_house2_0,redd/redd_house2_0.csv,microwave,base,sealed_candidate_test,,0,34429,True,34429,103287,34429,0,5687,17061,0.16518051642510675,10,9,9,0,1,True
+2,0,redd_house2_0,redd/redd_house2_0.csv,dish washer,base,sealed_candidate_test,,0,34429,True,34429,103287,34429,0,908,2724,0.026373115687356587,10,10,9,0,0,True
+2,0,redd_house2_0,redd/redd_house2_0.csv,electric furnace,base,sealed_candidate_test,,0,34429,False,34429,103287,0,0,0,0,0.0,0,0,0,0,0,False
+2,0,redd_house2_0,redd/redd_house2_0.csv,washer dryer,optional_exploratory,sealed_candidate_test,,0,34429,True,34429,103287,34429,0,0,0,0.0,0,0,0,0,0,True
+2,1,redd_house2_1,redd/redd_house2_1.csv,fridge,base,sealed_candidate_test,,0,48110,True,48110,144330,48110,0,18533,55599,0.3852213676990231,84,84,78,0,0,True
+2,1,redd_house2_1,redd/redd_house2_1.csv,microwave,base,sealed_candidate_test,,0,48110,True,48110,144330,48110,0,4192,12576,0.08713365204739139,8,8,5,0,0,True
+2,1,redd_house2_1,redd/redd_house2_1.csv,dish washer,base,sealed_candidate_test,,0,48110,True,48110,144330,48110,0,930,2790,0.019330700478071085,10,10,10,0,0,True
+2,1,redd_house2_1,redd/redd_house2_1.csv,electric furnace,base,sealed_candidate_test,,0,48110,False,48110,144330,0,0,0,0,0.0,0,0,0,0,0,False
+2,1,redd_house2_1,redd/redd_house2_1.csv,washer dryer,optional_exploratory,sealed_candidate_test,,0,48110,True,48110,144330,48110,0,0,0,0.0,0,0,0,0,0,True
+2,2,redd_house2_2,redd/redd_house2_2.csv,fridge,base,sealed_candidate_test,,0,29378,True,29378,88134,29378,0,12090,36270,0.4115324392402478,35,34,34,0,1,True
+2,2,redd_house2_2,redd/redd_house2_2.csv,microwave,base,sealed_candidate_test,,0,29378,True,29378,88134,29378,0,6964,20892,0.23704813125468038,7,7,6,0,0,True
+2,2,redd_house2_2,redd/redd_house2_2.csv,dish washer,base,sealed_candidate_test,,0,29378,True,29378,88134,29378,0,920,2760,0.031315950711416705,10,10,9,0,0,True
+2,2,redd_house2_2,redd/redd_house2_2.csv,electric furnace,base,sealed_candidate_test,,0,29378,False,29378,88134,0,0,0,0,0.0,0,0,0,0,0,False
+2,2,redd_house2_2,redd/redd_house2_2.csv,washer dryer,optional_exploratory,sealed_candidate_test,,0,29378,True,29378,88134,29378,0,0,0,0.0,0,0,0,0,0,True
+2,3,redd_house2_3,redd/redd_house2_3.csv,fridge,base,sealed_candidate_test,,0,24010,True,24010,72030,24010,0,13881,41643,0.578134110787172,37,37,29,1,1,True
+2,3,redd_house2_3,redd/redd_house2_3.csv,microwave,base,sealed_candidate_test,,0,24010,True,24010,72030,24010,0,2986,8958,0.12436484798000833,13,12,10,0,1,True
+2,3,redd_house2_3,redd/redd_house2_3.csv,dish washer,base,sealed_candidate_test,,0,24010,True,24010,72030,24010,0,0,0,0.0,0,0,0,0,0,True
+2,3,redd_house2_3,redd/redd_house2_3.csv,electric furnace,base,sealed_candidate_test,,0,24010,False,24010,72030,0,0,0,0,0.0,0,0,0,0,0,False
+2,3,redd_house2_3,redd/redd_house2_3.csv,washer dryer,optional_exploratory,sealed_candidate_test,,0,24010,True,24010,72030,24010,0,1,3,4.1649312786339026e-05,1,1,0,0,0,True
+2,4,redd_house2_4,redd/redd_house2_4.csv,fridge,base,sealed_candidate_test,,0,33612,True,33612,100836,33612,0,15771,47313,0.4692074259193145,67,68,61,1,0,True
+2,4,redd_house2_4,redd/redd_house2_4.csv,microwave,base,sealed_candidate_test,,0,33612,True,33612,100836,33612,0,4885,14655,0.1453349994049744,23,24,13,1,0,True
+2,4,redd_house2_4,redd/redd_house2_4.csv,dish washer,base,sealed_candidate_test,,0,33612,True,33612,100836,33612,0,0,0,0.0,0,0,0,0,0,True
+2,4,redd_house2_4,redd/redd_house2_4.csv,electric furnace,base,sealed_candidate_test,,0,33612,False,33612,100836,0,0,0,0,0.0,0,0,0,0,0,False
+2,4,redd_house2_4,redd/redd_house2_4.csv,washer dryer,optional_exploratory,sealed_candidate_test,,0,33612,True,33612,100836,33612,0,0,0,0.0,0,0,0,0,0,True
+2,5,redd_house2_5,redd/redd_house2_5.csv,fridge,base,sealed_candidate_test,,0,99258,True,99258,297774,99258,0,48752,146256,0.49116444014588245,133,133,119,0,0,True
+2,5,redd_house2_5,redd/redd_house2_5.csv,microwave,base,sealed_candidate_test,,0,99258,True,99258,297774,99258,0,4296,12888,0.043281146104092366,26,26,16,0,0,True
+2,5,redd_house2_5,redd/redd_house2_5.csv,dish washer,base,sealed_candidate_test,,0,99258,True,99258,297774,99258,0,1826,5478,0.0183965020451752,21,21,19,0,0,True
+2,5,redd_house2_5,redd/redd_house2_5.csv,electric furnace,base,sealed_candidate_test,,0,99258,False,99258,297774,0,0,0,0,0.0,0,0,0,0,0,False
+2,5,redd_house2_5,redd/redd_house2_5.csv,washer dryer,optional_exploratory,sealed_candidate_test,,0,99258,True,99258,297774,99258,0,0,0,0.0,0,0,0,0,0,True
+2,6,redd_house2_6,redd/redd_house2_6.csv,fridge,base,sealed_candidate_test,,0,23266,True,23266,69798,23266,0,10723,32169,0.46088713143643084,33,32,29,0,1,True
+2,6,redd_house2_6,redd/redd_house2_6.csv,microwave,base,sealed_candidate_test,,0,23266,True,23266,69798,23266,0,2277,6831,0.09786813375741425,7,7,7,0,0,True
+2,6,redd_house2_6,redd/redd_house2_6.csv,dish washer,base,sealed_candidate_test,,0,23266,True,23266,69798,23266,0,0,0,0.0,0,0,0,0,0,True
+2,6,redd_house2_6,redd/redd_house2_6.csv,electric furnace,base,sealed_candidate_test,,0,23266,False,23266,69798,0,0,0,0,0.0,0,0,0,0,0,False
+2,6,redd_house2_6,redd/redd_house2_6.csv,washer dryer,optional_exploratory,sealed_candidate_test,,0,23266,True,23266,69798,23266,0,0,0,0.0,0,0,0,0,0,True
+3,0,redd_house3_0,redd/redd_house3_0.csv,fridge,base,train_validation_pool,1,0,11831,True,11831,35493,11831,0,3451,10353,0.29169131941509596,22,23,21,1,0,True
+3,0,redd_house3_0,redd/redd_house3_0.csv,microwave,base,train_validation_pool,1,0,11831,True,11831,35493,11831,0,0,0,0.0,0,0,0,0,0,True
+3,0,redd_house3_0,redd/redd_house3_0.csv,dish washer,base,train_validation_pool,1,0,11831,True,11831,35493,11831,0,0,0,0.0,0,0,0,0,0,True
+3,0,redd_house3_0,redd/redd_house3_0.csv,electric furnace,base,train_validation_pool,1,0,11831,True,11831,35493,11831,0,828,2484,0.06998563096948694,4,4,4,0,0,True
+3,0,redd_house3_0,redd/redd_house3_0.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,11831,True,11831,35493,11831,0,528,1584,0.044628518299382976,1,1,1,0,0,True
+3,0,redd_house3_0,redd/redd_house3_0.csv,fridge,base,train_validation_pool,2,11831,23661,True,11830,35490,11830,0,4158,12474,0.3514792899408284,22,21,21,0,1,True
+3,0,redd_house3_0,redd/redd_house3_0.csv,microwave,base,train_validation_pool,2,11831,23661,True,11830,35490,11830,0,0,0,0.0,0,0,0,0,0,True
+3,0,redd_house3_0,redd/redd_house3_0.csv,dish washer,base,train_validation_pool,2,11831,23661,True,11830,35490,11830,0,0,0,0.0,0,0,0,0,0,True
+3,0,redd_house3_0,redd/redd_house3_0.csv,electric furnace,base,train_validation_pool,2,11831,23661,True,11830,35490,11830,0,1169,3507,0.09881656804733728,6,6,6,0,0,True
+3,0,redd_house3_0,redd/redd_house3_0.csv,washer dryer,optional_exploratory,train_validation_pool,2,11831,23661,True,11830,35490,11830,0,0,0,0.0,0,0,0,0,0,True
+3,0,redd_house3_0,redd/redd_house3_0.csv,fridge,base,train_validation_pool,3,23661,35491,True,11830,35490,11830,0,3770,11310,0.31868131868131866,26,27,25,1,0,True
+3,0,redd_house3_0,redd/redd_house3_0.csv,microwave,base,train_validation_pool,3,23661,35491,True,11830,35490,11830,0,190,570,0.016060862214708368,10,10,8,0,0,True
+3,0,redd_house3_0,redd/redd_house3_0.csv,dish washer,base,train_validation_pool,3,23661,35491,True,11830,35490,11830,0,2,6,0.000169061707523246,2,2,0,0,0,True
+3,0,redd_house3_0,redd/redd_house3_0.csv,electric furnace,base,train_validation_pool,3,23661,35491,True,11830,35490,11830,0,337,1011,0.028486897717666947,2,2,2,0,0,True
+3,0,redd_house3_0,redd/redd_house3_0.csv,washer dryer,optional_exploratory,train_validation_pool,3,23661,35491,True,11830,35490,11830,0,0,0,0.0,0,0,0,0,0,True
+3,1,redd_house3_1,redd/redd_house3_1.csv,fridge,base,train_validation_pool,1,0,7933,True,7933,23799,7933,0,2445,7335,0.30820622715240137,13,13,12,1,1,True
+3,1,redd_house3_1,redd/redd_house3_1.csv,microwave,base,train_validation_pool,1,0,7933,True,7933,23799,7933,0,56,168,0.007059120131097945,2,2,2,0,0,True
+3,1,redd_house3_1,redd/redd_house3_1.csv,dish washer,base,train_validation_pool,1,0,7933,True,7933,23799,7933,0,0,0,0.0,0,0,0,0,0,True
+3,1,redd_house3_1,redd/redd_house3_1.csv,electric furnace,base,train_validation_pool,1,0,7933,True,7933,23799,7933,0,160,480,0.020168914660279844,1,1,1,0,0,True
+3,1,redd_house3_1,redd/redd_house3_1.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,7933,True,7933,23799,7933,0,0,0,0.0,0,0,0,0,0,True
+3,1,redd_house3_1,redd/redd_house3_1.csv,fridge,base,train_validation_pool,2,7933,15866,True,7933,23799,7933,0,2190,6570,0.27606201941258035,14,14,13,1,1,True
+3,1,redd_house3_1,redd/redd_house3_1.csv,microwave,base,train_validation_pool,2,7933,15866,True,7933,23799,7933,0,82,246,0.01033656876339342,5,5,4,0,0,True
+3,1,redd_house3_1,redd/redd_house3_1.csv,dish washer,base,train_validation_pool,2,7933,15866,True,7933,23799,7933,0,0,0,0.0,0,0,0,0,0,True
+3,1,redd_house3_1,redd/redd_house3_1.csv,electric furnace,base,train_validation_pool,2,7933,15866,True,7933,23799,7933,0,1289,3867,0.16248581873187948,7,6,6,0,1,True
+3,1,redd_house3_1,redd/redd_house3_1.csv,washer dryer,optional_exploratory,train_validation_pool,2,7933,15866,True,7933,23799,7933,0,0,0,0.0,0,0,0,0,0,True
+3,1,redd_house3_1,redd/redd_house3_1.csv,fridge,base,train_validation_pool,3,15866,23798,True,7932,23796,7932,0,3429,10287,0.4322995461422088,19,19,15,1,1,True
+3,1,redd_house3_1,redd/redd_house3_1.csv,microwave,base,train_validation_pool,3,15866,23798,True,7932,23796,7932,0,318,954,0.040090771558245086,1,1,1,0,0,True
+3,1,redd_house3_1,redd/redd_house3_1.csv,dish washer,base,train_validation_pool,3,15866,23798,True,7932,23796,7932,0,998,2994,0.12581946545637923,6,6,6,0,0,True
+3,1,redd_house3_1,redd/redd_house3_1.csv,electric furnace,base,train_validation_pool,3,15866,23798,True,7932,23796,7932,0,626,1878,0.0789208270297529,4,5,3,1,0,True
+3,1,redd_house3_1,redd/redd_house3_1.csv,washer dryer,optional_exploratory,train_validation_pool,3,15866,23798,True,7932,23796,7932,0,0,0,0.0,0,0,0,0,0,True
+3,2,redd_house3_2,redd/redd_house3_2.csv,fridge,base,train_validation_pool,1,0,9713,True,9713,29139,9713,0,2468,7404,0.2540924534129517,14,15,14,1,0,True
+3,2,redd_house3_2,redd/redd_house3_2.csv,microwave,base,train_validation_pool,1,0,9713,True,9713,29139,9713,0,0,0,0.0,0,0,0,0,0,True
+3,2,redd_house3_2,redd/redd_house3_2.csv,dish washer,base,train_validation_pool,1,0,9713,True,9713,29139,9713,0,0,0,0.0,0,0,0,0,0,True
+3,2,redd_house3_2,redd/redd_house3_2.csv,electric furnace,base,train_validation_pool,1,0,9713,True,9713,29139,9713,0,0,0,0.0,0,0,0,0,0,True
+3,2,redd_house3_2,redd/redd_house3_2.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,9713,True,9713,29139,9713,0,0,0,0.0,0,0,0,0,0,True
+3,2,redd_house3_2,redd/redd_house3_2.csv,fridge,base,train_validation_pool,2,9713,19426,True,9713,29139,9713,0,2176,6528,0.22402965098321836,13,13,13,0,0,True
+3,2,redd_house3_2,redd/redd_house3_2.csv,microwave,base,train_validation_pool,2,9713,19426,True,9713,29139,9713,0,0,0,0.0,0,0,0,0,0,True
+3,2,redd_house3_2,redd/redd_house3_2.csv,dish washer,base,train_validation_pool,2,9713,19426,True,9713,29139,9713,0,0,0,0.0,0,0,0,0,0,True
+3,2,redd_house3_2,redd/redd_house3_2.csv,electric furnace,base,train_validation_pool,2,9713,19426,True,9713,29139,9713,0,0,0,0.0,0,0,0,0,0,True
+3,2,redd_house3_2,redd/redd_house3_2.csv,washer dryer,optional_exploratory,train_validation_pool,2,9713,19426,True,9713,29139,9713,0,0,0,0.0,0,0,0,0,0,True
+3,2,redd_house3_2,redd/redd_house3_2.csv,fridge,base,train_validation_pool,3,19426,29139,True,9713,29139,9713,0,2564,7692,0.26397611448574076,14,13,13,0,1,True
+3,2,redd_house3_2,redd/redd_house3_2.csv,microwave,base,train_validation_pool,3,19426,29139,True,9713,29139,9713,0,0,0,0.0,0,0,0,0,0,True
+3,2,redd_house3_2,redd/redd_house3_2.csv,dish washer,base,train_validation_pool,3,19426,29139,True,9713,29139,9713,0,0,0,0.0,0,0,0,0,0,True
+3,2,redd_house3_2,redd/redd_house3_2.csv,electric furnace,base,train_validation_pool,3,19426,29139,True,9713,29139,9713,0,0,0,0.0,0,0,0,0,0,True
+3,2,redd_house3_2,redd/redd_house3_2.csv,washer dryer,optional_exploratory,train_validation_pool,3,19426,29139,True,9713,29139,9713,0,0,0,0.0,0,0,0,0,0,True
+3,3,redd_house3_3,redd/redd_house3_3.csv,fridge,base,train_validation_pool,1,0,15092,True,15092,45276,15092,0,7018,21054,0.4650145772594752,22,23,22,1,0,True
+3,3,redd_house3_3,redd/redd_house3_3.csv,microwave,base,train_validation_pool,1,0,15092,True,15092,45276,15092,0,84,252,0.0055658627087198514,2,2,2,0,0,True
+3,3,redd_house3_3,redd/redd_house3_3.csv,dish washer,base,train_validation_pool,1,0,15092,True,15092,45276,15092,0,0,0,0.0,0,0,0,0,0,True
+3,3,redd_house3_3,redd/redd_house3_3.csv,electric furnace,base,train_validation_pool,1,0,15092,True,15092,45276,15092,0,573,1719,0.037967134905910416,3,3,3,0,0,True
+3,3,redd_house3_3,redd/redd_house3_3.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,15092,True,15092,45276,15092,0,1,3,6.626027034190299e-05,1,1,0,0,0,True
+3,3,redd_house3_3,redd/redd_house3_3.csv,fridge,base,train_validation_pool,2,15092,30183,True,15091,45273,15091,0,6522,19566,0.4321781194089192,31,31,31,0,0,True
+3,3,redd_house3_3,redd/redd_house3_3.csv,microwave,base,train_validation_pool,2,15092,30183,True,15091,45273,15091,0,85,255,0.0056324961897819895,3,3,3,0,0,True
+3,3,redd_house3_3,redd/redd_house3_3.csv,dish washer,base,train_validation_pool,2,15092,30183,True,15091,45273,15091,0,1,3,6.62646610562587e-05,1,1,0,0,0,True
+3,3,redd_house3_3,redd/redd_house3_3.csv,electric furnace,base,train_validation_pool,2,15092,30183,True,15091,45273,15091,0,0,0,0.0,0,0,0,0,0,True
+3,3,redd_house3_3,redd/redd_house3_3.csv,washer dryer,optional_exploratory,train_validation_pool,2,15092,30183,True,15091,45273,15091,0,0,0,0.0,0,0,0,0,0,True
+3,3,redd_house3_3,redd/redd_house3_3.csv,fridge,base,train_validation_pool,3,30183,45274,True,15091,45273,15091,0,5574,16722,0.369359220727586,38,38,34,0,0,True
+3,3,redd_house3_3,redd/redd_house3_3.csv,microwave,base,train_validation_pool,3,30183,45274,True,15091,45273,15091,0,111,333,0.007355377377244715,2,2,2,0,0,True
+3,3,redd_house3_3,redd/redd_house3_3.csv,dish washer,base,train_validation_pool,3,30183,45274,True,15091,45273,15091,0,0,0,0.0,0,0,0,0,0,True
+3,3,redd_house3_3,redd/redd_house3_3.csv,electric furnace,base,train_validation_pool,3,30183,45274,True,15091,45273,15091,0,0,0,0.0,0,0,0,0,0,True
+3,3,redd_house3_3,redd/redd_house3_3.csv,washer dryer,optional_exploratory,train_validation_pool,3,30183,45274,True,15091,45273,15091,0,4167,12501,0.27612484262143,4,4,4,0,0,True
+3,4,redd_house3_4,redd/redd_house3_4.csv,fridge,base,train_validation_pool,1,0,9845,True,9845,29535,9845,0,3986,11958,0.40487557135601826,26,26,24,0,0,True
+3,4,redd_house3_4,redd/redd_house3_4.csv,microwave,base,train_validation_pool,1,0,9845,True,9845,29535,9845,0,258,774,0.026206196038598275,10,10,10,0,0,True
+3,4,redd_house3_4,redd/redd_house3_4.csv,dish washer,base,train_validation_pool,1,0,9845,True,9845,29535,9845,0,997,2991,0.10126968004062976,6,6,6,0,0,True
+3,4,redd_house3_4,redd/redd_house3_4.csv,electric furnace,base,train_validation_pool,1,0,9845,True,9845,29535,9845,0,0,0,0.0,0,0,0,0,0,True
+3,4,redd_house3_4,redd/redd_house3_4.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,9845,True,9845,29535,9845,0,2910,8730,0.29558151345860845,3,2,2,0,1,True
+3,4,redd_house3_4,redd/redd_house3_4.csv,fridge,base,train_validation_pool,2,9845,19690,True,9845,29535,9845,0,3781,11343,0.3840528186896902,24,23,21,0,1,True
+3,4,redd_house3_4,redd/redd_house3_4.csv,microwave,base,train_validation_pool,2,9845,19690,True,9845,29535,9845,0,0,0,0.0,0,0,0,0,0,True
+3,4,redd_house3_4,redd/redd_house3_4.csv,dish washer,base,train_validation_pool,2,9845,19690,True,9845,29535,9845,0,0,0,0.0,0,0,0,0,0,True
+3,4,redd_house3_4,redd/redd_house3_4.csv,electric furnace,base,train_validation_pool,2,9845,19690,True,9845,29535,9845,0,0,0,0.0,0,0,0,0,0,True
+3,4,redd_house3_4,redd/redd_house3_4.csv,washer dryer,optional_exploratory,train_validation_pool,2,9845,19690,True,9845,29535,9845,0,896,2688,0.0910106653123413,0,1,0,1,0,True
+3,4,redd_house3_4,redd/redd_house3_4.csv,fridge,base,train_validation_pool,3,19690,29535,True,9845,29535,9845,0,4082,12246,0.41462671406805485,18,19,18,1,0,True
+3,4,redd_house3_4,redd/redd_house3_4.csv,microwave,base,train_validation_pool,3,19690,29535,True,9845,29535,9845,0,152,456,0.015439309294057898,6,6,5,0,0,True
+3,4,redd_house3_4,redd/redd_house3_4.csv,dish washer,base,train_validation_pool,3,19690,29535,True,9845,29535,9845,0,0,0,0.0,0,0,0,0,0,True
+3,4,redd_house3_4,redd/redd_house3_4.csv,electric furnace,base,train_validation_pool,3,19690,29535,True,9845,29535,9845,0,0,0,0.0,0,0,0,0,0,True
+3,4,redd_house3_4,redd/redd_house3_4.csv,washer dryer,optional_exploratory,train_validation_pool,3,19690,29535,True,9845,29535,9845,0,0,0,0.0,0,0,0,0,0,True
+3,5,redd_house3_5,redd/redd_house3_5.csv,fridge,base,train_validation_pool,1,0,26269,True,26269,78807,26269,0,10424,31272,0.39681754158894517,46,46,44,0,0,True
+3,5,redd_house3_5,redd/redd_house3_5.csv,microwave,base,train_validation_pool,1,0,26269,True,26269,78807,26269,0,70,210,0.0026647379039933003,2,2,2,0,0,True
+3,5,redd_house3_5,redd/redd_house3_5.csv,dish washer,base,train_validation_pool,1,0,26269,True,26269,78807,26269,0,1,3,3.806768434276143e-05,1,1,0,0,0,True
+3,5,redd_house3_5,redd/redd_house3_5.csv,electric furnace,base,train_validation_pool,1,0,26269,True,26269,78807,26269,0,0,0,0.0,0,0,0,0,0,True
+3,5,redd_house3_5,redd/redd_house3_5.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,26269,True,26269,78807,26269,0,0,0,0.0,0,0,0,0,0,True
+3,5,redd_house3_5,redd/redd_house3_5.csv,fridge,base,train_validation_pool,2,26269,52538,True,26269,78807,26269,0,11670,35010,0.4442498762800259,51,51,48,0,0,True
+3,5,redd_house3_5,redd/redd_house3_5.csv,microwave,base,train_validation_pool,2,26269,52538,True,26269,78807,26269,0,269,807,0.010240207088202825,9,9,7,0,0,True
+3,5,redd_house3_5,redd/redd_house3_5.csv,dish washer,base,train_validation_pool,2,26269,52538,True,26269,78807,26269,0,1007,3021,0.03833415813316076,6,6,6,0,0,True
+3,5,redd_house3_5,redd/redd_house3_5.csv,electric furnace,base,train_validation_pool,2,26269,52538,True,26269,78807,26269,0,1,3,3.806768434276143e-05,1,1,0,0,0,True
+3,5,redd_house3_5,redd/redd_house3_5.csv,washer dryer,optional_exploratory,train_validation_pool,2,26269,52538,True,26269,78807,26269,0,0,0,0.0,0,0,0,0,0,True
+3,5,redd_house3_5,redd/redd_house3_5.csv,fridge,base,train_validation_pool,3,52538,78807,True,26269,78807,26269,0,12161,36483,0.46294110929232174,48,48,46,0,0,True
+3,5,redd_house3_5,redd/redd_house3_5.csv,microwave,base,train_validation_pool,3,52538,78807,True,26269,78807,26269,0,112,336,0.00426358064638928,3,3,3,0,0,True
+3,5,redd_house3_5,redd/redd_house3_5.csv,dish washer,base,train_validation_pool,3,52538,78807,True,26269,78807,26269,0,1,3,3.806768434276143e-05,1,1,0,0,0,True
+3,5,redd_house3_5,redd/redd_house3_5.csv,electric furnace,base,train_validation_pool,3,52538,78807,True,26269,78807,26269,0,0,0,0.0,0,0,0,0,0,True
+3,5,redd_house3_5,redd/redd_house3_5.csv,washer dryer,optional_exploratory,train_validation_pool,3,52538,78807,True,26269,78807,26269,0,1,3,3.806768434276143e-05,1,1,0,0,0,True
+4,0,redd_house4_0,redd/redd_house4_0.csv,fridge,base,sealed_candidate_test,,0,36688,False,36688,110064,0,0,0,0,0.0,0,0,0,0,0,True
+4,0,redd_house4_0,redd/redd_house4_0.csv,microwave,base,sealed_candidate_test,,0,36688,False,36688,110064,0,0,0,0,0.0,0,0,0,0,0,True
+4,0,redd_house4_0,redd/redd_house4_0.csv,dish washer,base,sealed_candidate_test,,0,36688,True,36688,110064,36688,0,2,6,5.4513737461840385e-05,2,2,0,0,0,True
+4,0,redd_house4_0,redd/redd_house4_0.csv,electric furnace,base,sealed_candidate_test,,0,36688,True,36688,110064,36688,0,36688,110064,1.0,0,0,0,1,1,False
+4,0,redd_house4_0,redd/redd_house4_0.csv,washer dryer,optional_exploratory,sealed_candidate_test,,0,36688,True,36688,110064,36688,0,1685,5055,0.04592782381160052,2,2,1,0,0,True
+4,1,redd_house4_1,redd/redd_house4_1.csv,fridge,base,sealed_candidate_test,,0,22594,False,22594,67782,0,0,0,0,0.0,0,0,0,0,0,True
+4,1,redd_house4_1,redd/redd_house4_1.csv,microwave,base,sealed_candidate_test,,0,22594,False,22594,67782,0,0,0,0,0.0,0,0,0,0,0,True
+4,1,redd_house4_1,redd/redd_house4_1.csv,dish washer,base,sealed_candidate_test,,0,22594,True,22594,67782,22594,0,0,0,0.0,0,0,0,0,0,True
+4,1,redd_house4_1,redd/redd_house4_1.csv,electric furnace,base,sealed_candidate_test,,0,22594,True,22594,67782,22594,0,22594,67782,1.0,0,0,0,1,1,False
+4,1,redd_house4_1,redd/redd_house4_1.csv,washer dryer,optional_exploratory,sealed_candidate_test,,0,22594,True,22594,67782,22594,0,1271,3813,0.056253872709568914,1,1,1,0,0,True
+4,2,redd_house4_2,redd/redd_house4_2.csv,fridge,base,sealed_candidate_test,,0,43118,False,43118,129354,0,0,0,0,0.0,0,0,0,0,0,True
+4,2,redd_house4_2,redd/redd_house4_2.csv,microwave,base,sealed_candidate_test,,0,43118,False,43118,129354,0,0,0,0,0.0,0,0,0,0,0,True
+4,2,redd_house4_2,redd/redd_house4_2.csv,dish washer,base,sealed_candidate_test,,0,43118,True,43118,129354,43118,0,0,0,0.0,0,0,0,0,0,True
+4,2,redd_house4_2,redd/redd_house4_2.csv,electric furnace,base,sealed_candidate_test,,0,43118,True,43118,129354,43118,0,43118,129354,1.0,0,0,0,1,1,False
+4,2,redd_house4_2,redd/redd_house4_2.csv,washer dryer,optional_exploratory,sealed_candidate_test,,0,43118,True,43118,129354,43118,0,979,2937,0.022705134746509578,11,10,9,0,1,True
+4,3,redd_house4_3,redd/redd_house4_3.csv,fridge,base,sealed_candidate_test,,0,22835,False,22835,68505,0,0,0,0,0.0,0,0,0,0,0,True
+4,3,redd_house4_3,redd/redd_house4_3.csv,microwave,base,sealed_candidate_test,,0,22835,False,22835,68505,0,0,0,0,0.0,0,0,0,0,0,True
+4,3,redd_house4_3,redd/redd_house4_3.csv,dish washer,base,sealed_candidate_test,,0,22835,True,22835,68505,22835,0,0,0,0.0,0,0,0,0,0,True
+4,3,redd_house4_3,redd/redd_house4_3.csv,electric furnace,base,sealed_candidate_test,,0,22835,True,22835,68505,22835,0,22835,68505,1.0,0,0,0,1,1,False
+4,3,redd_house4_3,redd/redd_house4_3.csv,washer dryer,optional_exploratory,sealed_candidate_test,,0,22835,True,22835,68505,22835,0,0,0,0.0,0,0,0,0,0,True
+4,4,redd_house4_4,redd/redd_house4_4.csv,fridge,base,sealed_candidate_test,,0,40867,False,40867,122601,0,0,0,0,0.0,0,0,0,0,0,True
+4,4,redd_house4_4,redd/redd_house4_4.csv,microwave,base,sealed_candidate_test,,0,40867,False,40867,122601,0,0,0,0,0.0,0,0,0,0,0,True
+4,4,redd_house4_4,redd/redd_house4_4.csv,dish washer,base,sealed_candidate_test,,0,40867,True,40867,122601,40867,0,772,2316,0.018890547385421,8,8,6,0,0,True
+4,4,redd_house4_4,redd/redd_house4_4.csv,electric furnace,base,sealed_candidate_test,,0,40867,True,40867,122601,40867,0,40865,122595,0.9999510607580688,2,2,1,1,1,False
+4,4,redd_house4_4,redd/redd_house4_4.csv,washer dryer,optional_exploratory,sealed_candidate_test,,0,40867,True,40867,122601,40867,0,0,0,0.0,0,0,0,0,0,True
+4,5,redd_house4_5,redd/redd_house4_5.csv,fridge,base,sealed_candidate_test,,0,108881,False,108881,326643,0,0,0,0,0.0,0,0,0,0,0,True
+4,5,redd_house4_5,redd/redd_house4_5.csv,microwave,base,sealed_candidate_test,,0,108881,False,108881,326643,0,0,0,0,0.0,0,0,0,0,0,True
+4,5,redd_house4_5,redd/redd_house4_5.csv,dish washer,base,sealed_candidate_test,,0,108881,True,108881,326643,108881,0,699,2097,0.006419852866891377,11,11,5,0,0,True
+4,5,redd_house4_5,redd/redd_house4_5.csv,electric furnace,base,sealed_candidate_test,,0,108881,True,108881,326643,108881,0,108881,326643,1.0,0,0,0,1,1,False
+4,5,redd_house4_5,redd/redd_house4_5.csv,washer dryer,optional_exploratory,sealed_candidate_test,,0,108881,True,108881,326643,108881,0,1,3,9.184338865366777e-06,1,1,0,0,0,True
+5,0,redd_house5_0,redd/redd_house5_0.csv,fridge,base,train_validation_pool,1,0,8061,True,8061,24183,8061,0,3713,11139,0.460612827192656,8,7,6,0,1,True
+5,0,redd_house5_0,redd/redd_house5_0.csv,microwave,base,train_validation_pool,1,0,8061,True,8061,24183,8061,0,0,0,0.0,0,0,0,0,0,True
+5,0,redd_house5_0,redd/redd_house5_0.csv,dish washer,base,train_validation_pool,1,0,8061,True,8061,24183,8061,0,0,0,0.0,0,0,0,0,0,True
+5,0,redd_house5_0,redd/redd_house5_0.csv,electric furnace,base,train_validation_pool,1,0,8061,True,8061,24183,8061,0,1014,3042,0.12579084480833644,2,3,2,1,0,True
+5,0,redd_house5_0,redd/redd_house5_0.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,8061,True,8061,24183,8060,1,0,0,0.0,0,0,0,0,0,True
+5,0,redd_house5_0,redd/redd_house5_0.csv,fridge,base,train_validation_pool,2,8061,16121,True,8060,24180,8060,0,3970,11910,0.49255583126550867,20,21,20,1,0,True
+5,0,redd_house5_0,redd/redd_house5_0.csv,microwave,base,train_validation_pool,2,8061,16121,True,8060,24180,8060,0,0,0,0.0,0,0,0,0,0,True
+5,0,redd_house5_0,redd/redd_house5_0.csv,dish washer,base,train_validation_pool,2,8061,16121,True,8060,24180,8060,0,0,0,0.0,0,0,0,0,0,True
+5,0,redd_house5_0,redd/redd_house5_0.csv,electric furnace,base,train_validation_pool,2,8061,16121,True,8060,24180,8060,0,330,990,0.04094292803970223,4,4,3,0,0,True
+5,0,redd_house5_0,redd/redd_house5_0.csv,washer dryer,optional_exploratory,train_validation_pool,2,8061,16121,True,8060,24180,8060,0,1,3,0.00012406947890818859,1,1,0,0,0,True
+5,0,redd_house5_0,redd/redd_house5_0.csv,fridge,base,train_validation_pool,3,16121,24181,True,8060,24180,8060,0,3394,10182,0.42109181141439206,17,17,15,0,0,True
+5,0,redd_house5_0,redd/redd_house5_0.csv,microwave,base,train_validation_pool,3,16121,24181,True,8060,24180,8060,0,1747,5241,0.21674937965260546,1,1,1,0,0,True
+5,0,redd_house5_0,redd/redd_house5_0.csv,dish washer,base,train_validation_pool,3,16121,24181,True,8060,24180,8060,0,0,0,0.0,0,0,0,0,0,True
+5,0,redd_house5_0,redd/redd_house5_0.csv,electric furnace,base,train_validation_pool,3,16121,24181,True,8060,24180,8060,0,3589,10767,0.4452853598014888,10,10,8,0,0,True
+5,0,redd_house5_0,redd/redd_house5_0.csv,washer dryer,optional_exploratory,train_validation_pool,3,16121,24181,True,8060,24180,8060,0,0,0,0.0,0,0,0,0,0,True
+6,0,redd_house6_0,redd/redd_house6_0.csv,fridge,base,train_validation_pool,1,0,56454,True,56454,169362,56454,0,31633,94899,0.5603323059482056,55,55,52,1,1,True
+6,0,redd_house6_0,redd/redd_house6_0.csv,microwave,base,train_validation_pool,1,0,56454,False,56454,169362,0,0,0,0,0.0,0,0,0,0,0,True
+6,0,redd_house6_0,redd/redd_house6_0.csv,dish washer,base,train_validation_pool,1,0,56454,True,56454,169362,56454,0,117,351,0.0020724837921139334,1,2,0,1,0,True
+6,0,redd_house6_0,redd/redd_house6_0.csv,electric furnace,base,train_validation_pool,1,0,56454,False,56454,169362,0,0,0,0,0.0,0,0,0,0,0,True
+6,0,redd_house6_0,redd/redd_house6_0.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,56454,True,56454,169362,56454,0,0,0,0.0,0,0,0,0,0,True
+6,0,redd_house6_0,redd/redd_house6_0.csv,fridge,base,train_validation_pool,2,56454,112908,True,56454,169362,56454,0,29389,88167,0.5205831296276615,43,43,40,1,1,True
+6,0,redd_house6_0,redd/redd_house6_0.csv,microwave,base,train_validation_pool,2,56454,112908,False,56454,169362,0,0,0,0,0.0,0,0,0,0,0,True
+6,0,redd_house6_0,redd/redd_house6_0.csv,dish washer,base,train_validation_pool,2,56454,112908,True,56454,169362,56454,0,1,3,1.7713536684734473e-05,1,1,0,0,0,True
+6,0,redd_house6_0,redd/redd_house6_0.csv,electric furnace,base,train_validation_pool,2,56454,112908,False,56454,169362,0,0,0,0,0.0,0,0,0,0,0,True
+6,0,redd_house6_0,redd/redd_house6_0.csv,washer dryer,optional_exploratory,train_validation_pool,2,56454,112908,True,56454,169362,56454,0,0,0,0.0,0,0,0,0,0,True
+6,0,redd_house6_0,redd/redd_house6_0.csv,fridge,base,train_validation_pool,3,112908,169361,True,56453,169359,56453,0,30555,91665,0.5412467007953519,53,53,47,1,1,True
+6,0,redd_house6_0,redd/redd_house6_0.csv,microwave,base,train_validation_pool,3,112908,169361,False,56453,169359,0,0,0,0,0.0,0,0,0,0,0,True
+6,0,redd_house6_0,redd/redd_house6_0.csv,dish washer,base,train_validation_pool,3,112908,169361,True,56453,169359,56453,0,1,3,1.771385045967442e-05,1,1,0,0,0,True
+6,0,redd_house6_0,redd/redd_house6_0.csv,electric furnace,base,train_validation_pool,3,112908,169361,False,56453,169359,0,0,0,0,0.0,0,0,0,0,0,True
+6,0,redd_house6_0,redd/redd_house6_0.csv,washer dryer,optional_exploratory,train_validation_pool,3,112908,169361,True,56453,169359,56453,0,1,3,1.771385045967442e-05,1,1,0,0,0,True
+6,1,redd_house6_1,redd/redd_house6_1.csv,fridge,base,train_validation_pool,1,0,14065,True,14065,42195,14065,0,7218,21654,0.5131887664415216,10,10,10,0,0,True
+6,1,redd_house6_1,redd/redd_house6_1.csv,microwave,base,train_validation_pool,1,0,14065,False,14065,42195,0,0,0,0,0.0,0,0,0,0,0,True
+6,1,redd_house6_1,redd/redd_house6_1.csv,dish washer,base,train_validation_pool,1,0,14065,True,14065,42195,14065,0,0,0,0.0,0,0,0,0,0,True
+6,1,redd_house6_1,redd/redd_house6_1.csv,electric furnace,base,train_validation_pool,1,0,14065,False,14065,42195,0,0,0,0,0.0,0,0,0,0,0,True
+6,1,redd_house6_1,redd/redd_house6_1.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,14065,True,14065,42195,14065,0,0,0,0.0,0,0,0,0,0,True
+6,1,redd_house6_1,redd/redd_house6_1.csv,fridge,base,train_validation_pool,2,14065,28129,True,14064,42192,14064,0,7743,23229,0.5505546075085325,12,11,10,0,1,True
+6,1,redd_house6_1,redd/redd_house6_1.csv,microwave,base,train_validation_pool,2,14065,28129,False,14064,42192,0,0,0,0,0.0,0,0,0,0,0,True
+6,1,redd_house6_1,redd/redd_house6_1.csv,dish washer,base,train_validation_pool,2,14065,28129,True,14064,42192,14064,0,0,0,0.0,0,0,0,0,0,True
+6,1,redd_house6_1,redd/redd_house6_1.csv,electric furnace,base,train_validation_pool,2,14065,28129,False,14064,42192,0,0,0,0,0.0,0,0,0,0,0,True
+6,1,redd_house6_1,redd/redd_house6_1.csv,washer dryer,optional_exploratory,train_validation_pool,2,14065,28129,True,14064,42192,14064,0,0,0,0.0,0,0,0,0,0,True
+6,1,redd_house6_1,redd/redd_house6_1.csv,fridge,base,train_validation_pool,3,28129,42193,True,14064,42192,14064,0,6812,20436,0.4843572241183163,16,16,15,1,1,True
+6,1,redd_house6_1,redd/redd_house6_1.csv,microwave,base,train_validation_pool,3,28129,42193,False,14064,42192,0,0,0,0,0.0,0,0,0,0,0,True
+6,1,redd_house6_1,redd/redd_house6_1.csv,dish washer,base,train_validation_pool,3,28129,42193,True,14064,42192,14064,0,0,0,0.0,0,0,0,0,0,True
+6,1,redd_house6_1,redd/redd_house6_1.csv,electric furnace,base,train_validation_pool,3,28129,42193,False,14064,42192,0,0,0,0,0.0,0,0,0,0,0,True
+6,1,redd_house6_1,redd/redd_house6_1.csv,washer dryer,optional_exploratory,train_validation_pool,3,28129,42193,True,14064,42192,14064,0,0,0,0.0,0,0,0,0,0,True
+6,2,redd_house6_2,redd/redd_house6_2.csv,fridge,base,train_validation_pool,1,0,25738,True,25738,77214,25738,0,14403,43209,0.5596005905664776,22,21,18,0,1,True
+6,2,redd_house6_2,redd/redd_house6_2.csv,microwave,base,train_validation_pool,1,0,25738,False,25738,77214,0,0,0,0,0.0,0,0,0,0,0,True
+6,2,redd_house6_2,redd/redd_house6_2.csv,dish washer,base,train_validation_pool,1,0,25738,True,25738,77214,25738,0,1,3,3.8853057735643796e-05,1,1,0,0,0,True
+6,2,redd_house6_2,redd/redd_house6_2.csv,electric furnace,base,train_validation_pool,1,0,25738,False,25738,77214,0,0,0,0,0.0,0,0,0,0,0,True
+6,2,redd_house6_2,redd/redd_house6_2.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,25738,True,25738,77214,25738,0,0,0,0.0,0,0,0,0,0,True
+6,2,redd_house6_2,redd/redd_house6_2.csv,fridge,base,train_validation_pool,2,25738,51475,True,25737,77211,25737,0,11461,34383,0.4453121964486925,25,25,22,1,1,True
+6,2,redd_house6_2,redd/redd_house6_2.csv,microwave,base,train_validation_pool,2,25738,51475,False,25737,77211,0,0,0,0,0.0,0,0,0,0,0,True
+6,2,redd_house6_2,redd/redd_house6_2.csv,dish washer,base,train_validation_pool,2,25738,51475,True,25737,77211,25737,0,0,0,0.0,0,0,0,0,0,True
+6,2,redd_house6_2,redd/redd_house6_2.csv,electric furnace,base,train_validation_pool,2,25738,51475,False,25737,77211,0,0,0,0,0.0,0,0,0,0,0,True
+6,2,redd_house6_2,redd/redd_house6_2.csv,washer dryer,optional_exploratory,train_validation_pool,2,25738,51475,True,25737,77211,25737,0,0,0,0.0,0,0,0,0,0,True
+6,2,redd_house6_2,redd/redd_house6_2.csv,fridge,base,train_validation_pool,3,51475,77212,True,25737,77211,25737,0,10721,32163,0.4165598166064421,23,23,22,1,1,True
+6,2,redd_house6_2,redd/redd_house6_2.csv,microwave,base,train_validation_pool,3,51475,77212,False,25737,77211,0,0,0,0,0.0,0,0,0,0,0,True
+6,2,redd_house6_2,redd/redd_house6_2.csv,dish washer,base,train_validation_pool,3,51475,77212,True,25737,77211,25737,0,2,6,7.770913470878502e-05,1,1,1,0,0,True
+6,2,redd_house6_2,redd/redd_house6_2.csv,electric furnace,base,train_validation_pool,3,51475,77212,False,25737,77211,0,0,0,0,0.0,0,0,0,0,0,True
+6,2,redd_house6_2,redd/redd_house6_2.csv,washer dryer,optional_exploratory,train_validation_pool,3,51475,77212,True,25737,77211,25737,0,0,0,0.0,0,0,0,0,0,True
+6,3,redd_house6_3,redd/redd_house6_3.csv,fridge,base,train_validation_pool,1,0,12604,True,12604,37812,12604,0,5640,16920,0.44747699143129166,18,17,15,0,1,True
+6,3,redd_house6_3,redd/redd_house6_3.csv,microwave,base,train_validation_pool,1,0,12604,False,12604,37812,0,0,0,0,0.0,0,0,0,0,0,True
+6,3,redd_house6_3,redd/redd_house6_3.csv,dish washer,base,train_validation_pool,1,0,12604,True,12604,37812,12604,0,0,0,0.0,0,0,0,0,0,True
+6,3,redd_house6_3,redd/redd_house6_3.csv,electric furnace,base,train_validation_pool,1,0,12604,False,12604,37812,0,0,0,0,0.0,0,0,0,0,0,True
+6,3,redd_house6_3,redd/redd_house6_3.csv,washer dryer,optional_exploratory,train_validation_pool,1,0,12604,True,12604,37812,12604,0,0,0,0.0,0,0,0,0,0,True
+6,3,redd_house6_3,redd/redd_house6_3.csv,fridge,base,train_validation_pool,2,12604,25207,True,12603,37809,12603,0,5390,16170,0.4276759501705943,12,12,9,1,1,True
+6,3,redd_house6_3,redd/redd_house6_3.csv,microwave,base,train_validation_pool,2,12604,25207,False,12603,37809,0,0,0,0,0.0,0,0,0,0,0,True
+6,3,redd_house6_3,redd/redd_house6_3.csv,dish washer,base,train_validation_pool,2,12604,25207,True,12603,37809,12603,0,0,0,0.0,0,0,0,0,0,True
+6,3,redd_house6_3,redd/redd_house6_3.csv,electric furnace,base,train_validation_pool,2,12604,25207,False,12603,37809,0,0,0,0,0.0,0,0,0,0,0,True
+6,3,redd_house6_3,redd/redd_house6_3.csv,washer dryer,optional_exploratory,train_validation_pool,2,12604,25207,True,12603,37809,12603,0,0,0,0.0,0,0,0,0,0,True
+6,3,redd_house6_3,redd/redd_house6_3.csv,fridge,base,train_validation_pool,3,25207,37810,True,12603,37809,12603,0,5356,16068,0.4249781797984607,12,12,9,1,1,True
+6,3,redd_house6_3,redd/redd_house6_3.csv,microwave,base,train_validation_pool,3,25207,37810,False,12603,37809,0,0,0,0,0.0,0,0,0,0,0,True
+6,3,redd_house6_3,redd/redd_house6_3.csv,dish washer,base,train_validation_pool,3,25207,37810,True,12603,37809,12603,0,0,0,0.0,0,0,0,0,0,True
+6,3,redd_house6_3,redd/redd_house6_3.csv,electric furnace,base,train_validation_pool,3,25207,37810,False,12603,37809,0,0,0,0,0.0,0,0,0,0,0,True
+6,3,redd_house6_3,redd/redd_house6_3.csv,washer dryer,optional_exploratory,train_validation_pool,3,25207,37810,True,12603,37809,12603,0,0,0,0.0,0,0,0,0,0,True

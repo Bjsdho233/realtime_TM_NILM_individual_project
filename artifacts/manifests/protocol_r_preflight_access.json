@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "record_id": "protocol-r-preflight-access-2026-07-21-upstream-inventory",
+  "record_id": "protocol-r-preflight-access-2026-07-21-phase-b-support-audit",
   "date": "2026-07-21",
   "snapshot": {
     "upstream_commit": "8c5e90df34236ba0afcc4ec46ac083d829de4d51",
@@ -15,11 +15,24 @@
     "appliance-column presence by house",
     "lexicographic and natural numeric concatenation correspondence",
     "backward-fill correspondence with docs/redd",
-    "static Python and JavaScript data-reading paths"
+    "static Python and JavaScript data-reading paths",
+    "candidate-test appliance-column presence",
+    "candidate-test finite and missing label samples",
+    "candidate-test 15 W threshold active samples and nominal active duration",
+    "candidate-test label transitions, complete cycles, and censored runs"
   ],
-  "candidate_test_block_designated": false,
-  "candidate_test_fields_inspected": [],
-  "label_assisted_support_statistics_generated": false,
+  "candidate_test_block_designated": true,
+  "candidate_test_houses": [2, 4],
+  "candidate_test_sealed": true,
+  "candidate_test_fields_inspected": [
+    "appliance-column presence",
+    "finite and missing label samples",
+    "active samples and nominal active duration",
+    "rising and falling label transitions",
+    "complete cycles",
+    "left- and right-censored runs"
+  ],
+  "label_assisted_support_statistics_generated": true,
   "event_or_pairing_pipeline_run": false,
   "feature_analysis_run": false,
   "classifier_or_model_scoring_run": false,

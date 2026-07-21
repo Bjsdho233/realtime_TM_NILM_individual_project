@@ -51,6 +51,8 @@ The following remain unauthorised:
 
 No later project phase begins automatically after T002.
 
+The Phase B support audit found that the four-class closure gate is not met because `electric furnace` has insufficient complete-cycle support in the sealed candidate test. After the authorised evidence commit, T002 remains `In progress` and no fallback, threshold change, alternate house allocation, or later task is authorised without a new Tianhang decision.
+
 ## Git and External Actions
 
 - Do not delete or overwrite user files without explicit authorisation.

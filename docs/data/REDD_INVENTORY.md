@@ -139,3 +139,17 @@ Unresolved:
 - whether natural numeric suffix order is the intended chronological order;
 - active-support counts and class feasibility;
 - the historical preprocessing path from raw REDD to each pinned chunk.
+
+## Label-Assisted Support Result
+
+The D003 audit is oracle feasibility evidence only. It uses finite appliance power strictly greater than 15 W, qualifying runs of at least two samples, complete inactive edges within the same segment/block, and no backward fill.
+
+| Class | Pool complete cycles | Fold 1 | Fold 2 | Fold 3 | Candidate complete cycles | Candidate active seconds | Full standard |
+|---|---:|---:|---:|---:|---:|---:|---|
+| fridge | 1,106 | 367 | 386 | 353 | 394 | 400,530 | Pass |
+| microwave | 206 | 78 | 69 | 59 | 66 | 93,861 | Pass |
+| dish washer | 169 | 41 | 85 | 43 | 58 | 18,171 | Pass |
+| electric furnace | 38 | 10 | 15 | 13 | 1 | 824,943 | **Fail: candidate cycles** |
+| washer dryer (optional) | 89 | 16 | 55 | 18 | 11 | 11,811 | Pass |
+
+For `electric furnace`, H2 has no matching column and H4 contributes the single candidate complete cycle. The frozen minimum is 10 candidate complete cycles; its active-duration minimum passes. No fallback or threshold change was applied.

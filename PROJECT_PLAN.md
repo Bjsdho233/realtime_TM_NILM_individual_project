@@ -463,7 +463,7 @@ Detailed specifications belong in `docs/tasks/`. This table records only task pu
 | ID | Task | Exit condition | Status |
 |---|---|---|---|
 | T001 | Governance review and repository bootstrap | Governance files approved and validated; Git actions performed only after explicit authorisation. | Complete — 2026-07-21. |
-| T002 | Han upstream snapshot acquisition, REDD inventory, and Protocol R preflight | Acquire the authorised recursive upstream snapshot, record immutable revisions, inventory REDD evidence, and assess the remaining preflight criteria without training or model scoring. | In progress — snapshot and inventory complete; sequence-time and support rules accepted; support audit and candidate manifest pending. |
+| T002 | Han upstream snapshot acquisition, REDD inventory, and Protocol R preflight | Acquire the authorised recursive upstream snapshot, record immutable revisions, inventory REDD evidence, and assess the remaining preflight criteria without training or model scoring. | In progress — audit and candidate manifest complete; four-class closure blocked by insufficient sealed-candidate-test `electric furnace` complete cycles. |
 | T003 | Han reference audit and minimum reproduction contract | Reference revision, workflow stages, reusable components, deviations, and deployment boundary approved. | Pending |
 | T004 | Protocol R split approval and freeze | Tianhang approves the split manifest and hash; candidate test becomes locked test. | Pending |
 | T005 | Han-compatible local training and export | A locally trained smoke model is saved, reloaded, exported, and accompanied by fixed fixtures. | Pending |
@@ -526,6 +526,8 @@ Current reported state:
 - T001 is complete;
 - no remote, tag, push, or GitHub operation occurred;
 - T002 upstream acquisition and inventory are complete;
-- Tianhang accepted the D003 sequence-time contract and frozen support standard.
+- Tianhang accepted the D003 sequence-time contract and frozen support standard;
+- the Phase B audit and candidate manifest were generated without model scoring;
+- `electric furnace` failed the sealed-candidate-test complete-cycle minimum, so T002 remains in progress.
 
-T002 Phase B is the active execution task under the limited 2026-07-21 authorisation. The authorised next action after committing D003 is the standard-library support audit and candidate split manifest. T003 and all other tasks remain unauthorised.
+T002 remains the active task. The authorised evidence commit records the failed closure gate; no fallback or further execution is authorised. T003 and all other tasks remain unauthorised.

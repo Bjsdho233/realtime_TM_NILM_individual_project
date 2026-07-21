@@ -457,31 +457,31 @@ T002 is complete only when:
 
 - [x] T001 and the T002 phase transition were explicitly approved.
 - [x] The revised external snapshot root was acquired and verified without tracking its machine-specific absolute path.
-- [ ] The inspected copy was identified as raw REDD rather than a historical processed output.
+- [x] The inspected copy was identified as a pinned preprocessed synchronized output and accepted under D003 without being misrepresented as raw REDD.
 - [x] No upstream dataset file was modified.
 - [x] The dataset format and fingerprint method were recorded.
 - [x] All available houses and relevant CSV files were inventoried.
 - [x] Mains and appliance columns were mapped.
-- [ ] Timestamp coverage, sampling behaviour, gaps, and major anomalies were recorded.
-- [ ] A house-by-appliance support table was produced.
-- [ ] All label-derived statistics were marked as label-assisted or oracle evidence.
-- [ ] The support rule was declared and used only for feasibility.
-- [ ] A per-house raw-time candidate split was proposed.
-- [ ] Houses were not concatenated into one signal.
-- [ ] Boundary, state-reset, and purge handling were stated explicitly.
-- [x] No candidate test block was designated or accessed.
+- [x] Nominal sampling behaviour and the inability to recover calendar coverage or original gaps were recorded.
+- [x] A house/chunk/appliance support table was produced.
+- [x] All label-derived statistics were marked as label-assisted or oracle evidence.
+- [x] The support rule was declared before audit and used only for feasibility.
+- [x] A per-segment row-position candidate split was proposed under D003.
+- [x] Houses and segments were not concatenated into one Protocol R signal.
+- [x] Boundary, state-reset, and dependency-aware purge handling were stated explicitly.
+- [x] Candidate-test label support was accessed only for the authorised preflight fields and fully recorded.
 - [x] The preflight-access record contains every inspected field category.
 - [x] No event-detector, pairer, feature, Booleanisation, or classifier score was used.
 - [x] No class or boundary was changed silently.
 - [x] Human-readable inventory and preflight-status reports were produced.
-- [ ] Machine-readable inventory and candidate split manifests were produced.
-- [ ] Manifest identities or hashes were verified.
+- [x] Machine-readable inventory and candidate split manifests were produced.
+- [x] Manifest identities or hashes were verified.
 - [x] No raw data, absolute local path, credentials, or unapproved large outputs entered version control.
 - [x] `docs/CURRENT_STATE.md` and the progress record were updated accurately.
 - [x] No split was proposed or frozen.
 - [x] T004 or any later task did not begin automatically.
 
-The unchecked criteria are active T002 blockers. T002 remains `In progress` and must not be closed from inventory evidence alone.
+The frozen four-class support gate is not met: `electric furnace` has 1 complete cycle in the sealed candidate test, below the minimum of 10. T002 remains `In progress` and must not be closed or silently reconfigured.
 
 ## 12. Stop Conditions
 
