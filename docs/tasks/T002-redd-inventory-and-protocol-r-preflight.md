@@ -7,7 +7,7 @@
 **Task type:** Data inventory and evaluation preflight\
 **Dependencies:** T001 completion, explicit revised T002 authorisation, an absent external clone target, and successful recursive acquisition of the authorised upstream snapshot\
 **Current authorisation:** Han upstream snapshot acquisition and read-only REDD inventory only\
-**Dependency state:** T001 completion: Satisfied. Revised T002 authorisation: Satisfied. External clone target absence: Verified. Recursive upstream acquisition: Pending.
+**Dependency state:** T001 completion: Satisfied. Revised T002 authorisation: Satisfied. External clone target absence: Verified before acquisition. Recursive upstream acquisition: Satisfied.
 
 ## Active Revision — 2026-07-21
 
@@ -437,13 +437,13 @@ Wait for a separate decision before T004 or any data-processing implementation b
 
 T002 is complete only when:
 
-- [ ] T001 and the T002 phase transition were explicitly approved.
-- [ ] The exact local REDD path was supplied and verified.
+- [x] T001 and the T002 phase transition were explicitly approved.
+- [x] The revised external snapshot root was acquired and verified without tracking its machine-specific absolute path.
 - [ ] The inspected copy was identified as raw REDD rather than a historical processed output.
-- [ ] No raw dataset file was modified.
-- [ ] The dataset format and fingerprint method were recorded.
-- [ ] All available houses and relevant files were inventoried.
-- [ ] Mains and appliance channels were mapped.
+- [x] No upstream dataset file was modified.
+- [x] The dataset format and fingerprint method were recorded.
+- [x] All available houses and relevant CSV files were inventoried.
+- [x] Mains and appliance columns were mapped.
 - [ ] Timestamp coverage, sampling behaviour, gaps, and major anomalies were recorded.
 - [ ] A house-by-appliance support table was produced.
 - [ ] All label-derived statistics were marked as label-assisted or oracle evidence.
@@ -451,17 +451,19 @@ T002 is complete only when:
 - [ ] A per-house raw-time candidate split was proposed.
 - [ ] Houses were not concatenated into one signal.
 - [ ] Boundary, state-reset, and purge handling were stated explicitly.
-- [ ] Candidate-test access was limited to the permitted preflight fields.
-- [ ] Every inspected candidate-test field was recorded.
-- [ ] No event-detector, pairer, feature, Booleanisation, or classifier score was used.
-- [ ] No class or boundary was changed silently.
-- [ ] Human-readable reports were produced.
+- [x] No candidate test block was designated or accessed.
+- [x] The preflight-access record contains every inspected field category.
+- [x] No event-detector, pairer, feature, Booleanisation, or classifier score was used.
+- [x] No class or boundary was changed silently.
+- [x] Human-readable inventory and preflight-status reports were produced.
 - [ ] Machine-readable inventory and candidate split manifests were produced.
 - [ ] Manifest identities or hashes were verified.
-- [ ] No raw data, absolute local path, credentials, or unapproved large outputs entered version control.
-- [ ] `docs/CURRENT_STATE.md` and the progress record were updated accurately.
-- [ ] The proposed split was still described as a candidate and was not frozen.
-- [ ] T004 or any later task did not begin automatically.
+- [x] No raw data, absolute local path, credentials, or unapproved large outputs entered version control.
+- [x] `docs/CURRENT_STATE.md` and the progress record were updated accurately.
+- [x] No split was proposed or frozen.
+- [x] T004 or any later task did not begin automatically.
+
+The unchecked criteria are active T002 blockers. T002 remains `In progress` and must not be closed from inventory evidence alone.
 
 ## 12. Stop Conditions
 

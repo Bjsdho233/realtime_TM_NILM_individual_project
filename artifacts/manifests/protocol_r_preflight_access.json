@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "record_id": "protocol-r-preflight-access-2026-07-21-upstream-inventory",
+  "date": "2026-07-21",
+  "snapshot": {
+    "upstream_commit": "8c5e90df34236ba0afcc4ec46ac083d829de4d51",
+    "redd_submodule_commit": "a621bbd6399e49c6798550618fe43b113149455b"
+  },
+  "inspected": [
+    "repository branch, commit, remote, submodule, and clean status",
+    "relative CSV paths, byte sizes, and SHA-256 hashes",
+    "CSV headers, row counts, column counts, empty fields, and row widths",
+    "floating-point parse compatibility",
+    "per-file reset index behavior",
+    "appliance-column presence by house",
+    "lexicographic and natural numeric concatenation correspondence",
+    "backward-fill correspondence with docs/redd",
+    "static Python and JavaScript data-reading paths"
+  ],
+  "candidate_test_block_designated": false,
+  "candidate_test_fields_inspected": [],
+  "label_assisted_support_statistics_generated": false,
+  "event_or_pairing_pipeline_run": false,
+  "feature_analysis_run": false,
+  "classifier_or_model_scoring_run": false,
+  "raw_or_upstream_files_modified": false
+}

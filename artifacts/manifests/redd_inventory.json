@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "inventory_id": "han-upstream-redd-a621bbd6-2026-07-21",
+  "inventory_date": "2026-07-21",
+  "source": {
+    "upstream_url": "https://github.com/wuhanstudio/nilm.git",
+    "upstream_branch": "main",
+    "upstream_commit": "8c5e90df34236ba0afcc4ec46ac083d829de4d51",
+    "submodule_path": "redd",
+    "submodule_url": "https://github.com/wuhanstudio/redd",
+    "submodule_commit": "a621bbd6399e49c6798550618fe43b113149455b",
+    "tracked_root": "${HAN_UPSTREAM_SNAPSHOT}/redd",
+    "upstream_clean": true,
+    "submodule_clean": true
+  },
+  "classification": {
+    "redd_submodule": "Han upstream reproduction input source; upstream describes it as pre-processed and synchronized",
+    "docs_redd": "web-distribution and scoring derivative; not an independent dataset",
+    "original_raw_redd_provenance": "Unresolved"
+  },
+  "fingerprint": {
+    "method": "SHA-256 each CSV raw bytes; tree digest hashes sorted relative-path, NUL, file-hash records",
+    "content_tree_sha256": "5e1ee53cdce2a5ad2d5007a08527bd1fc9486130d56dc008cf8c8ba8e336e73d"
+  },
+  "totals": {
+    "houses": 6,
+    "chunk_files": 35,
+    "combined_files": 6,
+    "data_rows": 1508578,
+    "chunk_missing_fields": 4,
+    "combined_missing_fields": 0,
+    "bad_width_rows": 0
+  },
+  "houses": [
+    {"house": 1, "files": 11, "rows": 348731, "columns": 7, "missing": {"washer dryer": 1, "main": 1}, "appliances": ["dish washer", "electric space heater", "electric stove", "fridge", "microwave", "washer dryer"], "types": "all data columns float-compatible"},
+    {"house": 2, "files": 7, "rows": 292063, "columns": 7, "missing": {}, "appliances": ["dish washer", "electric stove", "fridge", "microwave", "washer dryer", "waste disposal unit"], "types": "all data columns float-compatible"},
+    {"house": 3, "files": 6, "rows": 242044, "columns": 8, "missing": {}, "appliances": ["CE appliance", "dish washer", "electric furnace", "fridge", "microwave", "washer dryer", "waste disposal unit"], "types": "all data columns float-compatible"},
+    {"house": 4, "files": 6, "rows": 274983, "columns": 5, "missing": {}, "appliances": ["dish washer", "electric furnace", "electric stove", "washer dryer"], "types": "all data columns float-compatible"},
+    {"house": 5, "files": 1, "rows": 24181, "columns": 9, "missing": {"electric space heater": 1, "washer dryer": 1}, "appliances": ["CE appliance", "dish washer", "electric furnace", "electric space heater", "fridge", "microwave", "washer dryer", "waste disposal unit"], "types": "all data columns float-compatible"},
+    {"house": 6, "files": 4, "rows": 326576, "columns": 7, "missing": {}, "appliances": ["CE appliance", "dish washer", "electric space heater", "electric stove", "fridge", "washer dryer"], "types": "all data columns float-compatible"}
+  ],
+  "combined": [
+    {"house": 1, "path": "docs/redd/building_1_combined.csv", "rows": 348731, "columns": 7, "missing": 0, "sha256": "292a63f313ba829eaa869fed0b67738fd5718f5eedfe3e05bdfa73d25fd8cea2"},
+    {"house": 2, "path": "docs/redd/building_2_combined.csv", "rows": 292063, "columns": 7, "missing": 0, "sha256": "ffcc7896281e5e1d83fd826e9c6faf1c5a31942beb1f57c0b7414158e426b71b"},
+    {"house": 3, "path": "docs/redd/building_3_combined.csv", "rows": 242044, "columns": 8, "missing": 0, "sha256": "a9e8e37e93dc7b5616091fac0a0037a9aa1439539e9643e131faa29c8be37ef9"},
+    {"house": 4, "path": "docs/redd/building_4_combined.csv", "rows": 274983, "columns": 5, "missing": 0, "sha256": "953c74a31d70ffafcaa0d5b7f13c81ad10b0d0d37628e40c8ed0eac3cc10784e"},
+    {"house": 5, "path": "docs/redd/building_5_combined.csv", "rows": 24181, "columns": 9, "missing": 0, "sha256": "7fbc6464ee666c7daa4975e619709083533f9d52a87e619fcce093f1db68a481"},
+    {"house": 6, "path": "docs/redd/building_6_combined.csv", "rows": 326576, "columns": 7, "missing": 0, "sha256": "ecf1c19aa1ac7a69965a381d319e1d6ceafc09d3e4c566fde7ab8ffffc8e1023"}
+  ],
+  "ordering": {
+    "combined_transform": "lexicographic glob order, concatenate, remove chunk index, backward fill",
+    "all_houses_exact_after_transform": true,
+    "house_1_lexicographic_order": ["redd_house1_0.csv", "redd_house1_1.csv", "redd_house1_10.csv", "redd_house1_2.csv", "redd_house1_3.csv", "redd_house1_4.csv", "redd_house1_5.csv", "redd_house1_6.csv", "redd_house1_7.csv", "redd_house1_8.csv", "redd_house1_9.csv"],
+    "house_1_natural_order_matches_combined": false,
+    "house_1_natural_order_mismatch_rows": 299564
+  },
+  "unresolved": [
+    "original raw REDD provenance and preprocessing chain",
+    "timestamp and sampling semantics",
+    "original channel identifiers and transformations",
+    "tracked generation and publication step for docs/redd",
+    "intended chronological chunk order",
+    "active-support rule and class feasibility",
+    "candidate split, boundary, purge, and manifest"
+  ]
+}

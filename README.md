@@ -87,7 +87,12 @@ The complete operating rules are defined in [AGENTS.md](AGENTS.md).
 
 ## Data and Results
 
-REDD is not distributed with this repository. The exact local dataset copy has not yet been inventoried or approved for use.
+REDD is not distributed with this repository. The pinned Han upstream snapshot has been inventoried, but no original raw REDD copy has been verified or approved for Protocol R raw-time evaluation.
+
+The active T002 snapshot inventory is recorded in:
+
+- [REDD Inventory](docs/data/REDD_INVENTORY.md)
+- [Protocol R Preflight Status](docs/data/PROTOCOL_R_PREFLIGHT.md)
 
 Historical scores and observations may guide future questions, but they are not results from the new evaluation protocol unless they are reproduced and recorded under an approved task.
 

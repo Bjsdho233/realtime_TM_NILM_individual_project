@@ -4,7 +4,7 @@
 **Last updated:** 2026-07-21\
 **Current phase:** T002 Han upstream snapshot acquisition and REDD inventory\
 **Active execution task:** T002 — REDD Inventory and Protocol R Preflight\
-**Local verification:** T001 completed. Tianhang explicitly authorised the revised T002 on 2026-07-21; upstream acquisition remains pending.
+**Local verification:** T001 completed. The authorised T002 upstream snapshot and read-only inventory were verified on 2026-07-21.
 
 ## 1. Purpose
 
@@ -51,7 +51,7 @@ If this file conflicts with the actual worktree or locally generated outputs, th
 | Task | State |
 |---|---|
 | T001 | Complete — 2026-07-21. Gate B reconciliation, local Git bootstrap, the initial governance baseline commit, and the T001 closure record are complete. |
-| T002 | In progress. T001 completion and explicit T002 authorisation are satisfied. The authorised recursive upstream snapshot and read-only REDD inventory remain pending. |
+| T002 | In progress. Upstream acquisition and inventory are complete. Timestamp, original-source provenance, active-support, candidate split, boundary, purge, and candidate-manifest requirements remain unresolved. |
 | T003 | Not started. No Han reference revision or reusable component has been approved. |
 | T004–T013 | Not started. |
 
@@ -116,6 +116,19 @@ Do not install dependencies, run the NILM pipeline, modify the upstream clone, c
 
 T001 Gate B reconciliation, local Git bootstrap, the initial governance baseline commit, and the T001 closure record are complete. The closure commit identifier is reported in the Gate C execution report because a commit cannot record its own final hash.
 
-## 9. Immediate Next Action
+## 9. T002 Verified Evidence
 
-Create the T002 authorisation commit, acquire the single authorised recursive upstream snapshot, and perform the read-only REDD inventory. T003 and all other later tasks remain unauthorised.
+- Han upstream snapshot commit: `8c5e90df34236ba0afcc4ec46ac083d829de4d51` on `main`.
+- `redd` submodule commit: `a621bbd6399e49c6798550618fe43b113149455b`.
+- Both the upstream worktree and submodule were clean after inventory.
+- The submodule contains 35 pre-processed CSV chunks for six houses and 1,508,578 data rows.
+- The main repository contains six `docs/redd` combined CSV files with the same per-house row totals.
+- The verified CSV content-tree fingerprint is `5e1ee53cdce2a5ad2d5007a08527bd1fc9486130d56dc008cf8c8ba8e336e73d`.
+- `docs/redd` matches lexicographic chunk concatenation followed by backward fill. For House 1, lexicographic order places `_10.csv` between `_1.csv` and `_2.csv`; natural numeric order does not match the combined file.
+- The submodule README describes the files as a pre-processed, synchronized REDD dataset. The chain to original raw REDD, timestamp semantics, preprocessing procedure, and original channel provenance remains `Unresolved`.
+
+The external absolute snapshot path remains machine-specific and is not stored in tracked evidence.
+
+## 10. Immediate Next Action
+
+Review the T002 inventory and unresolved completion criteria. T002 remains active but incomplete. T003 and all other later tasks remain unauthorised.
