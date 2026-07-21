@@ -24,17 +24,16 @@
 
 ## Current Phase Lock
 
-Tianhang explicitly authorised the revised T002 on 2026-07-21.
+Tianhang explicitly authorised T002 Phase B on 2026-07-21.
 
 The only currently authorised work is:
 
-- record the T002 activation and limited authorisation in project governance;
-- recursively clone the current `main` branch of `https://github.com/wuhanstudio/nilm.git` to the external target supplied by Tianhang;
-- acquire and record the `redd` submodule revision;
-- inspect the external clone and REDD files read-only for the authorised inventory;
-- inspect actual Python and JavaScript data-reading paths without running the NILM pipeline;
-- record inventory evidence, source-chain conclusions, unresolved links, and T002 progress;
-- create the authorised local project commits for T002 governance and inventory evidence.
+- verify only the two exact external sources named in the Phase B authorisation;
+- define and commit the REDD sequence-time contract and frozen support standard before reading active-support statistics;
+- create the task-bounded standard-library support-audit utility and synthetic tests;
+- inspect the pinned external `redd` submodule read-only for label-assisted support;
+- generate the authorised support audit, candidate split manifest, and progress evidence;
+- create the authorised local project commits for the sequence contract, support evidence, and T002 closure only if every closure condition is met.
 
 The upstream clone is external, read-only evidence. Do not modify it or copy its code or CSV files into this project.
 
@@ -44,8 +43,9 @@ The following remain unauthorised:
 - edge detection, event pairing, TM training, or inference;
 - T003 or any other later task;
 - a remote for this project, push, pull requests, or other GitHub operations;
-- access to any external repository other than the single authorised recursive Han clone;
+- access to any external repository or source other than the existing Han clone and the two exact Phase B sources;
 - algorithm creation or migration;
+- edge detection, event pairing, feature extraction, TM training, inference, or model scoring;
 - firmware, Pico, or hardware work;
 - tags or additional branches in this project.
 

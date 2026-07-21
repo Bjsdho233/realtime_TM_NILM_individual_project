@@ -6,8 +6,24 @@
 **Last updated:** 2026-07-21\
 **Task type:** Data inventory and evaluation preflight\
 **Dependencies:** T001 completion, explicit revised T002 authorisation, an absent external clone target, and successful recursive acquisition of the authorised upstream snapshot\
-**Current authorisation:** Han upstream snapshot acquisition and read-only REDD inventory only\
+**Current authorisation:** Phase B sequence-time contract, label-assisted support audit, and Protocol R candidate manifest\
 **Dependency state:** T001 completion: Satisfied. Revised T002 authorisation: Satisfied. External clone target absence: Verified before acquisition. Recursive upstream acquisition: Satisfied.
+
+## Phase B Revision — 2026-07-21
+
+Tianhang accepted the upstream inventory and authorised Phase B. This revision supersedes requirements that depend on unavailable original timestamps for the pinned preprocessed CSVs.
+
+The binding sequence, house, class, fold, boundary, and support decisions are in [`D003`](../decisions/D003-redd-sequence-time-contract.md). In summary:
+
+- every chunk is an independent Protocol R segment with a nominal 3-second cadence;
+- row identity is `segment_id`, `sample_index`, and `nominal_offset_seconds`, never an asserted original timestamp;
+- H1, H3, H5, and H6 are the train/validation pool; H2 and H4 are the sealed candidate test;
+- the base classes are fridge, microwave, dish washer, and electric furnace; washer dryer is optional and exploratory;
+- each pool segment is divided independently into three contiguous row-position blocks;
+- full dependency containment and state reset apply at every segment and block boundary;
+- label-assisted support uses the fixed 15 W, two-sample, complete-cycle rule and fixed minima in D003.
+
+Phase B may create `tools/data/audit_redd_support.py`, `tests/data/test_audit_redd_support.py`, the named support evidence, and the authorised commits. It must not execute the NILM pipeline or inspect model results.
 
 ## Active Revision — 2026-07-21
 
@@ -50,7 +66,7 @@ The proposed future-test region must remain named the `candidate test block` thr
 
 ## 2. Context
 
-Protocol R requires each house to be split in raw time before event detection, pairing, feature extraction, Booleanisation, or model training.
+Protocol R requires each available sequence segment to be split by the D003 row-position contract before event detection, pairing, feature extraction, Booleanisation, or model training. The current CSVs do not support invented calendar timestamps or cross-segment chronology.
 
 Before those boundaries can be approved, the actual local REDD copy must be inspected. The project currently does not have verified information about:
 
@@ -238,9 +254,9 @@ If an intended appliance lacks sufficient support, report the limitation. Do not
 
 The candidate split proposal must:
 
-- define raw-time blocks separately for every eligible house;
+- define row-position blocks separately for every eligible segment;
 - avoid concatenating houses into an artificial time series;
-- use explicit inclusive or exclusive timestamp conventions;
+- use explicit half-open row-range conventions and nominal offsets;
 - identify train, validation, and candidate test blocks;
 - account for recording gaps and unusable regions;
 - record the rationale for each proposed boundary;
@@ -283,16 +299,18 @@ The expected outputs are:
 - any narrowly scoped script or configuration required to reproduce the inventory;
 - a dated progress record.
 
-The exact repository paths must be reconciled with the reviewed `README.md` before T002 execution. The recommended locations are:
+The authorised output locations are:
 
 - `docs/data/REDD_INVENTORY.md`;
 - `docs/data/PROTOCOL_R_PREFLIGHT.md`;
 - `artifacts/manifests/redd_inventory.json`;
 - `artifacts/manifests/protocol_r_candidate_split.json`;
 - `artifacts/manifests/protocol_r_preflight_access.json`;
-- `scripts/` for approved repeatable inventory utilities.
+- `tools/data/audit_redd_support.py` for the approved repeatable audit utility;
+- `tests/data/test_audit_redd_support.py` for synthetic unit tests;
+- `artifacts/tables/redd_support_audit.csv` and `artifacts/manifests/redd_support_audit.json` for support evidence.
 
-Creating this task specification does not create or authorise those files.
+The Phase B authorisation explicitly authorises the named Phase B files.
 
 ## 9. Manifest Requirements
 

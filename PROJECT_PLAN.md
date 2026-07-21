@@ -173,15 +173,19 @@ Deferred work is not permanently excluded.
 | Stress test | Protocol X is optional. |
 | Deployment model | Protocol D is deployment-only. |
 | Main split principle | Per-house raw-time blocked splitting. |
+| T002 canonical input | Pinned `redd` submodule commit `a621bbd6399e49c6798550618fe43b113149455b`. |
+| Protocol R sequence contract | Each chunk is an independent segment at a nominal 3-second cadence; no cross-segment time order or dependencies. |
+| Protocol R candidate houses | Train/validation pool H1, H3, H5, H6; sealed candidate test H2 and H4. |
+| Protocol R candidate classes | Base: fridge, microwave, dish washer, electric furnace. Optional exploratory fifth: washer dryer. |
+| Protocol R validation | Each train/validation segment is independently divided by row position into three contiguous blocks. |
+| Protocol R purge | Full dependency containment within one segment/block; no invented fixed numerical purge. |
 | Formal run summary | One canonical `result.json` per formal run. |
 | Experiment identity | Use task, experiment, configuration, and run artefacts; do not rely on one Git branch per experiment. |
 
 ### 5.2 Pending
 
-- Exact local REDD path.
-- Available REDD houses, channels, timestamps, and gaps.
-- Appliance class set.
-- Split proportions, boundaries, and purge.
+- Original REDD calendar timestamps, gaps, and per-file channel provenance.
+- Actual detector, pairer, window, event, and feature dependency horizons.
 - Pinned Han repository revision and approved reusable files.
 - Multiclass TM versus multiple binary TMs.
 - Detector, pairer, feature, Booleanisation, and TM parameters.
@@ -239,6 +243,8 @@ Protocol H must not use the Protocol R candidate test block for training, model 
 
 Protocol R combines eligible development blocks from multiple houses only after each house has been split and processed independently. Signals from different houses must never be concatenated into one artificial time series.
 
+For the pinned T002 preflight, each chunk is an independent segment with a nominal 3-second cadence. The train/validation pool is H1, H3, H5, and H6; H2 and H4 form the sealed candidate test. Each pool segment is split independently by row position into three contiguous validation blocks. The base classes are fridge, microwave, dish washer, and electric furnace; washer dryer is optional and exploratory. These decisions are defined in [`D003`](docs/decisions/D003-redd-sequence-time-contract.md).
+
 The following rules apply:
 
 - split raw time before event generation;
@@ -247,6 +253,8 @@ The following rules apply:
 - use validation data for development and selection;
 - do not use the frozen test for tuning or method selection;
 - run aggregate-mains-only and label-assisted routes separately.
+- never use `docs/redd` combined files as Protocol R input;
+- reset state and require full dependency containment at every segment and block boundary.
 
 ### 7.3 Protocol R test lifecycle
 
@@ -455,7 +463,7 @@ Detailed specifications belong in `docs/tasks/`. This table records only task pu
 | ID | Task | Exit condition | Status |
 |---|---|---|---|
 | T001 | Governance review and repository bootstrap | Governance files approved and validated; Git actions performed only after explicit authorisation. | Complete — 2026-07-21. |
-| T002 | Han upstream snapshot acquisition, REDD inventory, and Protocol R preflight | Acquire the authorised recursive upstream snapshot, record immutable revisions, inventory REDD evidence, and assess the remaining preflight criteria without training or model scoring. | In progress — snapshot and inventory complete; timestamp, provenance, support, split, purge, and candidate-manifest criteria remain unresolved. |
+| T002 | Han upstream snapshot acquisition, REDD inventory, and Protocol R preflight | Acquire the authorised recursive upstream snapshot, record immutable revisions, inventory REDD evidence, and assess the remaining preflight criteria without training or model scoring. | In progress — snapshot and inventory complete; sequence-time and support rules accepted; support audit and candidate manifest pending. |
 | T003 | Han reference audit and minimum reproduction contract | Reference revision, workflow stages, reusable components, deviations, and deployment boundary approved. | Pending |
 | T004 | Protocol R split approval and freeze | Tianhang approves the split manifest and hash; candidate test becomes locked test. | Pending |
 | T005 | Han-compatible local training and export | A locally trained smoke model is saved, reloaded, exported, and accompanied by fixed fixtures. | Pending |
@@ -488,7 +496,7 @@ A Pico running only TM inference must not be described as end-to-end on-device N
 |---|---|
 | Han's current workflow cannot be reproduced exactly | Deliver a pinned, repeatable compatibility path and document every material deviation. |
 | Han's Python and embedded stages are inconsistent | Treat the model bundle and parity fixtures as the new explicit contract. |
-| Candidate blocks have insufficient class support | Revise the proposed class set or boundaries during preflight, before freeze. |
+| Candidate blocks have insufficient class support | Keep T002 in progress, preserve the frozen support standard, and await Tianhang's decision on a predefined fallback. |
 | The macro F1 target is not achieved | Report the best frozen-protocol result, per-class failures, negative experiments, and likely causes. |
 | Three classes cannot be supported reliably | A smaller class set may be used as a supplementary demo, but it does not satisfy the stated research target. |
 | Full preprocessing is too large for the Pico | Retain PC preprocessing with Pico Booleanisation and TM inference, and report the deployment boundary clearly. |
@@ -516,6 +524,8 @@ Current reported state:
 - the initial governance baseline commit is `df8451b4eea59e1b9a3af78fa7aac72f614de8b7`;
 - the T001 closure record has been created;
 - T001 is complete;
-- no remote, tag, push, or GitHub operation occurred.
+- no remote, tag, push, or GitHub operation occurred;
+- T002 upstream acquisition and inventory are complete;
+- Tianhang accepted the D003 sequence-time contract and frozen support standard.
 
-T002 is the active execution task under the limited 2026-07-21 authorisation. The authorised next action is the single recursive Han upstream clone followed by read-only REDD inventory and source-chain reporting. T003 and all other tasks remain unauthorised.
+T002 Phase B is the active execution task under the limited 2026-07-21 authorisation. The authorised next action after committing D003 is the standard-library support audit and candidate split manifest. T003 and all other tasks remain unauthorised.

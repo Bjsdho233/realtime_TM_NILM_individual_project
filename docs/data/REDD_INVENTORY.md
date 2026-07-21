@@ -18,7 +18,7 @@
 | Tracked dataset root | `${HAN_UPSTREAM_SNAPSHOT}/redd` |
 | Combined web files | `${HAN_UPSTREAM_SNAPSHOT}/docs/redd` |
 
-The submodule README identifies its content as a “Pre-processed REDD dataset (synchronized).” It does not establish the original raw REDD revision, acquisition path, preprocessing procedure, timestamps, sampling interval, or original channel mapping. Those links remain `Unresolved`.
+The submodule README identifies its content as a “Pre-processed REDD dataset (synchronized).” It does not establish the original raw REDD revision, acquisition path, per-file preprocessing procedure, timestamps, or original channel mapping. Those links remain `Unresolved`.
 
 For Han upstream reproduction, the pinned `redd` submodule is the input source. `docs/redd` is a web-distribution and scoring derivative, not an independent dataset.
 
@@ -31,6 +31,18 @@ For Han upstream reproduction, the pinned `redd` submodule is the input source. 
 - Missing values are empty CSV fields.
 - The content-tree fingerprint is SHA-256 over sorted records containing relative path, NUL, and each file's raw-byte SHA-256.
 - No support threshold, activation count, event detector, feature, classifier, or model score was used.
+
+## Sequence-Time Evidence Added in Phase B
+
+The limited source check records the following evidence without claiming the pinned CSVs retain original timestamps:
+
+- the AAAI paper reports REDD aggregate samples every 1 second and appliance samples every 3 seconds;
+- the paper reports missing-data subsequence splitting, backward filling within subsequences, retention of subsequences longer than one day, and a 15 W on/off label threshold;
+- the fixed source implementation aligns onto a 3-second grid and implements gap splitting and backward fill;
+- its preprocessed CSV reader treats each file as a separate non-continuous long time window;
+- its imputation implementation retains a single subsequence even if it does not exceed the nominal one-day size when no large split is found.
+
+The last implementation branch could retain a short single subsequence such as the observed House 5 chunk, but it does not prove that this code generated that file. See [`D003`](../decisions/D003-redd-sequence-time-contract.md) for the accepted contract and source links.
 
 Content-tree SHA-256:
 
@@ -121,9 +133,9 @@ Verified locally:
 Unresolved:
 
 - provenance from original raw REDD to the pre-processed synchronized submodule;
-- timestamp and sampling semantics;
+- original timestamp and calendar-gap semantics;
 - original channel identifiers and transformations;
 - the tracked command or commit that generated and published `docs/redd`;
 - whether natural numeric suffix order is the intended chronological order;
-- active-support thresholds, activation counts, and class feasibility;
-- candidate train, validation, and test blocks, purge, and boundary rules.
+- active-support counts and class feasibility;
+- the historical preprocessing path from raw REDD to each pinned chunk.
