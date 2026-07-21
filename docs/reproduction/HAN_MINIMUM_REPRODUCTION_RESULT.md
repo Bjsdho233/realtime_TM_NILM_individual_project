@@ -1,6 +1,6 @@
 # Han Minimum Reproduction Result
 
-**Run date:** 2026-07-22  
+**Run date:** 2026-07-21  
 **Protocol:** Protocol H compatibility reproduction  
 **Status:** Minimum two-class PC staged pipeline reproduced locally
 
@@ -93,4 +93,3 @@ This run proves that the pinned Han staged PC route can generate a two-class eve
 It is not a Protocol R result. Event labels are constructed with appliance submeter assistance, H3 was already designated by Han's script as the compatibility test house, post-event samples enter the feature vector, and the run uses upstream concatenation and backward fill. The 97.58% accuracy and 0.94 macro F1 therefore must not be presented as aggregate-mains-only, causal, real-time, Pico, or formal dissertation-test performance.
 
 Generated data, models, logs, and headers were intentionally not committed. The machine-readable result record is [`han_minimum_reproduction_result.json`](../../artifacts/manifests/han_minimum_reproduction_result.json).
-

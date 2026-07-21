@@ -3,7 +3,7 @@
   "task": "T003",
   "protocol": "H",
   "status": "minimum_two_class_pc_staged_pipeline_reproduced",
-  "run_date": "2026-07-22",
+  "run_date": "2026-07-21",
   "upstream": {
     "repository_commit": "8c5e90df34236ba0afcc4ec46ac083d829de4d51",
     "redd_submodule_commit": "a621bbd6399e49c6798550618fe43b113149455b",
