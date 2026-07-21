@@ -1,0 +1,221 @@
+{
+  "schema_version": "supplementary-research-note-v1",
+  "record_id": "chatgpt-protocol-r-preflight-candidate-v4",
+  "status": "superseded_candidate_not_active_project_evidence",
+  "analysis_date": "2026-07-21",
+  "provenance": {
+    "source": "web_chatgpt_side_exploratory_preflight",
+    "authoritative_local_project_execution": false,
+    "model_training_or_scoring_performed": false,
+    "import_purpose": "preserve_protocol_design_history_without_changing_the_canonical_t002_contract"
+  },
+  "current_authority": {
+    "decisions": [
+      "docs/decisions/D003-redd-sequence-time-contract.md",
+      "docs/decisions/D004-protocol-r-class-fallback.md"
+    ],
+    "approved_manifest": "artifacts/manifests/protocol_r_approved_split.json",
+    "current_state": "docs/CURRENT_STATE.md"
+  },
+  "source_summary": {
+    "dataset_kind": "preprocessed_synchronized_redd_csv_segments",
+    "file_count": 35,
+    "house_count": 6,
+    "row_count": 1508578,
+    "timestamp_available": false,
+    "sequence_coordinate": "zero_based_relative_row_within_source_segment",
+    "legacy_dataset_sha256": "0b7e12b5f42db36d83d958fb2cd3b0d8ae5074d19fde49852c9c04d7ed40833a",
+    "legacy_identifier_warning": "The exploratory serialization differs from the canonical T002 content-tree fingerprint and is not interchangeable with it."
+  },
+  "candidate": {
+    "protocol": "R",
+    "selected_houses": [
+      1,
+      2,
+      3
+    ],
+    "target_classes": [
+      "fridge",
+      "microwave",
+      "dish washer"
+    ],
+    "split_unit": "independent_source_segment",
+    "fractions": {
+      "train": 0.4,
+      "validation": 0.2,
+      "candidate_test": 0.4
+    },
+    "processing_contract": {
+      "concatenate_source_segments": false,
+      "split_before_event_detection": true,
+      "reset_at_source_segment_boundary": true,
+      "reset_at_split_boundary": true,
+      "fit_preprocessing_on_train_only": true
+    },
+    "legacy_boundary_exclusion": {
+      "samples_each_side": 532,
+      "derivation": {
+        "han_max_pair_gap_samples": 500,
+        "han_episode_context_samples": 32,
+        "rule": "max_pair_gap_plus_context"
+      },
+      "canonical_status": "superseded_by_full_dependency_containment_under_D003"
+    }
+  },
+  "support_probe": {
+    "label_assisted": true,
+    "active_threshold_w": 15.0,
+    "significant_edge_threshold_w": 80.0,
+    "minimum_candidate_pair_upper_bound_per_split": 60,
+    "minimum_contributing_houses_per_split": 2,
+    "interpretation": "structural_support_upper_bound_not_detected_pairs_or_model_support"
+  },
+  "global_support": [
+    {
+      "split": "train",
+      "target_class": "fridge",
+      "active_cycle_upper_bound": 521,
+      "candidate_pair_upper_bound": 471,
+      "contributing_houses": 3
+    },
+    {
+      "split": "train",
+      "target_class": "microwave",
+      "active_cycle_upper_bound": 149,
+      "candidate_pair_upper_bound": 141,
+      "contributing_houses": 3
+    },
+    {
+      "split": "train",
+      "target_class": "dish washer",
+      "active_cycle_upper_bound": 73,
+      "candidate_pair_upper_bound": 75,
+      "per_house_sum": 74,
+      "contributing_houses": 3,
+      "consistency_status": "reported_global_value_does_not_equal_per_house_sum"
+    },
+    {
+      "split": "validation",
+      "target_class": "fridge",
+      "active_cycle_upper_bound": 221,
+      "candidate_pair_upper_bound": 197,
+      "contributing_houses": 3
+    },
+    {
+      "split": "validation",
+      "target_class": "microwave",
+      "active_cycle_upper_bound": 63,
+      "candidate_pair_upper_bound": 68,
+      "contributing_houses": 3
+    },
+    {
+      "split": "validation",
+      "target_class": "dish washer",
+      "active_cycle_upper_bound": 63,
+      "candidate_pair_upper_bound": 65,
+      "contributing_houses": 2,
+      "concentration_note": "H1 contributed 64 opportunities, H2 contributed 0, and H3 contributed 1."
+    },
+    {
+      "split": "candidate_test",
+      "target_class": "fridge",
+      "active_cycle_upper_bound": 493,
+      "candidate_pair_upper_bound": 446,
+      "contributing_houses": 3
+    },
+    {
+      "split": "candidate_test",
+      "target_class": "microwave",
+      "active_cycle_upper_bound": 130,
+      "candidate_pair_upper_bound": 102,
+      "contributing_houses": 3
+    },
+    {
+      "split": "candidate_test",
+      "target_class": "dish washer",
+      "active_cycle_upper_bound": 90,
+      "candidate_pair_upper_bound": 89,
+      "contributing_houses": 3
+    }
+  ],
+  "per_house_candidate_pair_upper_bounds": {
+    "train": {
+      "1": {
+        "fridge": 107,
+        "microwave": 79,
+        "dish washer": 43
+      },
+      "2": {
+        "fridge": 132,
+        "microwave": 26,
+        "dish washer": 22
+      },
+      "3": {
+        "fridge": 232,
+        "microwave": 36,
+        "dish washer": 9
+      }
+    },
+    "validation": {
+      "1": {
+        "fridge": 46,
+        "microwave": 38,
+        "dish washer": 64
+      },
+      "2": {
+        "fridge": 56,
+        "microwave": 7,
+        "dish washer": 0
+      },
+      "3": {
+        "fridge": 95,
+        "microwave": 23,
+        "dish washer": 1
+      }
+    },
+    "candidate_test": {
+      "1": {
+        "fridge": 100,
+        "microwave": 37,
+        "dish washer": 49
+      },
+      "2": {
+        "fridge": 129,
+        "microwave": 28,
+        "dish washer": 30
+      },
+      "3": {
+        "fridge": 217,
+        "microwave": 37,
+        "dish washer": 10
+      }
+    }
+  },
+  "import_validation": {
+    "global_to_per_house_checks": 9,
+    "matching_checks": 8,
+    "mismatches": [
+      {
+        "split": "train",
+        "target_class": "dish washer",
+        "reported_global_value": 75,
+        "per_house_sum": 74
+      }
+    ],
+    "interpretation": "The mismatch indicates an unresolved boundary or roll-up defect in the exploratory analysis. Neither value is canonical project evidence."
+  },
+  "disposition": {
+    "permitted_uses": [
+      "protocol_design_history",
+      "support_concentration_analysis",
+      "boundary_policy_comparison"
+    ],
+    "prohibited_uses": [
+      "active_protocol_configuration",
+      "model_selection",
+      "model_evaluation",
+      "dissertation_performance_reporting",
+      "authorisation_to_access_candidate_test_model_outputs"
+    ]
+  }
+}
