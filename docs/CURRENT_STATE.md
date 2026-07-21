@@ -2,9 +2,9 @@
 
 **Status:** Current governance snapshot\
 **Last updated:** 2026-07-21\
-**Current phase:** Paused pending explicit authorisation and phase transition\
-**Active execution task:** None\
-**Local verification:** T001 Gate B reconciliation and Gate C local Git bootstrap completed on 2026-07-21.
+**Current phase:** T002 Han upstream snapshot acquisition and REDD inventory\
+**Active execution task:** T002 — REDD Inventory and Protocol R Preflight\
+**Local verification:** T001 completed. Tianhang explicitly authorised the revised T002 on 2026-07-21; upstream acquisition remains pending.
 
 ## 1. Purpose
 
@@ -51,11 +51,11 @@ If this file conflicts with the actual worktree or locally generated outputs, th
 | Task | State |
 |---|---|
 | T001 | Complete — 2026-07-21. Gate B reconciliation, local Git bootstrap, the initial governance baseline commit, and the T001 closure record are complete. |
-| T002 | Not started — Blocked. T001 completion: Satisfied. Explicit T002 authorisation and phase transition: Not satisfied. Exact local REDD root path: Not provided. |
+| T002 | In progress. T001 completion and explicit T002 authorisation are satisfied. The authorised recursive upstream snapshot and read-only REDD inventory remain pending. |
 | T003 | Not started. No Han reference revision or reusable component has been approved. |
 | T004–T013 | Not started. |
 
-T002 and T003 must not begin automatically. Tianhang must explicitly authorise the next task and phase transition.
+T002 is active only within its recorded limited authorisation. T003 and all later tasks remain unauthorised.
 
 ## 5. Verified Project Evidence
 
@@ -108,9 +108,9 @@ No task may silently infer these decisions from historical experiments or conver
 
 ## 7. Current Authorisation and Restrictions
 
-There is no active execution task. The project is paused pending Tianhang's next explicit authorisation and phase transition.
+T002 is the active execution task. Its authorisation is limited to one recursive clone of Han's upstream repository to the external target supplied by Tianhang, read-only REDD inventory, source-chain inspection, governance evidence, and the associated local commits.
 
-T002, T003, and all other later tasks remain unauthorised. Do not create a remote, push, access GitHub, access REDD or external repositories, create or migrate algorithms, run training or experiments, or perform firmware, Pico, or hardware work.
+Do not install dependencies, run the NILM pipeline, modify the upstream clone, copy upstream code or CSV files into this project, begin T003, create a project remote, push, access other external repositories, create or migrate algorithms, run training or inference, or perform firmware, Pico, or hardware work.
 
 ## 8. T001 Completion
 
@@ -118,4 +118,4 @@ T001 Gate B reconciliation, local Git bootstrap, the initial governance baseline
 
 ## 9. Immediate Next Action
 
-Wait for Tianhang's next explicit task authorisation and phase transition. No later project phase or task is currently authorised.
+Create the T002 authorisation commit, acquire the single authorised recursive upstream snapshot, and perform the read-only REDD inventory. T003 and all other later tasks remain unauthorised.

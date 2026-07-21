@@ -24,21 +24,32 @@
 
 ## Current Phase Lock
 
-T001 completed on 2026-07-21 after Gate B reconciliation, local Git bootstrap, the initial governance baseline commit, and the T001 closure record.
+Tianhang explicitly authorised the revised T002 on 2026-07-21.
 
-There is currently no active execution task. The project is paused pending Tianhang's next explicit authorisation and phase transition.
+The only currently authorised work is:
+
+- record the T002 activation and limited authorisation in project governance;
+- recursively clone the current `main` branch of `https://github.com/wuhanstudio/nilm.git` to the external target supplied by Tianhang;
+- acquire and record the `redd` submodule revision;
+- inspect the external clone and REDD files read-only for the authorised inventory;
+- inspect actual Python and JavaScript data-reading paths without running the NILM pipeline;
+- record inventory evidence, source-chain conclusions, unresolved links, and T002 progress;
+- create the authorised local project commits for T002 governance and inventory evidence.
+
+The upstream clone is external, read-only evidence. Do not modify it or copy its code or CSV files into this project.
 
 The following remain unauthorised:
 
-- T002, T003, or any other later task;
-- remotes, push, pull requests, or other GitHub operations;
-- REDD or external repository access;
+- dependency installation or `uv sync`;
+- edge detection, event pairing, TM training, or inference;
+- T003 or any other later task;
+- a remote for this project, push, pull requests, or other GitHub operations;
+- access to any external repository other than the single authorised recursive Han clone;
 - algorithm creation or migration;
-- training or experiments;
 - firmware, Pico, or hardware work;
-- tags or additional branches.
+- tags or additional branches in this project.
 
-No later project phase begins automatically after T001.
+No later project phase begins automatically after T002.
 
 ## Git and External Actions
 

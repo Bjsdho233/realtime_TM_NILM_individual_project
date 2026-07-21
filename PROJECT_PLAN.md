@@ -455,7 +455,7 @@ Detailed specifications belong in `docs/tasks/`. This table records only task pu
 | ID | Task | Exit condition | Status |
 |---|---|---|---|
 | T001 | Governance review and repository bootstrap | Governance files approved and validated; Git actions performed only after explicit authorisation. | Complete — 2026-07-21. |
-| T002 | REDD inventory and Protocol R preflight | Reviewable data inventory and candidate split manifest produced without training or model scoring. | Not started — Blocked. T001 completion: Satisfied. Explicit T002 authorisation and phase transition: Not satisfied. Exact local REDD root path: Not provided. |
+| T002 | Han upstream snapshot acquisition, REDD inventory, and Protocol R preflight | Acquire the authorised recursive upstream snapshot, record immutable revisions, inventory REDD evidence, and assess the remaining preflight criteria without training or model scoring. | In progress — explicitly authorised on 2026-07-21. |
 | T003 | Han reference audit and minimum reproduction contract | Reference revision, workflow stages, reusable components, deviations, and deployment boundary approved. | Pending |
 | T004 | Protocol R split approval and freeze | Tianhang approves the split manifest and hash; candidate test becomes locked test. | Pending |
 | T005 | Han-compatible local training and export | A locally trained smoke model is saved, reloaded, exported, and accompanied by fixed fixtures. | Pending |
@@ -518,4 +518,4 @@ Current reported state:
 - T001 is complete;
 - no remote, tag, push, or GitHub operation occurred.
 
-There is no active execution task. The project is paused pending Tianhang's next explicit authorisation and phase transition. T002, T003, and all other tasks remain unauthorised.
+T002 is the active execution task under the limited 2026-07-21 authorisation. The authorised next action is the single recursive Han upstream clone followed by read-only REDD inventory and source-chain reporting. T003 and all other tasks remain unauthorised.

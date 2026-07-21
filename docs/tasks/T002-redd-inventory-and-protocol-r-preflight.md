@@ -1,13 +1,38 @@
 # T002 — REDD Inventory and Protocol R Preflight
 
-**Status:** Not started — Blocked\
+**Status:** In progress\
 **Owner:** Tianhang Tan\
 **Created:** 2026-07-21\
 **Last updated:** 2026-07-21\
 **Task type:** Data inventory and evaluation preflight\
-**Dependencies:** T001 completion, explicit T002 authorisation and phase transition, and the exact local REDD root path\
-**Current authorisation:** None; execution remains unauthorised\
-**Dependency state:** T001 completion: Satisfied. Explicit T002 authorisation and phase transition: Not satisfied. Exact local REDD root path: Not provided.
+**Dependencies:** T001 completion, explicit revised T002 authorisation, an absent external clone target, and successful recursive acquisition of the authorised upstream snapshot\
+**Current authorisation:** Han upstream snapshot acquisition and read-only REDD inventory only\
+**Dependency state:** T001 completion: Satisfied. Revised T002 authorisation: Satisfied. External clone target absence: Verified. Recursive upstream acquisition: Pending.
+
+## Active Revision — 2026-07-21
+
+This revision replaces the earlier requirement for Tianhang to provide an existing local REDD root.
+
+The authorised input acquisition is:
+
+- clone the current `main` branch from `https://github.com/wuhanstudio/nilm.git`;
+- fetch its `redd` submodule recursively;
+- record the full main-repository and submodule commit identifiers;
+- keep the clone external to this project and treat it as read-only evidence.
+
+For Han upstream reproduction, the `redd` submodule is the input source. `docs/redd` is classified as a web-distribution or scoring derivative and is not an independent dataset.
+
+The active inventory must report:
+
+- upstream branch, HEAD, remote, and clean status;
+- `redd` submodule URL, commit, and clean status;
+- per-house file counts, rows, columns, missing values, data types, and appliance coverage under `redd/`;
+- the same statistics for the six combined CSV files under `docs/redd/`;
+- correspondence under lexicographic and natural numeric ordering, including the House 1 `_10.csv` ordering issue;
+- all actual Python and JavaScript data-reading paths;
+- only source-chain links supported by local evidence, with every unproved link marked `Unresolved`.
+
+This revision does not authorise dependency installation, NILM pipeline execution, modification of the upstream clone, repair of data, copying upstream code or CSV files into this project, T003, firmware, Pico, or hardware work.
 
 ## 1. Objective
 
@@ -46,14 +71,14 @@ Historical REDD summaries and previous project outputs may provide background, b
 
 T002 may begin only when:
 
-- T001 has been completed or explicitly closed with any remaining limitation recorded;
-- Tianhang has provided the exact local REDD root path;
-- Tianhang has explicitly authorised access to that path for T002;
-- the intended REDD copy has been distinguished from historical processed data and experiment outputs;
-- the project phase lock has been updated to permit this task;
-- any required dependency installation or environment change has been separately approved.
+- T001 is complete;
+- Tianhang has explicitly authorised the revised T002 and its single upstream source;
+- the external clone target is confirmed absent before acquisition;
+- the project phase lock permits the revised T002;
+- Git is available for the recursive clone;
+- no dependency installation or environment change is required.
 
-The local absolute REDD path is machine-specific information. It must not be committed to the repository. Tracked files must use a dataset identifier, relative paths, or a documented runtime placeholder.
+The external absolute clone path is machine-specific information. It must not be committed to the repository. Tracked evidence must use the upstream URL, immutable revisions, repository-relative paths, or a documented runtime placeholder.
 
 ## 4. Scope
 
@@ -75,6 +100,10 @@ The local absolute REDD path is machine-specific information. It must not be com
 - Create narrowly scoped, repeatable inventory and preflight tooling where required.
 - Generate human-readable and machine-readable preflight evidence.
 - Prepare the proposed split and manifest for review under T004.
+- Acquire the single authorised recursive Han upstream snapshot.
+- Inventory the submodule and combined CSV evidence without modifying it.
+- Inspect actual Python and JavaScript data-reading paths.
+- Record locally supported source-chain links and mark unsupported links `Unresolved`.
 
 ### 4.2 Out of scope
 
@@ -93,6 +122,9 @@ The local absolute REDD path is machine-specific information. It must not be com
 - Approving or freezing the split.
 - Beginning T003, T004, or any implementation task automatically.
 - Committing, pushing, or publishing files without separate Git authorisation.
+- Installing dependencies or running `uv sync`.
+- Modifying the external upstream clone or repairing its data.
+- Copying upstream code or CSV files into this project.
 
 Inventory utilities created under this task must remain limited to data identification, integrity checks, support analysis, and split-manifest preparation. They must not silently become part of the NILM training pipeline.
 

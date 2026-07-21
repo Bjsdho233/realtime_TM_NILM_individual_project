@@ -8,11 +8,11 @@ Earlier experiments and external implementations remain useful references, but t
 
 ## Current Status
 
-T001 governance review and local repository bootstrap are complete.
+T001 governance review and local repository bootstrap are complete. The revised T002 upstream snapshot acquisition and REDD inventory is active under a limited authorisation.
 
-**Active execution task:** None.
+**Active execution task:** [T002 — REDD Inventory and Protocol R Preflight](docs/tasks/T002-redd-inventory-and-protocol-r-preflight.md)
 
-[T001 — Governance Review and Repository Bootstrap](docs/tasks/T001-governance-review-and-repository-bootstrap.md) is complete. T002 remains blocked and unauthorised.
+[T001 — Governance Review and Repository Bootstrap](docs/tasks/T001-governance-review-and-repository-bootstrap.md) is complete. T002 is limited to the authorised recursive Han snapshot acquisition, read-only REDD inventory, source-chain review, and governance evidence.
 
 No algorithm implementation, REDD dataset, trained model, formal experiment result, firmware result, or hardware result has yet been accepted as verified evidence in this repository.
 
@@ -21,7 +21,7 @@ For the latest verified status, see:
 - [Current State](docs/CURRENT_STATE.md)
 - [Project Plan](PROJECT_PLAN.md)
 - [Completed T001](docs/tasks/T001-governance-review-and-repository-bootstrap.md)
-- [Blocked T002](docs/tasks/T002-redd-inventory-and-protocol-r-preflight.md)
+- [Active T002](docs/tasks/T002-redd-inventory-and-protocol-r-preflight.md)
 
 ## Project Goals
 
