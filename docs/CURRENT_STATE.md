@@ -2,9 +2,9 @@
 
 **Status:** Current governance snapshot\
 **Last updated:** 2026-07-21\
-**Current phase:** T002 Phase B — Protocol R preflight audited; closure blocked\
-**Active execution task:** T002 — REDD Inventory and Protocol R Preflight\
-**Local verification:** T001 completed. T002 snapshot, inventory, sequence contract, support audit, and candidate manifest were verified on 2026-07-21.
+**Current phase:** T002 complete; awaiting explicit next-task authorisation\
+**Active execution task:** None\
+**Local verification:** T001 and T002 completed on 2026-07-21. The approved Protocol R successor manifest was generated and verified before T002 closure.
 
 ## 1. Purpose
 
@@ -23,6 +23,7 @@ If this file conflicts with the actual worktree or locally generated outputs, th
 | `docs/decisions/D001-clean-repository.md` | Accepted and manually saved. |
 | `docs/decisions/D002-primary-evaluation-protocol.md` | Accepted and manually saved. |
 | `docs/decisions/D003-redd-sequence-time-contract.md` | Accepted by Tianhang on 2026-07-21. |
+| `docs/decisions/D004-protocol-r-class-fallback.md` | Accepted by Tianhang on 2026-07-21. |
 | `docs/CURRENT_STATE.md` | Current review item. |
 | T001, T002, and progress records | Reconciled to the canonical long filenames selected by Tianhang. |
 
@@ -61,11 +62,11 @@ If this file conflicts with the actual worktree or locally generated outputs, th
 | Task | State |
 |---|---|
 | T001 | Complete — 2026-07-21. Gate B reconciliation, local Git bootstrap, the initial governance baseline commit, and the T001 closure record are complete. |
-| T002 | In progress. The support audit and candidate manifest are complete, but `electric furnace` fails the sealed-candidate-test minimum of 10 complete cycles: H2 has no `electric furnace` column and H4 has 1 complete cycle. |
+| T002 | Complete — 2026-07-21. The original class set failed because `electric furnace` had only 1 candidate complete cycle. Tianhang approved the predeclared `washer dryer` fallback, and the successor manifest was verified. |
 | T003 | Not started. No Han reference revision or reusable component has been approved. |
 | T004–T013 | Not started. |
 
-T002 is active only within its recorded limited authorisation. T003 and all later tasks remain unauthorised.
+No execution task is active. T003 and all later tasks remain unauthorised.
 
 ## 5. Verified Project Evidence
 
@@ -77,12 +78,10 @@ Gate B identified three short filenames that differed from the canonical long fi
 
 The local Git repository uses branch `main`. The initial governance baseline commit is `df8451b4eea59e1b9a3af78fa7aac72f614de8b7` and contains the approved 12 governance files. The T001 closure record has been created.
 
-No implementation, dataset, experiment, model, firmware, or hardware operation has yet been admitted as verified evidence in the new project. No remote, tag, push, or GitHub operation occurred.
+T002 admitted task-bounded standard-library inventory, support-audit, and manifest-finalizer utilities plus their evidence outputs. No research algorithm, dataset copy, experiment, model, firmware, or hardware result has been admitted. No remote, tag, push, or GitHub operation occurred for this project.
 
 The following evidence is therefore not currently available:
 
-- a verified REDD inventory;
-- an approved Protocol R split manifest;
 - a pinned Han reference audit;
 - migrated or newly implemented algorithm code;
 - a locally trained TM model;
@@ -92,7 +91,7 @@ The following evidence is therefore not currently available:
 - formal experiment results;
 - a remote or GitHub repository.
 
-This section records the absence of accepted technical evidence and the verified Gate B governance state.
+The T002 inventory and approved split evidence are recorded in Section 9. The remaining list identifies evidence not yet produced.
 
 ## 6. Pending Decisions
 
@@ -100,6 +99,7 @@ The following items remain `Pending`:
 
 - original calendar timestamps, gaps, and per-file channel provenance;
 - actual detector, pairer, window, event, and feature dependency horizons;
+- cross-house scoring, missing-label eligibility, and macro aggregation for the first model evaluation;
 - pinned Han reference revision for the later T003 reference audit;
 - Protocol H data and configuration;
 - approved reusable components;
@@ -116,7 +116,7 @@ No task may silently infer these decisions from historical experiments or conver
 
 ## 7. Current Authorisation and Restrictions
 
-T002 Phase B remains the active task. Its authorised evidence has been generated. Because the frozen four-class closure gate failed, no fallback, threshold change, alternate house allocation, T003, or later implementation is authorised.
+No execution task is active. T003 and all later work remain unauthorised.
 
 Do not install dependencies, run edge detection, event pairing, feature extraction, training, inference, or model scoring; modify the upstream clone; copy upstream code or CSV files; begin T003; create a project remote, tag, branch, or push; access other sources; or perform firmware, Pico, or hardware work.
 
@@ -137,14 +137,20 @@ T001 Gate B reconciliation, local Git bootstrap, the initial governance baseline
 - The limited source check supports a nominal 3-second appliance cadence, 15 W on/off threshold provenance, missing-data subsequence splitting, same-subsequence backward fill, and treatment of preprocessed CSVs as independent non-continuous long windows.
 - The source implementation can retain one short subsequence when no large split is found; this is implementation evidence only and does not prove the House 5 generation chain.
 - D003 is recorded in sequence-contract commit `5fb7f0e38c8e983969976dc4214038c77b5cafd9`.
-- Ten synthetic unit tests passed.
+- Fifteen standard-library unit tests passed in final verification.
 - Fridge, microwave, and dish washer meet every frozen base-class minimum.
 - Electric furnace has 38 train/validation complete cycles and fold counts 10, 15, and 13, but only 1 complete cycle in the sealed candidate test; its candidate active duration is 824,943 nominal seconds.
-- Washer dryer meets the same standard as an optional exploratory class.
+- Washer dryer was audited as the predeclared optional class and meets the same frozen standard.
 - The candidate manifest canonical SHA-256 is `480a738ad799860f6cdecbba9affb1d76c365a71468b276b8b0669ea55bba11a`.
+- D004 fallback decision commit: `c6ceb9a81da1fe24d79c935a0e9ffea3022fa0c2`.
+- Approved split commit: `3669e900cb5fa9c4c1890413c238ef693a163ada`.
+- Approved classes: fridge, microwave, dish washer, and washer dryer. All four pass the original frozen standard.
+- Approved successor manifest: `artifacts/manifests/protocol_r_approved_split.json` with canonical SHA-256 `b4509778dc15ccdf7a6ab48357cfcef90a28b58a5b12bbe57dfef0a590e24eb4`.
+- Candidate-test support labels were inspected during preflight. No model predictions or metrics were generated or viewed, and H2/H4 remain sealed for model development.
+- Missing-label eligibility, cross-house scoring, and macro aggregation must be frozen before the first model evaluation.
 
 The external absolute snapshot path remains machine-specific and is not stored in tracked evidence.
 
 ## 10. Immediate Next Action
 
-Create the authorised support-evidence commit, keep T002 `In progress`, and stop for Tianhang's decision. No fallback or later task begins automatically.
+Wait for Tianhang's separate explicit authorisation. T003 has not started, and no later task begins automatically.

@@ -24,16 +24,9 @@
 
 ## Current Phase Lock
 
-Tianhang explicitly authorised T002 Phase B on 2026-07-21.
+T002 was completed under Tianhang's explicit authorisation on 2026-07-21. No execution task is currently authorised.
 
-The only currently authorised work is:
-
-- verify only the two exact external sources named in the Phase B authorisation;
-- define and commit the REDD sequence-time contract and frozen support standard before reading active-support statistics;
-- create the task-bounded standard-library support-audit utility and synthetic tests;
-- inspect the pinned external `redd` submodule read-only for label-assisted support;
-- generate the authorised support audit, candidate split manifest, and progress evidence;
-- create the authorised local project commits for the sequence contract, support evidence, and T002 closure only if every closure condition is met.
+The approved Protocol R candidate class set is `fridge`, `microwave`, `dish washer`, and `washer dryer`. The approved successor manifest is `artifacts/manifests/protocol_r_approved_split.json`. Candidate-test support labels were inspected during T002, but model predictions and metrics were not; Houses 2 and 4 remain sealed for model development.
 
 The upstream clone is external, read-only evidence. Do not modify it or copy its code or CSV files into this project.
 
@@ -49,9 +42,7 @@ The following remain unauthorised:
 - firmware, Pico, or hardware work;
 - tags or additional branches in this project.
 
-No later project phase begins automatically after T002.
-
-The Phase B support audit found that the four-class closure gate is not met because `electric furnace` has insufficient complete-cycle support in the sealed candidate test. After the authorised evidence commit, T002 remains `In progress` and no fallback, threshold change, alternate house allocation, or later task is authorised without a new Tianhang decision.
+No later project phase begins automatically after T002. T003 and every implementation, model, firmware, Pico, and hardware task require separate explicit authorisation.
 
 ## Git and External Actions
 

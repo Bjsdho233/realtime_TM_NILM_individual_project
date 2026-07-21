@@ -176,7 +176,7 @@ Deferred work is not permanently excluded.
 | T002 canonical input | Pinned `redd` submodule commit `a621bbd6399e49c6798550618fe43b113149455b`. |
 | Protocol R sequence contract | Each chunk is an independent segment at a nominal 3-second cadence; no cross-segment time order or dependencies. |
 | Protocol R candidate houses | Train/validation pool H1, H3, H5, H6; sealed candidate test H2 and H4. |
-| Protocol R candidate classes | Base: fridge, microwave, dish washer, electric furnace. Optional exploratory fifth: washer dryer. |
+| Protocol R approved candidate classes | Fridge, microwave, dish washer, and washer dryer under D004. |
 | Protocol R validation | Each train/validation segment is independently divided by row position into three contiguous blocks. |
 | Protocol R purge | Full dependency containment within one segment/block; no invented fixed numerical purge. |
 | Formal run summary | One canonical `result.json` per formal run. |
@@ -186,6 +186,7 @@ Deferred work is not permanently excluded.
 
 - Original REDD calendar timestamps, gaps, and per-file channel provenance.
 - Actual detector, pairer, window, event, and feature dependency horizons.
+- Cross-house scoring, missing-label eligibility, and macro aggregation for the first model evaluation.
 - Pinned Han repository revision and approved reusable files.
 - Multiclass TM versus multiple binary TMs.
 - Detector, pairer, feature, Booleanisation, and TM parameters.
@@ -243,7 +244,7 @@ Protocol H must not use the Protocol R candidate test block for training, model 
 
 Protocol R combines eligible development blocks from multiple houses only after each house has been split and processed independently. Signals from different houses must never be concatenated into one artificial time series.
 
-For the pinned T002 preflight, each chunk is an independent segment with a nominal 3-second cadence. The train/validation pool is H1, H3, H5, and H6; H2 and H4 form the sealed candidate test. Each pool segment is split independently by row position into three contiguous validation blocks. The base classes are fridge, microwave, dish washer, and electric furnace; washer dryer is optional and exploratory. These decisions are defined in [`D003`](docs/decisions/D003-redd-sequence-time-contract.md).
+For the pinned T002 preflight, each chunk is an independent segment with a nominal 3-second cadence. The train/validation pool is H1, H3, H5, and H6; H2 and H4 form the sealed candidate test. Each pool segment is split independently by row position into three contiguous validation blocks. D003 recorded the original four-class candidate and predeclared washer dryer as an optional fallback. After `electric furnace` failed candidate complete-cycle support, Tianhang approved `fridge`, `microwave`, `dish washer`, and `washer dryer` in [`D004`](docs/decisions/D004-protocol-r-class-fallback.md), without changing thresholds or the split.
 
 The following rules apply:
 
@@ -463,7 +464,7 @@ Detailed specifications belong in `docs/tasks/`. This table records only task pu
 | ID | Task | Exit condition | Status |
 |---|---|---|---|
 | T001 | Governance review and repository bootstrap | Governance files approved and validated; Git actions performed only after explicit authorisation. | Complete — 2026-07-21. |
-| T002 | Han upstream snapshot acquisition, REDD inventory, and Protocol R preflight | Acquire the authorised recursive upstream snapshot, record immutable revisions, inventory REDD evidence, and assess the remaining preflight criteria without training or model scoring. | In progress — audit and candidate manifest complete; four-class closure blocked by insufficient sealed-candidate-test `electric furnace` complete cycles. |
+| T002 | Han upstream snapshot acquisition, REDD inventory, and Protocol R preflight | Acquire the authorised recursive upstream snapshot, record immutable revisions, inventory REDD evidence, and assess the remaining preflight criteria without training or model scoring. | Complete — 2026-07-21. D004 fallback approved and successor manifest verified. |
 | T003 | Han reference audit and minimum reproduction contract | Reference revision, workflow stages, reusable components, deviations, and deployment boundary approved. | Pending |
 | T004 | Protocol R split approval and freeze | Tianhang approves the split manifest and hash; candidate test becomes locked test. | Pending |
 | T005 | Han-compatible local training and export | A locally trained smoke model is saved, reloaded, exported, and accompanied by fixed fixtures. | Pending |
@@ -528,6 +529,9 @@ Current reported state:
 - T002 upstream acquisition and inventory are complete;
 - Tianhang accepted the D003 sequence-time contract and frozen support standard;
 - the Phase B audit and candidate manifest were generated without model scoring;
-- `electric furnace` failed the sealed-candidate-test complete-cycle minimum, so T002 remains in progress.
+- `electric furnace` failed the sealed-candidate-test complete-cycle minimum;
+- Tianhang approved the predeclared `washer dryer` fallback before any model output was viewed;
+- the approved four-class successor manifest was generated and verified;
+- T002 is complete.
 
-T002 remains the active task. The authorised evidence commit records the failed closure gate; no fallback or further execution is authorised. T003 and all other tasks remain unauthorised.
+No execution task is currently authorised. T003 and all other tasks remain unauthorised.

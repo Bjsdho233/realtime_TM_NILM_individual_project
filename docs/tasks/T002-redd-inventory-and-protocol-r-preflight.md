@@ -1,6 +1,6 @@
 # T002 — REDD Inventory and Protocol R Preflight
 
-**Status:** In progress\
+**Status:** Complete — 2026-07-21\
 **Owner:** Tianhang Tan\
 **Created:** 2026-07-21\
 **Last updated:** 2026-07-21\
@@ -18,12 +18,20 @@ The binding sequence, house, class, fold, boundary, and support decisions are in
 - every chunk is an independent Protocol R segment with a nominal 3-second cadence;
 - row identity is `segment_id`, `sample_index`, and `nominal_offset_seconds`, never an asserted original timestamp;
 - H1, H3, H5, and H6 are the train/validation pool; H2 and H4 are the sealed candidate test;
-- the base classes are fridge, microwave, dish washer, and electric furnace; washer dryer is optional and exploratory;
+- D003's original base classes are fridge, microwave, dish washer, and electric furnace; washer dryer was predeclared as optional and exploratory;
 - each pool segment is divided independently into three contiguous row-position blocks;
 - full dependency containment and state reset apply at every segment and block boundary;
 - label-assisted support uses the fixed 15 W, two-sample, complete-cycle rule and fixed minima in D003.
 
 Phase B may create `tools/data/audit_redd_support.py`, `tests/data/test_audit_redd_support.py`, the named support evidence, and the authorised commits. It must not execute the NILM pipeline or inspect model results.
+
+## Class Fallback and Completion Revision — 2026-07-21
+
+The original D003 four-class set failed because `electric furnace` had 1 sealed-candidate-test complete cycle against a minimum of 10. Tianhang explicitly approved the predeclared fallback before any model prediction or metric was viewed. D004 replaces `electric furnace` with `washer dryer` and leaves every house, file, row range, fold, threshold, boundary, and processing rule unchanged.
+
+The approved classes are `fridge`, `microwave`, `dish washer`, and `washer dryer`. All four pass the original frozen support standard. The approved successor manifest is `artifacts/manifests/protocol_r_approved_split.json` with canonical SHA-256 `b4509778dc15ccdf7a6ab48357cfcef90a28b58a5b12bbe57dfef0a590e24eb4`.
+
+Candidate-test support labels were inspected for feasibility. No model output or metric was generated or viewed, and H2/H4 remain sealed for model development. Missing-label eligibility, cross-house scoring, and macro aggregation remain unresolved and must be frozen before first model evaluation.
 
 ## Active Revision — 2026-07-21
 
@@ -481,7 +489,7 @@ T002 is complete only when:
 - [x] No split was proposed or frozen.
 - [x] T004 or any later task did not begin automatically.
 
-The frozen four-class support gate is not met: `electric furnace` has 1 complete cycle in the sealed candidate test, below the minimum of 10. T002 remains `In progress` and must not be closed or silently reconfigured.
+The original four-class support gate failed because `electric furnace` had 1 complete cycle in the sealed candidate test, below the minimum of 10. D004 preserves that failure evidence and approves the predeclared `washer dryer` fallback. The approved four classes all meet the unchanged standard, the successor manifest and hash were verified, and T002 is complete.
 
 ## 12. Stop Conditions
 
