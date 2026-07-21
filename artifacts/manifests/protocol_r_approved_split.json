@@ -1,0 +1,943 @@
+{
+  "schema_version": "1.0",
+  "manifest_version": "T002-approved-fallback-1",
+  "manifest_status": "approved T002 preflight split; candidate test remains sealed for model development",
+  "protocol": "Protocol R",
+  "predecessor": {
+    "path": "artifacts/manifests/protocol_r_candidate_split.json",
+    "canonical_sha256": "480a738ad799860f6cdecbba9affb1d76c365a71468b276b8b0669ea55bba11a"
+  },
+  "fallback_decision": {
+    "path": "docs/decisions/D004-protocol-r-class-fallback.md",
+    "commit": "c6ceb9a81da1fe24d79c935a0e9ffea3022fa0c2"
+  },
+  "support_audit": {
+    "path": "artifacts/manifests/redd_support_audit.json",
+    "commit": "cf8b6796799cca6c0d3100760aa0b1b24753b9a8"
+  },
+  "upstream_commit": "8c5e90df34236ba0afcc4ec46ac083d829de4d51",
+  "redd_submodule_commit": "a621bbd6399e49c6798550618fe43b113149455b",
+  "redd_content_tree_sha256": "5e1ee53cdce2a5ad2d5007a08527bd1fc9486130d56dc008cf8c8ba8e336e73d",
+  "canonical_input": "redd submodule CSV chunks",
+  "docs_redd_used": false,
+  "nominal_cadence_seconds": 3,
+  "time_identity": [
+    "segment_id",
+    "sample_index",
+    "nominal_offset_seconds = sample_index * 3"
+  ],
+  "original_timestamp_claimed": false,
+  "train_validation_pool_houses": [
+    1,
+    3,
+    5,
+    6
+  ],
+  "candidate_test_houses": [
+    2,
+    4
+  ],
+  "source_files": [
+    {
+      "path": "redd/redd_house1_0.csv",
+      "sha256": "2b2707d59767a51323137385236876252e508cc7233f73b77a4a03b8df58a72e",
+      "segment_id": "redd_house1_0",
+      "house": 1,
+      "chunk": 0,
+      "row_count": 23302,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 7768
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 7768,
+          "row_end_exclusive": 15535
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 15535,
+          "row_end_exclusive": 23302
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house1_1.csv",
+      "sha256": "07dd6ab3432e928d877823ebc9d2831d7270707d880c7310c4f06d3092db782e",
+      "segment_id": "redd_house1_1",
+      "house": 1,
+      "chunk": 1,
+      "row_count": 25839,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 8613
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 8613,
+          "row_end_exclusive": 17226
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 17226,
+          "row_end_exclusive": 25839
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house1_2.csv",
+      "sha256": "ff69a39eb6a960c7540702e7db92b0a4eb04f474758237b81cf980508df5cf19",
+      "segment_id": "redd_house1_2",
+      "house": 1,
+      "chunk": 2,
+      "row_count": 28165,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 9389
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 9389,
+          "row_end_exclusive": 18777
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 18777,
+          "row_end_exclusive": 28165
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house1_3.csv",
+      "sha256": "c073d725e1feb15aed3e3ff9566c962a800404ec88841aa49741c32abe99fbc6",
+      "segment_id": "redd_house1_3",
+      "house": 1,
+      "chunk": 3,
+      "row_count": 30213,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 10071
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 10071,
+          "row_end_exclusive": 20142
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 20142,
+          "row_end_exclusive": 30213
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house1_4.csv",
+      "sha256": "e882bac89e37b32589d8333bc83e62c12427905f39c645f334dc19b9499b3461",
+      "segment_id": "redd_house1_4",
+      "house": 1,
+      "chunk": 4,
+      "row_count": 56399,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 18800
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 18800,
+          "row_end_exclusive": 37600
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 37600,
+          "row_end_exclusive": 56399
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house1_5.csv",
+      "sha256": "ef84bbe9aa76bcb9b3cb6d3c4223d56fc7058f9713290f19497ff6e9a19034c4",
+      "segment_id": "redd_house1_5",
+      "house": 1,
+      "chunk": 5,
+      "row_count": 27685,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 9229
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 9229,
+          "row_end_exclusive": 18457
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 18457,
+          "row_end_exclusive": 27685
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house1_6.csv",
+      "sha256": "54b91c2989ccad27a5a89cf16741163600c091973bd653a672a21a65aaf709cb",
+      "segment_id": "redd_house1_6",
+      "house": 1,
+      "chunk": 6,
+      "row_count": 36273,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 12091
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 12091,
+          "row_end_exclusive": 24182
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 24182,
+          "row_end_exclusive": 36273
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house1_7.csv",
+      "sha256": "792ec90d658e3d1dfd89b6f943b05650b336efa42718c4c7de52f38743a181f9",
+      "segment_id": "redd_house1_7",
+      "house": 1,
+      "chunk": 7,
+      "row_count": 32433,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 10811
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 10811,
+          "row_end_exclusive": 21622
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 21622,
+          "row_end_exclusive": 32433
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house1_8.csv",
+      "sha256": "8cbb25f12f8f15c9801a9e565ad28d0a6bcdbd26d4b81c277a1bd95af3610889",
+      "segment_id": "redd_house1_8",
+      "house": 1,
+      "chunk": 8,
+      "row_count": 25480,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 8494
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 8494,
+          "row_end_exclusive": 16987
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 16987,
+          "row_end_exclusive": 25480
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house1_9.csv",
+      "sha256": "825df5ca37755c484053e88edbcc55538f4c4bc077ea097e59f8efe4011ed510",
+      "segment_id": "redd_house1_9",
+      "house": 1,
+      "chunk": 9,
+      "row_count": 33725,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 11242
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 11242,
+          "row_end_exclusive": 22484
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 22484,
+          "row_end_exclusive": 33725
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house1_10.csv",
+      "sha256": "66c5a648cf71bd7c2a055397247ae62866eb7f0df0c5b9dbcb7f130b2bd0af24",
+      "segment_id": "redd_house1_10",
+      "house": 1,
+      "chunk": 10,
+      "row_count": 29217,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 9739
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 9739,
+          "row_end_exclusive": 19478
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 19478,
+          "row_end_exclusive": 29217
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house2_0.csv",
+      "sha256": "600d9f4a25c80894b04bc0e1720940476f2702fb79fdf74f2b4eebb47a08b8d1",
+      "segment_id": "redd_house2_0",
+      "house": 2,
+      "chunk": 0,
+      "row_count": 34429,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "sealed_candidate_test",
+      "fold_blocks": []
+    },
+    {
+      "path": "redd/redd_house2_1.csv",
+      "sha256": "4a72990a19863dd445c58f2c17c8fed8f43c50fa56da6a69b155e2183d9d8b40",
+      "segment_id": "redd_house2_1",
+      "house": 2,
+      "chunk": 1,
+      "row_count": 48110,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "sealed_candidate_test",
+      "fold_blocks": []
+    },
+    {
+      "path": "redd/redd_house2_2.csv",
+      "sha256": "e8e4661a87a136b25d70796c91ccc72d727f1f99e3e93fadaa1b105f4e635077",
+      "segment_id": "redd_house2_2",
+      "house": 2,
+      "chunk": 2,
+      "row_count": 29378,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "sealed_candidate_test",
+      "fold_blocks": []
+    },
+    {
+      "path": "redd/redd_house2_3.csv",
+      "sha256": "8c6d27c8b425cde4865eaadc063540a74c58b70f94678d6cbed1a5e41dbb57c4",
+      "segment_id": "redd_house2_3",
+      "house": 2,
+      "chunk": 3,
+      "row_count": 24010,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "sealed_candidate_test",
+      "fold_blocks": []
+    },
+    {
+      "path": "redd/redd_house2_4.csv",
+      "sha256": "a3e3dee5e4dfae80d5cc780d63f47a3bf4054afebc89f583766ea040d484f154",
+      "segment_id": "redd_house2_4",
+      "house": 2,
+      "chunk": 4,
+      "row_count": 33612,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "sealed_candidate_test",
+      "fold_blocks": []
+    },
+    {
+      "path": "redd/redd_house2_5.csv",
+      "sha256": "0f1958f12f6a546080ac822b37578d8c0fd0b6d4b53f9d835d435979e52168b7",
+      "segment_id": "redd_house2_5",
+      "house": 2,
+      "chunk": 5,
+      "row_count": 99258,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "sealed_candidate_test",
+      "fold_blocks": []
+    },
+    {
+      "path": "redd/redd_house2_6.csv",
+      "sha256": "02f4bc8cea15ec973739a120b7a06a12b215add6fc8ca6118856adbe3c10ee98",
+      "segment_id": "redd_house2_6",
+      "house": 2,
+      "chunk": 6,
+      "row_count": 23266,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "sealed_candidate_test",
+      "fold_blocks": []
+    },
+    {
+      "path": "redd/redd_house3_0.csv",
+      "sha256": "1da31fbe7453ef7b9471f2032a0e232d61f2de732d2f04e339ce2242d3731fdf",
+      "segment_id": "redd_house3_0",
+      "house": 3,
+      "chunk": 0,
+      "row_count": 35491,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 11831
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 11831,
+          "row_end_exclusive": 23661
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 23661,
+          "row_end_exclusive": 35491
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house3_1.csv",
+      "sha256": "dc162e4ead37c3e1265cd14b15dab06bc79bd4a8f43272de232008be237d8fd2",
+      "segment_id": "redd_house3_1",
+      "house": 3,
+      "chunk": 1,
+      "row_count": 23798,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 7933
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 7933,
+          "row_end_exclusive": 15866
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 15866,
+          "row_end_exclusive": 23798
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house3_2.csv",
+      "sha256": "3ff10aab25387a86d9b44f3ec3903b9e87a395a24ca7b6d5b5530a4067713970",
+      "segment_id": "redd_house3_2",
+      "house": 3,
+      "chunk": 2,
+      "row_count": 29139,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 9713
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 9713,
+          "row_end_exclusive": 19426
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 19426,
+          "row_end_exclusive": 29139
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house3_3.csv",
+      "sha256": "9eaabcc0b57633169be452c0e0848fc903c43939472110613b8fbb0cecd98362",
+      "segment_id": "redd_house3_3",
+      "house": 3,
+      "chunk": 3,
+      "row_count": 45274,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 15092
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 15092,
+          "row_end_exclusive": 30183
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 30183,
+          "row_end_exclusive": 45274
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house3_4.csv",
+      "sha256": "c35f2a6cc55a03e79c3d529ebe2c359b4b804adefd57bb85f1af439a1664814b",
+      "segment_id": "redd_house3_4",
+      "house": 3,
+      "chunk": 4,
+      "row_count": 29535,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 9845
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 9845,
+          "row_end_exclusive": 19690
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 19690,
+          "row_end_exclusive": 29535
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house3_5.csv",
+      "sha256": "d6946733483d44b817e471dcbe337b9eca790c0c210041bfd48854f5e0127240",
+      "segment_id": "redd_house3_5",
+      "house": 3,
+      "chunk": 5,
+      "row_count": 78807,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 26269
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 26269,
+          "row_end_exclusive": 52538
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 52538,
+          "row_end_exclusive": 78807
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house4_0.csv",
+      "sha256": "ab37a744b96c0c3c0e47e9db43c2b72cbab0a0598b224a1208b6861a2b8ad729",
+      "segment_id": "redd_house4_0",
+      "house": 4,
+      "chunk": 0,
+      "row_count": 36688,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "sealed_candidate_test",
+      "fold_blocks": []
+    },
+    {
+      "path": "redd/redd_house4_1.csv",
+      "sha256": "94c4bdbe7d1be597fbb2f04ac10fc93ce32805add4280a761e9c4d8ef2964d53",
+      "segment_id": "redd_house4_1",
+      "house": 4,
+      "chunk": 1,
+      "row_count": 22594,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "sealed_candidate_test",
+      "fold_blocks": []
+    },
+    {
+      "path": "redd/redd_house4_2.csv",
+      "sha256": "8f6728684c0bef5e2e345ac20b44bf27476ee97b234fbd02baaeb0ce90a0fc88",
+      "segment_id": "redd_house4_2",
+      "house": 4,
+      "chunk": 2,
+      "row_count": 43118,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "sealed_candidate_test",
+      "fold_blocks": []
+    },
+    {
+      "path": "redd/redd_house4_3.csv",
+      "sha256": "897459c23d27746528a046d5b000a321c1866b1790f76f512c10469807765c09",
+      "segment_id": "redd_house4_3",
+      "house": 4,
+      "chunk": 3,
+      "row_count": 22835,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "sealed_candidate_test",
+      "fold_blocks": []
+    },
+    {
+      "path": "redd/redd_house4_4.csv",
+      "sha256": "83450e753c223baed8b00566c1298208c480d6f32ff06793cc02e69cddb64acb",
+      "segment_id": "redd_house4_4",
+      "house": 4,
+      "chunk": 4,
+      "row_count": 40867,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "sealed_candidate_test",
+      "fold_blocks": []
+    },
+    {
+      "path": "redd/redd_house4_5.csv",
+      "sha256": "c823da650ad46e580466a7bce419b83f332813131b1ba108916b7bdb263bf51d",
+      "segment_id": "redd_house4_5",
+      "house": 4,
+      "chunk": 5,
+      "row_count": 108881,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "sealed_candidate_test",
+      "fold_blocks": []
+    },
+    {
+      "path": "redd/redd_house5_0.csv",
+      "sha256": "2c407301a06fef00f7cf6d09950b1e6750f66a0e3e61a6863352babcd9abb4c3",
+      "segment_id": "redd_house5_0",
+      "house": 5,
+      "chunk": 0,
+      "row_count": 24181,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 8061
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 8061,
+          "row_end_exclusive": 16121
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 16121,
+          "row_end_exclusive": 24181
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house6_0.csv",
+      "sha256": "2aaf95c48941106362de39426969a88bb55d8fc9decf84301e49ff3f849f0c8c",
+      "segment_id": "redd_house6_0",
+      "house": 6,
+      "chunk": 0,
+      "row_count": 169361,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 56454
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 56454,
+          "row_end_exclusive": 112908
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 112908,
+          "row_end_exclusive": 169361
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house6_1.csv",
+      "sha256": "f22c4737c82967b935b1010a4e8858bedc57b46e7403a93e8d4dcced324f4010",
+      "segment_id": "redd_house6_1",
+      "house": 6,
+      "chunk": 1,
+      "row_count": 42193,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 14065
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 14065,
+          "row_end_exclusive": 28129
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 28129,
+          "row_end_exclusive": 42193
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house6_2.csv",
+      "sha256": "12d8a47cecab6f52a077997eab4d24a42a088c5101965e597c0abec1fdc94d1a",
+      "segment_id": "redd_house6_2",
+      "house": 6,
+      "chunk": 2,
+      "row_count": 77212,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 25738
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 25738,
+          "row_end_exclusive": 51475
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 51475,
+          "row_end_exclusive": 77212
+        }
+      ]
+    },
+    {
+      "path": "redd/redd_house6_3.csv",
+      "sha256": "03ef4d1afa315b39c2089f796e4aff9888016df44a00267919c3f8416bed5fa0",
+      "segment_id": "redd_house6_3",
+      "house": 6,
+      "chunk": 3,
+      "row_count": 37810,
+      "nominal_cadence_seconds": 3,
+      "protocol_role": "train_validation_pool",
+      "fold_blocks": [
+        {
+          "validation_fold": 1,
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 12604
+        },
+        {
+          "validation_fold": 2,
+          "row_start_inclusive": 12604,
+          "row_end_exclusive": 25207
+        },
+        {
+          "validation_fold": 3,
+          "row_start_inclusive": 25207,
+          "row_end_exclusive": 37810
+        }
+      ]
+    }
+  ],
+  "fold_policy": "each train/validation segment independently partitioned into three contiguous half-open row blocks by quotient/remainder",
+  "boundary_policy": "reset at every segment and block; complete dependency interval must remain within one block; crossing items discarded",
+  "purge_policy": "dependency-aware full containment; no fixed numerical purge",
+  "cross_segment_time_order": null,
+  "frozen_support_standard": {
+    "active_sample": "finite appliance power strictly greater than 15 W",
+    "active_threshold_watts": 15.0,
+    "minimum_active_samples": 2,
+    "nominal_cadence_seconds": 3,
+    "complete_cycle": "qualifying active run with observable finite inactive samples before and after within the same segment/block",
+    "missing_values": "counted explicitly; break observation continuity; no backward fill",
+    "segment_state": "reset for every source CSV",
+    "block_state": "reset for every validation block",
+    "cross_boundary_items": "discarded",
+    "minimum_train_validation_pool_complete_cycles": 30,
+    "minimum_each_validation_fold_complete_cycles": 5,
+    "minimum_candidate_test_complete_cycles": 10,
+    "minimum_candidate_test_active_duration_seconds": 600
+  },
+  "approved_target_classes": [
+    "fridge",
+    "microwave",
+    "dish washer",
+    "washer dryer"
+  ],
+  "approved_class_support": {
+    "fridge": {
+      "train_validation_pool_complete_cycles": 1106,
+      "validation_fold_complete_cycles": [
+        367,
+        386,
+        353
+      ],
+      "candidate_test_complete_cycles": 394,
+      "candidate_test_active_duration_seconds": 400530,
+      "full_standard_pass": true
+    },
+    "microwave": {
+      "train_validation_pool_complete_cycles": 206,
+      "validation_fold_complete_cycles": [
+        78,
+        69,
+        59
+      ],
+      "candidate_test_complete_cycles": 66,
+      "candidate_test_active_duration_seconds": 93861,
+      "full_standard_pass": true
+    },
+    "dish washer": {
+      "train_validation_pool_complete_cycles": 169,
+      "validation_fold_complete_cycles": [
+        41,
+        85,
+        43
+      ],
+      "candidate_test_complete_cycles": 58,
+      "candidate_test_active_duration_seconds": 18171,
+      "full_standard_pass": true
+    },
+    "washer dryer": {
+      "train_validation_pool_complete_cycles": 89,
+      "validation_fold_complete_cycles": [
+        16,
+        55,
+        18
+      ],
+      "candidate_test_complete_cycles": 11,
+      "candidate_test_active_duration_seconds": 11811,
+      "full_standard_pass": true
+    }
+  },
+  "excluded_class": {
+    "class": "electric furnace",
+    "status": "unsupported for the approved Protocol R candidate test under the frozen support standard",
+    "reason": "sealed candidate test has fewer than 10 complete cycles",
+    "train_validation_pool_complete_cycles": 38,
+    "validation_fold_complete_cycles": [
+      10,
+      15,
+      13
+    ],
+    "candidate_test_complete_cycles": 1,
+    "candidate_test_active_duration_seconds": 824943,
+    "candidate_minimum_complete_cycles": 10,
+    "model_performance_failure": false
+  },
+  "house_target_column_availability": [
+    {
+      "house": 1,
+      "target_columns": {
+        "fridge": true,
+        "microwave": true,
+        "dish washer": true,
+        "washer dryer": true
+      }
+    },
+    {
+      "house": 2,
+      "target_columns": {
+        "fridge": true,
+        "microwave": true,
+        "dish washer": true,
+        "washer dryer": true
+      }
+    },
+    {
+      "house": 3,
+      "target_columns": {
+        "fridge": true,
+        "microwave": true,
+        "dish washer": true,
+        "washer dryer": true
+      }
+    },
+    {
+      "house": 4,
+      "target_columns": {
+        "fridge": false,
+        "microwave": false,
+        "dish washer": true,
+        "washer dryer": true
+      }
+    },
+    {
+      "house": 5,
+      "target_columns": {
+        "fridge": true,
+        "microwave": true,
+        "dish washer": true,
+        "washer dryer": true
+      }
+    },
+    {
+      "house": 6,
+      "target_columns": {
+        "fridge": true,
+        "microwave": false,
+        "dish washer": true,
+        "washer dryer": true
+      }
+    }
+  ],
+  "missing_target_column_policy": "label unavailable; do not infer appliance absence and do not fill all-zero ground truth",
+  "candidate_test_sealing_scope": {
+    "support_labels_inspected": true,
+    "model_predictions_observed": false,
+    "model_metrics_observed": false,
+    "sealed_for_model_development": true
+  },
+  "evaluation_inputs_pending": [
+    "cross-house scoring policy",
+    "missing-label eligibility policy",
+    "macro aggregation policy"
+  ],
+  "unresolved": [
+    "calendar-time coverage and original gaps",
+    "per-file original channel-to-column generation chain",
+    "docs/redd generation command",
+    "whether natural numeric order equals historical chronology",
+    "historical preprocessing path from raw REDD to every pinned CSV",
+    "future detector, pairer, window, event, and feature dependency horizons"
+  ],
+  "canonical_hash_method": "SHA-256 of UTF-8 canonical JSON with sorted keys and compact separators, omitting canonical_sha256",
+  "canonical_sha256": "b4509778dc15ccdf7a6ab48357cfcef90a28b58a5b12bbe57dfef0a590e24eb4"
+}
