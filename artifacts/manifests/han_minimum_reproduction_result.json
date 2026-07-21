@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "task": "T003",
+  "protocol": "H",
+  "status": "minimum_two_class_pc_staged_pipeline_reproduced",
+  "run_date": "2026-07-22",
+  "upstream": {
+    "repository_commit": "8c5e90df34236ba0afcc4ec46ac083d829de4d51",
+    "redd_submodule_commit": "a621bbd6399e49c6798550618fe43b113149455b",
+    "repository_clean_after_run": true,
+    "redd_submodule_clean_after_run": true
+  },
+  "contract": {
+    "stages": [
+      "edge_detection",
+      "label_assisted_edge_matching",
+      "event_pairing_and_feature_extraction",
+      "tm_training",
+      "training_model_reload",
+      "inference_model_reload",
+      "c_header_export"
+    ],
+    "classes": [
+      "fridge",
+      "microwave"
+    ],
+    "train_houses": [1, 2, 4, 5, 6],
+    "test_houses": [3],
+    "pico_in_scope": false,
+    "realtime_claim_in_scope": false,
+    "protocol_r_in_scope": false
+  },
+  "input": {
+    "csv_chunks": 35,
+    "rows": 1508578
+  },
+  "events": {
+    "train": {
+      "fridge": 533,
+      "microwave": 148,
+      "total": 681
+    },
+    "test": {
+      "fridge": 371,
+      "microwave": 42,
+      "total": 413
+    }
+  },
+  "model": {
+    "classes": 2,
+    "ordered_numeric_feature_slots": 23,
+    "unique_feature_names": 22,
+    "boolean_inputs": 184,
+    "clauses": 200,
+    "states": 50,
+    "bits_per_numeric_slot": 8,
+    "threshold_T": 20,
+    "specificity_s": 6.0,
+    "epochs": 10,
+    "compiled_model_bytes": 9004
+  },
+  "test_result": {
+    "accuracy": 0.9758,
+    "confusion_matrix": [
+      [364, 7],
+      [3, 39]
+    ],
+    "classes": {
+      "fridge": {
+        "precision": 0.99,
+        "recall": 0.98,
+        "f1": 0.99,
+        "support": 371
+      },
+      "microwave": {
+        "precision": 0.85,
+        "recall": 0.93,
+        "f1": 0.89,
+        "support": 42
+      }
+    },
+    "macro_average": {
+      "precision": 0.92,
+      "recall": 0.95,
+      "f1": 0.94,
+      "support": 413
+    }
+  },
+  "parity": {
+    "ten_epoch_training_model_reload_prediction_differences": 0,
+    "ten_epoch_training_vs_inference_reload_prediction_differences": 0,
+    "test_rows_compared": 413,
+    "ten_epoch_state_mask_disagreements": 32,
+    "one_epoch_prediction_differences_after_reload": 11,
+    "one_epoch_state_mask_disagreements": 354,
+    "serialized_automaton_states_exact": true,
+    "upstream_initialisation_defect_repaired": false
+  },
+  "sha256": {
+    "training_model": "a485f2b1c4b0199f6da0d9479c97e79fe1f723f66faabf57939349ced9596ff6",
+    "inference_model": "7c601eb62c5eb54e0c511b43297e340cad8e31a4dcc3a140f5c4e8bb112926e8",
+    "generated_model_header": "990b2170fc5c33f03bfa74c764c4ee704c95dabea886eb94abe8edbfb560537c"
+  },
+  "evidence_boundary": {
+    "label_assisted": true,
+    "strictly_causal": false,
+    "aggregate_mains_only": false,
+    "pico_verified": false,
+    "firmware_verified": false,
+    "protocol_r_result": false,
+    "generated_outputs_committed": false
+  }
+}
