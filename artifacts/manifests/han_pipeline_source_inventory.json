@@ -1,0 +1,316 @@
+{
+  "schema_version": "1.0",
+  "inventory_status": "T003 static source audit; executable reproduction not started",
+  "audit_date": "2026-07-21",
+  "upstream": {
+    "url": "https://github.com/wuhanstudio/nilm",
+    "branch": "main",
+    "commit": "8c5e90df34236ba0afcc4ec46ac083d829de4d51",
+    "origin_main_commit": "8c5e90df34236ba0afcc4ec46ac083d829de4d51",
+    "source_tree_id": "5254fc117d8c6f392d6eee1ea7bacc41d2b2039c",
+    "redd_submodule_commit": "a621bbd6399e49c6798550618fe43b113149455b"
+  },
+  "audit_scope": {
+    "method": "static source inspection only",
+    "executed_upstream_code": false,
+    "executed_notebooks": false,
+    "compiled_firmware_or_posix": false,
+    "installed_dependencies": false,
+    "inspected_docs_redd_data_content": false,
+    "network_access": false
+  },
+  "evidence_status_vocabulary": {
+    "wired_reachable": "Called by an actual entry point in the fixed source tree.",
+    "implemented_not_shown_reachable": "Implementation exists, but no current entry point was found calling it.",
+    "documented_only": "Stated by README, comments, metadata, or prose without matching reachable-code evidence.",
+    "not_found_unresolved": "The fixed snapshot does not establish the claim."
+  },
+  "documented_commands": [
+    "uv sync",
+    "uv run python redd_edge_detect.py --plot",
+    "uv run python redd_edge_match.py --plot",
+    "uv run python redd_event_pair.py --plot",
+    "uv run python redd_tm_training.py",
+    "uv run python main.py",
+    "uv run python main_real_time.py"
+  ],
+  "entry_candidates": [
+    {
+      "id": "staged_redd_pipeline",
+      "paths": [
+        "redd_edge_detect.py",
+        "redd_edge_match.py",
+        "redd_event_pair.py",
+        "redd_tm_training.py"
+      ],
+      "status": "wired_reachable within each script; documented_only across scripts",
+      "role": "label-assisted REDD preparation, TM training, protobuf save/reload, and C-header export"
+    },
+    {
+      "id": "integrated_offline_python",
+      "paths": ["main.py"],
+      "status": "wired_reachable",
+      "role": "whole-building aggregate-main replay with optional TM inference"
+    },
+    {
+      "id": "sequential_python_replay",
+      "paths": ["main_real_time.py"],
+      "status": "wired_reachable",
+      "role": "preloaded and backward-filled DataFrame replay with idle-triggered inference"
+    },
+    {
+      "id": "integrated_arduino_replay",
+      "paths": ["arduino/lime-tm/examples/nilm_inference/nilm_inference.ino"],
+      "status": "wired_reachable in source; build completeness unresolved",
+      "role": "SD float replay, edge detection, FIFO pairing, feature extraction, Booleanisation, TM inference, and LVGL display"
+    },
+    {
+      "id": "arduino_fixed_test",
+      "paths": ["arduino/lime-tm/examples/redd_inference/redd_inference.ino"],
+      "status": "wired_reachable in source; model header absent from example",
+      "role": "repeated two-feature test-array Booleanisation and TM inference"
+    },
+    {
+      "id": "posix_replay",
+      "paths": ["posix/main.c"],
+      "status": "wired_reachable in source; required model and input assets absent",
+      "role": "native-float file replay through C detector, features, and TM inference"
+    }
+  ],
+  "canonical_entry_point": {
+    "status": "not_found_unresolved",
+    "reason": "The README lists multiple independent commands, and the integrated entries reimplement rather than call the staged scripts."
+  },
+  "stage_mapping": [
+    {
+      "stage": "input_data",
+      "python": ["redd_edge_detect.py", "main.py", "main_real_time.py"],
+      "firmware": ["arduino/lime-tm/examples/nilm_inference/nilm_inference.ino"],
+      "actual_input": "REDD CSV chunks on Python; native float32 /main.bin on SD in firmware",
+      "status": "wired_reachable"
+    },
+    {
+      "stage": "edge_detection",
+      "python": ["detector.py", "redd_edge_detect.py", "main.py", "main_real_time.py"],
+      "firmware": ["arduino/lime-tm/examples/nilm_inference/detector.c"],
+      "status": "wired_reachable; implementations and parameters differ"
+    },
+    {
+      "stage": "edge_to_appliance_label_matching",
+      "python": ["redd_edge_match.py"],
+      "firmware": [],
+      "status": "wired_reachable in staged label-assisted path only"
+    },
+    {
+      "stage": "event_pairing",
+      "python": ["redd_event_pair.py", "main.py", "main_real_time.py"],
+      "firmware": ["arduino/lime-tm/examples/nilm_inference/nilm_inference.ino"],
+      "status": "wired_reachable; Python subset matching and firmware FIFO matching are not equivalent"
+    },
+    {
+      "stage": "feature_extraction",
+      "python": ["redd_event_pair.py", "main.py", "main_real_time.py"],
+      "firmware": ["arduino/lime-tm/examples/nilm_inference/features.cpp"],
+      "status": "wired_reachable; 23 ordered slots with 22 unique names"
+    },
+    {
+      "stage": "booleanization",
+      "python": ["tsetlin/utils/booleanize.py"],
+      "firmware": ["arduino/lime-tm/examples/nilm_inference/features.cpp", "arduino/lime-tm/examples/nilm_inference/redd.c"],
+      "status": "wired_reachable; integrated firmware quantizer differs from Python"
+    },
+    {
+      "stage": "tm_training_evaluation",
+      "python": ["redd_tm_training.py", "tsetlin/tsetlin.py", "tsetlin/clause.py"],
+      "firmware": [],
+      "status": "wired_reachable"
+    },
+    {
+      "stage": "model_export",
+      "python": ["redd_tm_training.py", "tsetlin/compiler/write.py"],
+      "firmware": ["arduino/lime-tm/examples/nilm_inference/redd_model.h"],
+      "status": "compiler wired_reachable; placement and committed-model provenance unresolved"
+    },
+    {
+      "stage": "tm_inference",
+      "python": ["tsetlin/tsetlin.py", "main.py", "main_real_time.py"],
+      "firmware": ["arduino/lime-tm/src/tsetlin.c"],
+      "status": "wired_reachable; cross-language parity not found"
+    },
+    {
+      "stage": "display_output",
+      "python": ["main.py", "main_real_time.py"],
+      "firmware": ["arduino/lime-tm/examples/nilm_inference/chart.cpp"],
+      "status": "wired_reachable"
+    }
+  ],
+  "observed_dimensions": {
+    "ordered_numeric_feature_slots": 23,
+    "unique_numeric_feature_names": 22,
+    "bits_per_slot": 8,
+    "tm_input_features": 184,
+    "possible_positive_and_negated_literals_per_clause": 368,
+    "active_redd_dimension_18_found": false,
+    "active_redd_dimension_92_found": false
+  },
+  "observed_tm_defaults": {
+    "current_training_classes": ["fridge", "microwave"],
+    "training_houses": [1, 2, 4, 5, 6],
+    "test_houses": [3],
+    "epochs": 10,
+    "clauses_per_class_total": 200,
+    "positive_clauses_per_class": 100,
+    "negative_clauses_per_class": 100,
+    "states": 50,
+    "T": 20,
+    "s": 6.0,
+    "boolean_bits": 8,
+    "validation_set": null,
+    "python_random_seed": 0,
+    "fastrand_seed_found": false
+  },
+  "committed_embedded_model": {
+    "path": "arduino/lime-tm/examples/nilm_inference/redd_model.h",
+    "classes": 4,
+    "features": 184,
+    "clauses": 200,
+    "states": 50,
+    "model_type": "inference",
+    "reported_model_total_bytes": 17244,
+    "source_file_bytes": 146972,
+    "provenance_status": "not_found_unresolved",
+    "introduction_commit": "f9f3dcac2ec73215c78d04b6d44421ffc35633fe"
+  },
+  "firmware_files": [
+    "arduino/lime-tm/examples/nilm_inference/nilm_inference.ino",
+    "arduino/lime-tm/examples/nilm_inference/detector.c",
+    "arduino/lime-tm/examples/nilm_inference/detector.h",
+    "arduino/lime-tm/examples/nilm_inference/features.cpp",
+    "arduino/lime-tm/examples/nilm_inference/features.h",
+    "arduino/lime-tm/examples/nilm_inference/redd.c",
+    "arduino/lime-tm/examples/nilm_inference/redd.h",
+    "arduino/lime-tm/examples/nilm_inference/redd_model.h",
+    "arduino/lime-tm/examples/nilm_inference/chart.cpp",
+    "arduino/lime-tm/examples/nilm_inference/chart.h",
+    "arduino/lime-tm/examples/redd_inference/redd_inference.ino",
+    "arduino/lime-tm/examples/redd_inference/redd.c",
+    "arduino/lime-tm/examples/redd_inference/redd.h",
+    "arduino/lime-tm/examples/redd_inference/redd_test.h",
+    "arduino/lime-tm/src/clause.c",
+    "arduino/lime-tm/src/clause.h",
+    "arduino/lime-tm/src/tsetlin.c",
+    "arduino/lime-tm/src/tsetlin.h"
+  ],
+  "dependency_manifests": [
+    {
+      "path": ".python-version",
+      "blob_id": "e4fba2183587225f216eeada4c78dfab6b2e65f5",
+      "sha256": "8dfda54ba2f66ab3a8ebab460f4338bbeea1fb1e0f85ce06fe3530aa3c64679b",
+      "role": "root Python version declaration",
+      "summary": "3.12"
+    },
+    {
+      "path": "pyproject.toml",
+      "blob_id": "9bf53f32f5095da6e91d3f9f681582b36f95868d",
+      "sha256": "40540a1aacbb6be052d6eed002f993f1c9b412de53d12504133d4947e6915522",
+      "role": "root Python dependency constraints",
+      "summary": "Python >=3.12; mostly lower-bounded dependencies; pandas unbounded"
+    },
+    {
+      "path": "uv.lock",
+      "blob_id": "31de3d589b32f0670f385fa358fd7799e91fd5cd",
+      "sha256": "05525c0f068233cc5a0317c00457480bd5fa89eed4be8d47073e0de2d897d97f",
+      "role": "locked Python workspace resolution",
+      "summary": "Concrete versions and distribution hashes are recorded"
+    },
+    {
+      "path": "notebooks/pyproject.toml",
+      "blob_id": "ee8a47e1cb156868d054246b5b701ff1ba9b977d",
+      "sha256": "e2f2bcacc5ed0ed4c80baebf937f44515d09cbbabe34f4a4cf38b0bd729a312a",
+      "role": "separate UK-DALE notebook dependency constraints",
+      "summary": "Python >=3.11 and a Git NILMTK dependency"
+    },
+    {
+      "path": "arduino/lime-tm/library.properties",
+      "blob_id": "b3c42408ef827bdd8a42411e14b0f14e9c49ff0b",
+      "sha256": "1cefb6fd3814cc144b8df03ab83cb5a0446964cab70ddae3b19151e5c5bcb56a",
+      "role": "Arduino library metadata",
+      "summary": "LiME-TM 1.0.0; architectures=stm32"
+    },
+    {
+      "path": "arduino/lime-tm/library.json",
+      "blob_id": "c9b5ee0cb86869674bfe2356e66f344273022264",
+      "sha256": "f99e1b2956c573470c6859507baf0bfe59df069c78c4a3dc0f9bbea17491e927",
+      "role": "PlatformIO-style library metadata",
+      "summary": "Arduino framework; ststm32 platform; repository URL differs from library.properties"
+    },
+    {
+      "path": "posix/CMakeLists.txt",
+      "blob_id": "069b02b36cd41e19e60e35dbc55aeb780d58f4ca",
+      "sha256": "9f9c8e9a4466f76e1742bfc39bbfd1b082e219b9174d0dc97690cb77d4054e6c",
+      "role": "POSIX C build declaration",
+      "summary": "C99 executable with static model define and math library"
+    }
+  ],
+  "locked_direct_python_versions": {
+    "bitarray": "3.8.0",
+    "fastrand": "3.0.8",
+    "loguru": "0.7.3",
+    "matplotlib": "3.10.8",
+    "numpy": "2.4.2",
+    "optuna": "4.9.0",
+    "pandas": "2.2.3",
+    "protobuf": "7.34.0",
+    "pyqt6": "6.11.0",
+    "scikit-learn": "1.8.0",
+    "scipy": "1.17.1",
+    "tqdm": "4.67.3"
+  },
+  "relevant_source_files": [
+    {"path":"README.md","blob_id":"a64118b23d828c5a52db9a5249faa304adbe8b51","sha256":"699912c8335cdce205d9649e5715f85222ad1c6b2905ee74cedc2219ce4506ce","size_bytes":3622,"role":"documented commands and claims"},
+    {"path":"detector.py","blob_id":"90ab3b0eeb4a59a1c83e54cef475036ec4db05f5","sha256":"391ee5b02b86c80873818e3b2363a74d8091686b8b90d1b2d5489dfee3292e61","size_bytes":4999,"role":"Python edge detector"},
+    {"path":"redd_edge_detect.py","blob_id":"0165635187847d0f13f4f45d03a7c3e1e98dedd9","sha256":"53087f319b69a9ad6377eea9477f078ee3af7f7a9265788b689ab0e0e848c99f","size_bytes":7188,"role":"staged REDD load and edge-detection entry"},
+    {"path":"redd_edge_match.py","blob_id":"7c70251f495ae0920969d5142de76be485e9f693","sha256":"7238fcc6e6aed0e175bfba370bef457a319b8738c8fc2437143e924bf35bbad0","size_bytes":7267,"role":"label-assisted main/appliance edge matcher"},
+    {"path":"redd_event_pair.py","blob_id":"6bdbba6407972abdd333d2597b26d32555a3eeab","sha256":"7dd8ac99b9bf02360c41705dfca87063537643869bec139c13b45ca924497785","size_bytes":18135,"role":"stateful event pairing and episode features"},
+    {"path":"redd_tm_training.py","blob_id":"d49325cc51ea4d73065930a6830f4f22cdca66f8","sha256":"86003396a5ffd70be0817854a34c2213743b04702f8c54e9bb9988872edc3462","size_bytes":11416,"role":"REDD TM training, evaluation, save/reload, and export entry"},
+    {"path":"main.py","blob_id":"c8ccecd19961c9a0cbfc72caf8c27a04902e9a44","sha256":"5d88aed1546081f6ea64569667e3c53934d3c5f28c68fb13d0b863bf2432fbe4","size_bytes":23300,"role":"integrated offline Python replay entry"},
+    {"path":"main_real_time.py","blob_id":"20e9483a8039adcb4c4b0f6ed41b2b3bf35036a6","sha256":"8a44a69274cd85bf1409355623783c0f2dbe697fbd369bab497dae8ea5dac037","size_bytes":24675,"role":"sequential preloaded Python replay entry"},
+    {"path":"tests/redd_prune_data.py","blob_id":"9e56128ae46a7dba1ffa177e892ca893d2ec2005","sha256":"c60b98e9bc0238bef69d0120fb7219b86116c1e1234810e982b705930486ce55","size_bytes":8398,"role":"standalone REDD pruning and binary-output utility"},
+    {"path":"tsetlin/clause.py","blob_id":"b6d7d4f241b09e1ad6e2ca7100a9050356c2b2dd","sha256":"12c3abeb47ea1e890cdf2af22470e642b42c3a82491f6e65e09952da450bfb5d","size_bytes":6677,"role":"Python clause and literal semantics"},
+    {"path":"tsetlin/tsetlin.py","blob_id":"071071e2174d13d5c521052b94adfcfe4f8837be","sha256":"45a59f9133024b0d8427a334cdadd778bb30d02c994dd74274e4cb8f5ebbd5ef","size_bytes":11292,"role":"Python multiclass TM and protobuf save/load"},
+    {"path":"tsetlin/utils/booleanize.py","blob_id":"6fd94469cef1b3a42926547eb19d4ad3499ed5b5","sha256":"c034f75551d5730584ab89de2c388eb917fda480e4891784bf9d624ccf09157c","size_bytes":1986,"role":"Python normalization and Booleanisation"},
+    {"path":"tsetlin/compiler/write.py","blob_id":"f26ca9c973de54f557e1b8c5307b30624ddf315f","sha256":"f844c18dc9951081a86da5aa7ab8ec487974ff6dd5197d7c11a3d250383cbad5","size_bytes":3166,"role":"protobuf-to-C-header compiler"},
+    {"path":"tsetlin/compiler/clause_compressed.py","blob_id":"dd19e228d01fccddb5c54f6c602fe03a00780de8","sha256":"aff0b3aa9a139b67d367f78f62b46105be55a65a5bca6f24e53a03593ffd9ea1","size_bytes":1153,"role":"compressed clause C-array emitter"},
+    {"path":"tsetlin/compiler/size.py","blob_id":"14ddb440216b94ed413dabed783d637c7f6f7e8f","sha256":"57e0fbb5185727b429ba0269448c77f4fb755157cc51fbd952ea3c608517a7d5","size_bytes":823,"role":"generated-model size counter assumptions"},
+    {"path":"protobuf/tsetlin.proto","blob_id":"d0d253ba58f0e7752bc5910cc218dcf2d7122baa","sha256":"7c369bff38d650b8695f1dc3feb771780b012ced686a4dc6b94c06c5575a8be8","size_bytes":559,"role":"TM protobuf schema"},
+    {"path":"arduino/lime-tm/src/clause.c","blob_id":"827f34d4c5e4d83e25193f90869317371f154261","sha256":"725217b58e15c0d579bdde6a161f4771ddfc9b636b43eaa5bb1ef9b581151c5a","size_bytes":2427,"role":"C compressed clause evaluator"},
+    {"path":"arduino/lime-tm/src/tsetlin.c","blob_id":"94ab6a0709523f2c38ca4712e9116586e690bd63","sha256":"c4d29c71a498e122fcb03c485bcebeef6c45d0da8bdb6914899267245ba2f482","size_bytes":1284,"role":"C class-vote evaluator"},
+    {"path":"arduino/lime-tm/examples/nilm_inference/nilm_inference.ino","blob_id":"211c678077b8c8e40dd8b67e48a7b4ef96a45266","sha256":"33aab153bda5b33db68739c44e38c63581f875774cebd8f22af100cdf33d05f6","size_bytes":11412,"role":"integrated Arduino/ESP32 SD-replay entry"},
+    {"path":"arduino/lime-tm/examples/nilm_inference/detector.c","blob_id":"5f07ecc9907f910a02723014dc974c7bc48a5d31","sha256":"50e65a3d4734ad489cdc0c41a210191fd9451e4cf08a6eb077e8b969b60cfff1","size_bytes":5399,"role":"embedded C edge detector"},
+    {"path":"arduino/lime-tm/examples/nilm_inference/features.cpp","blob_id":"9efd457b9967832bf90f2529956e3dcee2678523","sha256":"7f6137e6aa61093914ea7b10ed11bf4c210cb6035c60a7ffc06be51a3303324f","size_bytes":18088,"role":"embedded episode features, Booleanisation, and inference"},
+    {"path":"arduino/lime-tm/examples/nilm_inference/redd.c","blob_id":"1603decea9c6112a60081f258feedd02db233d75","sha256":"a78eb88fae717c8161b210dee6eb987a5ab89c89c5c3cee1785393af82beaee8","size_bytes":2025,"role":"older two-feature embedded normalization and Booleanisation"},
+    {"path":"arduino/lime-tm/examples/nilm_inference/redd.h","blob_id":"2dff4feeef9081e65e54ba507d6eb8e4ffb24cb7","sha256":"84fa7dc07a83c1af88c670babbeabb240ca5852c6598c0af16ced513ec086c12","size_bytes":382,"role":"older REDD embedded preprocessing declarations; references absent local test header"},
+    {"path":"arduino/lime-tm/examples/nilm_inference/redd_model.h","blob_id":"fb25d363e4d6f3cc03061a7cd9f5b6cc7e205ab8","sha256":"303f9b66686fb78e3eee67b63109e4c4e7f09b4f9e37f6c11a5f12ccab03f848","size_bytes":146972,"role":"committed four-class 184-input inference model header"},
+    {"path":"arduino/lime-tm/examples/nilm_inference/chart.cpp","blob_id":"aae2874e95ee5f47d4fa8174d38f29bb5f52108b","sha256":"07557d098bf87794fa40331b431808825a969de03d1f524a977d97bdff4c768d","size_bytes":3765,"role":"LVGL display and class-count output"},
+    {"path":"arduino/lime-tm/examples/redd_inference/redd_inference.ino","blob_id":"f2dddd66c8ebfafdf140b06f7ff4f0b921a1c31e","sha256":"7efd645ef510465141e1beaa449c29a2fded17d4d9a2c9517e2541da18a8d1d3","size_bytes":3459,"role":"embedded fixed-test-array inference entry"},
+    {"path":"arduino/lime-tm/examples/redd_inference/redd_test.h","blob_id":"f72f4def3347826f75064331a516c7e4b1df399d","sha256":"21c7599325076a6ad7425fef24ce9c943a7b9f3d21f3781a08a38eac85579b9d","size_bytes":35514,"role":"1008-row two-feature compiled test array"},
+    {"path":"posix/main.c","blob_id":"f5c001015690bbaee65248bb8176597ff35f4761","sha256":"28cf9e5df18bade995e60da180278c58849e48f30b15c2aed695de9273faed92","size_bytes":3757,"role":"POSIX native-float replay entry"},
+    {"path":"posix/features.c","blob_id":"acaea09ef97fc5445f41fc7c022b8c6f4f4df02b","sha256":"45752ad7da87e31e93650cb17084a9a7dddcb9c032ce257f3c37831c32333ef6","size_bytes":18908,"role":"POSIX feature, Booleanisation, and TM inference implementation"},
+    {"path":"docs/js/script.js","blob_id":"f82b6d4d71c33f08e0512e73fda01e9122875e6a","sha256":"75cd4beafcef18d1d4dfa0136414929e9931a35964d50f6f14a745a42cffae5d","size_bytes":10195,"role":"browser loader and scoring UI for docs/redd combined CSVs"},
+    {"path":"docs/js/upload.js","blob_id":"950a5cd67b79d33bfe4b9d8d80c259d1813aeeb4","sha256":"ba815043c07b2f11beb45b99261ae198326ef3c6e6272c42c697242d7885bfb6","size_bytes":7124,"role":"browser submission validation against docs/redd combined CSVs"},
+    {"path":"notebooks/UK_DALE.ipynb","blob_id":"85dd57ca02fd6a1855c33ab594df74ad15840ea1","sha256":"14aeff8acee867e16090f47de57b62da274909518f7aa31513793f61a6f843cc","size_bytes":226591,"role":"separate UK-DALE exploratory notebook; statically parsed, not executed"}
+  ],
+  "known_absences_or_gaps": [
+    "No unique canonical entry point is marked or wired.",
+    "No tracked tsetlin_redd_model.pb or tsetlin_redd_inference_model.ipb exists.",
+    "No tracked tsetlin_model.h exists.",
+    "The integrated nilm_inference example references a local redd_test.h that is absent.",
+    "The redd_inference example references a local redd_model.h that is absent.",
+    "The POSIX target lacks its referenced model headers and native-float input asset.",
+    "No command links root compiler output placement to the committed Arduino model header.",
+    "No cross-language feature, Boolean-bit, vote, or prediction parity fixture was found.",
+    "No live meter or sensor input path was found.",
+    "No Pico source or Pico build configuration was found.",
+    "Committed model training data, normalization statistics, command, and generating protobuf are unresolved."
+  ]
+}

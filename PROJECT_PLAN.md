@@ -174,6 +174,7 @@ Deferred work is not permanently excluded.
 | Deployment model | Protocol D is deployment-only. |
 | Main split principle | Per-house raw-time blocked splitting. |
 | T002 canonical input | Pinned `redd` submodule commit `a621bbd6399e49c6798550618fe43b113149455b`. |
+| T003 Han audit snapshot | Han `main` commit `8c5e90df34236ba0afcc4ec46ac083d829de4d51`, source tree `5254fc117d8c6f392d6eee1ea7bacc41d2b2039c`; static source audit completed on 2026-07-21. |
 | Protocol R sequence contract | Each chunk is an independent segment at a nominal 3-second cadence; no cross-segment time order or dependencies. |
 | Protocol R candidate houses | Train/validation pool H1, H3, H5, H6; sealed candidate test H2 and H4. |
 | Protocol R approved candidate classes | Fridge, microwave, dish washer, and washer dryer under D004. |
@@ -187,7 +188,7 @@ Deferred work is not permanently excluded.
 - Original REDD calendar timestamps, gaps, and per-file channel provenance.
 - Actual detector, pairer, window, event, and feature dependency horizons.
 - Cross-house scoring, missing-label eligibility, and macro aggregation for the first model evaluation.
-- Pinned Han repository revision and approved reusable files.
+- Approved reusable Han components and minimum Protocol H reproduction contract.
 - Multiclass TM versus multiple binary TMs.
 - Detector, pairer, feature, Booleanisation, and TM parameters.
 - Exact Pico board variant, Arduino core, compiler, and serial protocol.
@@ -465,7 +466,7 @@ Detailed specifications belong in `docs/tasks/`. This table records only task pu
 |---|---|---|---|
 | T001 | Governance review and repository bootstrap | Governance files approved and validated; Git actions performed only after explicit authorisation. | Complete — 2026-07-21. |
 | T002 | Han upstream snapshot acquisition, REDD inventory, and Protocol R preflight | Acquire the authorised recursive upstream snapshot, record immutable revisions, inventory REDD evidence, and assess the remaining preflight criteria without training or model scoring. | Complete — 2026-07-21. D004 fallback approved and successor manifest verified. |
-| T003 | Han reference audit and minimum reproduction contract | Reference revision, workflow stages, reusable components, deviations, and deployment boundary approved. | Pending |
+| T003 | Han reference audit and minimum reproduction contract | Reference revision, workflow stages, reusable components, deviations, and deployment boundary approved. | In progress — static source audit completed 2026-07-21; review and reproduction-contract decisions Pending. |
 | T004 | Protocol R split approval and freeze | Tianhang approves the split manifest and hash; candidate test becomes locked test. | Pending |
 | T005 | Han-compatible local training and export | A locally trained smoke model is saved, reloaded, exported, and accompanied by fixed fixtures. | Pending |
 | T006 | Host-native parity | Host-native Boolean bits, votes, and predictions match the Python reference. | Pending |
@@ -532,6 +533,9 @@ Current reported state:
 - `electric furnace` failed the sealed-candidate-test complete-cycle minimum;
 - Tianhang approved the predeclared `washer dryer` fallback before any model output was viewed;
 - the approved four-class successor manifest was generated and verified;
-- T002 is complete.
+- T002 is complete;
+- the fixed Han source snapshot has been audited statically and recorded in [`docs/reproduction/HAN_PIPELINE_SOURCE_AUDIT.md`](docs/reproduction/HAN_PIPELINE_SOURCE_AUDIT.md);
+- no unique canonical Han entry, reusable component set, or executable reproduction contract has yet been approved;
+- T003 remains in progress and executable reproduction has not started.
 
-No execution task is currently authorised. T003 and all other tasks remain unauthorised.
+T003 is the current governance task. Its static source-audit phase is complete; executable reproduction and all later tasks remain unauthorised pending Tianhang/ChatGPT review.

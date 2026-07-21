@@ -2,9 +2,9 @@
 
 **Status:** Current governance snapshot\
 **Last updated:** 2026-07-21\
-**Current phase:** T002 complete; awaiting explicit next-task authorisation\
-**Active execution task:** None\
-**Local verification:** T001 and T002 completed on 2026-07-21. The approved Protocol R successor manifest was generated and verified before T002 closure.
+**Current phase:** T003 static source audit complete; T003 remains In progress pending review\
+**Active execution task:** None; executable reproduction has not started\
+**Local verification:** T001 and T002 completed on 2026-07-21. T003 has recorded a static audit of the fixed Han snapshot without executing upstream code.
 
 ## 1. Purpose
 
@@ -63,10 +63,10 @@ If this file conflicts with the actual worktree or locally generated outputs, th
 |---|---|
 | T001 | Complete — 2026-07-21. Gate B reconciliation, local Git bootstrap, the initial governance baseline commit, and the T001 closure record are complete. |
 | T002 | Complete — 2026-07-21. The original class set failed because `electric furnace` had only 1 candidate complete cycle. Tianhang approved the predeclared `washer dryer` fallback, and the successor manifest was verified. |
-| T003 | Not started. No Han reference revision or reusable component has been approved. |
+| T003 | In progress. Static source audit completed on 2026-07-21 at Han commit `8c5e90df34236ba0afcc4ec46ac083d829de4d51`; review, reusable-component approval, and the minimum reproduction contract remain Pending. |
 | T004–T013 | Not started. |
 
-No execution task is active. T003 and all later tasks remain unauthorised.
+No executable reproduction task is active. T003 remains the current governance task; T004 and all later tasks remain unauthorised.
 
 ## 5. Verified Project Evidence
 
@@ -82,7 +82,7 @@ T002 admitted task-bounded standard-library inventory, support-audit, and manife
 
 The following evidence is therefore not currently available:
 
-- a pinned Han reference audit;
+- an approved Han reusable-component set and minimum reproduction contract;
 - migrated or newly implemented algorithm code;
 - a locally trained TM model;
 - a model bundle or parity fixture;
@@ -100,7 +100,7 @@ The following items remain `Pending`:
 - original calendar timestamps, gaps, and per-file channel provenance;
 - actual detector, pairer, window, event, and feature dependency horizons;
 - cross-house scoring, missing-label eligibility, and macro aggregation for the first model evaluation;
-- pinned Han reference revision for the later T003 reference audit;
+- approved reusable Han components and minimum Protocol H reproduction contract;
 - Protocol H data and configuration;
 - approved reusable components;
 - detector, pairer, feature, Booleanisation, and TM design;
@@ -116,9 +116,9 @@ No task may silently infer these decisions from historical experiments or conver
 
 ## 7. Current Authorisation and Restrictions
 
-No execution task is active. T003 and all later work remain unauthorised.
+T003 static source inspection is complete. No executable reproduction phase is authorised; T004 and all later work remain unauthorised.
 
-Do not install dependencies, run edge detection, event pairing, feature extraction, training, inference, or model scoring; modify the upstream clone; copy upstream code or CSV files; begin T003; create a project remote, tag, branch, or push; access other sources; or perform firmware, Pico, or hardware work.
+Do not install dependencies, run edge detection, event pairing, feature extraction, training, inference, or model scoring; modify the upstream clone; copy upstream code or CSV files; begin executable reproduction or T004; create a project remote, tag, branch, or push; access other sources; or perform firmware, Pico, or hardware work.
 
 ## 8. T001 Completion
 
@@ -151,6 +151,21 @@ T001 Gate B reconciliation, local Git bootstrap, the initial governance baseline
 
 The external absolute snapshot path remains machine-specific and is not stored in tracked evidence.
 
-## 10. Immediate Next Action
+## 10. T003 Static Source Audit
 
-Wait for Tianhang's separate explicit authorisation. T003 has not started, and no later task begins automatically.
+- Fixed Han snapshot: `main` commit `8c5e90df34236ba0afcc4ec46ac083d829de4d51`, source tree `5254fc117d8c6f392d6eee1ea7bacc41d2b2039c`.
+- Fixed REDD gitlink: `a621bbd6399e49c6798550618fe43b113149455b`.
+- The audit found multiple entry candidates but no uniquely provable canonical workflow.
+- The staged preparation route is label-assisted; the integrated Python routes reimplement it rather than calling the staged scripts.
+- The observed TM input has 23 ordered numeric slots, 22 unique feature names, and 184 Boolean inputs at 8 bits. Each clause can address positive and negated forms of those 184 inputs.
+- The current trainer defaults to two classes, while the committed embedded header declares four classes. Exact model provenance is unresolved.
+- The integrated firmware replays native float samples from SD, uses a different FIFO pairer and Boolean quantiser, and reads post-event samples from the file. It is not evidence of live causal NILM.
+- Missing generated headers/assets and the absent parity fixtures prevent a self-contained, proven Python-to-C-to-firmware chain at this snapshot.
+- Detailed findings: [`HAN_PIPELINE_SOURCE_AUDIT.md`](reproduction/HAN_PIPELINE_SOURCE_AUDIT.md).
+- Machine-readable inventory: [`han_pipeline_source_inventory.json`](../artifacts/manifests/han_pipeline_source_inventory.json).
+- No Han program, notebook, training, inference, build, benchmark, firmware, or hardware work was executed.
+- No reusable component or minimum reproduction contract has been approved.
+
+## 11. Immediate Next Action
+
+Tianhang and ChatGPT review the T003 static audit and decide the minimum Protocol H reproduction contract, reusable components, compatibility deviations, and PC/host/Pico boundary. T003 remains In progress; no executable reproduction or later task begins automatically.
