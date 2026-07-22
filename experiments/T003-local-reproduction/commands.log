@@ -1,0 +1,1194 @@
+T003 Han two-class PC pipeline local reproduction — authorised missing-file skip rerun
+Run root: ${T003_RUN_ROOT}
+Project: ${PROJECT_ROOT}
+Han source: ${HAN_UPSTREAM_ROOT}
+REDD source: ${HAN_REDD_ROOT}
+
+Authorised harness change:
+- mirror Han trainer by skipping missing or empty house/class matched-transition CSV files;
+- report missing staged files as zero rows during inventory;
+- no algorithm, source-data, feature, parameter, or upstream change.
+
+Planned per-run commands:
+python ${HAN_REDD_ROOT}_edge_detect.py --building-id <1..6>
+python ${HAN_REDD_ROOT}_edge_match.py --building-id <1..6>
+python ${HAN_REDD_ROOT}_event_pair.py --building-id <1..6> --appliance fridge
+python ${HAN_REDD_ROOT}_event_pair.py --building-id <1..6> --appliance microwave
+python local_reproduction_runner.py --run-dir <run_1|run_2>
+[isolated environment setup]
+uv : Downloading cpython-3.12.13-windows-x86_64-none (download) (20.8MiB)
+At line:9 char:1
++ uv python install 3.12 2>&1 | Tee-Object -FilePath $log -Append
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Downloading cpy...load) (20.8MiB):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+ Downloaded cpython-3.12.13-windows-x86_64-none (download)
+Installed Python 3.12.13 in 6.54s
+ + cpython-3.12.13-windows-x86_64-none
+warning: `${LOCAL_PATH} is not on your PATH. To use installed Python executables, run `$env:PATH = "${LOCAL_PATH}
+\TTH\.local\bin;$env:PATH"` or `uv python update-shell`.
+warning: Failed to install executable for cpython-3.12.13-windows-x86_64-none
+  Caused by: Executable already exists at `${LOCAL_PATH} but is not managed by uv; use `--for
+ce` to replace it
+uv : Using CPython 3.12.13
+At line:11 char:1
++ uv venv --python 3.12 (Join-Path $root '.venv') 2>&1 | Tee-Object -Fi ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Using CPython 3.12.13:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Creating virtual environment at: .venv
+Activate with: .venv\Scripts\activate
+uv : Resolved 37 packages in 709ms
+At line:14 char:1
++ uv pip install --python $python -r (Join-Path $root 'requirements.txt ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Resolved 37 packages in 709ms:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Downloading scipy (34.9MiB)
+Downloading matplotlib (7.8MiB)
+Downloading pillow (6.9MiB)
+Downloading sqlalchemy (2.0MiB)
+Downloading scikit-learn (7.6MiB)
+Downloading pyqt6-qt6 (74.8MiB)
+Downloading pandas (11.0MiB)
+Downloading numpy (11.7MiB)
+Downloading fonttools (2.2MiB)
+Downloading pyqt6 (6.5MiB)
+ Downloaded sqlalchemy
+ Downloaded fonttools
+ Downloaded pillow
+ Downloaded matplotlib
+ Downloaded scikit-learn
+ Downloaded numpy
+ Downloaded pandas
+ Downloaded pyqt6
+ Downloaded scipy
+ Downloaded pyqt6-qt6
+Prepared 37 packages in 22.20s
+Installed 37 packages in 3.41s
+ + alembic==1.18.5
+ + bitarray==3.8.0
+ + colorama==0.4.6
+ + colorlog==6.11.0
+ + contourpy==1.3.3
+ + cycler==0.12.1
+ + fastrand==3.0.8
+ + fonttools==4.63.0
+ + greenlet==3.5.3
+ + joblib==1.5.3
+ + kiwisolver==1.5.0
+ + loguru==0.7.3
+ + mako==1.3.12
+ + markupsafe==3.0.3
+ + matplotlib==3.10.8
+ + numpy==2.4.2
+ + optuna==4.9.0
+ + packaging==26.2
+ + pandas==2.2.3
+ + pillow==12.3.0
+ + protobuf==7.34.0
+ + pyparsing==3.3.2
+ + pyqt6==6.11.0
+ + pyqt6-qt6==6.11.1
+ + pyqt6-sip==13.11.1
+ + python-dateutil==2.9.0.post0
+ + pytz==2026.2
+ + pyyaml==6.0.3
+ + scikit-learn==1.8.0
+ + scipy==1.17.1
+ + six==1.17.0
+ + sqlalchemy==2.0.51
+ + threadpoolctl==3.6.0
+ + tqdm==4.67.3
+ + typing-extensions==4.16.0
+ + tzdata==2026.3
+ + win32-setctime==1.2.0
+[run_1 staged preprocessing]
+RUN_1 edge_detect H1 START
+python.exe : [32m2026-07-22 08:44:29.288[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m157[0m - 
+[1mProcessing Building 1[0m
+At line:18 char:2
++  & $python (Join-Path $han 'redd_edge_detect.py') --building-id $hous ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... Building 1[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:44:30.962[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 1 main...[0m
+[32m2026-07-22 08:45:14.294[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 1 fridge...[0m
+[32m2026-07-22 08:46:01.379[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 1 microwave...[0m
+[32m2026-07-22 08:46:47.432[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 1 dish washer...[0m
+[32m2026-07-22 08:47:32.324[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 1 electric furnace...[0m
+[32m2026-07-22 08:47:32.324[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m195[0m - [33m[1m
+electric furnace not found in Building 1. Skipping...[0m
+RUN_1 edge_detect H2 START
+python.exe : [32m2026-07-22 08:47:34.777[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m157[0m - 
+[1mProcessing Building 2[0m
+At line:18 char:2
++  & $python (Join-Path $han 'redd_edge_detect.py') --building-id $hous ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... Building 2[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:47:36.389[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 2 main...[0m
+[32m2026-07-22 08:48:15.579[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 2 fridge...[0m
+[32m2026-07-22 08:48:54.437[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 2 microwave...[0m
+[32m2026-07-22 08:49:33.141[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 2 dish washer...[0m
+[32m2026-07-22 08:50:11.344[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 2 electric furnace...[0m
+[32m2026-07-22 08:50:11.344[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m195[0m - [33m[1m
+electric furnace not found in Building 2. Skipping...[0m
+RUN_1 edge_detect H3 START
+python.exe : [32m2026-07-22 08:50:13.886[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m157[0m - 
+[1mProcessing Building 3[0m
+At line:18 char:2
++  & $python (Join-Path $han 'redd_edge_detect.py') --building-id $hous ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... Building 3[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:50:15.295[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 3 main...[0m
+[32m2026-07-22 08:50:46.467[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 3 fridge...[0m
+[32m2026-07-22 08:51:17.752[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 3 microwave...[0m
+[32m2026-07-22 08:51:49.317[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 3 dish washer...[0m
+[32m2026-07-22 08:52:21.128[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 3 electric furnace...[0m
+RUN_1 edge_detect H4 START
+python.exe : [32m2026-07-22 08:52:55.800[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m157[0m - 
+[1mProcessing Building 4[0m
+At line:18 char:2
++  & $python (Join-Path $han 'redd_edge_detect.py') --building-id $hous ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... Building 4[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:52:56.872[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 4 main...[0m
+[32m2026-07-22 08:53:32.418[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 4 fridge...[0m
+[32m2026-07-22 08:53:32.418[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m195[0m - [33m[1m
+fridge not found in Building 4. Skipping...[0m
+[32m2026-07-22 08:53:32.418[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 4 microwave...[0m
+[32m2026-07-22 08:53:32.418[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m195[0m - [33m[1m
+microwave not found in Building 4. Skipping...[0m
+[32m2026-07-22 08:53:32.418[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 4 dish washer...[0m
+[32m2026-07-22 08:54:08.560[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 4 electric furnace...[0m
+RUN_1 edge_detect H5 START
+python.exe : [32m2026-07-22 08:54:47.811[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m157[0m - 
+[1mProcessing Building 5[0m
+At line:18 char:2
++  & $python (Join-Path $han 'redd_edge_detect.py') --building-id $hous ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... Building 5[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:54:47.981[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 5 main...[0m
+[32m2026-07-22 08:54:51.042[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 5 fridge...[0m
+[32m2026-07-22 08:54:54.177[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 5 microwave...[0m
+[32m2026-07-22 08:54:57.371[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 5 dish washer...[0m
+[32m2026-07-22 08:55:00.568[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 5 electric furnace...[0m
+RUN_1 edge_detect H6 START
+python.exe : [32m2026-07-22 08:55:06.081[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m157[0m - 
+[1mProcessing Building 6[0m
+At line:18 char:2
++  & $python (Join-Path $han 'redd_edge_detect.py') --building-id $hous ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... Building 6[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:55:07.698[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 6 main...[0m
+[32m2026-07-22 08:55:50.711[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 6 fridge...[0m
+[32m2026-07-22 08:56:33.205[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 6 microwave...[0m
+[32m2026-07-22 08:56:33.205[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m195[0m - [33m[1m
+microwave not found in Building 6. Skipping...[0m
+[32m2026-07-22 08:56:33.205[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 6 dish washer...[0m
+[32m2026-07-22 08:57:16.620[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 6 electric furnace...[0m
+[32m2026-07-22 08:57:16.620[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m195[0m - [33m[1m
+electric furnace not found in Building 6. Skipping...[0m
+RUN_1 edge_match H1 START
+python.exe : [32m2026-07-22 08:57:18.907[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - 
+[1mProcessing building 1, appliance: fridge[0m
+At line:24 char:2
++  & $python (Join-Path $han 'redd_edge_match.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22...nce: fridge[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:57:28.536[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1573
+, fridge: 519, not found: 1[0m
+[32m2026-07-22 08:57:28.536[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 1, appliance: microwave[0m
+[32m2026-07-22 08:57:33.275[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1573
+, microwave: 283, not found: 0[0m
+[32m2026-07-22 08:57:33.275[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 1, appliance: dish washer[0m
+[32m2026-07-22 08:57:39.063[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1573
+, dish washer: 299, not found: 0[0m
+[32m2026-07-22 08:57:39.063[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 1, appliance: electric furnace[0m
+[32m2026-07-22 08:57:39.063[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m170[0m - [33m[1m
+File for building 1, appliance electric furnace not found. Skipping...[0m
+RUN_1 edge_match H2 START
+python.exe : [32m2026-07-22 08:57:41.585[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - 
+[1mProcessing building 2, appliance: fridge[0m
+At line:24 char:2
++  & $python (Join-Path $han 'redd_edge_match.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22...nce: fridge[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:57:57.931[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 2024
+, fridge: 657, not found: 0[0m
+[32m2026-07-22 08:57:57.931[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 2, appliance: microwave[0m
+[32m2026-07-22 08:58:00.953[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 2024
+, microwave: 104, not found: 0[0m
+[32m2026-07-22 08:58:00.954[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 2, appliance: dish washer[0m
+[32m2026-07-22 08:58:03.156[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 2024
+, dish washer: 95, not found: 1[0m
+[32m2026-07-22 08:58:03.156[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 2, appliance: electric furnace[0m
+[32m2026-07-22 08:58:03.157[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m170[0m - [33m[1m
+File for building 2, appliance electric furnace not found. Skipping...[0m
+RUN_1 edge_match H3 START
+python.exe : [32m2026-07-22 08:58:05.422[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - 
+[1mProcessing building 3, appliance: fridge[0m
+At line:24 char:2
++  & $python (Join-Path $han 'redd_edge_match.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22...nce: fridge[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:58:26.750[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1982
+, fridge: 902, not found: 12[0m
+[32m2026-07-22 08:58:26.750[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 3, appliance: microwave[0m
+[32m2026-07-22 08:58:30.338[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1982
+, microwave: 121, not found: 0[0m
+[32m2026-07-22 08:58:30.338[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 3, appliance: dish washer[0m
+[32m2026-07-22 08:58:31.432[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1982
+, dish washer: 40, not found: 0[0m
+[32m2026-07-22 08:58:31.432[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 3, appliance: electric furnace[0m
+[32m2026-07-22 08:58:32.671[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1982
+, electric furnace: 159, not found: 1[0m
+RUN_1 edge_match H4 START
+python.exe : [32m2026-07-22 08:58:35.233[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - 
+[1mProcessing building 4, appliance: fridge[0m
+At line:24 char:2
++  & $python (Join-Path $han 'redd_edge_match.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22...nce: fridge[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:58:35.233[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m170[0m - [33m[1m
+File for building 4, appliance fridge not found. Skipping...[0m
+[32m2026-07-22 08:58:35.233[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 4, appliance: microwave[0m
+[32m2026-07-22 08:58:35.233[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m170[0m - [33m[1m
+File for building 4, appliance microwave not found. Skipping...[0m
+[32m2026-07-22 08:58:35.233[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 4, appliance: dish washer[0m
+[32m2026-07-22 08:58:35.611[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1165
+, dish washer: 23, not found: 0[0m
+[32m2026-07-22 08:58:35.611[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 4, appliance: electric furnace[0m
+[32m2026-07-22 08:58:38.458[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1165
+, electric furnace: 303, not found: 0[0m
+RUN_1 edge_match H5 START
+python.exe : [32m2026-07-22 08:58:40.881[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - 
+[1mProcessing building 5, appliance: fridge[0m
+At line:24 char:2
++  & $python (Join-Path $han 'redd_edge_match.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22...nce: fridge[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:58:40.993[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 171,
+ fridge: 45, not found: 0[0m
+[32m2026-07-22 08:58:40.993[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 5, appliance: microwave[0m
+[32m2026-07-22 08:58:41.011[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 171,
+ microwave: 4, not found: 1[0m
+[32m2026-07-22 08:58:41.011[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 5, appliance: dish washer[0m
+[32m2026-07-22 08:58:41.011[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m173[0m - [33m[1m
+File for building 5, appliance dish washer is empty. Skipping...[0m
+[32m2026-07-22 08:58:41.012[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 5, appliance: electric furnace[0m
+[32m2026-07-22 08:58:41.175[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 171,
+ electric furnace: 57, not found: 0[0m
+RUN_1 edge_match H6 START
+python.exe : [32m2026-07-22 08:58:43.578[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - 
+[1mProcessing building 6, appliance: fridge[0m
+At line:24 char:2
++  & $python (Join-Path $han 'redd_edge_match.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22...nce: fridge[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:58:50.445[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1062
+, fridge: 589, not found: 1[0m
+[32m2026-07-22 08:58:50.445[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 6, appliance: microwave[0m
+[32m2026-07-22 08:58:50.446[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m170[0m - [33m[1m
+File for building 6, appliance microwave not found. Skipping...[0m
+[32m2026-07-22 08:58:50.446[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 6, appliance: dish washer[0m
+[32m2026-07-22 08:58:50.447[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m173[0m - [33m[1m
+File for building 6, appliance dish washer is empty. Skipping...[0m
+[32m2026-07-22 08:58:50.447[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 6, appliance: electric furnace[0m
+[32m2026-07-22 08:58:50.448[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m170[0m - [33m[1m
+File for building 6, appliance electric furnace not found. Skipping...[0m
+RUN_1 event_pair H1 fridge START
+python.exe : [32m2026-07-22 08:58:56.541[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 1 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:58:56.746[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance fridge[0m
+[32m2026-07-22 08:58:56.765[0m | [1mINFO    [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m142[0m - [
+1mAverage power error for fridge_label: 87.04[0m
+[32m2026-07-22 08:58:56.765[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m470[0m - [1m	Matched:
+231[0m
+[32m2026-07-22 08:58:56.765[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m471[0m - [1m	Unmatched
+ rises: 0[0m
+[32m2026-07-22 08:58:56.765[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m472[0m - [1m	Unmatched
+ falls: 0[0m
+RUN_1 event_pair H1 microwave START
+python.exe : [32m2026-07-22 08:59:03.368[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 1 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:59:03.553[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance microwave[0m
+[32m2026-07-22 08:59:03.562[0m | [1mINFO    [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m142[0m - [
+1mAverage power error for microwave_label: 129.67[0m
+[32m2026-07-22 08:59:03.562[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m470[0m - [1m	Matched:
+107[0m
+[32m2026-07-22 08:59:03.562[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m471[0m - [1m	Unmatched
+ rises: 0[0m
+[32m2026-07-22 08:59:03.564[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m472[0m - [1m	Unmatched
+ falls: 0[0m
+RUN_1 event_pair H2 fridge START
+python.exe : [32m2026-07-22 08:59:10.077[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 2 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:59:10.271[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance fridge[0m
+[32m2026-07-22 08:59:10.296[0m | [1mINFO    [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m142[0m - [
+1mAverage power error for fridge_label: 58.59[0m
+[32m2026-07-22 08:59:10.296[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m470[0m - [1m	Matched:
+257[0m
+[32m2026-07-22 08:59:10.296[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m471[0m - [1m	Unmatched
+ rises: 1[0m
+[32m2026-07-22 08:59:10.296[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m472[0m - [1m	Unmatched
+ falls: 0[0m
+RUN_1 event_pair H2 microwave START
+python.exe : [32m2026-07-22 08:59:16.730[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 2 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:59:16.895[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance microwave[0m
+[32m2026-07-22 08:59:16.901[0m | [1mINFO    [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m142[0m - [
+1mAverage power error for microwave_label: 163.49[0m
+[32m2026-07-22 08:59:16.901[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m470[0m - [1m	Matched:
+40[0m
+[32m2026-07-22 08:59:16.901[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m471[0m - [1m	Unmatched
+ rises: 1[0m
+[32m2026-07-22 08:59:16.901[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m472[0m - [1m	Unmatched
+ falls: 0[0m
+RUN_1 event_pair H3 fridge START
+python.exe : [32m2026-07-22 08:59:23.629[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 3 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:59:23.854[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance fridge[0m
+[32m2026-07-22 08:59:23.895[0m | [1mINFO    [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m142[0m - [
+1mAverage power error for fridge_label: 94.65[0m
+[32m2026-07-22 08:59:23.895[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m470[0m - [1m	Matched:
+368[0m
+[32m2026-07-22 08:59:23.895[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m471[0m - [1m	Unmatched
+ rises: 0[0m
+[32m2026-07-22 08:59:23.895[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m472[0m - [1m	Unmatched
+ falls: 0[0m
+RUN_1 event_pair H3 microwave START
+python.exe : [32m2026-07-22 08:59:30.342[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 3 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:59:30.482[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance microwave[0m
+[32m2026-07-22 08:59:30.487[0m | [1mINFO    [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m142[0m - [
+1mAverage power error for microwave_label: 263.15[0m
+[32m2026-07-22 08:59:30.487[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m470[0m - [1m	Matched:
+42[0m
+[32m2026-07-22 08:59:30.487[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m471[0m - [1m	Unmatched
+ rises: 1[0m
+[32m2026-07-22 08:59:30.487[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m472[0m - [1m	Unmatched
+ falls: 0[0m
+RUN_1 event_pair H4 fridge START
+python.exe : [32m2026-07-22 08:59:36.377[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 4 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:59:36.542[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance fridge[0m
+[32m2026-07-22 08:59:36.543[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m68[0m
+- [33m[1mNo events found for appliance column: fridge_label[0m
+RUN_1 event_pair H4 microwave START
+python.exe : [32m2026-07-22 08:59:42.099[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 4 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:59:42.226[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance microwave[0m
+[32m2026-07-22 08:59:42.227[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m68[0m
+- [33m[1mNo events found for appliance column: microwave_label[0m
+RUN_1 event_pair H5 fridge START
+python.exe : [32m2026-07-22 08:59:47.630[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 5 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:59:47.682[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance fridge[0m
+[32m2026-07-22 08:59:47.686[0m | [1mINFO    [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m142[0m - [
+1mAverage power error for fridge_label: 23.18[0m
+[32m2026-07-22 08:59:47.686[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m470[0m - [1m	Matched:
+7[0m
+[32m2026-07-22 08:59:47.686[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m471[0m - [1m	Unmatched
+ rises: 0[0m
+[32m2026-07-22 08:59:47.686[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m472[0m - [1m	Unmatched
+ falls: 0[0m
+RUN_1 event_pair H5 microwave START
+python.exe : [32m2026-07-22 08:59:52.403[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 5 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:59:52.431[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance microwave[0m
+[32m2026-07-22 08:59:52.433[0m | [1mINFO    [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m142[0m - [
+1mAverage power error for microwave_label: 13.30[0m
+[32m2026-07-22 08:59:52.433[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m470[0m - [1m	Matched:
+1[0m
+[32m2026-07-22 08:59:52.433[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m471[0m - [1m	Unmatched
+ rises: 0[0m
+[32m2026-07-22 08:59:52.433[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m472[0m - [1m	Unmatched
+ falls: 0[0m
+RUN_1 event_pair H6 fridge START
+python.exe : [32m2026-07-22 08:59:57.296[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 6 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 08:59:57.484[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance fridge[0m
+[32m2026-07-22 08:59:57.506[0m | [1mINFO    [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m142[0m - [
+1mAverage power error for fridge_label: 43.00[0m
+[32m2026-07-22 08:59:57.506[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m470[0m - [1m	Matched:
+36[0m
+[32m2026-07-22 08:59:57.506[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m471[0m - [1m	Unmatched
+ rises: 1[0m
+[32m2026-07-22 08:59:57.506[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m472[0m - [1m	Unmatched
+ falls: 0[0m
+RUN_1 event_pair H6 microwave START
+python.exe : [32m2026-07-22 09:00:03.739[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 6 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:00:03.911[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance microwave[0m
+[32m2026-07-22 09:00:03.912[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m68[0m
+- [33m[1mNo events found for appliance column: microwave_label[0m
+[run_1 TM reproduction and diagnostics]
+Written ${T003_RUN_ROOT}\run_1\epoch_10_redd_model.h
+Total model size: 9058 bytes (8.85 KiB)
+{
+  "run_directory": "${T003_RUN_ROOT}\\run_1",
+  "elapsed_seconds": 8.549648761749268,
+  "epoch_1_accuracy": 0.9195121951219513,
+  "epoch_10_metrics": {
+    "accuracy": 0.9658536585365853,
+    "macro": {
+      "precision": 0.8858333333333334,
+      "recall": 0.9493400621118013,
+      "f1": 0.9142976588628762
+    },
+    "classes": {
+      "fridge": {
+        "precision": 0.9916666666666667,
+        "recall": 0.970108695652174,
+        "f1": 0.9807692307692307,
+        "support": 368
+      },
+      "microwave": {
+        "precision": 0.78,
+        "recall": 0.9285714285714286,
+        "f1": 0.8478260869565217,
+        "support": 42
+      }
+    },
+    "confusion_matrix": [
+      [
+        357,
+        11
+      ],
+      [
+        3,
+        39
+      ]
+    ]
+  },
+  "diagnostics": {
+    "initialization": {
+      "total_automata": 147200,
+      "state_action_disagreements": 73600,
+      "action_mask_disagreements": 0,
+      "state_mask_disagreements": 73600
+    },
+    "after_1_epoch": {
+      "total_automata": 147200,
+      "state_action_disagreements": 0,
+      "action_mask_disagreements": 374,
+      "state_mask_disagreements": 374
+    },
+    "after_10_epochs": {
+      "total_automata": 147200,
+      "state_action_disagreements": 0,
+      "action_mask_disagreements": 29,
+      "state_mask_disagreements": 29
+    }
+  },
+  "epoch_1_parity": {
+    "training": 12,
+    "inference": 12
+  },
+  "epoch_10_parity": {
+    "training": 1,
+    "inference": 1
+  }
+}
+[run_2 staged preprocessing]
+RUN_2 edge_detect H1 START
+python.exe : [32m2026-07-22 09:01:05.157[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m157[0m - 
+[1mProcessing Building 1[0m
+At line:18 char:2
++  & $python (Join-Path $han 'redd_edge_detect.py') --building-id $hous ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... Building 1[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:01:07.105[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 1 main...[0m
+[32m2026-07-22 09:01:54.318[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 1 fridge...[0m
+[32m2026-07-22 09:02:40.529[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 1 microwave...[0m
+[32m2026-07-22 09:03:26.006[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 1 dish washer...[0m
+[32m2026-07-22 09:04:13.761[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 1 electric furnace...[0m
+[32m2026-07-22 09:04:13.761[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m195[0m - [33m[1m
+electric furnace not found in Building 1. Skipping...[0m
+RUN_2 edge_detect H2 START
+python.exe : [32m2026-07-22 09:04:16.801[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m157[0m - 
+[1mProcessing Building 2[0m
+At line:18 char:2
++  & $python (Join-Path $han 'redd_edge_detect.py') --building-id $hous ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... Building 2[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:04:18.496[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 2 main...[0m
+[32m2026-07-22 09:04:58.439[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 2 fridge...[0m
+[32m2026-07-22 09:05:38.248[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 2 microwave...[0m
+[32m2026-07-22 09:06:17.351[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 2 dish washer...[0m
+[32m2026-07-22 09:06:55.113[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 2 electric furnace...[0m
+[32m2026-07-22 09:06:55.113[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m195[0m - [33m[1m
+electric furnace not found in Building 2. Skipping...[0m
+RUN_2 edge_detect H3 START
+python.exe : [32m2026-07-22 09:06:57.513[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m157[0m - 
+[1mProcessing Building 3[0m
+At line:18 char:2
++  & $python (Join-Path $han 'redd_edge_detect.py') --building-id $hous ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... Building 3[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:06:58.815[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 3 main...[0m
+[32m2026-07-22 09:07:30.547[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 3 fridge...[0m
+[32m2026-07-22 09:08:02.339[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 3 microwave...[0m
+[32m2026-07-22 09:08:33.742[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 3 dish washer...[0m
+[32m2026-07-22 09:09:05.154[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 3 electric furnace...[0m
+RUN_2 edge_detect H4 START
+python.exe : [32m2026-07-22 09:09:39.929[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m157[0m - 
+[1mProcessing Building 4[0m
+At line:18 char:2
++  & $python (Join-Path $han 'redd_edge_detect.py') --building-id $hous ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... Building 4[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:09:41.019[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 4 main...[0m
+[32m2026-07-22 09:10:15.578[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 4 fridge...[0m
+[32m2026-07-22 09:10:15.578[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m195[0m - [33m[1m
+fridge not found in Building 4. Skipping...[0m
+[32m2026-07-22 09:10:15.579[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 4 microwave...[0m
+[32m2026-07-22 09:10:15.579[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m195[0m - [33m[1m
+microwave not found in Building 4. Skipping...[0m
+[32m2026-07-22 09:10:15.579[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 4 dish washer...[0m
+[32m2026-07-22 09:10:50.210[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 4 electric furnace...[0m
+RUN_2 edge_detect H5 START
+python.exe : [32m2026-07-22 09:11:26.460[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m157[0m - 
+[1mProcessing Building 5[0m
+At line:18 char:2
++  & $python (Join-Path $han 'redd_edge_detect.py') --building-id $hous ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... Building 5[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:11:26.621[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 5 main...[0m
+[32m2026-07-22 09:11:29.789[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 5 fridge...[0m
+[32m2026-07-22 09:11:33.649[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 5 microwave...[0m
+[32m2026-07-22 09:11:36.800[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 5 dish washer...[0m
+[32m2026-07-22 09:11:40.020[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 5 electric furnace...[0m
+RUN_2 edge_detect H6 START
+python.exe : [32m2026-07-22 09:11:45.370[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m157[0m - 
+[1mProcessing Building 6[0m
+At line:18 char:2
++  & $python (Join-Path $han 'redd_edge_detect.py') --building-id $hous ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... Building 6[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:11:46.990[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 6 main...[0m
+[32m2026-07-22 09:12:28.991[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 6 fridge...[0m
+[32m2026-07-22 09:13:10.688[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 6 microwave...[0m
+[32m2026-07-22 09:13:10.688[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m195[0m - [33m[1m
+microwave not found in Building 6. Skipping...[0m
+[32m2026-07-22 09:13:10.688[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 6 dish washer...[0m
+[32m2026-07-22 09:13:52.340[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m179[0m - [1mPerforming
+ edge detection on Building 6 electric furnace...[0m
+[32m2026-07-22 09:13:52.341[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m195[0m - [33m[1m
+electric furnace not found in Building 6. Skipping...[0m
+RUN_2 edge_match H1 START
+python.exe : [32m2026-07-22 09:13:54.628[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - 
+[1mProcessing building 1, appliance: fridge[0m
+At line:24 char:2
++  & $python (Join-Path $han 'redd_edge_match.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22...nce: fridge[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:14:03.273[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1573
+, fridge: 519, not found: 1[0m
+[32m2026-07-22 09:14:03.273[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 1, appliance: microwave[0m
+[32m2026-07-22 09:14:07.399[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1573
+, microwave: 283, not found: 0[0m
+[32m2026-07-22 09:14:07.399[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 1, appliance: dish washer[0m
+[32m2026-07-22 09:14:12.337[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1573
+, dish washer: 299, not found: 0[0m
+[32m2026-07-22 09:14:12.337[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 1, appliance: electric furnace[0m
+[32m2026-07-22 09:14:12.338[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m170[0m - [33m[1m
+File for building 1, appliance electric furnace not found. Skipping...[0m
+RUN_2 edge_match H2 START
+python.exe : [32m2026-07-22 09:14:14.621[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - 
+[1mProcessing building 2, appliance: fridge[0m
+At line:24 char:2
++  & $python (Join-Path $han 'redd_edge_match.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22...nce: fridge[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:14:30.410[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 2024
+, fridge: 657, not found: 0[0m
+[32m2026-07-22 09:14:30.410[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 2, appliance: microwave[0m
+[32m2026-07-22 09:14:33.293[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 2024
+, microwave: 104, not found: 0[0m
+[32m2026-07-22 09:14:33.293[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 2, appliance: dish washer[0m
+[32m2026-07-22 09:14:35.315[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 2024
+, dish washer: 95, not found: 1[0m
+[32m2026-07-22 09:14:35.315[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 2, appliance: electric furnace[0m
+[32m2026-07-22 09:14:35.316[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m170[0m - [33m[1m
+File for building 2, appliance electric furnace not found. Skipping...[0m
+RUN_2 edge_match H3 START
+python.exe : [32m2026-07-22 09:14:37.665[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - 
+[1mProcessing building 3, appliance: fridge[0m
+At line:24 char:2
++  & $python (Join-Path $han 'redd_edge_match.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22...nce: fridge[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:14:57.554[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1982
+, fridge: 902, not found: 12[0m
+[32m2026-07-22 09:14:57.557[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 3, appliance: microwave[0m
+[32m2026-07-22 09:15:00.569[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1982
+, microwave: 121, not found: 0[0m
+[32m2026-07-22 09:15:00.569[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 3, appliance: dish washer[0m
+[32m2026-07-22 09:15:01.602[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1982
+, dish washer: 40, not found: 0[0m
+[32m2026-07-22 09:15:01.603[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 3, appliance: electric furnace[0m
+[32m2026-07-22 09:15:02.727[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1982
+, electric furnace: 159, not found: 1[0m
+RUN_2 edge_match H4 START
+python.exe : [32m2026-07-22 09:15:05.066[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - 
+[1mProcessing building 4, appliance: fridge[0m
+At line:24 char:2
++  & $python (Join-Path $han 'redd_edge_match.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22...nce: fridge[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:15:05.067[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m170[0m - [33m[1m
+File for building 4, appliance fridge not found. Skipping...[0m
+[32m2026-07-22 09:15:05.067[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 4, appliance: microwave[0m
+[32m2026-07-22 09:15:05.067[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m170[0m - [33m[1m
+File for building 4, appliance microwave not found. Skipping...[0m
+[32m2026-07-22 09:15:05.067[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 4, appliance: dish washer[0m
+[32m2026-07-22 09:15:05.373[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1165
+, dish washer: 23, not found: 0[0m
+[32m2026-07-22 09:15:05.374[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 4, appliance: electric furnace[0m
+[32m2026-07-22 09:15:07.955[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1165
+, electric furnace: 303, not found: 0[0m
+RUN_2 edge_match H5 START
+python.exe : [32m2026-07-22 09:15:10.290[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - 
+[1mProcessing building 5, appliance: fridge[0m
+At line:24 char:2
++  & $python (Join-Path $han 'redd_edge_match.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22...nce: fridge[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:15:10.380[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 171,
+ fridge: 45, not found: 0[0m
+[32m2026-07-22 09:15:10.380[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 5, appliance: microwave[0m
+[32m2026-07-22 09:15:10.398[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 171,
+ microwave: 4, not found: 1[0m
+[32m2026-07-22 09:15:10.398[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 5, appliance: dish washer[0m
+[32m2026-07-22 09:15:10.400[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m173[0m - [33m[1m
+File for building 5, appliance dish washer is empty. Skipping...[0m
+[32m2026-07-22 09:15:10.400[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 5, appliance: electric furnace[0m
+[32m2026-07-22 09:15:10.520[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 171,
+ electric furnace: 57, not found: 0[0m
+RUN_2 edge_match H6 START
+python.exe : [32m2026-07-22 09:15:12.789[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - 
+[1mProcessing building 6, appliance: fridge[0m
+At line:24 char:2
++  & $python (Join-Path $han 'redd_edge_match.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22...nce: fridge[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:15:19.165[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m177[0m - [1mmain: 1062
+, fridge: 589, not found: 1[0m
+[32m2026-07-22 09:15:19.165[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 6, appliance: microwave[0m
+[32m2026-07-22 09:15:19.168[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m170[0m - [33m[1m
+File for building 6, appliance microwave not found. Skipping...[0m
+[32m2026-07-22 09:15:19.168[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 6, appliance: dish washer[0m
+[32m2026-07-22 09:15:19.169[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m173[0m - [33m[1m
+File for building 6, appliance dish washer is empty. Skipping...[0m
+[32m2026-07-22 09:15:19.169[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m165[0m - [1mProcessing
+ building 6, appliance: electric furnace[0m
+[32m2026-07-22 09:15:19.169[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36m<module>[0m:[36m170[0m - [33m[1m
+File for building 6, appliance electric furnace not found. Skipping...[0m
+RUN_2 event_pair H1 fridge START
+python.exe : [32m2026-07-22 09:15:23.847[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 1 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:15:24.072[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance fridge[0m
+[32m2026-07-22 09:15:24.088[0m | [1mINFO    [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m142[0m - [
+1mAverage power error for fridge_label: 87.04[0m
+[32m2026-07-22 09:15:24.088[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m470[0m - [1m	Matched:
+231[0m
+[32m2026-07-22 09:15:24.088[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m471[0m - [1m	Unmatched
+ rises: 0[0m
+[32m2026-07-22 09:15:24.088[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m472[0m - [1m	Unmatched
+ falls: 0[0m
+RUN_2 event_pair H1 microwave START
+python.exe : [32m2026-07-22 09:15:30.556[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 1 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:15:30.739[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance microwave[0m
+[32m2026-07-22 09:15:30.748[0m | [1mINFO    [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m142[0m - [
+1mAverage power error for microwave_label: 129.67[0m
+[32m2026-07-22 09:15:30.748[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m470[0m - [1m	Matched:
+107[0m
+[32m2026-07-22 09:15:30.748[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m471[0m - [1m	Unmatched
+ rises: 0[0m
+[32m2026-07-22 09:15:30.750[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m472[0m - [1m	Unmatched
+ falls: 0[0m
+RUN_2 event_pair H2 fridge START
+python.exe : [32m2026-07-22 09:15:37.253[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 2 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:15:37.465[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance fridge[0m
+[32m2026-07-22 09:15:37.497[0m | [1mINFO    [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m142[0m - [
+1mAverage power error for fridge_label: 58.59[0m
+[32m2026-07-22 09:15:37.497[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m470[0m - [1m	Matched:
+257[0m
+[32m2026-07-22 09:15:37.498[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m471[0m - [1m	Unmatched
+ rises: 1[0m
+[32m2026-07-22 09:15:37.498[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m472[0m - [1m	Unmatched
+ falls: 0[0m
+RUN_2 event_pair H2 microwave START
+python.exe : [32m2026-07-22 09:15:43.703[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 2 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:15:43.865[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance microwave[0m
+[32m2026-07-22 09:15:43.871[0m | [1mINFO    [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m142[0m - [
+1mAverage power error for microwave_label: 163.49[0m
+[32m2026-07-22 09:15:43.871[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m470[0m - [1m	Matched:
+40[0m
+[32m2026-07-22 09:15:43.871[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m471[0m - [1m	Unmatched
+ rises: 1[0m
+[32m2026-07-22 09:15:43.871[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m472[0m - [1m	Unmatched
+ falls: 0[0m
+RUN_2 event_pair H3 fridge START
+python.exe : [32m2026-07-22 09:15:49.847[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 3 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:15:50.060[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance fridge[0m
+[32m2026-07-22 09:15:50.094[0m | [1mINFO    [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m142[0m - [
+1mAverage power error for fridge_label: 94.65[0m
+[32m2026-07-22 09:15:50.094[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m470[0m - [1m	Matched:
+368[0m
+[32m2026-07-22 09:15:50.094[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m471[0m - [1m	Unmatched
+ rises: 0[0m
+[32m2026-07-22 09:15:50.094[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m472[0m - [1m	Unmatched
+ falls: 0[0m
+RUN_2 event_pair H3 microwave START
+python.exe : [32m2026-07-22 09:15:56.541[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 3 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:15:56.697[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance microwave[0m
+[32m2026-07-22 09:15:56.703[0m | [1mINFO    [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m142[0m - [
+1mAverage power error for microwave_label: 263.15[0m
+[32m2026-07-22 09:15:56.704[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m470[0m - [1m	Matched:
+42[0m
+[32m2026-07-22 09:15:56.704[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m471[0m - [1m	Unmatched
+ rises: 1[0m
+[32m2026-07-22 09:15:56.704[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m472[0m - [1m	Unmatched
+ falls: 0[0m
+RUN_2 event_pair H4 fridge START
+python.exe : [32m2026-07-22 09:16:02.717[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 4 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:16:02.871[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance fridge[0m
+[32m2026-07-22 09:16:02.871[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m68[0m
+- [33m[1mNo events found for appliance column: fridge_label[0m
+RUN_2 event_pair H4 microwave START
+python.exe : [32m2026-07-22 09:16:08.727[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 4 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:16:08.856[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance microwave[0m
+[32m2026-07-22 09:16:08.857[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m68[0m
+- [33m[1mNo events found for appliance column: microwave_label[0m
+RUN_2 event_pair H5 fridge START
+python.exe : [32m2026-07-22 09:16:14.551[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 5 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:16:14.592[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance fridge[0m
+[32m2026-07-22 09:16:14.596[0m | [1mINFO    [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m142[0m - [
+1mAverage power error for fridge_label: 23.18[0m
+[32m2026-07-22 09:16:14.596[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m470[0m - [1m	Matched:
+7[0m
+[32m2026-07-22 09:16:14.596[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m471[0m - [1m	Unmatched
+ rises: 0[0m
+[32m2026-07-22 09:16:14.596[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m472[0m - [1m	Unmatched
+ falls: 0[0m
+RUN_2 event_pair H5 microwave START
+python.exe : [32m2026-07-22 09:16:19.740[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 5 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:16:19.772[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance microwave[0m
+[32m2026-07-22 09:16:19.773[0m | [1mINFO    [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m142[0m - [
+1mAverage power error for microwave_label: 13.30[0m
+[32m2026-07-22 09:16:19.773[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m470[0m - [1m	Matched:
+1[0m
+[32m2026-07-22 09:16:19.773[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m471[0m - [1m	Unmatched
+ rises: 0[0m
+[32m2026-07-22 09:16:19.773[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m472[0m - [1m	Unmatched
+ falls: 0[0m
+RUN_2 event_pair H6 fridge START
+python.exe : [32m2026-07-22 09:16:24.739[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 6 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:16:24.991[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance fridge[0m
+[32m2026-07-22 09:16:25.008[0m | [1mINFO    [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m142[0m - [
+1mAverage power error for fridge_label: 43.00[0m
+[32m2026-07-22 09:16:25.008[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m470[0m - [1m	Matched:
+36[0m
+[32m2026-07-22 09:16:25.008[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m471[0m - [1m	Unmatched
+ rises: 1[0m
+[32m2026-07-22 09:16:25.008[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m472[0m - [1m	Unmatched
+ falls: 0[0m
+RUN_2 event_pair H6 microwave START
+python.exe : [32m2026-07-22 09:16:31.313[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m447[0m - 
+[1m========== Processing building 6 ==========[0m
+At line:30 char:2
++  & $python (Join-Path $han 'redd_event_pair.py') --building-id $house ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([32m2026-07-22... ==========[0m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+[32m2026-07-22 09:16:31.520[0m | [1mINFO    [0m | [36m__main__[0m:[36m<module>[0m:[36m458[0m - [1mProcessing
+ appliance microwave[0m
+[32m2026-07-22 09:16:31.521[0m | [33m[1mWARNING [0m | [36m__main__[0m:[36mmatch_edges_stateful[0m:[36m68[0m
+- [33m[1mNo events found for appliance column: microwave_label[0m
+[run_2 TM reproduction and diagnostics]
+Written ${T003_RUN_ROOT}\run_2\epoch_10_redd_model.h
+Total model size: 9058 bytes (8.85 KiB)
+{
+  "run_directory": "${T003_RUN_ROOT}\\run_2",
+  "elapsed_seconds": 8.953838348388672,
+  "epoch_1_accuracy": 0.9195121951219513,
+  "epoch_10_metrics": {
+    "accuracy": 0.9658536585365853,
+    "macro": {
+      "precision": 0.8858333333333334,
+      "recall": 0.9493400621118013,
+      "f1": 0.9142976588628762
+    },
+    "classes": {
+      "fridge": {
+        "precision": 0.9916666666666667,
+        "recall": 0.970108695652174,
+        "f1": 0.9807692307692307,
+        "support": 368
+      },
+      "microwave": {
+        "precision": 0.78,
+        "recall": 0.9285714285714286,
+        "f1": 0.8478260869565217,
+        "support": 42
+      }
+    },
+    "confusion_matrix": [
+      [
+        357,
+        11
+      ],
+      [
+        3,
+        39
+      ]
+    ]
+  },
+  "diagnostics": {
+    "initialization": {
+      "total_automata": 147200,
+      "state_action_disagreements": 73600,
+      "action_mask_disagreements": 0,
+      "state_mask_disagreements": 73600
+    },
+    "after_1_epoch": {
+      "total_automata": 147200,
+      "state_action_disagreements": 0,
+      "action_mask_disagreements": 374,
+      "state_mask_disagreements": 374
+    },
+    "after_10_epochs": {
+      "total_automata": 147200,
+      "state_action_disagreements": 0,
+      "action_mask_disagreements": 29,
+      "state_mask_disagreements": 29
+    }
+  },
+  "epoch_1_parity": {
+    "training": 12,
+    "inference": 12
+  },
+  "epoch_10_parity": {
+    "training": 1,
+    "inference": 1
+  }
+}

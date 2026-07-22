@@ -1,0 +1,1128 @@
+{
+  "schema_version": "2.0",
+  "status": "complete",
+  "run_root": "${T003_RUN_ROOT}",
+  "project": {
+    "path": "${PROJECT_ROOT}",
+    "head": "14f523033cf2aff185e61f30506552476e4afc81",
+    "origin_main": "14f523033cf2aff185e61f30506552476e4afc81",
+    "clean": true,
+    "fast_forwarded_from": "131a2d0dd6fe3c7d45b4652a0016ac0f4aa309b9",
+    "manual_file_edits": false
+  },
+  "han": {
+    "path": "${HAN_UPSTREAM_ROOT}",
+    "commit": "8c5e90df34236ba0afcc4ec46ac083d829de4d51",
+    "clean": true
+  },
+  "redd": {
+    "path": "${HAN_REDD_ROOT}",
+    "commit": "a621bbd6399e49c6798550618fe43b113149455b",
+    "clean": true
+  },
+  "authorised_harness_deviation": {
+    "purpose": "Mirror Han trainer handling of missing or empty house/class matched-transition CSV files.",
+    "load_role": "Skip FileNotFoundError and pandas EmptyDataError.",
+    "inventory": "Report missing staged files as zero rows.",
+    "algorithm_changes": false
+  },
+  "contract": {
+    "classes": [
+      "fridge",
+      "microwave"
+    ],
+    "train_houses": [
+      1,
+      2,
+      4,
+      5,
+      6
+    ],
+    "test_houses": [
+      3
+    ],
+    "ordered_features": [
+      "transition",
+      "duration",
+      "pos_transition_magnitude",
+      "neg_transition_magnitude",
+      "abs_transition",
+      "log_abs_transition",
+      "duration",
+      "log_duration",
+      "transition_duration_product",
+      "transition_duration_ratio",
+      "episode_mean_main",
+      "episode_std_main",
+      "episode_min_main",
+      "episode_max_main",
+      "episode_range_main",
+      "internal_diff_mean_abs",
+      "internal_diff_max_abs",
+      "internal_edge_count",
+      "subcycle_count_proxy",
+      "active_fraction_proxy",
+      "episode_energy_estimate",
+      "post_minus_pre_mean",
+      "event_internal_edge_count"
+    ],
+    "feature_slots": 23,
+    "unique_feature_names": 22,
+    "bits_per_feature": 8,
+    "boolean_inputs": 184,
+    "clauses": 200,
+    "states": 50,
+    "T": 20,
+    "s": 6.0
+  },
+  "runs": {
+    "run_1": {
+      "directory": "${T003_RUN_ROOT}\\run_1",
+      "execution": {
+        "host": "${LOCAL_HOST}",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "python": "3.12.13 (main, Apr  7 2026, 20:53:22) [MSC v.1944 64 bit (AMD64)]",
+        "python_executable": "${T003_RUN_ROOT}\\.venv\\Scripts\\python.exe",
+        "python_random_seed": 0,
+        "fastrand_seed": "not set by pinned Han implementation",
+        "elapsed_seconds": 8.549648761749268
+      },
+      "observed_full_run_interval": {
+        "basis": "first generated building_1_raw.csv mtime through run_result.json mtime",
+        "start_local": "2026-07-22T08:44:30.962900+01:00",
+        "end_local": "2026-07-22T09:00:30.817032+01:00",
+        "elapsed_seconds": 959.8541321754456
+      },
+      "data": {
+        "train_rows": 679,
+        "test_rows": 410,
+        "train_distribution_by_house": {
+          "1": {
+            "fridge": 231,
+            "microwave": 107
+          },
+          "2": {
+            "fridge": 257,
+            "microwave": 40
+          },
+          "4": {
+            "fridge": 0,
+            "microwave": 0
+          },
+          "5": {
+            "fridge": 7,
+            "microwave": 1
+          },
+          "6": {
+            "fridge": 36,
+            "microwave": 0
+          }
+        },
+        "test_distribution_by_house": {
+          "3": {
+            "fridge": 368,
+            "microwave": 42
+          }
+        },
+        "train_class_distribution": {
+          "fridge": 531,
+          "microwave": 148
+        },
+        "test_class_distribution": {
+          "fridge": 368,
+          "microwave": 42
+        },
+        "staged_inventory": {
+          "houses": {
+            "1": {
+              "input_rows": 348731,
+              "transients": {
+                "main": 1573,
+                "fridge": 519,
+                "microwave": 283,
+                "dish washer": 299,
+                "electric furnace": null
+              },
+              "edge_matching_rows": 1573,
+              "paired_events": {
+                "fridge": 231,
+                "microwave": 107
+              }
+            },
+            "2": {
+              "input_rows": 292063,
+              "transients": {
+                "main": 2024,
+                "fridge": 657,
+                "microwave": 104,
+                "dish washer": 95,
+                "electric furnace": null
+              },
+              "edge_matching_rows": 2024,
+              "paired_events": {
+                "fridge": 257,
+                "microwave": 40
+              }
+            },
+            "3": {
+              "input_rows": 242044,
+              "transients": {
+                "main": 1982,
+                "fridge": 902,
+                "microwave": 121,
+                "dish washer": 40,
+                "electric furnace": 159
+              },
+              "edge_matching_rows": 1982,
+              "paired_events": {
+                "fridge": 368,
+                "microwave": 42
+              }
+            },
+            "4": {
+              "input_rows": 274983,
+              "transients": {
+                "main": 1165,
+                "fridge": null,
+                "microwave": null,
+                "dish washer": 23,
+                "electric furnace": 303
+              },
+              "edge_matching_rows": 1165,
+              "paired_events": {
+                "fridge": 0,
+                "microwave": 0
+              }
+            },
+            "5": {
+              "input_rows": 24181,
+              "transients": {
+                "main": 171,
+                "fridge": 45,
+                "microwave": 4,
+                "dish washer": 0,
+                "electric furnace": 57
+              },
+              "edge_matching_rows": 171,
+              "paired_events": {
+                "fridge": 7,
+                "microwave": 1
+              }
+            },
+            "6": {
+              "input_rows": 326576,
+              "transients": {
+                "main": 1062,
+                "fridge": 589,
+                "microwave": null,
+                "dish washer": 0,
+                "electric furnace": null
+              },
+              "edge_matching_rows": 1062,
+              "paired_events": {
+                "fridge": 36,
+                "microwave": 0
+              }
+            }
+          },
+          "source_data": {
+            "root": "${HAN_REDD_ROOT}",
+            "glob_order": [
+              "redd_house1_0.csv",
+              "redd_house1_1.csv",
+              "redd_house1_10.csv",
+              "redd_house1_2.csv",
+              "redd_house1_3.csv",
+              "redd_house1_4.csv",
+              "redd_house1_5.csv",
+              "redd_house1_6.csv",
+              "redd_house1_7.csv",
+              "redd_house1_8.csv",
+              "redd_house1_9.csv",
+              "redd_house2_0.csv",
+              "redd_house2_1.csv",
+              "redd_house2_2.csv",
+              "redd_house2_3.csv",
+              "redd_house2_4.csv",
+              "redd_house2_5.csv",
+              "redd_house2_6.csv",
+              "redd_house3_0.csv",
+              "redd_house3_1.csv",
+              "redd_house3_2.csv",
+              "redd_house3_3.csv",
+              "redd_house3_4.csv",
+              "redd_house3_5.csv",
+              "redd_house4_0.csv",
+              "redd_house4_1.csv",
+              "redd_house4_2.csv",
+              "redd_house4_3.csv",
+              "redd_house4_4.csv",
+              "redd_house4_5.csv",
+              "redd_house5_0.csv",
+              "redd_house6_0.csv",
+              "redd_house6_1.csv",
+              "redd_house6_2.csv",
+              "redd_house6_3.csv"
+            ],
+            "file_count": 35,
+            "files": [
+              {
+                "relative_path": "redd_house1_0.csv",
+                "size_bytes": 1046214,
+                "sha256": "2b2707d59767a51323137385236876252e508cc7233f73b77a4a03b8df58a72e"
+              },
+              {
+                "relative_path": "redd_house1_1.csv",
+                "size_bytes": 1156059,
+                "sha256": "07dd6ab3432e928d877823ebc9d2831d7270707d880c7310c4f06d3092db782e"
+              },
+              {
+                "relative_path": "redd_house1_10.csv",
+                "size_bytes": 1315380,
+                "sha256": "66c5a648cf71bd7c2a055397247ae62866eb7f0df0c5b9dbcb7f130b2bd0af24"
+              },
+              {
+                "relative_path": "redd_house1_2.csv",
+                "size_bytes": 1259083,
+                "sha256": "ff69a39eb6a960c7540702e7db92b0a4eb04f474758237b81cf980508df5cf19"
+              },
+              {
+                "relative_path": "redd_house1_3.csv",
+                "size_bytes": 1361793,
+                "sha256": "c073d725e1feb15aed3e3ff9566c962a800404ec88841aa49741c32abe99fbc6"
+              },
+              {
+                "relative_path": "redd_house1_4.csv",
+                "size_bytes": 2546133,
+                "sha256": "e882bac89e37b32589d8333bc83e62c12427905f39c645f334dc19b9499b3461"
+              },
+              {
+                "relative_path": "redd_house1_5.csv",
+                "size_bytes": 1238687,
+                "sha256": "ef84bbe9aa76bcb9b3cb6d3c4223d56fc7058f9713290f19497ff6e9a19034c4"
+              },
+              {
+                "relative_path": "redd_house1_6.csv",
+                "size_bytes": 1643508,
+                "sha256": "54b91c2989ccad27a5a89cf16741163600c091973bd653a672a21a65aaf709cb"
+              },
+              {
+                "relative_path": "redd_house1_7.csv",
+                "size_bytes": 1456582,
+                "sha256": "792ec90d658e3d1dfd89b6f943b05650b336efa42718c4c7de52f38743a181f9"
+              },
+              {
+                "relative_path": "redd_house1_8.csv",
+                "size_bytes": 1143408,
+                "sha256": "8cbb25f12f8f15c9801a9e565ad28d0a6bcdbd26d4b81c277a1bd95af3610889"
+              },
+              {
+                "relative_path": "redd_house1_9.csv",
+                "size_bytes": 1510773,
+                "sha256": "825df5ca37755c484053e88edbcc55538f4c4bc077ea097e59f8efe4011ed510"
+              },
+              {
+                "relative_path": "redd_house2_0.csv",
+                "size_bytes": 1561883,
+                "sha256": "600d9f4a25c80894b04bc0e1720940476f2702fb79fdf74f2b4eebb47a08b8d1"
+              },
+              {
+                "relative_path": "redd_house2_1.csv",
+                "size_bytes": 2181230,
+                "sha256": "4a72990a19863dd445c58f2c17c8fed8f43c50fa56da6a69b155e2183d9d8b40"
+              },
+              {
+                "relative_path": "redd_house2_2.csv",
+                "size_bytes": 1334752,
+                "sha256": "e8e4661a87a136b25d70796c91ccc72d727f1f99e3e93fadaa1b105f4e635077"
+              },
+              {
+                "relative_path": "redd_house2_3.csv",
+                "size_bytes": 1092283,
+                "sha256": "8c6d27c8b425cde4865eaadc063540a74c58b70f94678d6cbed1a5e41dbb57c4"
+              },
+              {
+                "relative_path": "redd_house2_4.csv",
+                "size_bytes": 1528789,
+                "sha256": "a3e3dee5e4dfae80d5cc780d63f47a3bf4054afebc89f583766ea040d484f154"
+              },
+              {
+                "relative_path": "redd_house2_5.csv",
+                "size_bytes": 4529244,
+                "sha256": "0f1958f12f6a546080ac822b37578d8c0fd0b6d4b53f9d835d435979e52168b7"
+              },
+              {
+                "relative_path": "redd_house2_6.csv",
+                "size_bytes": 1052668,
+                "sha256": "02f4bc8cea15ec973739a120b7a06a12b215add6fc8ca6118856adbe3c10ee98"
+              },
+              {
+                "relative_path": "redd_house3_0.csv",
+                "size_bytes": 1788019,
+                "sha256": "1da31fbe7453ef7b9471f2032a0e232d61f2de732d2f04e339ce2242d3731fdf"
+              },
+              {
+                "relative_path": "redd_house3_1.csv",
+                "size_bytes": 1199052,
+                "sha256": "dc162e4ead37c3e1265cd14b15dab06bc79bd4a8f43272de232008be237d8fd2"
+              },
+              {
+                "relative_path": "redd_house3_2.csv",
+                "size_bytes": 1451789,
+                "sha256": "3ff10aab25387a86d9b44f3ec3903b9e87a395a24ca7b6d5b5530a4067713970"
+              },
+              {
+                "relative_path": "redd_house3_3.csv",
+                "size_bytes": 2305598,
+                "sha256": "9eaabcc0b57633169be452c0e0848fc903c43939472110613b8fbb0cecd98362"
+              },
+              {
+                "relative_path": "redd_house3_4.csv",
+                "size_bytes": 1497619,
+                "sha256": "c35f2a6cc55a03e79c3d529ebe2c359b4b804adefd57bb85f1af439a1664814b"
+              },
+              {
+                "relative_path": "redd_house3_5.csv",
+                "size_bytes": 4013095,
+                "sha256": "d6946733483d44b817e471dcbe337b9eca790c0c210041bfd48854f5e0127240"
+              },
+              {
+                "relative_path": "redd_house4_0.csv",
+                "size_bytes": 1375073,
+                "sha256": "ab37a744b96c0c3c0e47e9db43c2b72cbab0a0598b224a1208b6861a2b8ad729"
+              },
+              {
+                "relative_path": "redd_house4_1.csv",
+                "size_bytes": 853739,
+                "sha256": "94c4bdbe7d1be597fbb2f04ac10fc93ce32805add4280a761e9c4d8ef2964d53"
+              },
+              {
+                "relative_path": "redd_house4_2.csv",
+                "size_bytes": 1628808,
+                "sha256": "8f6728684c0bef5e2e345ac20b44bf27476ee97b234fbd02baaeb0ce90a0fc88"
+              },
+              {
+                "relative_path": "redd_house4_3.csv",
+                "size_bytes": 848722,
+                "sha256": "897459c23d27746528a046d5b000a321c1866b1790f76f512c10469807765c09"
+              },
+              {
+                "relative_path": "redd_house4_4.csv",
+                "size_bytes": 1532383,
+                "sha256": "83450e753c223baed8b00566c1298208c480d6f32ff06793cc02e69cddb64acb"
+              },
+              {
+                "relative_path": "redd_house4_5.csv",
+                "size_bytes": 4100893,
+                "sha256": "c823da650ad46e580466a7bce419b83f332813131b1ba108916b7bdb263bf51d"
+              },
+              {
+                "relative_path": "redd_house5_0.csv",
+                "size_bytes": 1307021,
+                "sha256": "2c407301a06fef00f7cf6d09950b1e6750f66a0e3e61a6863352babcd9abb4c3"
+              },
+              {
+                "relative_path": "redd_house6_0.csv",
+                "size_bytes": 7859809,
+                "sha256": "2aaf95c48941106362de39426969a88bb55d8fc9decf84301e49ff3f849f0c8c"
+              },
+              {
+                "relative_path": "redd_house6_1.csv",
+                "size_bytes": 1939531,
+                "sha256": "f22c4737c82967b935b1010a4e8858bedc57b46e7403a93e8d4dcced324f4010"
+              },
+              {
+                "relative_path": "redd_house6_2.csv",
+                "size_bytes": 3544066,
+                "sha256": "12d8a47cecab6f52a077997eab4d24a42a088c5101965e597c0abec1fdc94d1a"
+              },
+              {
+                "relative_path": "redd_house6_3.csv",
+                "size_bytes": 1725691,
+                "sha256": "03ef4d1afa315b39c2089f796e4aff9888016df44a00267919c3f8416bed5fa0"
+              }
+            ]
+          }
+        }
+      },
+      "diagnostics": {
+        "initialization": {
+          "total_automata": 147200,
+          "state_action_disagreements": 73600,
+          "action_mask_disagreements": 0,
+          "state_mask_disagreements": 73600
+        },
+        "after_1_epoch": {
+          "total_automata": 147200,
+          "state_action_disagreements": 0,
+          "action_mask_disagreements": 374,
+          "state_mask_disagreements": 374
+        },
+        "after_10_epochs": {
+          "total_automata": 147200,
+          "state_action_disagreements": 0,
+          "action_mask_disagreements": 29,
+          "state_mask_disagreements": 29
+        }
+      },
+      "epoch_1": {
+        "metrics": {
+          "accuracy": 0.9195121951219513,
+          "macro": {
+            "precision": 0.8620253164556962,
+            "recall": 0.6387810559006211,
+            "f1": 0.688901151962475
+          },
+          "classes": {
+            "fridge": {
+              "precision": 0.9240506329113924,
+              "recall": 0.9918478260869565,
+              "f1": 0.9567496723460026,
+              "support": 368
+            },
+            "microwave": {
+              "precision": 0.8,
+              "recall": 0.2857142857142857,
+              "f1": 0.42105263157894735,
+              "support": 42
+            }
+          },
+          "confusion_matrix": [
+            [
+              365,
+              3
+            ],
+            [
+              30,
+              12
+            ]
+          ]
+        },
+        "prediction_parity": {
+          "before_vs_training_reload": 12,
+          "before_vs_inference_reload": 12,
+          "training_vs_inference_reload": 0
+        },
+        "training_model": {
+          "path": "${T003_RUN_ROOT}\\run_1\\epoch_1_training_model.pb",
+          "size_bytes": 149612,
+          "sha256": "2e45d636e63ce6407bba7ca1b81230b0c904bc0111379631e32cd2ff8b0f8243"
+        },
+        "inference_model": {
+          "path": "${T003_RUN_ROOT}\\run_1\\epoch_1_inference_model.ipb",
+          "size_bytes": 6563,
+          "sha256": "83b90ca56dd3397202603380156a992ffe83bd4d2a5f796afe87e7fc022f9219"
+        }
+      },
+      "epoch_10": {
+        "metrics": {
+          "accuracy": 0.9658536585365853,
+          "macro": {
+            "precision": 0.8858333333333334,
+            "recall": 0.9493400621118013,
+            "f1": 0.9142976588628762
+          },
+          "classes": {
+            "fridge": {
+              "precision": 0.9916666666666667,
+              "recall": 0.970108695652174,
+              "f1": 0.9807692307692307,
+              "support": 368
+            },
+            "microwave": {
+              "precision": 0.78,
+              "recall": 0.9285714285714286,
+              "f1": 0.8478260869565217,
+              "support": 42
+            }
+          },
+          "confusion_matrix": [
+            [
+              357,
+              11
+            ],
+            [
+              3,
+              39
+            ]
+          ]
+        },
+        "prediction_parity": {
+          "before_vs_training_reload": 1,
+          "before_vs_inference_reload": 1,
+          "training_vs_inference_reload": 0
+        },
+        "training_model": {
+          "path": "${T003_RUN_ROOT}\\run_1\\epoch_10_training_model.pb",
+          "size_bytes": 149612,
+          "sha256": "b975d5223e943b93a4351b3de429e9fca47c1a4b713a5342864ce5d65ba65932"
+        },
+        "inference_model": {
+          "path": "${T003_RUN_ROOT}\\run_1\\epoch_10_inference_model.ipb",
+          "size_bytes": 5666,
+          "sha256": "22b932c433ae672dd128505d2f8c49bea47278a8f0eb90a9811aa9a5d67ba210"
+        },
+        "c_export": {
+          "success": true,
+          "model_data_bytes": 9058,
+          "model_header": {
+            "path": "${T003_RUN_ROOT}\\run_1\\epoch_10_redd_model.h",
+            "size_bytes": 74341,
+            "sha256": "3b112732c16327e344c7d5a16f3fe2b8514483d0802c34734c1b8ffe50a1db2b"
+          },
+          "struct_header": {
+            "path": "${T003_RUN_ROOT}\\run_1\\tsetlin_model.h",
+            "size_bytes": 730,
+            "sha256": "ed723712391420e72a77e4c19047e911b48a0c71060c6ac675283000a9ade0c2"
+          }
+        }
+      }
+    },
+    "run_2": {
+      "directory": "${T003_RUN_ROOT}\\run_2",
+      "execution": {
+        "host": "${LOCAL_HOST}",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "python": "3.12.13 (main, Apr  7 2026, 20:53:22) [MSC v.1944 64 bit (AMD64)]",
+        "python_executable": "${T003_RUN_ROOT}\\.venv\\Scripts\\python.exe",
+        "python_random_seed": 0,
+        "fastrand_seed": "not set by pinned Han implementation",
+        "elapsed_seconds": 8.953838348388672
+      },
+      "observed_full_run_interval": {
+        "basis": "first generated building_1_raw.csv mtime through run_result.json mtime",
+        "start_local": "2026-07-22T09:01:07.104064+01:00",
+        "end_local": "2026-07-22T09:16:57.047511+01:00",
+        "elapsed_seconds": 949.9434471130371
+      },
+      "data": {
+        "train_rows": 679,
+        "test_rows": 410,
+        "train_distribution_by_house": {
+          "1": {
+            "fridge": 231,
+            "microwave": 107
+          },
+          "2": {
+            "fridge": 257,
+            "microwave": 40
+          },
+          "4": {
+            "fridge": 0,
+            "microwave": 0
+          },
+          "5": {
+            "fridge": 7,
+            "microwave": 1
+          },
+          "6": {
+            "fridge": 36,
+            "microwave": 0
+          }
+        },
+        "test_distribution_by_house": {
+          "3": {
+            "fridge": 368,
+            "microwave": 42
+          }
+        },
+        "train_class_distribution": {
+          "fridge": 531,
+          "microwave": 148
+        },
+        "test_class_distribution": {
+          "fridge": 368,
+          "microwave": 42
+        },
+        "staged_inventory": {
+          "houses": {
+            "1": {
+              "input_rows": 348731,
+              "transients": {
+                "main": 1573,
+                "fridge": 519,
+                "microwave": 283,
+                "dish washer": 299,
+                "electric furnace": null
+              },
+              "edge_matching_rows": 1573,
+              "paired_events": {
+                "fridge": 231,
+                "microwave": 107
+              }
+            },
+            "2": {
+              "input_rows": 292063,
+              "transients": {
+                "main": 2024,
+                "fridge": 657,
+                "microwave": 104,
+                "dish washer": 95,
+                "electric furnace": null
+              },
+              "edge_matching_rows": 2024,
+              "paired_events": {
+                "fridge": 257,
+                "microwave": 40
+              }
+            },
+            "3": {
+              "input_rows": 242044,
+              "transients": {
+                "main": 1982,
+                "fridge": 902,
+                "microwave": 121,
+                "dish washer": 40,
+                "electric furnace": 159
+              },
+              "edge_matching_rows": 1982,
+              "paired_events": {
+                "fridge": 368,
+                "microwave": 42
+              }
+            },
+            "4": {
+              "input_rows": 274983,
+              "transients": {
+                "main": 1165,
+                "fridge": null,
+                "microwave": null,
+                "dish washer": 23,
+                "electric furnace": 303
+              },
+              "edge_matching_rows": 1165,
+              "paired_events": {
+                "fridge": 0,
+                "microwave": 0
+              }
+            },
+            "5": {
+              "input_rows": 24181,
+              "transients": {
+                "main": 171,
+                "fridge": 45,
+                "microwave": 4,
+                "dish washer": 0,
+                "electric furnace": 57
+              },
+              "edge_matching_rows": 171,
+              "paired_events": {
+                "fridge": 7,
+                "microwave": 1
+              }
+            },
+            "6": {
+              "input_rows": 326576,
+              "transients": {
+                "main": 1062,
+                "fridge": 589,
+                "microwave": null,
+                "dish washer": 0,
+                "electric furnace": null
+              },
+              "edge_matching_rows": 1062,
+              "paired_events": {
+                "fridge": 36,
+                "microwave": 0
+              }
+            }
+          },
+          "source_data": {
+            "root": "${HAN_REDD_ROOT}",
+            "glob_order": [
+              "redd_house1_0.csv",
+              "redd_house1_1.csv",
+              "redd_house1_10.csv",
+              "redd_house1_2.csv",
+              "redd_house1_3.csv",
+              "redd_house1_4.csv",
+              "redd_house1_5.csv",
+              "redd_house1_6.csv",
+              "redd_house1_7.csv",
+              "redd_house1_8.csv",
+              "redd_house1_9.csv",
+              "redd_house2_0.csv",
+              "redd_house2_1.csv",
+              "redd_house2_2.csv",
+              "redd_house2_3.csv",
+              "redd_house2_4.csv",
+              "redd_house2_5.csv",
+              "redd_house2_6.csv",
+              "redd_house3_0.csv",
+              "redd_house3_1.csv",
+              "redd_house3_2.csv",
+              "redd_house3_3.csv",
+              "redd_house3_4.csv",
+              "redd_house3_5.csv",
+              "redd_house4_0.csv",
+              "redd_house4_1.csv",
+              "redd_house4_2.csv",
+              "redd_house4_3.csv",
+              "redd_house4_4.csv",
+              "redd_house4_5.csv",
+              "redd_house5_0.csv",
+              "redd_house6_0.csv",
+              "redd_house6_1.csv",
+              "redd_house6_2.csv",
+              "redd_house6_3.csv"
+            ],
+            "file_count": 35,
+            "files": [
+              {
+                "relative_path": "redd_house1_0.csv",
+                "size_bytes": 1046214,
+                "sha256": "2b2707d59767a51323137385236876252e508cc7233f73b77a4a03b8df58a72e"
+              },
+              {
+                "relative_path": "redd_house1_1.csv",
+                "size_bytes": 1156059,
+                "sha256": "07dd6ab3432e928d877823ebc9d2831d7270707d880c7310c4f06d3092db782e"
+              },
+              {
+                "relative_path": "redd_house1_10.csv",
+                "size_bytes": 1315380,
+                "sha256": "66c5a648cf71bd7c2a055397247ae62866eb7f0df0c5b9dbcb7f130b2bd0af24"
+              },
+              {
+                "relative_path": "redd_house1_2.csv",
+                "size_bytes": 1259083,
+                "sha256": "ff69a39eb6a960c7540702e7db92b0a4eb04f474758237b81cf980508df5cf19"
+              },
+              {
+                "relative_path": "redd_house1_3.csv",
+                "size_bytes": 1361793,
+                "sha256": "c073d725e1feb15aed3e3ff9566c962a800404ec88841aa49741c32abe99fbc6"
+              },
+              {
+                "relative_path": "redd_house1_4.csv",
+                "size_bytes": 2546133,
+                "sha256": "e882bac89e37b32589d8333bc83e62c12427905f39c645f334dc19b9499b3461"
+              },
+              {
+                "relative_path": "redd_house1_5.csv",
+                "size_bytes": 1238687,
+                "sha256": "ef84bbe9aa76bcb9b3cb6d3c4223d56fc7058f9713290f19497ff6e9a19034c4"
+              },
+              {
+                "relative_path": "redd_house1_6.csv",
+                "size_bytes": 1643508,
+                "sha256": "54b91c2989ccad27a5a89cf16741163600c091973bd653a672a21a65aaf709cb"
+              },
+              {
+                "relative_path": "redd_house1_7.csv",
+                "size_bytes": 1456582,
+                "sha256": "792ec90d658e3d1dfd89b6f943b05650b336efa42718c4c7de52f38743a181f9"
+              },
+              {
+                "relative_path": "redd_house1_8.csv",
+                "size_bytes": 1143408,
+                "sha256": "8cbb25f12f8f15c9801a9e565ad28d0a6bcdbd26d4b81c277a1bd95af3610889"
+              },
+              {
+                "relative_path": "redd_house1_9.csv",
+                "size_bytes": 1510773,
+                "sha256": "825df5ca37755c484053e88edbcc55538f4c4bc077ea097e59f8efe4011ed510"
+              },
+              {
+                "relative_path": "redd_house2_0.csv",
+                "size_bytes": 1561883,
+                "sha256": "600d9f4a25c80894b04bc0e1720940476f2702fb79fdf74f2b4eebb47a08b8d1"
+              },
+              {
+                "relative_path": "redd_house2_1.csv",
+                "size_bytes": 2181230,
+                "sha256": "4a72990a19863dd445c58f2c17c8fed8f43c50fa56da6a69b155e2183d9d8b40"
+              },
+              {
+                "relative_path": "redd_house2_2.csv",
+                "size_bytes": 1334752,
+                "sha256": "e8e4661a87a136b25d70796c91ccc72d727f1f99e3e93fadaa1b105f4e635077"
+              },
+              {
+                "relative_path": "redd_house2_3.csv",
+                "size_bytes": 1092283,
+                "sha256": "8c6d27c8b425cde4865eaadc063540a74c58b70f94678d6cbed1a5e41dbb57c4"
+              },
+              {
+                "relative_path": "redd_house2_4.csv",
+                "size_bytes": 1528789,
+                "sha256": "a3e3dee5e4dfae80d5cc780d63f47a3bf4054afebc89f583766ea040d484f154"
+              },
+              {
+                "relative_path": "redd_house2_5.csv",
+                "size_bytes": 4529244,
+                "sha256": "0f1958f12f6a546080ac822b37578d8c0fd0b6d4b53f9d835d435979e52168b7"
+              },
+              {
+                "relative_path": "redd_house2_6.csv",
+                "size_bytes": 1052668,
+                "sha256": "02f4bc8cea15ec973739a120b7a06a12b215add6fc8ca6118856adbe3c10ee98"
+              },
+              {
+                "relative_path": "redd_house3_0.csv",
+                "size_bytes": 1788019,
+                "sha256": "1da31fbe7453ef7b9471f2032a0e232d61f2de732d2f04e339ce2242d3731fdf"
+              },
+              {
+                "relative_path": "redd_house3_1.csv",
+                "size_bytes": 1199052,
+                "sha256": "dc162e4ead37c3e1265cd14b15dab06bc79bd4a8f43272de232008be237d8fd2"
+              },
+              {
+                "relative_path": "redd_house3_2.csv",
+                "size_bytes": 1451789,
+                "sha256": "3ff10aab25387a86d9b44f3ec3903b9e87a395a24ca7b6d5b5530a4067713970"
+              },
+              {
+                "relative_path": "redd_house3_3.csv",
+                "size_bytes": 2305598,
+                "sha256": "9eaabcc0b57633169be452c0e0848fc903c43939472110613b8fbb0cecd98362"
+              },
+              {
+                "relative_path": "redd_house3_4.csv",
+                "size_bytes": 1497619,
+                "sha256": "c35f2a6cc55a03e79c3d529ebe2c359b4b804adefd57bb85f1af439a1664814b"
+              },
+              {
+                "relative_path": "redd_house3_5.csv",
+                "size_bytes": 4013095,
+                "sha256": "d6946733483d44b817e471dcbe337b9eca790c0c210041bfd48854f5e0127240"
+              },
+              {
+                "relative_path": "redd_house4_0.csv",
+                "size_bytes": 1375073,
+                "sha256": "ab37a744b96c0c3c0e47e9db43c2b72cbab0a0598b224a1208b6861a2b8ad729"
+              },
+              {
+                "relative_path": "redd_house4_1.csv",
+                "size_bytes": 853739,
+                "sha256": "94c4bdbe7d1be597fbb2f04ac10fc93ce32805add4280a761e9c4d8ef2964d53"
+              },
+              {
+                "relative_path": "redd_house4_2.csv",
+                "size_bytes": 1628808,
+                "sha256": "8f6728684c0bef5e2e345ac20b44bf27476ee97b234fbd02baaeb0ce90a0fc88"
+              },
+              {
+                "relative_path": "redd_house4_3.csv",
+                "size_bytes": 848722,
+                "sha256": "897459c23d27746528a046d5b000a321c1866b1790f76f512c10469807765c09"
+              },
+              {
+                "relative_path": "redd_house4_4.csv",
+                "size_bytes": 1532383,
+                "sha256": "83450e753c223baed8b00566c1298208c480d6f32ff06793cc02e69cddb64acb"
+              },
+              {
+                "relative_path": "redd_house4_5.csv",
+                "size_bytes": 4100893,
+                "sha256": "c823da650ad46e580466a7bce419b83f332813131b1ba108916b7bdb263bf51d"
+              },
+              {
+                "relative_path": "redd_house5_0.csv",
+                "size_bytes": 1307021,
+                "sha256": "2c407301a06fef00f7cf6d09950b1e6750f66a0e3e61a6863352babcd9abb4c3"
+              },
+              {
+                "relative_path": "redd_house6_0.csv",
+                "size_bytes": 7859809,
+                "sha256": "2aaf95c48941106362de39426969a88bb55d8fc9decf84301e49ff3f849f0c8c"
+              },
+              {
+                "relative_path": "redd_house6_1.csv",
+                "size_bytes": 1939531,
+                "sha256": "f22c4737c82967b935b1010a4e8858bedc57b46e7403a93e8d4dcced324f4010"
+              },
+              {
+                "relative_path": "redd_house6_2.csv",
+                "size_bytes": 3544066,
+                "sha256": "12d8a47cecab6f52a077997eab4d24a42a088c5101965e597c0abec1fdc94d1a"
+              },
+              {
+                "relative_path": "redd_house6_3.csv",
+                "size_bytes": 1725691,
+                "sha256": "03ef4d1afa315b39c2089f796e4aff9888016df44a00267919c3f8416bed5fa0"
+              }
+            ]
+          }
+        }
+      },
+      "diagnostics": {
+        "initialization": {
+          "total_automata": 147200,
+          "state_action_disagreements": 73600,
+          "action_mask_disagreements": 0,
+          "state_mask_disagreements": 73600
+        },
+        "after_1_epoch": {
+          "total_automata": 147200,
+          "state_action_disagreements": 0,
+          "action_mask_disagreements": 374,
+          "state_mask_disagreements": 374
+        },
+        "after_10_epochs": {
+          "total_automata": 147200,
+          "state_action_disagreements": 0,
+          "action_mask_disagreements": 29,
+          "state_mask_disagreements": 29
+        }
+      },
+      "epoch_1": {
+        "metrics": {
+          "accuracy": 0.9195121951219513,
+          "macro": {
+            "precision": 0.8620253164556962,
+            "recall": 0.6387810559006211,
+            "f1": 0.688901151962475
+          },
+          "classes": {
+            "fridge": {
+              "precision": 0.9240506329113924,
+              "recall": 0.9918478260869565,
+              "f1": 0.9567496723460026,
+              "support": 368
+            },
+            "microwave": {
+              "precision": 0.8,
+              "recall": 0.2857142857142857,
+              "f1": 0.42105263157894735,
+              "support": 42
+            }
+          },
+          "confusion_matrix": [
+            [
+              365,
+              3
+            ],
+            [
+              30,
+              12
+            ]
+          ]
+        },
+        "prediction_parity": {
+          "before_vs_training_reload": 12,
+          "before_vs_inference_reload": 12,
+          "training_vs_inference_reload": 0
+        },
+        "training_model": {
+          "path": "${T003_RUN_ROOT}\\run_2\\epoch_1_training_model.pb",
+          "size_bytes": 149612,
+          "sha256": "2e45d636e63ce6407bba7ca1b81230b0c904bc0111379631e32cd2ff8b0f8243"
+        },
+        "inference_model": {
+          "path": "${T003_RUN_ROOT}\\run_2\\epoch_1_inference_model.ipb",
+          "size_bytes": 6563,
+          "sha256": "83b90ca56dd3397202603380156a992ffe83bd4d2a5f796afe87e7fc022f9219"
+        }
+      },
+      "epoch_10": {
+        "metrics": {
+          "accuracy": 0.9658536585365853,
+          "macro": {
+            "precision": 0.8858333333333334,
+            "recall": 0.9493400621118013,
+            "f1": 0.9142976588628762
+          },
+          "classes": {
+            "fridge": {
+              "precision": 0.9916666666666667,
+              "recall": 0.970108695652174,
+              "f1": 0.9807692307692307,
+              "support": 368
+            },
+            "microwave": {
+              "precision": 0.78,
+              "recall": 0.9285714285714286,
+              "f1": 0.8478260869565217,
+              "support": 42
+            }
+          },
+          "confusion_matrix": [
+            [
+              357,
+              11
+            ],
+            [
+              3,
+              39
+            ]
+          ]
+        },
+        "prediction_parity": {
+          "before_vs_training_reload": 1,
+          "before_vs_inference_reload": 1,
+          "training_vs_inference_reload": 0
+        },
+        "training_model": {
+          "path": "${T003_RUN_ROOT}\\run_2\\epoch_10_training_model.pb",
+          "size_bytes": 149612,
+          "sha256": "b975d5223e943b93a4351b3de429e9fca47c1a4b713a5342864ce5d65ba65932"
+        },
+        "inference_model": {
+          "path": "${T003_RUN_ROOT}\\run_2\\epoch_10_inference_model.ipb",
+          "size_bytes": 5666,
+          "sha256": "22b932c433ae672dd128505d2f8c49bea47278a8f0eb90a9811aa9a5d67ba210"
+        },
+        "c_export": {
+          "success": true,
+          "model_data_bytes": 9058,
+          "model_header": {
+            "path": "${T003_RUN_ROOT}\\run_2\\epoch_10_redd_model.h",
+            "size_bytes": 74341,
+            "sha256": "3b112732c16327e344c7d5a16f3fe2b8514483d0802c34734c1b8ffe50a1db2b"
+          },
+          "struct_header": {
+            "path": "${T003_RUN_ROOT}\\run_2\\tsetlin_model.h",
+            "size_bytes": 730,
+            "sha256": "ed723712391420e72a77e4c19047e911b48a0c71060c6ac675283000a9ade0c2"
+          }
+        }
+      }
+    }
+  },
+  "repeatability": {
+    "source_data_inventory_identical": true,
+    "staged_inventory_identical": true,
+    "generated_csv_path_sets_identical": true,
+    "generated_csv_file_count_per_run": [
+      51,
+      51
+    ],
+    "generated_csv_hash_mismatches": [],
+    "epoch_1_predictions_identical": true,
+    "epoch_10_predictions_identical": true,
+    "epoch_1_metrics_identical": true,
+    "epoch_10_metrics_identical": true,
+    "diagnostics_identical": true,
+    "model_hashes_identical": true,
+    "c_headers_identical": true,
+    "all_compared_evidence_identical": true
+  },
+  "remote_prereproduction_comparison": {
+    "remote_is_not_local_evidence": true,
+    "local_event_counts": {
+      "train": {
+        "fridge": 531,
+        "microwave": 148
+      },
+      "test": {
+        "fridge": 368,
+        "microwave": 42
+      }
+    },
+    "remote_event_counts": {
+      "train": {
+        "fridge": 533,
+        "microwave": 148
+      },
+      "test": {
+        "fridge": 371,
+        "microwave": 42
+      }
+    },
+    "local_accuracy": 0.9658536585365853,
+    "remote_accuracy": 0.9758,
+    "cause_of_differences": "unresolved"
+  }
+}

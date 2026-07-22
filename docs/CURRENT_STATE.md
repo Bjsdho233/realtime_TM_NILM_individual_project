@@ -1,10 +1,10 @@
 # Current State
 
 **Status:** Current governance snapshot\
-**Last updated:** 2026-07-21\
-**Current phase:** T003 static source audit complete; T003 remains In progress pending review\
-**Active execution task:** None; executable reproduction has not started\
-**Local verification:** T001 and T002 completed on 2026-07-21. T003 has recorded a static audit of the fixed Han snapshot without executing upstream code.
+**Last updated:** 2026-07-22\
+**Current phase:** T003 local two-class PC reproduction archived; T003 remains In progress pending governance review\
+**Active execution task:** None; T004 has not started\
+**Local verification:** T001 and T002 are complete. The T003 local reproduction and exploratory E001 probe have been executed locally and archived.
 
 ## 1. Purpose
 
@@ -63,10 +63,11 @@ If this file conflicts with the actual worktree or locally generated outputs, th
 |---|---|
 | T001 | Complete — 2026-07-21. Gate B reconciliation, local Git bootstrap, the initial governance baseline commit, and the T001 closure record are complete. |
 | T002 | Complete — 2026-07-21. The original class set failed because `electric furnace` had only 1 candidate complete cycle. Tianhang approved the predeclared `washer dryer` fallback, and the successor manifest was verified. |
-| T003 | In progress. Static source audit completed on 2026-07-21 at Han commit `8c5e90df34236ba0afcc4ec46ac083d829de4d51`; review, reusable-component approval, and the minimum reproduction contract remain Pending. |
+| T003 | In progress. Static source audit and the successful, repeatable two-class local PC reproduction are archived. Differences from the earlier remote pre-reproduction remain unresolved; governance review and reusable-component approval remain Pending. |
+| E001 | Complete — 2026-07-22. Exploratory Booleanization A/B probe result: `inconclusive`. Han binary remains the current baseline. |
 | T004–T013 | Not started. |
 
-No executable reproduction task is active. T003 remains the current governance task; T004 and all later tasks remain unauthorised.
+No execution task is active. T003 remains the current governance task; T004 and all later tasks remain unauthorised.
 
 ## 5. Verified Project Evidence
 
@@ -116,9 +117,9 @@ No task may silently infer these decisions from historical experiments or conver
 
 ## 7. Current Authorisation and Restrictions
 
-T003 static source inspection is complete. No executable reproduction phase is authorised; T004 and all later work remain unauthorised.
+T003 static inspection and the explicitly authorised local reproduction are complete and archived. E001 is complete as an exploratory probe. No further execution phase is authorised; T004 and all later work remain unauthorised.
 
-Do not install dependencies, run edge detection, event pairing, feature extraction, training, inference, or model scoring; modify the upstream clone; copy upstream code or CSV files; begin executable reproduction or T004; create a project remote, tag, branch, or push; access other sources; or perform firmware, Pico, or hardware work.
+Do not install dependencies, run additional edge detection, event pairing, feature extraction, training, inference, or model scoring; modify the upstream clone; copy upstream code or CSV files; begin T004; create a tag or additional branch; access other sources; or perform firmware, Pico, or hardware work without new explicit authorisation.
 
 ## 8. T001 Completion
 
@@ -163,9 +164,19 @@ The external absolute snapshot path remains machine-specific and is not stored i
 - Missing generated headers/assets and the absent parity fixtures prevent a self-contained, proven Python-to-C-to-firmware chain at this snapshot.
 - Detailed findings: [`HAN_PIPELINE_SOURCE_AUDIT.md`](reproduction/HAN_PIPELINE_SOURCE_AUDIT.md).
 - Machine-readable inventory: [`han_pipeline_source_inventory.json`](../artifacts/manifests/han_pipeline_source_inventory.json).
-- No Han program, notebook, training, inference, build, benchmark, firmware, or hardware work was executed.
+- During the static-audit phase, no Han program, notebook, training, inference, build, benchmark, firmware, or hardware work was executed. The later, separately authorised local reproduction is recorded in Section 12.
 - No reusable component or minimum reproduction contract has been approved.
 
 ## 11. Immediate Next Action
 
-Tianhang and ChatGPT review the T003 static audit and decide the minimum Protocol H reproduction contract, reusable components, compatibility deviations, and PC/host/Pico boundary. T003 remains In progress; no executable reproduction or later task begins automatically.
+Tianhang and ChatGPT review the archived T003 reproduction differences, reusable components, compatibility deviations, and PC/host/Pico boundary. Han binary remains the current baseline after the inconclusive E001 probe. T003 remains In progress; T004 or any later task requires separate explicit authorisation.
+
+## 12. Archived Experiment Evidence
+
+- T003 archive: [`experiments/T003-local-reproduction/`](../experiments/T003-local-reproduction/).
+- T003 outcome: successful and repeatable two-class Han-compatible PC reproduction.
+- T003 limitation: differences from the earlier remote pre-reproduction remain unresolved.
+- E001 archive: [`experiments/E001-booleanization-ab-probe/`](../experiments/E001-booleanization-ab-probe/).
+- E001 outcome: `inconclusive`; the declared `promising` rule was not met.
+- Han binary remains the current baseline.
+- These archives do not start T004 and do not modify formal Protocol R.
