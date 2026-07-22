@@ -1,0 +1,521 @@
+{
+  "scope": {
+    "purpose": "exploratory_tm_mechanism_followup",
+    "formal_model_selection": false,
+    "T": 20,
+    "specificity_s": 6.0,
+    "epochs": 10,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "updates_per_epoch": 857,
+    "balanced_sampling": "uniform classes with replacement at fixed update count"
+  },
+  "runs": [
+    {
+      "variant": "shuffle_hard100",
+      "seed": 0,
+      "accuracy": 0.754,
+      "macro_f1": 0.4854620067588583,
+      "class_f1": {
+        "fridge": 0.9020689655172414,
+        "microwave": 0.8043478260869565,
+        "dish washer": 0.030303030303030304,
+        "electric furnace": 0.20512820512820512
+      },
+      "confusion_matrix": [
+        [
+          327,
+          9,
+          10,
+          25
+        ],
+        [
+          1,
+          37,
+          4,
+          0
+        ],
+        [
+          5,
+          1,
+          1,
+          6
+        ],
+        [
+          21,
+          3,
+          38,
+          12
+        ]
+      ],
+      "training_seconds": 19.38994954699956,
+      "clauses": {
+        "mean_literals": 4.02875,
+        "median_literals": 4.0,
+        "empty_clause_fraction": 0.00375,
+        "unique_clause_fraction": 0.97875
+      },
+      "votes": {
+        "mean_true_margin": 15.736,
+        "median_true_margin": 21.0,
+        "negative_margin_fraction": 0.238,
+        "vote_ge_20_fraction": 0.716
+      }
+    },
+    {
+      "variant": "shuffle_hard100",
+      "seed": 1,
+      "accuracy": 0.728,
+      "macro_f1": 0.5353766957207837,
+      "class_f1": {
+        "fridge": 0.8609865470852018,
+        "microwave": 0.8210526315789474,
+        "dish washer": 0.07272727272727272,
+        "electric furnace": 0.3867403314917127
+      },
+      "confusion_matrix": [
+        [
+          288,
+          10,
+          9,
+          64
+        ],
+        [
+          1,
+          39,
+          1,
+          1
+        ],
+        [
+          3,
+          1,
+          2,
+          7
+        ],
+        [
+          6,
+          3,
+          30,
+          35
+        ]
+      ],
+      "training_seconds": 19.02456555000026,
+      "clauses": {
+        "mean_literals": 4.1875,
+        "median_literals": 4.0,
+        "empty_clause_fraction": 0.00375,
+        "unique_clause_fraction": 0.99125
+      },
+      "votes": {
+        "mean_true_margin": 10.266,
+        "median_true_margin": 11.0,
+        "negative_margin_fraction": 0.268,
+        "vote_ge_20_fraction": 0.736
+      }
+    },
+    {
+      "variant": "shuffle_hard100",
+      "seed": 2,
+      "accuracy": 0.774,
+      "macro_f1": 0.49881150539135694,
+      "class_f1": {
+        "fridge": 0.9025367156208278,
+        "microwave": 0.8235294117647058,
+        "dish washer": 0.037037037037037035,
+        "electric furnace": 0.23214285714285715
+      },
+      "confusion_matrix": [
+        [
+          338,
+          7,
+          8,
+          18
+        ],
+        [
+          1,
+          35,
+          5,
+          1
+        ],
+        [
+          5,
+          1,
+          1,
+          6
+        ],
+        [
+          34,
+          0,
+          27,
+          13
+        ]
+      ],
+      "training_seconds": 19.505370163002226,
+      "clauses": {
+        "mean_literals": 4.1775,
+        "median_literals": 4.0,
+        "empty_clause_fraction": 0.00125,
+        "unique_clause_fraction": 0.98625
+      },
+      "votes": {
+        "mean_true_margin": 18.192,
+        "median_true_margin": 22.0,
+        "negative_margin_fraction": 0.22,
+        "vote_ge_20_fraction": 0.762
+      }
+    },
+    {
+      "variant": "balanced",
+      "seed": 0,
+      "accuracy": 0.764,
+      "macro_f1": 0.5639934108068301,
+      "class_f1": {
+        "fridge": 0.8975468975468975,
+        "microwave": 0.8085106382978723,
+        "dish washer": 0.1875,
+        "electric furnace": 0.3624161073825503
+      },
+      "confusion_matrix": [
+        [
+          311,
+          11,
+          8,
+          41
+        ],
+        [
+          1,
+          38,
+          2,
+          1
+        ],
+        [
+          0,
+          1,
+          6,
+          6
+        ],
+        [
+          10,
+          2,
+          35,
+          27
+        ]
+      ],
+      "training_seconds": 16.35771130500143,
+      "clauses": {
+        "mean_literals": 4.505,
+        "median_literals": 4.0,
+        "empty_clause_fraction": 0.0,
+        "unique_clause_fraction": 0.99
+      },
+      "votes": {
+        "mean_true_margin": 11.564,
+        "median_true_margin": 14.0,
+        "negative_margin_fraction": 0.232,
+        "vote_ge_20_fraction": 0.672
+      }
+    },
+    {
+      "variant": "balanced",
+      "seed": 1,
+      "accuracy": 0.746,
+      "macro_f1": 0.5457577434487569,
+      "class_f1": {
+        "fridge": 0.8787446504992867,
+        "microwave": 0.8297872340425532,
+        "dish washer": 0.19672131147540983,
+        "electric furnace": 0.2777777777777778
+      },
+      "confusion_matrix": [
+        [
+          308,
+          11,
+          8,
+          44
+        ],
+        [
+          1,
+          39,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          6,
+          5
+        ],
+        [
+          20,
+          1,
+          33,
+          20
+        ]
+      ],
+      "training_seconds": 16.59566139099843,
+      "clauses": {
+        "mean_literals": 4.50875,
+        "median_literals": 4.0,
+        "empty_clause_fraction": 0.0,
+        "unique_clause_fraction": 0.99125
+      },
+      "votes": {
+        "mean_true_margin": 11.364,
+        "median_true_margin": 12.0,
+        "negative_margin_fraction": 0.24,
+        "vote_ge_20_fraction": 0.724
+      }
+    },
+    {
+      "variant": "balanced",
+      "seed": 2,
+      "accuracy": 0.722,
+      "macro_f1": 0.5090651919957212,
+      "class_f1": {
+        "fridge": 0.8817518248175182,
+        "microwave": 0.8043478260869565,
+        "dish washer": 0.10526315789473684,
+        "electric furnace": 0.24489795918367346
+      },
+      "confusion_matrix": [
+        [
+          302,
+          10,
+          11,
+          48
+        ],
+        [
+          1,
+          37,
+          3,
+          1
+        ],
+        [
+          2,
+          1,
+          4,
+          6
+        ],
+        [
+          9,
+          2,
+          45,
+          18
+        ]
+      ],
+      "training_seconds": 16.60196733900011,
+      "clauses": {
+        "mean_literals": 4.4975,
+        "median_literals": 4.0,
+        "empty_clause_fraction": 0.00125,
+        "unique_clause_fraction": 0.995
+      },
+      "votes": {
+        "mean_true_margin": 8.42,
+        "median_true_margin": 11.0,
+        "negative_margin_fraction": 0.274,
+        "vote_ge_20_fraction": 0.76
+      }
+    },
+    {
+      "variant": "balanced_hard100",
+      "seed": 0,
+      "accuracy": 0.672,
+      "macro_f1": 0.5090781909196231,
+      "class_f1": {
+        "fridge": 0.8235294117647058,
+        "microwave": 0.8478260869565217,
+        "dish washer": 0.15384615384615385,
+        "electric furnace": 0.2111111111111111
+      },
+      "confusion_matrix": [
+        [
+          273,
+          9,
+          9,
+          80
+        ],
+        [
+          1,
+          39,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          5,
+          6
+        ],
+        [
+          17,
+          1,
+          37,
+          19
+        ]
+      ],
+      "training_seconds": 21.931486596000468,
+      "clauses": {
+        "mean_literals": 4.36,
+        "median_literals": 4.0,
+        "empty_clause_fraction": 0.005,
+        "unique_clause_fraction": 0.99125
+      },
+      "votes": {
+        "mean_true_margin": 4.864,
+        "median_true_margin": 6.0,
+        "negative_margin_fraction": 0.324,
+        "vote_ge_20_fraction": 0.526
+      }
+    },
+    {
+      "variant": "balanced_hard100",
+      "seed": 1,
+      "accuracy": 0.734,
+      "macro_f1": 0.5239250295567116,
+      "class_f1": {
+        "fridge": 0.893740902474527,
+        "microwave": 0.8351648351648352,
+        "dish washer": 0.11494252873563218,
+        "electric furnace": 0.2518518518518518
+      },
+      "confusion_matrix": [
+        [
+          307,
+          9,
+          16,
+          39
+        ],
+        [
+          1,
+          38,
+          3,
+          0
+        ],
+        [
+          2,
+          1,
+          5,
+          5
+        ],
+        [
+          6,
+          1,
+          50,
+          17
+        ]
+      ],
+      "training_seconds": 21.583487129999412,
+      "clauses": {
+        "mean_literals": 4.52375,
+        "median_literals": 4.0,
+        "empty_clause_fraction": 0.0,
+        "unique_clause_fraction": 0.9975
+      },
+      "votes": {
+        "mean_true_margin": 10.486,
+        "median_true_margin": 13.0,
+        "negative_margin_fraction": 0.264,
+        "vote_ge_20_fraction": 0.67
+      }
+    },
+    {
+      "variant": "balanced_hard100",
+      "seed": 2,
+      "accuracy": 0.71,
+      "macro_f1": 0.5431663061049504,
+      "class_f1": {
+        "fridge": 0.8549848942598187,
+        "microwave": 0.8041237113402062,
+        "dish washer": 0.21052631578947367,
+        "electric furnace": 0.30303030303030304
+      },
+      "confusion_matrix": [
+        [
+          283,
+          12,
+          14,
+          62
+        ],
+        [
+          1,
+          39,
+          2,
+          0
+        ],
+        [
+          0,
+          1,
+          8,
+          4
+        ],
+        [
+          7,
+          3,
+          39,
+          25
+        ]
+      ],
+      "training_seconds": 22.158466970999143,
+      "clauses": {
+        "mean_literals": 4.4975,
+        "median_literals": 4.0,
+        "empty_clause_fraction": 0.00125,
+        "unique_clause_fraction": 0.9875
+      },
+      "votes": {
+        "mean_true_margin": 6.57,
+        "median_true_margin": 8.0,
+        "negative_margin_fraction": 0.286,
+        "vote_ge_20_fraction": 0.68
+      }
+    }
+  ],
+  "summary": {
+    "shuffle_hard100": {
+      "macro_f1_mean": 0.506550069290333,
+      "macro_f1_std": 0.025841499026862613,
+      "accuracy_mean": 0.7520000000000001,
+      "accuracy_std": 0.02306512518934161,
+      "class_f1_mean": {
+        "fridge": 0.8885307427410903,
+        "microwave": 0.81630995647687,
+        "dish washer": 0.04668911335578002,
+        "electric furnace": 0.2746704645875917
+      },
+      "mean_literals": 4.13125,
+      "mean_true_margin": 14.731333333333334
+    },
+    "balanced": {
+      "macro_f1_mean": 0.5396054487504361,
+      "macro_f1_std": 0.027976156865829587,
+      "accuracy_mean": 0.7440000000000001,
+      "accuracy_std": 0.021071307505705496,
+      "class_f1_mean": {
+        "fridge": 0.8860144576212342,
+        "microwave": 0.8142152328091273,
+        "dish washer": 0.16316148979004888,
+        "electric furnace": 0.2950306147813339
+      },
+      "mean_literals": 4.50375,
+      "mean_true_margin": 10.449333333333334
+    },
+    "balanced_hard100": {
+      "macro_f1_mean": 0.5253898421937618,
+      "macro_f1_std": 0.017091201135914395,
+      "accuracy_mean": 0.7053333333333334,
+      "accuracy_std": 0.031262330900515584,
+      "class_f1_mean": {
+        "fridge": 0.8574184028330172,
+        "microwave": 0.8290382111538545,
+        "dish washer": 0.15977166612375324,
+        "electric furnace": 0.255331088664422
+      },
+      "mean_literals": 4.460416666666666,
+      "mean_true_margin": 7.3066666666666675
+    }
+  }
+}
