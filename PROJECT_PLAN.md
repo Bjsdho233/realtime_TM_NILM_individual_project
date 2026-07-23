@@ -1,541 +1,430 @@
-# Project Plan
+# 项目计划 / Project Plan
 
-**Status:** Accepted\
-**Owner:** Tianhang Tan\
-**Last updated:** 2026-07-21
+## Agent Brief
 
-## 1. Purpose and Current Priority
+- Status: accepted direction; live authority is elsewhere
+- Owner: Tianhang Tan
+- Last updated: 2026-07-23
+- Primary model: Tsetlin Machine
+- Primary dataset: REDD
+- Formal research protocol: unresolved until T004
+- Formal delivery line: T001–T013
+- Parallel exploration: E-series
+- Read-only analysis: R-series review
 
-This project develops a traceable workflow for causal, event-level, multi-appliance non-intrusive load monitoring using Tsetlin Machines.
+本计划定义项目方向、研究问题和正式交付路线，不代表其中任何 task 已自动授权。实时授权只看 [CURRENT_STATE.md](docs/CURRENT_STATE.md)。
 
-The first engineering milestone is a minimum Han-compatible closed loop:
+## 1. 项目目标
 
-1. train a Tsetlin Machine locally;
-2. save and reload the inference model;
-3. export the trained model into a versioned embedded representation;
-4. verify the same model through Python and host-native inference;
-5. deploy it to the Pico;
-6. confirm parity using fixed validation fixtures.
+本项目研究 causal、event-level、multi-appliance NILM，并建立一条可追溯的 TM workflow：
 
-This milestone does not require a complete clone of Han's repository, reproduction of every historical score, or immediate deployment of event detection, event pairing, feature extraction, display logic, SD-card replay, or live-meter input.
+```text
+REDD
+  → event detection
+  → event pairing
+  → feature extraction
+  → Booleanisation
+  → one binary TM per appliance
+  → train / validation / test evaluation
+  → model export
+  → host-native parity
+  → Raspberry Pi Pico parity and measurement
+```
 
-After the engineering path is stable, the project will establish a leakage-controlled Protocol R research baseline and begin controlled experiments to improve appliance coverage, classification performance, causal streaming behaviour, and embedded suitability.
+项目同时回答三个层面的问题：
 
-The aspirational research target is a macro F1 score of at least 0.80 over a frozen Protocol R task containing at least three appliance classes. This is a research target, not a guaranteed result or a condition for honest project completion.
+1. 工程上，能否将本地训练的 TM 可靠导出并在 host/Pico 得到一致结果？
+2. 研究上，在 leakage-controlled protocol 下，baseline 的真实性能和主要瓶颈是什么？
+3. 设计上，哪些受控修改能改善 macro/per-class F1，或者在更小模型、较低 latency、较短 decision delay 下保持性能？
 
-## 2. Target Outcomes
+目标不是把 Han 的仓库原样复制，也不是强行证明某个预设创新。event detection、pairing、alignment、features、Booleanisation、TM output structure、sampling、decoder 和 embedded representation 都可以成为研究对象。
 
-### 2.1 Research outcome
+理想研究目标是在冻结的正式任务上，以至少 3 个 appliance classes 达到 macro F1 ≥ `0.80`。这是 aspirational target，不是结果保证，也不是诚实完成论文的必要条件。
 
-- A leakage-controlled Protocol R baseline.
-- Controlled experiments in which one main scientific variable is changed at a time.
-- Evidence showing which changes improve or fail to improve event-level NILM.
-- Per-class analysis of remaining failure modes.
-- A final method evaluated once on the locked Protocol R test.
-
-The project does not assume that the main contribution must come from event pairing, feature design, Booleanisation, TM structure, or any other specific component.
-
-### 2.2 Engineering outcome
-
-- A repeatable path from local TM training to Pico inference.
-- A versioned feature schema and model bundle.
-- Generated embedded model artefacts rather than manually copied model values.
-- Python, host-native, and Pico parity fixtures.
-- Recorded model size, firmware size, memory use, and inference latency.
-- A causal replay path suitable for demonstration and later extension.
-
-### 2.3 Dissertation and demo outcome
-
-- A clear distinction between compatibility reproduction, formal research results, and deployment-only results.
-- An evidence-backed explanation of the complete workflow.
-- A demonstrable Pico inference path using a locally trained model.
-- Reproducible figures, tables, manifests, configurations, and result summaries.
-- Honest reporting of limitations, negative results, and incomplete deployment stages.
-
-## 3. Working Strategy
-
-### 3.1 Han-compatible engineering path
-
-The current Han repository is a reference implementation, not a specification to copy file by file.
-
-A named audit task must first pin the reference revision and record:
-
-- relevant source files;
-- input and output formats;
-- processing stages;
-- model serialisation and export path;
-- embedded dependencies;
-- known inconsistencies;
-- locally verified reusable components;
-- deviations required for Pico deployment.
-
-The initial Pico boundary will be an ordered numeric event-feature vector:
-
-- Python performs event detection, event pairing, and feature extraction.
-- Host-native code and the Pico receive the same ordered feature vector.
-- Host-native code and the Pico perform Booleanisation and TM inference.
-- Both expose the resulting Boolean bits, signed class votes, and prediction for validation.
-
-A pre-Booleanised Pico input may be used as an earlier smoke step, but it does not complete the intended feature-to-inference parity path.
-
-This engineering path is evaluated under Protocol H. It proves execution and compatibility only. It is not the formal research result.
-
-### 3.2 Protocol R research baseline
-
-The Protocol R implementation will be developed cleanly in this repository. Historical code may be migrated only through a named review task.
-
-The research baseline must:
-
-- split continuous raw time before event generation;
-- process each REDD house independently;
-- reset detector and pairer state at every house and split boundary;
-- fit all learned preprocessing on training data only;
-- use validation data for development and method selection;
-- keep the locked test inaccessible until final evaluation;
-- distinguish aggregate-mains-only inference from label-assisted or oracle analysis.
-
-The term `Protocol R research baseline` refers to the controlled evaluation procedure. It does not imply that all choices in Han's workflow are incorrect.
-
-### 3.3 Controlled research development
-
-Once the training-to-Pico path and Protocol R baseline are stable, new experiments may investigate:
-
-- event detection;
-- event pairing;
-- causal feature extraction;
-- Booleanisation;
-- multiclass versus per-appliance TM structures;
-- class balance and sampling;
-- TM training parameters;
-- model size and embedded cost;
-- causal streaming and bounded-delay inference.
-
-The TM remains the primary learned classifier. Deterministic detection, pairing, filtering, and state logic may remain outside the TM where appropriate.
-
-Other learned models are not part of the primary system. A conventional model may be added later only as a separately approved comparison baseline.
-
-## 4. Scope
-
-### 4.1 In scope
-
-- Inspection of Han's current public workflow.
-- REDD inventory and split preflight.
-- Aggregate-main event detection and event pairing.
-- Event-level feature extraction and Booleanisation.
-- TM training, validation, model export, and inference.
-- Host-native inference.
-- Pico compilation, flashing, parity testing, and measurement.
-- Controlled experiments for performance and class expansion.
-- Causal replay from recorded REDD data.
-- Dissertation and demonstration evidence.
-
-### 4.2 Deferred from the first engineering loop
-
-The following work is deferred unless approved by a later named task:
-
-- exact reproduction of Han's complete environment or historical scores;
-- direct reuse of the full ESP32 sketch;
-- LVGL, TFT, dashboard, or display work;
-- SD-card support;
-- live electrical meter integration;
-- on-device event detection, pairing, or feature extraction;
-- end-to-end real-time claims;
-- hyperparameter optimisation;
-- cross-dataset evaluation;
-- Protocol X;
-- production deployment and long-duration reliability testing.
-
-Deferred work is not permanently excluded.
-
-### 4.3 Out of scope
-
-- Copying the old project or Han's repository wholesale.
-- Treating prototype code as verified production code.
-- Using the frozen test for tuning or method selection.
-- Reporting label-assisted event construction as aggregate-mains-only inference.
-- Replacing the primary TM system with another learned classifier.
-- Claiming hardware behaviour from compilation evidence alone.
-
-## 5. Confirmed and Pending Decisions
-
-### 5.1 Confirmed
-
-| Item | Decision |
-|---|---|
-| Repository | Use a new clean repository and history. |
-| Legacy project | Retain it unchanged as read-only evidence. |
-| Code migration | Migrate only through named review tasks. |
-| First milestone | Establish a minimum local-training-to-Pico closed loop. |
-| Reproduction scope | Han-compatible behaviour, not file-for-file reproduction. |
-| Primary model | Tsetlin Machine. |
-| Main research protocol | Protocol R. |
-| Compatibility protocol | Protocol H. |
-| Stress test | Protocol X is optional. |
-| Deployment model | Protocol D is deployment-only. |
-| Main split principle | Per-house raw-time blocked splitting. |
-| T002 canonical input | Pinned `redd` submodule commit `a621bbd6399e49c6798550618fe43b113149455b`. |
-| T003 Han audit snapshot | Han `main` commit `8c5e90df34236ba0afcc4ec46ac083d829de4d51`, source tree `5254fc117d8c6f392d6eee1ea7bacc41d2b2039c`; static source audit completed on 2026-07-21. |
-| Protocol R sequence contract | Each chunk is an independent segment at a nominal 3-second cadence; no cross-segment time order or dependencies. |
-| Protocol R candidate houses | Train/validation pool H1, H3, H5, H6; sealed candidate test H2 and H4. |
-| Protocol R approved candidate classes | Fridge, microwave, dish washer, and washer dryer under D004. |
-| Protocol R validation | Each train/validation segment is independently divided by row position into three contiguous blocks. |
-| Protocol R purge | Full dependency containment within one segment/block; no invented fixed numerical purge. |
-| Formal run summary | One canonical `result.json` per formal run. |
-| Experiment identity | Use task, experiment, configuration, and run artefacts; do not rely on one Git branch per experiment. |
-
-### 5.2 Pending
-
-- Original REDD calendar timestamps, gaps, and per-file channel provenance.
-- Actual detector, pairer, window, event, and feature dependency horizons.
-- Cross-house scoring, missing-label eligibility, and macro aggregation for the first model evaluation.
-- Approved reusable Han components and minimum Protocol H reproduction contract.
-- Multiclass TM versus multiple binary TMs.
-- Detector, pairer, feature, Booleanisation, and TM parameters.
-- Exact Pico board variant, Arduino core, compiler, and serial protocol.
-- Final feature schema and numeric representation.
-- Real-time input boundary and deadline.
-- Flash, RAM, model-size, latency, and throughput targets.
-- Number of repeated training runs and seeds.
-- Whether Protocol X will be executed.
-
-Pending items must be resolved by their named tasks. They must not be inferred from historical experiments.
-
-## 6. Research Questions
+## 2. Research Questions
 
 ### RQ1 — Engineering reproduction
 
-Can a locally trained TM be exported, verified through Python and host-native inference, and deployed to the Pico with matching Boolean bits, class votes, and predictions?
+本地训练的 TM 能否经过 save/reload、C export、host-native inference 和 Pico inference，并在 numeric features、Boolean bits、signed votes 和 predictions 上保持 parity？
 
-### RQ2 — Protocol R baseline
+### RQ2 — Formal baseline
 
-What event-level appliance classification performance is achieved under a leakage-controlled, mixed-house raw-time blocked protocol?
+在最终冻结的 sequence-first、leakage-controlled evaluation protocol 下，event-level appliance recognition 的 baseline performance 是多少？
 
 ### RQ3 — Controlled improvements
 
-Which controlled changes improve macro F1, class coverage, or failure behaviour without using future samples or locked-test feedback?
+哪些单变量、可解释的改变能够改善 macro F1、per-class recall/precision、class coverage 或 failure behaviour，同时不使用 future leakage 或 locked-test feedback？
 
 ### RQ4 — Embedded trade-offs
 
-How do feature count, Boolean representation, TM structure, and model parameters affect prediction quality, model size, memory use, and inference latency on the Pico?
+feature count、Boolean representation、TM structure 和 parameters 如何影响 model bytes、RAM/flash、inference latency、decision delay 和 Pico feasibility？
 
-## 7. Evaluation Protocols
+## 3. 三轨项目管理
 
-| Protocol | Purpose | Result status |
+### T-series — 正式工作
+
+用于 protocol、shared implementation、formal baseline、evaluation、deployment 和最终 evidence pack。只有 Tianhang 明确授权后才能改变共享项目状态。一个 task 完成不自动开启下一个。
+
+### E-series — 隔离探索
+
+用于一个清晰 hypothesis、diagnostic 或 feasibility question。Tianhang 可以用一条明确指令授权，不需要先修改完整 roadmap。
+
+每个 E-series：
+
+- 使用 `E### — Direct Name`；
+- 独占整个 experiment mutable root；
+- 在首次 evidence-producing execution 前冻结并锚定 machine-readable design；
+- 不读取 candidate/locked test；
+- 不自动改变 formal method；
+- 可得到 `supported`、`not_supported`、`inconclusive` 或 `invalid`；
+- negative/inconclusive 可正常归档，不阻塞其他方向。
+
+多个 E-series 可以并行，但只共享 hash-identical immutable inputs。
+
+### R-series review — 只读审查
+
+用于审查已有 code、protocol、literature、data description 或 results。它不训练、不评分，不产生新的实验结果。持久化审查报告放在 `docs/reviews/`。
+
+## 4. 当前正式基线定义
+
+预定的 Protocol R baseline 是：
+
+- dataset: REDD；
+- input: aggregate mains；
+- event detection；
+- event pairing；
+- causal/declared-delay feature extraction；
+- Boolean encoding；
+- one binary TM per appliance；
+- unified train/validation/test evaluation；
+- macro/per-class precision、recall、F1；
+- model size 和 latency。
+
+“one binary TM per appliance”目前只定义了 model family，没有定义完整 output semantics。T004 还需冻结：
+
+- simultaneous positives；
+- all-negative/reject；
+- multi-positive conflict；
+- thresholds 和 tie rules；
+- accuracy/confusion-matrix 形式；
+- per-model 与 ensemble model size/latency；
+- decision time 与 future context。
+
+在这些语义冻结前，不能把普通 `accuracy` 字段当成无歧义指标。
+
+## 5. Han-compatible engineering path
+
+Han repository 是 external reference implementation，不是逐文件照抄的 specification。
+
+T003 已完成限定的 two-class Protocol H PC reproduction：
+
+- pinned Han/REDD revisions；
+- staged preprocessing；
+- 23 numeric slots / 184 Boolean bits；
+- TM training；
+- save/reload；
+- inference model export；
+- C header export；
+- repeatability 和 reload defect 记录。
+
+权威 later local run 为 410 H3 matched events、accuracy `0.965854`、macro F1 `0.914298`、C model data `9,058` bytes，且 live model 与 reload 存在 1 个 prediction mismatch。
+
+该结果只证明 label-assisted Protocol H PC compatibility。它不证明：
+
+- aggregate-main-only inference；
+- strict causality；
+- Protocol R performance；
+- host-native parity；
+- Pico behaviour；
+- end-to-end real-time NILM。
+
+最初 Pico boundary 仍计划为：
+
+- Python 负责 event detection、pairing 和 feature extraction；
+- host-native/Pico 接收相同 ordered numeric feature vector；
+- host-native/Pico 负责 Booleanisation 和 TM inference；
+- 输出 Boolean bits、signed votes 和 prediction 用于 parity。
+
+pre-Booleanised input 可以作为 smoke test，但不能代替 feature-to-TM parity。
+
+## 6. Protocol 状态
+
+| Protocol | Purpose | Current evidence |
 |---|---|---|
-| Protocol H | Reproduce the minimum Han-compatible workflow and engineering path. | Compatibility and execution evidence only. |
-| Protocol R | Main mixed-house, raw-time blocked research evaluation. | Primary dissertation result. |
-| Protocol X | Optional held-out-house stress test. | Additional generalisation evidence only. |
-| Protocol D | Train the final deployment model after method freeze. | Deployment evidence, not an unbiased test result. |
+| Protocol H | compatibility reproduction | T003 PC evidence exists |
+| Protocol R | primary dissertation evaluation | no formal baseline/result |
+| Protocol X | held-out-house generalisation/stress test | not run |
+| Protocol D | final deployment model after method freeze | not run |
 
-### 7.1 Protocol H
+### 当前冲突
 
-Protocol H may follow a pinned Han revision closely enough to verify:
+D002 将 Protocol R 定义为 mixed-house primary evaluation，将 Protocol X 定义为 held-out-house generalisation；当前 candidate manifest 却完整留出 H2/H4。当前数据也只能支持 independent segment 内的 row position，不能证明 original raw timestamps。
 
-- local training;
-- model save and reload;
-- embedded model export;
-- host-native inference;
-- Pico inference.
+因此：
 
-Any difference in data preparation, feature order, class set, preprocessing, model parameters, or embedded behaviour must be recorded.
+- 使用 `sequence-first, row-position blocked` 描述当前数据能力；
+- H2/H4 继续对 development sealed；
+- 当前 candidate manifest 不是 final locked Protocol R test；
+- T004 必须明确选择 mixed-house Protocol R 或 held-out-house primary evaluation；
+- 任何正式评分前必须冻结 exact manifest/hash 和 metric semantics。
 
-Protocol H must not use the Protocol R candidate test block for training, model selection, or compatibility scoring.
+完整分析见 [R002](docs/reviews/R002-evaluation-protocol-consistency-review.md)。
 
-### 7.2 Protocol R
+## 7. Scope
 
-Protocol R combines eligible development blocks from multiple houses only after each house has been split and processed independently. Signals from different houses must never be concatenated into one artificial time series.
+### In scope
 
-For the pinned T002 preflight, each chunk is an independent segment with a nominal 3-second cadence. The train/validation pool is H1, H3, H5, and H6; H2 and H4 form the sealed candidate test. Each pool segment is split independently by row position into three contiguous validation blocks. D003 recorded the original four-class candidate and predeclared washer dryer as an optional fallback. After `electric furnace` failed candidate complete-cycle support, Tianhang approved `fridge`, `microwave`, `dish washer`, and `washer dryer` in [`D004`](docs/decisions/D004-protocol-r-class-fallback.md), without changing thresholds or the split.
+- Han current workflow inspection 和 compatibility reproduction；
+- REDD inventory、support 和 split preflight；
+- aggregate-main event detection/pairing；
+- event-level features 和 Booleanisation；
+- TM training、validation、export、inference；
+- one-vs-rest binary TM 与明确 alternatives；
+- host-native/Pico parity；
+- causal replay；
+- model size、flash/RAM、latency 和 decision delay；
+- controlled experiments；
+- dissertation/demo figures、tables 和 evidence。
 
-The following rules apply:
+### Deferred from minimum formal loop
 
-- split raw time before event generation;
-- reset state at every house and split boundary;
-- fit normalisation, Booleanisation, duration limits, and learned preprocessing on training data only;
-- use validation data for development and selection;
-- do not use the frozen test for tuning or method selection;
-- run aggregate-mains-only and label-assisted routes separately.
-- never use `docs/redd` combined files as Protocol R input;
-- reset state and require full dependency containment at every segment and block boundary.
+- Han full environment 的 file-for-file reproduction；
+- full ESP32 UI/LVGL/TFT/SD-card stack；
+- live electrical meter integration；
+- on-device event detection/pairing/feature extraction；
+- end-to-end real-time claim；
+- broad hyperparameter optimisation；
+- cross-dataset evaluation；
+- optional Protocol X；
+- production reliability test。
 
-### 7.3 Protocol R test lifecycle
+Deferred 不等于永久排除。可以用 isolated E-series 做 bounded feasibility probe，但正式采用仍需 T-series。
 
-1. **Preflight**\
-   Candidate future-test blocks may be inspected only for time coverage, gaps, and label-derived class support. All inspected information must be recorded. Model scores and feature quality must not be used to choose the boundary.
+### Out of scope
 
-2. **Freeze**\
-   Tianhang approves the split manifest and its identity or hash. Only then does the candidate test block become the locked test.
+- 整体复制旧仓库或 Han repo；
+- 把 prototype 当成 verified shared code；
+- 用 locked test 调参或选方法；
+- 把 label-assisted event construction 写成 deployable aggregate-main inference；
+- 用其他 learned classifier 替代 primary TM system；
+- 只凭 compile success 声称 hardware behaviour；
+- 把不同 protocol/class/split 的分数放在同一 performance ladder。
 
-3. **Model development**\
-   Training, tuning, error analysis, and method-selection code cannot access the locked test until the final evaluation task.
+## 8. 数据与 split contract
 
-Before freeze, the block must be called the `candidate test block`, not the locked test.
+当前 pinned input：
 
-The final evaluation may run only models, configurations, and metrics listed in the approved evaluation manifest. Test results cannot be used to select between them or trigger further tuning.
+- Han commit: `8c5e90df34236ba0afcc4ec46ac083d829de4d51`
+- REDD submodule: `a621bbd6399e49c6798550618fe43b113149455b`
+- 35 preprocessed independent segments
+- nominal 3-second cadence
+- approved candidate classes: fridge、microwave、dish washer、washer dryer
 
-### 7.4 Protocol X
+所有正式 data pipeline 必须：
 
-Protocol X holds out one or more complete houses. It is optional and will be attempted only after the primary method and Protocol R evaluation are complete.
+- 从 approved manifest 和明确 role 加载；
+- 不用 unrestricted glob 自动发现全部 houses；
+- 在 segment/split boundary reset detector/pairer/state；
+- 丢弃 dependencies crossing boundary 的 output；
+- 只用 training data fit normalizer、threshold、sampling policy 或 learned preprocessing；
+- development mode 明确拒绝 candidate/locked test；
+- 用 automated tests 证明拒绝行为。
 
-### 7.5 Protocol D
+missing appliance column 不能自动解释为 appliance OFF。eligibility 必须在 T004 冻结。
 
-Protocol D is created only after the research method has been frozen and formally evaluated. It may use a broader approved training set to produce the final Pico model.
+## 9. Feature、Booleanisation 与 model contracts
 
-Protocol D metrics must not be presented as unbiased Protocol R test results.
+### Feature schema
 
-## 8. System Contracts
+每个 model bundle 必须包含：
 
-The planned research path is:
+- ordered feature names；
+- units；
+- extraction window/dependency；
+- causal availability time；
+- dtype/range；
+- missing/non-finite policy；
+- schema version/hash。
 
-`per-house raw mains -> raw-time split -> event detection -> event pairing -> feature extraction -> Booleanisation -> TM -> event prediction`
+新增、删除、重排或重新定义 feature 都是 schema change。
 
-The planned engineering path is:
+### Booleanisation
 
-`local training -> model bundle -> Python reference -> host-native reference -> Pico`
+必须记录：
 
-### 8.1 Data and split contract
+- encoder type；
+- bits per feature；
+- threshold/statistics；
+- fit data role；
+- bit order；
+- integer/float rule；
+- schema/hash。
 
-Every processed row or event must be traceable to:
+Python、host-native 和 Pico 必须使用同一个 frozen encoder contract。
 
-- source house;
-- source file or recording;
-- original time or sample range;
-- split identity;
-- processing configuration;
-- schema version.
+### Model bundle
 
-Raw REDD data must remain outside version control.
+至少包含：
 
-### 8.2 Feature schema
+- model structure 和 parameters；
+- class/output mapping；
+- feature/encoder schema；
+- thresholds/tie policy；
+- seed/repeat provenance；
+- source/config hashes；
+- exported C identity；
+- model bytes；
+- version/hash。
 
-The feature schema must define:
+### Parity fixtures
 
-- ordered feature names;
-- meaning and units;
-- numeric type;
-- causal availability time;
-- window and boundary conventions;
-- missing-value handling;
-- schema version and hash.
+每个 fixture 至少比较：
 
-Feature order must not be inferred from DataFrame or dictionary behaviour.
+- ordered numeric features；
+- Boolean bits；
+- signed votes for every output；
+- threshold/tie behaviour；
+- final prediction；
+- invalid input behaviour。
 
-### 8.3 Booleanisation
+只比较几个最终 predictions 不足以证明 parity。
 
-The Booleanisation contract must define:
+## 10. Metrics
 
-- normalisation statistics or thresholds;
-- fitting source;
-- comparison rule;
-- quantisation and rounding rule;
-- number of bits;
-- bit order;
-- handling of values outside the fitted range.
+### Classification
 
-All fitted values must come from training data only.
+正式报告至少包含：
 
-### 8.4 Model bundle
+- per-appliance precision、recall、F1、support；
+- macro precision、recall、F1；
+- repeated-run mean 和 sample standard deviation 或预声明 uncertainty；
+- clearly named accuracy；
+- clearly defined confusion representation；
+- class/house/segment eligibility。
 
-The model bundle must be the shared source of truth for Python, host-native code, and Pico firmware.
+washer dryer 在某些 held-out houses support 很低，单个样本会显著改变 recall。不能只给单一 F1 而不报告 support/uncertainty。
 
-It must contain or identify:
+### Event construction
 
-- bundle version;
-- feature-schema version and hash;
-- ordered class labels;
-- Booleanisation configuration;
-- TM type and dimensions;
-- model payload;
-- vote and tie-breaking conventions;
-- training and exporter metadata;
-- model payload hash.
+根据 layer 记录：
 
-Embedded headers or binaries must be generated from the bundle. Model values and preprocessing constants must not be copied manually into firmware.
+- edge/event recall；
+- candidate burden；
+- precision；
+- unmatched/ambiguous/overlap rate；
+- pairing coverage；
+- duration/power consistency；
+- boundary discard count；
+- causal delay。
 
-### 8.5 Parity fixtures
+### Embedded
 
-Each fixture must record:
+至少区分：
 
-- fixture ID;
-- non-test provenance;
-- input at the declared deployment boundary;
-- expected feature representation;
-- expected Boolean bits;
-- expected signed class votes;
-- expected prediction.
+- model data bytes；
+- total firmware flash；
+- runtime RAM；
+- per-TM inference latency；
+- ensemble inference latency；
+- feature-to-decision latency；
+- event closure / future-context waiting time；
+- serial/logging overhead；
+- repetitions、median、p95、max。
 
-Parity requirements are:
+短 TM inference time 不等于 end-to-end real-time NILM。
 
-- numeric features: exact where represented as integers or fixed point; otherwise within an approved per-feature tolerance;
-- Boolean bits: exact bit-for-bit equality;
-- class votes: exact signed integer equality for every class;
-- predictions: exact equality, including tie behaviour.
+## 11. Research evidence discipline
 
-Prediction agreement alone is insufficient if bits or votes differ.
+每个有效实验必须形成：
 
-The first Pico loop does not require on-device feature extraction. Feature-extraction parity becomes mandatory if that stage is later implemented on more than one target.
+`question → frozen design → data/code/config identity → run → result → interpretation → limitation → decision → next question`
 
-## 9. Metrics and Evidence
+值得详细记录：
 
-### 9.1 Event metrics
+- 验证某个合理直觉不成立；
+- 与最终方法形成清晰对照；
+- 暴露数据、protocol 或 system limitation；
+- 有可复现结果并能解释原因；
+- 排除一条原本可信的方向。
 
-Where an appropriate reference is available:
+不值得进入主研究叙事：
 
-- event detection precision, recall, and F1;
-- event timing error;
-- event coverage;
-- pairing precision, recall, and F1;
-- duration error;
-- paired power-mismatch distribution;
-- unmatched and rejected-event counts.
+- coding error；
+- configuration 未生效；
+- data contamination；
+- arbitrary parameter poking；
+- 大量近似重复的 hyperparameter run。
 
-Metrics derived from appliance labels must be marked as label-assisted or oracle evidence.
+近似设置压缩为一张 tidy table 或 appendix。任何 positive result 在成为正式方法前都需 repeated seeds 和 T-series revalidation。
 
-### 9.2 Classification metrics
+详见 [RESEARCH_EVIDENCE_STANDARD.md](docs/RESEARCH_EVIDENCE_STANDARD.md)。
 
-Formal classification reports must include:
+## 12. Formal T-series Delivery Line
 
-- per-class precision, recall, F1, and support;
-- macro precision, recall, and F1;
-- accuracy;
-- confusion matrix;
-- number of houses, time coverage, and event count;
-- explicit input and ground-truth definitions.
-
-The primary target is macro F1 over the frozen Protocol R class set.
-
-### 9.3 Embedded metrics
-
-Embedded reports must distinguish:
-
-- serialised model payload size;
-- generated model artefact size;
-- total firmware flash use;
-- static RAM use;
-- stack and heap evidence where measurable;
-- Booleanisation latency;
-- TM inference latency;
-- combined compute latency;
-- parity pass count;
-- reset, timeout, and dropped-input count.
-
-Latency should report median, p95, and maximum over a documented repetition count. Serial transfer and logging time must be kept separate from compute latency.
-
-Exact acceptance thresholds remain `Pending`.
-
-### 9.4 Formal run evidence
-
-Each formal run must have a unique immutable run directory.
-
-`result.json` is the canonical run summary. Supporting evidence may include:
-
-- configuration;
-- data and split manifests;
-- environment manifest;
-- predictions;
-- confusion matrices;
-- per-class metrics;
-- parity traces;
-- raw timing samples;
-- build logs;
-- linker maps;
-- plots and tables.
-
-A smoke run proves execution only. It is not a formal scientific result.
-
-Published results must never be overwritten.
-
-## 10. Experiment Discipline
-
-- Use training and validation data only during development.
-- Change one main scientific variable per controlled experiment.
-- If several implementation changes are technically inseparable, declare them as one combined intervention before running the experiment.
-- Do not attribute a combined result to one internal sub-change without an ablation.
-- Record the hypothesis, baseline, changed variable, configuration, seed, environment, and acceptance rule before execution.
-- Record failed and negative experiments when they affect later decisions.
-- Keep aggregate-mains-only and oracle results separate.
-- Do not select configurations from the locked test.
-- Do not claim reproducibility from a seed alone if the implementation is not deterministic.
-- Use experiment and run identifiers rather than creating a new long-lived branch for every run.
-
-## 11. Task Roadmap
-
-Detailed specifications belong in `docs/tasks/`. This table records only task purpose and exit conditions.
-
-| ID | Task | Exit condition | Status |
-|---|---|---|---|
-| T001 | Governance review and repository bootstrap | Governance files approved and validated; Git actions performed only after explicit authorisation. | Complete — 2026-07-21. |
-| T002 | Han upstream snapshot acquisition, REDD inventory, and Protocol R preflight | Acquire the authorised recursive upstream snapshot, record immutable revisions, inventory REDD evidence, and assess the remaining preflight criteria without training or model scoring. | Complete — 2026-07-21. D004 fallback approved and successor manifest verified. |
-| T003 | Han reference audit and minimum reproduction contract | Reference revision, workflow stages, reusable components, deviations, and deployment boundary approved. | In progress — static source audit completed 2026-07-21; review and reproduction-contract decisions Pending. |
-| T004 | Protocol R split approval and freeze | Tianhang approves the split manifest and hash; candidate test becomes locked test. | Pending |
-| T005 | Han-compatible local training and export | A locally trained smoke model is saved, reloaded, exported, and accompanied by fixed fixtures. | Pending |
-| T006 | Host-native parity | Host-native Boolean bits, votes, and predictions match the Python reference. | Pending |
-| T007 | Pico closed-loop deployment | Firmware is compiled, flashed, and run on the verified board; parity and initial resource evidence are recorded. | Pending |
-| T008 | Protocol R research baseline | A train/validation baseline is produced under the frozen protocol without accessing the locked test. | Pending |
-| T009 | Controlled experiment cycle | Each approved experiment has a hypothesis, one main variable, immutable evidence, and a decision. | Pending |
-| T010 | Method selection and final freeze | Final method, code revision, configuration, metrics, and evaluation manifest are approved. | Pending |
-| T011 | Final Protocol R evaluation | Predeclared frozen models are evaluated once on the locked test with no further selection or tuning. | Pending |
-| T012 | Protocol D model and final Pico deployment | Final deployment model is exported and Pico parity and resource measurements are repeated. | Pending |
-| T013 | Optional Protocol X and evidence pack | Optional stress test and final dissertation/demo evidence are completed. | Pending |
-
-T002 and T003 may be prepared independently after T001. Neither task may continue automatically into implementation.
-
-## 12. Claim Boundaries
-
-The following terms must be used carefully:
-
-- **Causal replay:** recorded samples are processed sequentially without access to samples beyond the declared prediction time.
-- **Real-time capable:** the complete declared processing boundary meets an approved deadline without an accumulating backlog.
-- **Live-meter operation:** data are acquired from a real measurement source during execution.
-- **On-device inference:** the board runs Booleanisation and/or TM inference at the declared boundary.
-- **On-device end-to-end NILM:** the board performs acquisition, detection, pairing, feature extraction, Booleanisation, and prediction.
-
-A Pico running only TM inference must not be described as end-to-end on-device NILM.
-
-## 13. Risks and Honest Fallbacks
-
-| Risk | Response or fallback |
+| Task | Exit condition |
 |---|---|
-| Han's current workflow cannot be reproduced exactly | Deliver a pinned, repeatable compatibility path and document every material deviation. |
-| Han's Python and embedded stages are inconsistent | Treat the model bundle and parity fixtures as the new explicit contract. |
-| Candidate blocks have insufficient class support | Keep T002 in progress, preserve the frozen support standard, and await Tianhang's decision on a predefined fallback. |
-| The macro F1 target is not achieved | Report the best frozen-protocol result, per-class failures, negative experiments, and likely causes. |
-| Three classes cannot be supported reliably | A smaller class set may be used as a supplementary demo, but it does not satisfy the stated research target. |
-| Full preprocessing is too large for the Pico | Retain PC preprocessing with Pico Booleanisation and TM inference, and report the deployment boundary clearly. |
-| Real-time end-to-end processing is not completed | Demonstrate causal replay and measured inference timing without claiming live real-time NILM. |
-| Pico testing is incomplete | Report only the highest verified stage, such as host parity or compilation; do not claim board-tested behaviour. |
-| Schedule becomes constrained | Preserve the minimum training-to-Pico loop, Protocol R baseline, and the highest-value controlled experiments. |
+| T001 — Governance Review and Repository Bootstrap | governance 和 clean repository verified |
+| T002 — REDD Inventory and Protocol R Preflight | data/support/candidate manifest recorded without model scoring |
+| T003 — Han Two-Class PC Reproduction | minimum staged Protocol H PC route audited, run, repeated and bounded |
+| T004 — Protocol R Evaluation Contract and Test Freeze | protocol population、eligibility、binary outputs、metrics、access gate 和 exact test hash accepted |
+| T005 — Protocol R Baseline Implementation | development baseline reproducibly runs without test access |
+| T006 — Host-Native Inference Parity | host bits/votes/predictions match Python fixtures |
+| T007 — Pico Feature-to-TM Deployment | board compiles、flashes、runs and records parity/resource evidence |
+| T008 — Layered Baseline Error Analysis | per-layer/per-class bottlenecks supported by development evidence |
+| T009 — Promoted Method Confirmation | selected E candidates revalidated under formal development protocol |
+| T010 — Final Method and Evaluation Freeze | code/config/model/seeds/metrics/final manifest frozen |
+| T011 — Final Protocol R Evaluation | predeclared method evaluated once on locked test |
+| T012 — Protocol D Model and Pico Verification | deployment model exported、parity-checked and measured |
+| T013 — Dissertation, Demo, and Optional Protocol X Evidence Pack | figures/tables/limitations/demo and approved stress test complete |
 
-Failure to meet the target metric does not invalidate the project. A leakage-controlled baseline, a verified embedded path, and a well-supported analysis of limitations remain valid research and engineering outcomes.
+正式路线可以与 isolated E/R work 并行，但 dependencies 和 mutable paths 不能冲突。
 
-## 14. Progress
+## 13. Dissertation 与 presentation 输出
 
-The authoritative local state is recorded in [`docs/CURRENT_STATE.md`](docs/CURRENT_STATE.md).
+每个重要结果应尽早准备：
 
-Dated work records are stored in [`docs/progress/`](docs/progress/). The plan should not duplicate the detailed progress log.
+- paper-ready English claim；
+- 中文解释；
+- exact evidence path；
+- figure/table；
+- protocol/claim scope；
+- limitation；
+- whether promoted；
+- connection to RQ。
 
-Current reported state:
+[EVIDENCE_INDEX.md](docs/EVIDENCE_INDEX.md) 是论文和答辩材料的中央索引。最终写作不应重新搜索所有 branch 或重新跑一遍实验才能知道结果。
 
-- the governance skeleton has been created;
-- `AGENTS.md` has received its first review;
-- this project plan has been accepted by Tianhang;
-- no algorithm code or REDD data has been imported;
-- no model has been trained;
-- no firmware has been compiled or tested;
-- Gate B reconciliation and local Git bootstrap are complete;
-- the initial governance baseline commit is `df8451b4eea59e1b9a3af78fa7aac72f614de8b7`;
-- the T001 closure record has been created;
-- T001 is complete;
-- no remote, tag, push, or GitHub operation occurred;
-- T002 upstream acquisition and inventory are complete;
-- Tianhang accepted the D003 sequence-time contract and frozen support standard;
-- the Phase B audit and candidate manifest were generated without model scoring;
-- `electric furnace` failed the sealed-candidate-test complete-cycle minimum;
-- Tianhang approved the predeclared `washer dryer` fallback before any model output was viewed;
-- the approved four-class successor manifest was generated and verified;
-- T002 is complete;
-- the fixed Han source snapshot has been audited statically and recorded in [`docs/reproduction/HAN_PIPELINE_SOURCE_AUDIT.md`](docs/reproduction/HAN_PIPELINE_SOURCE_AUDIT.md);
-- no unique canonical Han entry, reusable component set, or executable reproduction contract has yet been approved;
-- T003 remains in progress and executable reproduction has not started.
+## 14. Claim boundaries
 
-T003 is the current governance task. Its static source-audit phase is complete; executable reproduction and all later tasks remain unauthorised pending Tianhang/ChatGPT review.
+除非有直接证据，不得声称：
+
+- complete Han reproduction；
+- clean Protocol R baseline；
+- unseen-house generalisation；
+- aggregate-main-only deployment；
+- strict causality；
+- host/Pico parity；
+- real-time NILM；
+- hardware latency；
+- final dissertation performance。
+
+每个 claim 必须指出它属于 compatibility、exploratory、historical、formal development、locked test、deployment、oracle 还是 label-assisted evidence。
+
+## 15. 主要风险与 fallback
+
+| Risk | Response |
+|---|---|
+| Protocol 定义冲突 | T004 先冻结 research question 和 population |
+| 原始 timestamp provenance 缺失 | 使用 honest row-position contract，避免 raw-time claim |
+| weak class support | 报告 support/uncertainty，必要时调整 formal class decision |
+| event detection/pairing bottleneck | 分层诊断，不用 TM 参数掩盖 upstream error |
+| save/reload/parity defect | 在 host/Pico 前逐层比较 bits/votes/predictions |
+| macro F1 未达 0.80 | 保留可复现 baseline、negative results、failure analysis 和 embedded trade-offs |
+| 时间不足 | 优先完成 coherent formal loop，不扩张 UI/live-meter scope |
+
+论文可以包含失败但有价值的尝试，只要它们是合理设计、可复现、能解释并对最终选择有贡献。代码写错和随意乱调不是 research contribution。
+
+## 16. 实时状态入口
+
+本文件只保存研究方向、依赖和正式 roadmap，不复制 active work、PR 状态或当前
+授权。实时状态唯一入口是 [CURRENT_STATE.md](docs/CURRENT_STATE.md)。

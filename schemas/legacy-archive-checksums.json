@@ -1,0 +1,28 @@
+{
+  "schema_version": "2.0",
+  "status": "checksum_correction",
+  "reason": "The in-archive SHA256SUMS.txt files describe pre-normalisation bytes and do not validate the admitted Git blobs. This append-only manifest records the currently admitted bytes without rewriting historical archives.",
+  "archives": {
+    "E001-booleanization-ab-probe": {
+      "files": {
+        "REPORT.md": "cee293d25c3f7e27f1ab1c46ab0dadc4fdbc81327bcf1d8495690bc9b70fc41a",
+        "SHA256SUMS.txt": "e728d867a8d046c0ff4640c6774ec51ae94bdbe7ca5c4f01c9a21bcd1e9b14fc",
+        "SOURCE_FILE_SHA256SUMS.txt": "62241e7242ee9e0293b51bdb166e1ffbc49584b8d39528404f3cb8534c685c17",
+        "experiment.py": "080636f502a55a0a909af68a449f303492936757ddddd198b4d236dc01ae9e79",
+        "per_seed_metrics.csv": "3766ae61b97b815fc035480146858b8528d65ad761e91494cb76a1a101cc1722",
+        "summary.json": "a8486664e0dff667abe57f46cb8e9fb53a7e8db65856ffa8684624bd4a0727ae"
+      }
+    },
+    "T003-local-reproduction": {
+      "files": {
+        "LOCAL_REPRODUCTION_REPORT.md": "540513f74fff8eb6cb8eba7ee468bbf27871db64cbaef1f84351c5a1bc8d3817",
+        "SHA256SUMS.txt": "af4d6e194b607613a78b31e5d96a35c89a38a9137fbc59beffd0acf3c97c6bc8",
+        "SOURCE_FILE_SHA256SUMS.txt": "46162bb0be39e3be476ab212e75e231a1ee46c18703761f84167f130b2ad9c31",
+        "SOURCE_RUN_SHA256SUMS.txt": "e5fec66253665cf39b690b16318e4d4f22bbe44763b3d2ac7b8c63657a368352",
+        "commands.log": "381fa55dc7864fe4398888343d26601e40a907f5b696da08b2ceecba7b8c4c93",
+        "environment.txt": "443a57e2583a3ac0ecb1512bda5c7c2a0b482b1913b0f394eedebd3c46aabcc1",
+        "local_reproduction_manifest.json": "71d17cf029f49ad30d8bf24210ebcf9f8cc7cdffd46fdaccc3e33e5a2dbd5652"
+      }
+    }
+  }
+}

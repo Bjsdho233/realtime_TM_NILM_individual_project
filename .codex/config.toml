@@ -1,20 +1,19 @@
-# Project-specific Codex defaults.
-# Task scope and phase authorisation remain defined in AGENTS.md.
+# Project-specific Codex defaults for this trusted repository.
+# Stable track rules live in AGENTS.md; live authorisation lives in CURRENT_STATE.md.
 
-# Use read-only access by default.
-sandbox_mode = "read-only"
+# Allow routine authorised local work without removing the workspace boundary.
+sandbox_mode = "workspace-write"
 
-# Any action outside the sandbox must be approved by Tianhang.
+# Actions outside the workspace boundary still require Tianhang's approval.
 approval_policy = "on-request"
 approvals_reviewer = "user"
 
-# External browsing is disabled during the current governance phase.
-web_search = "disabled"
+# Cached search supports read-only research without enabling shell network access.
+web_search = "cached"
 
 # AGENTS.md can identify the project root before Git is initialised.
 project_root_markers = [".git", "AGENTS.md"]
 
-# If workspace-write is authorised later, shell network access remains disabled
-# unless it is enabled separately for an approved task.
+# Shell network access remains disabled unless an approved task enables it.
 [sandbox_workspace_write]
 network_access = false

@@ -1,5 +1,10 @@
 # T001 — Governance Review and Repository Bootstrap
 
+> **Historical closed-task record.** References below to the 2026-07-21 phase
+> lock describe the governance used when T001 ran; they do not grant current
+> authority. Live authority is only in
+> [`docs/CURRENT_STATE.md`](../CURRENT_STATE.md).
+
 **Status:** Complete\
 **Owner:** Tianhang Tan\
 **Created:** 2026-07-21\
@@ -7,7 +12,7 @@
 **Completed:** 2026-07-21\
 **Task type:** Governance and repository setup\
 **Dependencies:** None\
-**Current authorisation:** None; T001 is closed and there is no active execution task
+**Historical closure authority:** None; T001 is closed and there is no active execution task
 
 ## 1. Objective
 

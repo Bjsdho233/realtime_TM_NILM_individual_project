@@ -1,5 +1,9 @@
 # T002 Upstream REDD Inventory — 2026-07-21
 
+> **Historical mid-task snapshot.** The `In progress` state below describes this
+> dated checkpoint and was superseded by completed T002. Live status and
+> authority are only in [`docs/CURRENT_STATE.md`](../CURRENT_STATE.md).
+
 **Task:** T002 — REDD Inventory and Protocol R Preflight\
 **Status:** In progress; inventory complete, preflight incomplete
 
