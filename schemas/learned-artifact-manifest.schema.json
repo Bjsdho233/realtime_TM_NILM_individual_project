@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tm-nilm:learned-artifact-manifest:1.0",
+  "title": "Portable learned-artifact lineage manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schema_version",
+    "manifest_id",
+    "artifact_id",
+    "artifact_type",
+    "content_sha256",
+    "locator",
+    "origin",
+    "availability_limits",
+    "fit_data_roles",
+    "data_manifest",
+    "candidate_or_locked_test_derived"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "schemas/learned-artifact-manifest.schema.json"
+    },
+    "schema_version": {
+      "const": "1.0"
+    },
+    "manifest_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]+$"
+    },
+    "artifact_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifact_type": {
+      "enum": [
+        "model",
+        "thresholds",
+        "normalizer",
+        "duration_prior",
+        "event_cache",
+        "other_learned_state"
+      ]
+    },
+    "content_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "value"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "content_addressed",
+            "external_uri",
+            "documented_local_store"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "minLength": 3
+        }
+      }
+    },
+    "origin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_work",
+        "repository",
+        "git_commit",
+        "context"
+      ],
+      "properties": {
+        "source_work": {
+          "type": "string",
+          "minLength": 2
+        },
+        "repository": {
+          "type": "string",
+          "minLength": 3
+        },
+        "git_commit": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "context": {
+          "type": "string",
+          "minLength": 3
+        }
+      }
+    },
+    "availability_limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "available_in_fresh_clone",
+        "requires_local_store",
+        "retention"
+      ],
+      "properties": {
+        "available_in_fresh_clone": {
+          "type": "boolean"
+        },
+        "requires_local_store": {
+          "type": "boolean"
+        },
+        "retention": {
+          "type": "string",
+          "minLength": 3
+        }
+      }
+    },
+    "fit_data_roles": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "development_train"
+        ]
+      }
+    },
+    "data_manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?!/)(?![A-Za-z]:[\\\\/])(?!.*(?:^|/)\\.\\.(?:/|$)).+"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "candidate_or_locked_test_derived": {
+      "const": false
+    }
+  }
+}

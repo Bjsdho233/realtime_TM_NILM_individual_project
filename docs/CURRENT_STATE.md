@@ -1,182 +1,232 @@
-# Current State
+# 当前状态 / Current State
 
-**Status:** Current governance snapshot\
-**Last updated:** 2026-07-22\
-**Current phase:** T003 local two-class PC reproduction archived; T003 remains In progress pending governance review\
-**Active execution task:** None; T004 has not started\
-**Local verification:** T001 and T002 are complete. The T003 local reproduction and exploratory E001 probe have been executed locally and archived.
+## Agent Brief
 
-## 1. Purpose
+- Status: current governance snapshot
+- Last updated: 2026-07-23
+- Current formal state: Protocol H PC scope archived; primary evaluation contract unresolved; no formal Protocol R baseline
+- Active T-series: none
+- Active E-series: see the exact registry below
+- Active R-series review: none
+- Next planned formal task: T004 — Protocol R Evaluation Contract and Test Freeze
+- T004 authority: not authorised
+- Candidate/locked test development access: prohibited
+- Repository health command: `python scripts/check_repo.py`
 
-This file records the project's current verified state. It is an operational snapshot, not a research plan or detailed progress log.
+## 1. 本文件的作用
 
-Only locally verified facts may be recorded as completed work. Planned work, historical results, conversation summaries, and unverified files must not be presented as current project evidence.
+本文件是当前 phase、active authority、open blocker 和最新 verified state 的唯一实时登记处。
 
-If this file conflicts with the actual worktree or locally generated outputs, the worktree must be inspected and this file corrected.
+- [AGENTS.md](../AGENTS.md) 保存长期稳定的 agent rules；
+- [PROJECT_PLAN.md](../PROJECT_PLAN.md) 保存正式方向和 T-series roadmap；
+- [WORK_INDEX.md](WORK_INDEX.md) 保存 T/E/R 的长期编号和直接名称；
+- [progress/README.md](progress/README.md) 说明 dated progress snapshot 的历史边界；
+- task、progress 和 experiment report 保存历史事实，不是第二份授权登记。
 
-## 2. Governance Files
+如果本文件与实际 worktree、GitHub default branch 或已归档结果冲突，必须先检查并修正状态，不能根据日期或聊天摘要猜测。
 
-| File | Current state |
-|---|---|
-| `AGENTS.md` | Reviewed and manually saved. Its current phase lock remains active. |
-| `PROJECT_PLAN.md` | Accepted by Tianhang on 2026-07-21. |
-| `docs/decisions/D001-clean-repository.md` | Accepted and manually saved. |
-| `docs/decisions/D002-primary-evaluation-protocol.md` | Accepted and manually saved. |
-| `docs/decisions/D003-redd-sequence-time-contract.md` | Accepted by Tianhang on 2026-07-21. |
-| `docs/decisions/D004-protocol-r-class-fallback.md` | Accepted by Tianhang on 2026-07-21. |
-| `docs/CURRENT_STATE.md` | Current review item. |
-| T001, T002, and progress records | Reconciled to the canonical long filenames selected by Tianhang. |
+## 2. 当前授权
 
-## 3. Decisions in Force
+| Track | Active item | Authority |
+|---|---|---|
+| T-series | None | 不得开始 T004、Protocol R implementation、host/Pico、final evaluation 或 deployment |
+| E-series | See exact registry below | Tianhang 可用一条明确指令启动新的隔离 E-series；执行前必须按下表登记、冻结并锚定 design |
+| R-series review | None | 可在明确请求下进行 read-only review；不训练、不评分 |
 
-### D001 — Clean repository
+## Active E-series Registry
 
-- The project will use a new independent repository and clean history.
-- The previous project remains read-only historical evidence.
-- Han's repository is an external reference implementation.
-- Neither repository will be copied or merged wholesale.
-- Code may be migrated only through a named task with recorded provenance and local verification.
+| ID | Direct name | Owner | Status | Mutable root | Design SHA-256 | Design commit |
+|---|---|---|---|---|---|---|
 
-### D002 — Primary evaluation protocol
+这是 E-series 的唯一 live authority registry。空表表示没有 active E-series。
+`Status` 只允许：
 
-- Protocol H is used for Han-compatible engineering reproduction.
-- Protocol R is the primary research evaluation.
-- Protocol X is an optional held-out-house stress test.
-- Protocol D is used for final deployment-model training after method freeze.
-- Protocol R must split each house in raw time before event generation.
-- Training, validation, and candidate test processing must remain separate.
-- The candidate test becomes the locked test only after explicit approval of the split manifest and its identity or hash.
-- Compatibility, research, stress-test, and deployment results must retain separate evidential status.
+- `registered`：`Design SHA-256` 和 `Design commit` 都必须写 `Pending`；
+- `design_frozen`：两列必须分别为 frozen design 的 64-hex SHA-256 和只含
+  registered design/source/config/environment、且不含结果的 40-hex commit。
 
-### D003 — REDD sequence-time contract
+scaffold 只能接受本表中的 exact row；其他段落、目录、branch、聊天记录或
+substring match 都不构成授权。只有 coordinating agent 可以增加、更新或删除
+本表行；experiment worker 不得编辑。
 
-- The pinned `redd` submodule is the canonical reproduction input.
-- Han reproduction retains the observed upstream glob, concatenation, and backward-fill behaviour.
-- Protocol R treats every chunk as an independent segment at a nominal 3-second cadence and does not use `docs/redd` combined files.
-- H1, H3, H5, and H6 form the train/validation pool; H2 and H4 form the sealed candidate test.
-- The four base classes and frozen support standard are recorded in D003.
-- Full dependency containment, with state reset and discarded boundary-crossing items, is the purge policy.
+2026-07-23 的 direct governance maintenance 已用于：
 
-## 4. Current Task State
+- 将临时 phase lock 从长期规则中移除；
+- 建立 T/E/R 三轨；
+- 增加 zero-context handoff；
+- 增加 legacy evidence navigation；
+- 建立 machine-readable schema、scaffold 和 repository check；
+- 采用英文 control layer＋中文 research narrative；
+- 记录 Protocol R/X 和 output semantics 的未决冲突；
+- 修正 archive/current-state 的证据漂移。
 
-| Task | State |
-|---|---|
-| T001 | Complete — 2026-07-21. Gate B reconciliation, local Git bootstrap, the initial governance baseline commit, and the T001 closure record are complete. |
-| T002 | Complete — 2026-07-21. The original class set failed because `electric furnace` had only 1 candidate complete cycle. Tianhang approved the predeclared `washer dryer` fallback, and the successor manifest was verified. |
-| T003 | In progress. Static source audit and the successful, repeatable two-class local PC reproduction are archived. Differences from the earlier remote pre-reproduction remain unresolved; governance review and reusable-component approval remain Pending. |
-| E001 | Complete — 2026-07-22. Exploratory Booleanization A/B probe result: `inconclusive`. Han binary remains the current baseline. |
-| T004–T013 | Not started. |
+该治理维护不授权新的 NILM run、dependency installation、REDD processing、candidate-test scoring、firmware、Pico 或 hardware work。
 
-No execution task is active. T003 remains the current governance task; T004 and all later tasks remain unauthorised.
+## 3. T-series 状态
 
-## 5. Verified Project Evidence
+| ID and direct name | Status | Evidence boundary |
+|---|---|---|
+| T001 — Governance Review and Repository Bootstrap | Complete — 2026-07-21 | clean repository 和初始 governance baseline |
+| T002 — REDD Inventory and Protocol R Preflight | Complete — 2026-07-21 | pinned data inventory、support audit、class fallback 和 candidate manifest；没有 model scoring |
+| T003 — Han Two-Class PC Reproduction | Complete for declared PC scope — 2026-07-22 | label-assisted Protocol H staged PC training/save/reload/export；不是 Protocol R、Pico 或 real-time |
+| T004 — Protocol R Evaluation Contract and Test Freeze | Planned; not authorised | 必须解决 Protocol R/X、row-position wording、binary output、metrics 和 exact locked-test manifest |
+| T005–T013 | Not started; not authorised | 见 [WORK_INDEX.md](WORK_INDEX.md) 和 [PROJECT_PLAN.md](../PROJECT_PLAN.md) |
 
-T001 Gate B inspected `D:\projects\tm-nilm-pico-research` on 2026-07-21. At inspection time, the project contained 5 directories and 11 ordinary files totalling approximately 88,542 bytes.
+T003 的“complete”只覆盖 declared PC Protocol H scope。它没有完成 host-native parity、Pico inference、aggregate-main-only evaluation、strict causality 或 real-time system。
 
-The inspection found no algorithm code, REDD data, generated results, models, firmware, compilation outputs, credentials, large binary files, or machine-specific state. It found no `.git` directory and no enclosing parent Git repository.
+## 4. E-series 历史与归档状态
 
-Gate B identified three short filenames that differed from the canonical long filenames referenced by the governance documents. Tianhang selected the long filenames, and the files were renamed and reconciled under explicit authorisation without rewriting the body of the initial progress record.
+| ID and direct name | Status | Outcome and boundary |
+|---|---|---|
+| E001 — Booleanisation Encoding A/B Probe | Archived — 2026-07-22 | `inconclusive`; legacy label-assisted development data；H2/H4 未读；没有 promotion |
+| E002 — TM Training Dynamics Probe | Legacy archive on open draft PR #2 | exploratory H3 evidence；H3 被反复查看，不能作为 locked dissertation-test result；尚未并入 default branch |
 
-The local Git repository uses branch `main`. The initial governance baseline commit is `df8451b4eea59e1b9a3af78fa7aac72f614de8b7` and contains the approved 12 governance files. The T001 closure record has been created.
+E001 的 Han binary mean macro F1 为 `0.784087`，`threshold_8` 为 `0.801266`，mean paired delta 为 `+0.017179`，wins 为 3/5。它没有达到预设 `promising` rule，因此 Han binary 仍只是 current compatibility baseline，不是 formal Protocol R baseline。
 
-T002 admitted task-bounded standard-library inventory, support-audit, and manifest-finalizer utilities plus their evidence outputs. No research algorithm, dataset copy, experiment, model, firmware, or hardware result has been admitted. No remote, tag, push, or GitHub operation occurred for this project.
+E002 对 training order、`T=10`、hard-negative feedback 和 class balancing 做了 historical exploratory probe。它必须在合并前继续保持与正式 Protocol R 分离；详情见 [R001 — Legacy Evidence and Reuse Map](reviews/R001-legacy-evidence-and-reuse-map.md)。
 
-The following evidence is therefore not currently available:
+## 5. R-series 状态
 
-- an approved Han reusable-component set and minimum reproduction contract;
-- migrated or newly implemented algorithm code;
-- a locally trained TM model;
-- a model bundle or parity fixture;
-- host-native inference results;
-- Pico compilation, flashing, or runtime results;
-- formal experiment results;
-- a remote or GitHub repository.
+| ID and direct name | Status | Main output |
+|---|---|---|
+| R001 — Legacy Evidence and Reuse Map | Complete — 2026-07-23 | 按研究问题定位旧 repo、fixed commit、branch、file 和 reuse boundary |
+| R002 — Evaluation Protocol Consistency Review | Complete — 2026-07-23 | 发现 mixed-house/held-out-house 与 raw-time/row-position 两组冲突 |
 
-The T002 inventory and approved split evidence are recorded in Section 9. The remaining list identifies evidence not yet produced.
+R-series 只审查已有材料，不产生新的 model result。
 
-## 6. Pending Decisions
+## 6. 已核验的项目证据
 
-The following items remain `Pending`:
+### T002 — REDD Inventory and Protocol R Preflight
 
-- original calendar timestamps, gaps, and per-file channel provenance;
-- actual detector, pairer, window, event, and feature dependency horizons;
-- cross-house scoring, missing-label eligibility, and macro aggregation for the first model evaluation;
-- approved reusable Han components and minimum Protocol H reproduction contract;
-- Protocol H data and configuration;
-- approved reusable components;
-- detector, pairer, feature, Booleanisation, and TM design;
-- multiclass versus multiple binary TMs;
-- TM parameters and repeated-run policy;
-- exact Pico board variant, Arduino core, compiler, and serial protocol;
-- feature schema and numeric representation;
-- embedded resource and latency targets;
-- real-time input boundary and deadline;
-- whether Protocol X will be executed.
+- Han snapshot: `8c5e90df34236ba0afcc4ec46ac083d829de4d51`
+- REDD submodule: `a621bbd6399e49c6798550618fe43b113149455b`
+- 35 个 preprocessed CSV segments，覆盖 6 houses 和 1,508,578 rows
+- CSV content-tree SHA-256: `5e1ee53cdce2a5ad2d5007a08527bd1fc9486130d56dc008cf8c8ba8e336e73d`
+- approved candidate classes: fridge、microwave、dish washer、washer dryer
+- approved candidate manifest: [`protocol_r_approved_split.json`](../artifacts/manifests/protocol_r_approved_split.json)
+- canonical manifest SHA-256: `b4509778dc15ccdf7a6ab48357cfcef90a28b58a5b12bbe57dfef0a590e24eb4`
 
-No task may silently infer these decisions from historical experiments or conversation summaries.
+T002 查看过 H2/H4 support labels，用于 class feasibility；没有生成或查看 model predictions/metrics。
 
-## 7. Current Authorisation and Restrictions
+### T003 — Han Two-Class PC Reproduction
 
-T003 static inspection and the explicitly authorised local reproduction are complete and archived. E001 is complete as an exploratory probe. No further execution phase is authorised; T004 and all later work remain unauthorised.
+权威 current-project local evidence 是：
 
-Do not install dependencies, run additional edge detection, event pairing, feature extraction, training, inference, or model scoring; modify the upstream clone; copy upstream code or CSV files; begin T004; create a tag or additional branch; access other sources; or perform firmware, Pico, or hardware work without new explicit authorisation.
+- [archived local report](../experiments/T003-local-reproduction/LOCAL_REPRODUCTION_REPORT.md)
+- [local reproduction manifest](../experiments/T003-local-reproduction/local_reproduction_manifest.json)
 
-## 8. T001 Completion
+固定范围：
 
-T001 Gate B reconciliation, local Git bootstrap, the initial governance baseline commit, and the T001 closure record are complete. The closure commit identifier is reported in the Gate C execution report because a commit cannot record its own final hash.
+- classes: fridge、microwave
+- train: H1/H2/H4/H5/H6，共 679 matched events
+- test: H3，共 410 matched events
+- ordered numeric slots: 23，其中 unique feature names 为 22
+- Boolean inputs: 184
+- TM: 200 clauses、50 states、`T=20`、`s=6.0`、10 epochs
 
-## 9. T002 Verified Evidence
+10-epoch local result：
 
-- Han upstream snapshot commit: `8c5e90df34236ba0afcc4ec46ac083d829de4d51` on `main`.
-- `redd` submodule commit: `a621bbd6399e49c6798550618fe43b113149455b`.
-- Both the upstream worktree and submodule were clean after inventory.
-- The submodule contains 35 pre-processed CSV chunks for six houses and 1,508,578 data rows.
-- The main repository contains six `docs/redd` combined CSV files with the same per-house row totals.
-- The verified CSV content-tree fingerprint is `5e1ee53cdce2a5ad2d5007a08527bd1fc9486130d56dc008cf8c8ba8e336e73d`.
-- `docs/redd` matches lexicographic chunk concatenation followed by backward fill. For House 1, lexicographic order places `_10.csv` between `_1.csv` and `_2.csv`; natural numeric order does not match the combined file.
-- The submodule README describes the files as a pre-processed, synchronized REDD dataset. The chain to original raw REDD, timestamp semantics, preprocessing procedure, and original channel provenance remains `Unresolved`.
-- The limited source check supports a nominal 3-second appliance cadence, 15 W on/off threshold provenance, missing-data subsequence splitting, same-subsequence backward fill, and treatment of preprocessed CSVs as independent non-continuous long windows.
-- The source implementation can retain one short subsequence when no large split is found; this is implementation evidence only and does not prove the House 5 generation chain.
-- D003 is recorded in sequence-contract commit `5fb7f0e38c8e983969976dc4214038c77b5cafd9`.
-- Fifteen standard-library unit tests passed in final verification.
-- Fridge, microwave, and dish washer meet every frozen base-class minimum.
-- Electric furnace has 38 train/validation complete cycles and fold counts 10, 15, and 13, but only 1 complete cycle in the sealed candidate test; its candidate active duration is 824,943 nominal seconds.
-- Washer dryer was audited as the predeclared optional class and meets the same frozen standard.
-- The candidate manifest canonical SHA-256 is `480a738ad799860f6cdecbba9affb1d76c365a71468b276b8b0669ea55bba11a`.
-- D004 fallback decision commit: `c6ceb9a81da1fe24d79c935a0e9ffea3022fa0c2`.
-- Approved split commit: `3669e900cb5fa9c4c1890413c238ef693a163ada`.
-- Approved classes: fridge, microwave, dish washer, and washer dryer. All four pass the original frozen standard.
-- Approved successor manifest: `artifacts/manifests/protocol_r_approved_split.json` with canonical SHA-256 `b4509778dc15ccdf7a6ab48357cfcef90a28b58a5b12bbe57dfef0a590e24eb4`.
-- Candidate-test support labels were inspected during preflight. No model predictions or metrics were generated or viewed, and H2/H4 remain sealed for model development.
-- Missing-label eligibility, cross-house scoring, and macro aggregation must be frozen before the first model evaluation.
+- accuracy: `0.965853658537`
+- macro precision: `0.885833333333`
+- macro recall: `0.949340062112`
+- macro F1: `0.914297658863`
+- C model data: `9,058` bytes
+- live model vs training reload: 1 prediction mismatch
+- live model vs inference reload: 1 prediction mismatch
+- training reload vs inference reload: 0 prediction mismatches
+- two complete local runs produced identical compared evidence
 
-The external absolute snapshot path remains machine-specific and is not stored in tracked evidence.
+[早期 pre-reproduction record](reproduction/HAN_MINIMUM_REPRODUCTION_RESULT.md) 报告了 413 events、accuracy `97.58%`、约 `0.94` macro F1、`9,004` bytes 和 0 个 10-epoch reload mismatch。它与 later local archive 的 source revision 相同但结果不同，原因未解决。该文件保留为 contextual pre-reproduction evidence，不能替代或与 local archive 数字混用。
 
-## 10. T003 Static Source Audit
+T003 是 label-assisted、使用 future post-event context 的 Protocol H compatibility route。它不证明 aggregate-main-only、strictly causal、Protocol R、host-native、Pico、firmware、hardware 或 real-time performance。
 
-- Fixed Han snapshot: `main` commit `8c5e90df34236ba0afcc4ec46ac083d829de4d51`, source tree `5254fc117d8c6f392d6eee1ea7bacc41d2b2039c`.
-- Fixed REDD gitlink: `a621bbd6399e49c6798550618fe43b113149455b`.
-- The audit found multiple entry candidates but no uniquely provable canonical workflow.
-- The staged preparation route is label-assisted; the integrated Python routes reimplement it rather than calling the staged scripts.
-- The observed TM input has 23 ordered numeric slots, 22 unique feature names, and 184 Boolean inputs at 8 bits. Each clause can address positive and negated forms of those 184 inputs.
-- The current trainer defaults to two classes, while the committed embedded header declares four classes. Exact model provenance is unresolved.
-- The integrated firmware replays native float samples from SD, uses a different FIFO pairer and Boolean quantiser, and reads post-event samples from the file. It is not evidence of live causal NILM.
-- Missing generated headers/assets and the absent parity fixtures prevent a self-contained, proven Python-to-C-to-firmware chain at this snapshot.
-- Detailed findings: [`HAN_PIPELINE_SOURCE_AUDIT.md`](reproduction/HAN_PIPELINE_SOURCE_AUDIT.md).
-- Machine-readable inventory: [`han_pipeline_source_inventory.json`](../artifacts/manifests/han_pipeline_source_inventory.json).
-- During the static-audit phase, no Han program, notebook, training, inference, build, benchmark, firmware, or hardware work was executed. The later, separately authorised local reproduction is recorded in Section 12.
-- No reusable component or minimum reproduction contract has been approved.
+### E001 — Booleanisation Encoding A/B Probe
 
-## 11. Immediate Next Action
+- archive: [`experiments/E001-booleanization-ab-probe/`](../experiments/E001-booleanization-ab-probe/)
+- development houses only: H1/H3/H5/H6
+- H2/H4 not read
+- 5 paired seeds
+- same 184-bit budget
+- outcome: `inconclusive`
+- formal baseline/protocol changed: no
 
-Tianhang and ChatGPT review the archived T003 reproduction differences, reusable components, compatibility deviations, and PC/host/Pico boundary. Han binary remains the current baseline after the inconclusive E001 probe. T003 remains In progress; T004 or any later task requires separate explicit authorisation.
+## 7. Evidence integrity correction
 
-## 12. Archived Experiment Evidence
+2026-07-23 复核发现，T003/E001 archive 在归档 normalisation 后没有重算原 `SHA256SUMS.txt`，导致 legacy checksum list 与 admitted current bytes 不一致。
 
-- T003 archive: [`experiments/T003-local-reproduction/`](../experiments/T003-local-reproduction/).
-- T003 outcome: successful and repeatable two-class Han-compatible PC reproduction.
-- T003 limitation: differences from the earlier remote pre-reproduction remain unresolved.
-- E001 archive: [`experiments/E001-booleanization-ab-probe/`](../experiments/E001-booleanization-ab-probe/).
-- E001 outcome: `inconclusive`; the declared `promising` rule was not met.
-- Han binary remains the current baseline.
-- These archives do not start T004 and do not modify formal Protocol R.
+处理原则：
+
+- 不改写 archived report、code、metrics 或原 `SOURCE_FILE_SHA256SUMS.txt`；
+- 保留失效的原 `SHA256SUMS.txt` 作为归档过程记录；
+- 新增 current-byte correction manifest 和 human-readable erratum；
+- repository validator 必须实际核验 correction manifest，而不是只检查文件名。
+
+修复已完成，详情见 [Archive Checksum Correction](progress/2026-07-23-archive-checksum-correction.md)。该勘误不改变 T003/E001 的 metrics 或 evidence boundary，只纠正 archive integrity metadata。
+
+## 8. 正式基线与当前未决冲突
+
+正式 baseline 方向为：
+
+`REDD → event detection → event pairing → feature extraction → Booleanisation → one binary TM per appliance → unified evaluation`
+
+但它还不是可评分的 formal baseline，因为以下决定未冻结：
+
+- Protocol R 是 mixed-house within-population，还是 held-out-house primary evaluation；
+- H2/H4 最终属于 Protocol R 还是 Protocol X；
+- 当前数据的 row-position contract 如何取代不准确的 `raw-time` 表述；
+- missing-label 和 overlap eligibility；
+- cross-house / per-house aggregation；
+- simultaneous positives、all-negative 和 conflict resolution；
+- accuracy/confusion-matrix 的准确定义；
+- seeds、folds、uncertainty 和 weak-class support；
+- per-model / ensemble model bytes 与 latency；
+- final locked-test manifest/hash。
+
+完整审查见 [R002](reviews/R002-evaluation-protocol-consistency-review.md)。这些事项必须由 [T004 task specification](tasks/T004-protocol-r-evaluation-contract-and-test-freeze.md) 在明确授权后解决。
+
+## 9. Candidate-test 边界
+
+- H2/H4 对 ordinary development 继续 sealed。
+- 现有 candidate manifest 不是已经冻结的 final Protocol R test。
+- T003 曾在固定 Protocol H training split 中读取 H2/H4。该访问是 compatibility-only，不得把 T003 model、normalizer、threshold 或 learned state 迁入 clean Protocol R。
+- final report 不得声称 H2/H4 从未被项目人员接触。
+- 在统一 data access gate 和拒绝测试完成前，不运行正式 Protocol R baseline。
+
+## 10. GitHub 与仓库现实
+
+- canonical repository: `https://github.com/Bjsdho233/realtime_TM_NILM_individual_project`
+- canonical published state: GitHub default branch
+- project identity 不由本地文件夹名决定
+- open draft PR #2 保存 E002 legacy exploratory archive，尚未自动获得 formal status
+- branch 不是长期证据索引；durable identity 必须进入 `WORK_INDEX.md` 和 `EVIDENCE_INDEX.md`
+
+新对话必须实际运行 `git status`、检查 default branch，并执行：
+
+```bash
+python scripts/check_repo.py
+```
+
+本文件不保存容易立即过时的 ahead/behind 数字。若 Git、default branch 与本文冲突，先报告和修正，不能直接 push 或把旧 branch 当最新现实。
+
+## 11. 下一步安全动作
+
+可以在新授权下进行：
+
+- R-series read-only review；
+- 不访问 H2/H4 的隔离 E-series；若研究 provisional output semantics，必须在
+  frozen design 明示，它只能支撑 exploratory diagnostic/feasibility claim，
+  不能被写成 final output contract 或 formal Protocol R result；
+- repository tooling、documentation 和 evidence-index maintenance；
+- 旧代码的 read-only provenance review。
+
+不能自动进行：
+
+- T004/T005；
+- Protocol R training/scoring；
+- H2/H4 development access；
+- E-series → formal method promotion；
+- dependency/network expansion；
+- host-native、Pico、firmware 或 hardware work；
+- final test、Protocol D 或论文正式 claim。
+
+正式下一步建议是由 Tianhang 审查 R002，并明确授权 T004 解决 evaluation contract。T004 完成也不自动授权 T005。

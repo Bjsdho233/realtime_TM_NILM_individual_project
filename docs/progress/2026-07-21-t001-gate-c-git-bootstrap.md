@@ -7,7 +7,8 @@
 
 Tianhang authorised T001 Gate C on 2026-07-21 for local Git bootstrap, the approved governance baseline commit, T001 closure governance updates, the closure commit, and final verification.
 
-The verified project root is `D:\projects\tm-nilm-pico-research`, and the initial branch is `main`.
+The local project root was verified before bootstrap (private absolute path
+redacted); the initial branch was `main`.
 
 ## Initial Governance Baseline
 

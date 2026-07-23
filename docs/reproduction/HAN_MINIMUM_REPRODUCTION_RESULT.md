@@ -1,8 +1,20 @@
 # Han Minimum Reproduction Result
 
+> **Supersession note — 2026-07-23:** This file is the earlier contextual
+> pre-reproduction record. The authoritative current-project T003 local evidence
+> is the later, twice-repeated
+> [`LOCAL_REPRODUCTION_REPORT.md`](../../experiments/T003-local-reproduction/LOCAL_REPRODUCTION_REPORT.md):
+> 410 test events, accuracy `0.965854`, macro F1 `0.914298`, C model data
+> `9,058` bytes, and 1 live-versus-reload prediction mismatch. This earlier
+> record reports 413 events, accuracy `0.9758`, about `0.94` macro F1,
+> `9,004` bytes, and 0 mismatches. The difference is unresolved. Preserve both
+> records, but do not mix their values or use this file as the current T003
+> result.
+
 **Run date:** 2026-07-21  
 **Protocol:** Protocol H compatibility reproduction  
-**Status:** Minimum two-class PC staged pipeline reproduced locally
+**Status:** Contextual pre-reproduction; superseded as current evidence by the
+later archived local run
 
 ## Reproduction contract
 

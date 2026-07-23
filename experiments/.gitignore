@@ -1,0 +1,28 @@
+# Mutable E/T-series work products never enter the reviewed archive directly.
+**/work/
+**/cache/
+**/models/
+**/outputs/
+**/results/
+**/raw/
+**/predictions/
+**/logs/
+**/captures/
+**/checkpoints/
+**/exports/
+**/.venv/
+**/__pycache__/
+
+# Model artefacts remain local even if placed elsewhere by mistake.
+# Row-level tables are rejected by the archive validator rather than broad
+# filename ignores, so legitimate diagnostic source files remain trackable.
+**/*.pkl
+**/*.pickle
+**/*.joblib
+**/*.npy
+**/*.npz
+**/*.onnx
+**/*.tflite
+**/*.pt
+**/*.pth
+**/*.h5

@@ -1,12 +1,16 @@
 # T002 — REDD Inventory and Protocol R Preflight
 
+> **Historical closed-task record.** The authorised Phase B scope below records
+> what T002 was allowed to do in 2026-07-21; it is not current authority. Live
+> authority is only in [`docs/CURRENT_STATE.md`](../CURRENT_STATE.md).
+
 **Status:** Complete — 2026-07-21\
 **Owner:** Tianhang Tan\
 **Created:** 2026-07-21\
 **Last updated:** 2026-07-21\
 **Task type:** Data inventory and evaluation preflight\
 **Dependencies:** T001 completion, explicit revised T002 authorisation, an absent external clone target, and successful recursive acquisition of the authorised upstream snapshot\
-**Current authorisation:** Phase B sequence-time contract, label-assisted support audit, and Protocol R candidate manifest\
+**Historical authorised scope:** Phase B sequence-time contract, label-assisted support audit, and Protocol R candidate manifest\
 **Dependency state:** T001 completion: Satisfied. Revised T002 authorisation: Satisfied. External clone target absence: Verified before acquisition. Recursive upstream acquisition: Satisfied.
 
 ## Phase B Revision — 2026-07-21

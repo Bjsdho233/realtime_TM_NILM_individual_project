@@ -1,8 +1,20 @@
 # Han Pipeline Source Audit
 
-**Status:** T003 static source audit complete; T003 remains In progress\
+**Status:** T003 static source audit complete; later execution evidence is recorded separately\
 **Audit date:** 2026-07-21\
 **Evidence boundary:** Static inspection only. No upstream program, notebook, build, training, inference, test, or benchmark was executed.
+
+**Later status note — 2026-07-23:** This document remains the static-audit
+evidence for the state inspected on 2026-07-21. T003 subsequently executed the
+approved minimum Protocol H staged PC route. The authoritative current-project
+local evidence is the twice-repeated
+[`T003 archive`](../../experiments/T003-local-reproduction/LOCAL_REPRODUCTION_REPORT.md).
+The earlier
+[`HAN_MINIMUM_REPRODUCTION_RESULT.md`](HAN_MINIMUM_REPRODUCTION_RESULT.md) is
+contextual pre-reproduction evidence; its event counts, metrics, model bytes, and
+reload observation differ from the later archive for unresolved reasons. See
+[`docs/CURRENT_STATE.md`](../CURRENT_STATE.md). Neither execution record changes
+the static source findings below.
 
 ## 1. Fixed Snapshot
 
@@ -329,13 +341,25 @@ Protocol R remains unchanged. Its approved manifest is [`protocol_r_approved_spl
 - Exact ESP32 board/core/compiler/library versions and any Pico implementation.
 - Live sensor input, causal end-to-end operation, measured end-to-end latency, or sustained throughput.
 
-### Requires Tianhang/ChatGPT review
+### Review disposition after T003
 
-- Which candidate defines the minimum Protocol H reproduction contract.
-- Whether the duplicate 23-slot order is preserved for compatibility or corrected under an explicit deviation.
-- Which components, if any, are approved for clean-room reuse or migration.
-- Whether to reproduce Han’s two-class current trainer, the four-class committed header, or a separately declared compatibility class set.
-- The exact PC/host/Pico boundary for the next task.
+- **Resolved for Protocol H:** T003 selected and executed the staged two-class PC
+  route as the minimum compatibility contract. See the
+  [`authoritative local T003 archive`](../../experiments/T003-local-reproduction/LOCAL_REPRODUCTION_REPORT.md).
+- **Resolved for T003 only:** the duplicate 23-slot/184-bit order was preserved
+  exactly for compatibility. The formal Protocol R feature schema remains a
+  pending decision in [`CURRENT_STATE.md`](../CURRENT_STATE.md).
+- **Still pending:** no shared component has been approved for clean-room reuse or
+  migration merely because it was inspected here. T005 or another explicitly
+  authorised formal task must select and revalidate any reused component.
+- **Resolved by claim scope:** T003 reproduced Han's two-class fridge/microwave
+  trainer, not the unrelated four-class committed header. The future formal
+  baseline separately intends to use the D004 four-class candidate set with one
+  binary TM per appliance; T004 must still resolve its final protocol and output
+  semantics.
+- **Partly resolved:** T003 ended at the PC train/save/reload/export boundary.
+  Host-native parity and Pico feature-to-TM execution remain separate planned
+  tasks in [`WORK_INDEX.md`](../WORK_INDEX.md).
 
 No reusable file or component is approved by this audit alone.
 
@@ -366,4 +390,7 @@ No reusable file or component is approved by this audit alone.
 | POSIX entry replays a native-float file and invokes detector/features | `posix/main.c : main : lines 49-131 : f5c001015690bbaee65248bb8176597ff35f4761` | Wired/reachable in source; assets absent |
 | Browser code reads `docs/redd` combined CSVs | `docs/js/script.js : loadBuildingCSV/caller : lines 40-45 and 192-192 : f82b6d4d71c33f08e0512e73fda01e9122875e6a` | Wired/reachable website path only |
 
-The machine-readable companion is [`han_pipeline_source_inventory.json`](../../artifacts/manifests/han_pipeline_source_inventory.json). T003 remains **In progress** pending review; executable reproduction has not started.
+The machine-readable companion is
+[`han_pipeline_source_inventory.json`](../../artifacts/manifests/han_pipeline_source_inventory.json).
+At the time of this audit, T003 remained in progress and executable reproduction
+had not started; the later result linked above supersedes that status statement.

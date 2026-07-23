@@ -1,0 +1,35 @@
+# Stable text bytes keep byte-level design hashes reproducible across platforms.
+* text=auto
+*.md text eol=lf
+*.json text eol=lf
+*.toml text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.py text eol=lf
+*.sh text eol=lf
+*.ps1 text eol=lf
+*.csv text eol=lf
+*.txt text eol=lf
+*.log text eol=lf
+*.sha256 text eol=lf
+*.c text eol=lf
+*.h text eol=lf
+*.cc text eol=lf
+*.cpp text eol=lf
+*.hpp text eol=lf
+*.ino text eol=lf
+*.patch text eol=lf
+*.svg text eol=lf
+*.js text eol=lf
+*.ts text eol=lf
+
+# Generated or visual binary formats must not be newline-normalised.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
+*.pkl binary
+*.npy binary
+*.npz binary
+*.bin binary
+*.uf2 binary
