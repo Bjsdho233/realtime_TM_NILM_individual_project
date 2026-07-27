@@ -3,7 +3,7 @@
 
 ## Agent Brief
 
-- Applies to: T-series and E-series experiments
+- Applies to: T-series, E-series, and persistent R-series research work
 - Narrative language: Chinese
 - Machine-readable language: English keys/enums
 - Design schema: `schemas/e-series-design.schema.json`
@@ -28,6 +28,41 @@
 - 对下一步有什么影响。
 
 目标不是记录所有尝试，而是留下可以复现、评估、写入 dissertation 或用于 viva 的证据。
+
+### 1.1 Record-first workflow
+
+一项 T/E/R work 或 governance work 获得授权后，在其范围内新增用于保存上下文的文件和记录，不需要再次确认。记录工作本身不是额外研究范围，也不等于接受该方法。
+
+每次 evidence-producing run、源码核对或有判断价值的 review 完成后，应在以下两个时间点中较早者到来前写入仓库：
+
+- 开始下一个 materially different attempt；
+- 结束、暂停或交接当前工作。
+
+最小 checkpoint 应能恢复：
+
+- work ID、direct name 和本次具体问题；
+- data、code、configuration、environment 和 commit/provenance；
+- 实际 command、run status 和 deviation；
+- observation、metric 或 failure；
+- validity 和 outcome；
+- 当前 interpretation、limitation 和 next action。
+
+记录深度按情况区分：
+
+- `supported`、`not_supported`、`inconclusive`：按声明的 archive contract 保存；
+- bug、run interruption、inactive configuration、contamination：保存 concise debugging/invalid-run note 和必要 command，不包装成 research result；
+- near-duplicate hyperparameter runs：压缩为一个 tidy table、一个 search-family 说明和一个 decision；
+- 尚未形成结果的 literature/source review：保存 source、版本、路径、已确认事实、待核对项和当前推论。
+
+权限边界是：
+
+- 可以新增 task-scoped report、note、manifest、table、figure、progress record 和 append-only log；
+- 可以更新该 work 必需的 live lifecycle/index rows；
+- 不得借“记录”修改未授权的 shared code、protocol、accepted decision 或历史 conclusion；
+- 当前指令若明确要求修改某个现有代码或文档，它本身就是该范围的确认，不需要逐文件重复询问；
+- 历史证据有误时使用 erratum、supersession 或 linked correction，不静默覆盖。
+
+除非 Tianhang 明确要求 local-only，新的记录应在安全 checkpoint commit，并 push 到 task branch / Draft PR。合入 default branch、formal promotion 和 publication 仍是独立决定。重要信息不能只留在 chat、terminal、后台 workspace 或未推送的本地 worktree。
 
 ## 2. 研究主线
 
@@ -115,10 +150,13 @@ coordinating agent 先在：
 scaffold 必须严格解析本表的唯一 exact row 和 `WORK_INDEX.md` 的 exact identity；
 不能通过 prose、目录存在、branch 名或 substring match 推断授权。
 
-Tianhang 一条明确的 E-series 指令自动包含完成上述登记、design-only anchor 和
-registry anchor 所必需的本地 lifecycle commits。该隐含权限只覆盖 exact shared
-rows 和该 E 的 registered design inputs，不包括结果归档、其他文件、push、PR、
-publication 或任何 remote write。
+Tianhang 一条明确的 E-series 指令自动包含完成上述登记、design-only anchor、
+append-only execution/debug records、result archive、closure rows 和 GitHub
+checkpoint 所需的 task-scoped commits。该权限只覆盖 exact shared lifecycle/index
+rows、registered experiment root 和已声明的 evidence files；不得扫入其他 work，
+也不包括 default-branch merge、formal promotion、publication、sealed-test access
+或未授权的 shared implementation/protocol 修改。若 Tianhang 明确要求 local-only，
+则保留本地 checkpoint 并在 handoff 中说明尚未 push。
 
 ### 5.2 Scaffold
 
