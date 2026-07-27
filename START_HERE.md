@@ -7,7 +7,7 @@
 - Project: Real-Time TM-NILM Individual Project
 - Canonical repository: `Bjsdho233/realtime_TM_NILM_individual_project`
 - Authoritative published state: GitHub default branch
-- Live local authority: `docs/CURRENT_STATE.md`
+- Live authority: `docs/CURRENT_STATE.md`
 - Stable agent rules: `AGENTS.md`
 - Repository check: `python scripts/check_repo.py`
 - Formal evaluation: unresolved until T004
@@ -33,6 +33,10 @@
 - T002 — REDD Inventory and Protocol R Preflight：完成；数据、class support 和候选 manifest 已归档。
 - T003 — Han Two-Class PC Reproduction：完成其限定的 Protocol H PC reproduction 范围。
 - E001 — Booleanisation Encoding A/B Probe：已归档，结论为 `inconclusive`，没有晋升为正式方法。
+- E002 — TM Training Dynamics Probe：作为 `legacy exploratory evidence` 归档，没有 formal promotion。
+- R001–R003：三项 read-only review 均已完成，分别覆盖 legacy evidence/reuse、evaluation protocol consistency 和 regression TM mechanism。
+- TMU synthetic regression smoke 因原始运行输出不可恢复而分类为 `inconclusive`；它只保存环境与接口检查上下文，不是正式模型结论。
+- T003 first local attempt 在 Booleanisation 和训练前因 bug 中断，分类为 `invalid / debugging`，不是研究结论。
 
 这些结果不能互相替代：
 
@@ -139,8 +143,9 @@ check 可以在此之前运行。聊天、目录或 branch 名都不能替代这
 ```text
 Open the repository default branch and treat it as the canonical published
 state. Read AGENTS.md, START_HERE.md, docs/CURRENT_STATE.md,
-docs/WORK_INDEX.md, and PROJECT_PLAN.md. Run `python scripts/check_repo.py`
-if you have a local checkout. Do not modify anything yet.
+docs/WORK_INDEX.md, docs/EVIDENCE_INDEX.md, and PROJECT_PLAN.md. Run
+`python scripts/check_repo.py` if you have a local checkout. Do not modify
+anything yet.
 
 Report in Chinese:
 1. the project goal and baseline workflow;

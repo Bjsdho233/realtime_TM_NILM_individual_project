@@ -8,8 +8,13 @@
 |---|---|---|---|
 | T003 — Han Two-Class PC Reproduction | Protocol H compatibility | later local run 可重复；410 events，macro F1 `0.914298`；与 earlier pre-reproduction 的差异未解决 | [`T003-local-reproduction/`](T003-local-reproduction/) |
 | E001 — Booleanisation Encoding A/B Probe | exploratory, legacy label-assisted development data | `inconclusive`；没有达到 predeclared rule | [`E001-booleanization-ab-probe/`](E001-booleanization-ab-probe/) |
+| E002 — TM Training Dynamics Probe | `legacy exploratory evidence` | historical diagnostic archive；没有 formal promotion | [`E002-tm-training-dynamics-probe/`](E002-tm-training-dynamics-probe/) |
 
-两份 archive 都不会自动启动 T004，也不会改变 formal Protocol R。
+这些 archive 都不会自动启动 T004，也不会改变 formal Protocol R。
+
+E002 当前路径为 `experiments/E002-tm-training-dynamics-probe/`。其 legacy
+`results/` 和历史字节例外只按登记的固定 hash 接受；这是对既有 archive 的限定
+兼容，不放宽新 E-series 的现行目录、输出或 design-freeze 规则。
 
 ## Legacy archive checksum 勘误
 

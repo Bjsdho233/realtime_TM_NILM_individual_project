@@ -205,6 +205,7 @@ T003 是 label-assisted、使用 future post-event context 的 Protocol H compat
 - canonical published state: GitHub default branch
 - project identity 不由本地文件夹名决定
 - PR #2 已将 E002 legacy exploratory archive 合入 default branch；该合并不构成 formal promotion
+- 截至 2026-07-27，PR #6 已通过 merge commit `29e8ce17594ea49fede16b1d5c8c789ff8694c6b` 合入：归档 TMU smoke、T003 invalid run，并将 E002 迁移到当前路径；这些维护没有 promotion 任何实验结果，也没有授权 T004
 - branch 不是长期证据索引；durable identity 必须进入 `WORK_INDEX.md` 和 `EVIDENCE_INDEX.md`
 
 新对话必须实际运行 `git status`、检查 default branch，并执行：

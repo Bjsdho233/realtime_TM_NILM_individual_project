@@ -24,10 +24,16 @@
 - [T002 — REDD Inventory and Protocol R Preflight](docs/tasks/T002-redd-inventory-and-protocol-r-preflight.md)
 - [T003 — Han Two-Class PC Reproduction](experiments/T003-local-reproduction/LOCAL_REPRODUCTION_REPORT.md)
 - [E001 — Booleanisation Encoding A/B Probe](experiments/E001-booleanization-ab-probe/REPORT.md)
+- [E002 — TM Training Dynamics Probe](experiments/E002-tm-training-dynamics-probe/README.md)
+- [R001 — Legacy Evidence and Reuse Map](docs/reviews/R001-legacy-evidence-and-reuse-map.md)
+- [R002 — Evaluation Protocol Consistency Review](docs/reviews/R002-evaluation-protocol-consistency-review.md)
+- [R003 — Regression Tsetlin Machine Mechanism Review](docs/reviews/R003-regression-tsetlin-machine-mechanism-review.md)
 
 T003 的权威本地复现结果来自 later archived local run：410 个 H3 matched events，accuracy `0.965854`，macro F1 `0.914298`，C model data `9,058` bytes；10-epoch live model 与 reload 后仍有 1 个 prediction mismatch。早期 [Han Minimum Reproduction Result](docs/reproduction/HAN_MINIMUM_REPRODUCTION_RESULT.md) 中约 `0.94` macro F1、413 events 和 `9,004` bytes 属于 contextual pre-reproduction record，两组差异尚未解释，不能混用。
 
 E001 比较了相同 184-bit budget 下的 Han binary 与 `threshold_8`。mean paired macro-F1 delta 为 `+0.017179`，只在 5 个 seeds 中赢 3 次，没有达到预设规则，因此 outcome 为 `inconclusive`，没有改变 formal baseline。
+
+历史维护还保留了 [TMU synthetic regression smoke](docs/research_notes/2026-07-24-tmu-regression-smoke-test/README.md) 和 [T003 first local attempt](docs/research_notes/2026-07-21-t003-failed-pre-training-run.md)：前者因原始运行输出不可恢复而标为 `inconclusive`，后者因 pre-training bug 标为 `invalid / debugging`。两者都不是正式研究结论。
 
 目前还没有：
 
@@ -90,6 +96,7 @@ REDD
 | [EVIDENCE_INDEX.md](docs/EVIDENCE_INDEX.md) | Research Question、claim 与证据映射 |
 | [PROJECT_PLAN.md](PROJECT_PLAN.md) | 正式 T001–T013 路线和研究目标 |
 | [RESEARCH_EVIDENCE_STANDARD.md](docs/RESEARCH_EVIDENCE_STANDARD.md) | 实验设计、归档、negative result 和论文材料规范 |
+| [Experiment Archive](experiments/README.md) | 已归档 T/E work、证据边界和现行 E-series layout |
 | [R001 — Legacy Evidence and Reuse Map](docs/reviews/R001-legacy-evidence-and-reuse-map.md) | 旧仓库、branch、commit、文件和复用边界 |
 | [NILM Workflow Layer Map](docs/research_notes/2026-07-23-nilm-workflow-layer-map.md) | 从 data 到 Pico 的逐层研究脉络 |
 
