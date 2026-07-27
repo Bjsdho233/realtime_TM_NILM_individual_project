@@ -17,6 +17,19 @@ temporary permissions, and next actions belong only in
 - Direct governance maintenance requested by Tianhang may update governance files
   without creating a research task ID. It cannot alter an accepted protocol
   decision without a corresponding decision record.
+- Once a T/E/R or governance scope is authorised, creating new task-scoped files
+  inside its authorised mutable/output boundary does not require a second
+  permission. This includes new source, configuration, tests, documents, research
+  notes, review reports, manifests, run/debug records, aggregate tables or figures,
+  progress records, and the exact lifecycle/index rows required by this file.
+- This record-first authority does not permit an unrequested change to existing
+  shared code, protocols, accepted decisions, or historical conclusions. An
+  instruction that explicitly requests such a change is the confirmation for that
+  named scope; do not ask again for every file edit. Live status/index maintenance
+  and append-only experiment logs remain permitted within the authorised work.
+- New records preserve context; they do not by themselves approve a method,
+  promote exploratory evidence, change the formal baseline, or establish a
+  dissertation claim.
 - Conversation summaries and reported results are context, not local execution
   evidence. The inspected worktree and locally verified outputs are authoritative.
 - Preserve historical records as historical records; correct them through a
@@ -212,20 +225,23 @@ dissertation-evidence rules are in
   experiment-local environment from an already reviewed lock file. Installing a
   new or unpinned package, modifying a shared environment, or enabling shell
   network access requires explicit authority.
-- Do not commit, push, modify remotes, open pull requests, publish, access a new
-  external source, or operate hardware unless the current instruction includes
-  that action, except for the narrowly scoped local E-series lifecycle commits
-  below.
-- A clear instruction authorising a new E-series automatically includes the local
-  commits strictly required to register its identity, create its design-only
-  anchor, and record that anchor in the active registry. Those commits may
-  contain only the exact shared registry/index rows and registered experiment
-  design inputs required by this lifecycle; they must not sweep in unrelated
-  work, results, or another track. This exception does not authorise executing
-  beyond the E scope, archiving results, pushing, opening a pull request,
-  publication, remote mutation, or any other external action.
-- One instruction may additionally authorise an E-series and specified
-  archive/Git actions together; unstated external actions are not implied.
+- An authorised T/E/R or direct-governance instruction includes the task-scoped
+  Git commits and GitHub checkpoint needed to preserve newly created task files and
+  permitted lifecycle/index updates. Unless Tianhang requests local-only work,
+  push those records to a non-default branch and open or update a draft pull
+  request at a safe checkpoint. Never sweep in unrelated work.
+- This implicit checkpoint authority does not permit merging into the default
+  branch, changing remotes, publishing outside this repository, accessing a new
+  external source, operating hardware, or expanding the authorised research
+  scope. Those actions still require explicit authority.
+- A clear instruction authorising a new E-series includes its exact registration,
+  design-only anchor, append-only run/debug records, result archive, required
+  lifecycle/index updates, and the task-scoped commits/checkpoint above. It does
+  not authorise another experiment, formal promotion, sealed-test access, or an
+  unrequested modification to shared implementation or protocol files.
+- Existing experiment records are append-only after execution begins. Correct
+  historical evidence through an erratum, supersession note, or a new linked
+  record; do not silently rewrite it.
 - Before an authorised archive or publication, inspect status, provenance,
   credentials, absolute paths, and unexpectedly large files.
 - Copy rather than move evidence until the archive and checksums are verified.
@@ -272,6 +288,15 @@ dissertation-evidence rules are in
   promotional prose, and unrelated rewrites.
 - Preserve parameters, measurements, limitations, and uncertainty. Do not rewrite
   a mixed or negative result as a positive claim.
+- Do not end a work session or start a materially different attempt while a
+  meaningful observation exists only in chat, terminal output, or an untracked
+  workspace. Record the smallest recoverable checkpoint first. Valid positive,
+  negative, and inconclusive results receive their declared archive; bugs,
+  interrupted runs, and invalid configurations receive a concise debugging or
+  invalid-run record so they are not later mistaken for missing work or evidence.
+- Near-duplicate parameter runs may be compressed into one tidy table and one
+  interpretation; record the search family and decision rather than producing
+  repetitive prose.
 - `PROJECT_PLAN.md` defines direction, not live permission.
   `docs/WORK_INDEX.md` is the durable ID-and-name index.
 - `docs/EVIDENCE_INDEX.md` maps research questions and claims to exact evidence.
