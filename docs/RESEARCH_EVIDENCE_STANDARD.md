@@ -31,7 +31,7 @@
 
 ### 1.1 Record-first workflow
 
-一项 T/E/R work 或 governance work 获得授权后，在其范围内新增用于保存上下文的文件和记录，不需要再次确认。记录工作本身不是额外研究范围，也不等于接受该方法。
+一项 T/E/R work 或 governance work 获得授权后，在其 mutable/output boundary 内新增用于实现该 work 或保存上下文的 source、configuration、test、document 和 evidence file，不需要再次确认。记录工作本身不是额外研究范围，也不等于接受该方法。
 
 每次 evidence-producing run、源码核对或有判断价值的 review 完成后，应在以下两个时间点中较早者到来前写入仓库：
 
@@ -56,7 +56,7 @@
 
 权限边界是：
 
-- 可以新增 task-scoped report、note、manifest、table、figure、progress record 和 append-only log；
+- 可以在 authorised root 新增 task-scoped source、configuration、test、report、note、manifest、table、figure、progress record 和 append-only log；
 - 可以更新该 work 必需的 live lifecycle/index rows；
 - 不得借“记录”修改未授权的 shared code、protocol、accepted decision 或历史 conclusion；
 - 当前指令若明确要求修改某个现有代码或文档，它本身就是该范围的确认，不需要逐文件重复询问；
