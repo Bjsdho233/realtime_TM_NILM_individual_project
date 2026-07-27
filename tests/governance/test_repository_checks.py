@@ -7,6 +7,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 
 ROOT = pathlib.Path(__file__).parents[2]
@@ -83,6 +84,33 @@ class MarkdownLinkTests(unittest.TestCase):
             (root / "note.md").write_text("[missing](absent.md)\n", encoding="utf-8")
             with self.assertRaises(governance.GovernanceError):
                 governance.validate_markdown_links(root, [pathlib.Path("note.md")])
+
+
+class TextHygieneTests(unittest.TestCase):
+    def test_hash_pinned_legacy_file_may_omit_final_newline(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = pathlib.Path(temporary)
+            relative = pathlib.Path("experiments/E002-test/legacy.json")
+            path = root / relative
+            path.parent.mkdir(parents=True)
+            content = b'{"legacy": true}'
+            path.write_bytes(content)
+            expected = hashlib.sha256(content).hexdigest()
+            with mock.patch.dict(
+                governance.LEGACY_MISSING_FINAL_NEWLINE_SHA256,
+                {relative.as_posix(): expected},
+                clear=True,
+            ):
+                result = governance.validate_text_hygiene(root, [relative])
+        self.assertEqual(result.name, "Text hygiene")
+
+    def test_unpinned_file_without_final_newline_fails(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = pathlib.Path(temporary)
+            relative = pathlib.Path("result.json")
+            (root / relative).write_text("{}", encoding="utf-8")
+            with self.assertRaises(governance.GovernanceError):
+                governance.validate_text_hygiene(root, [relative])
 
 
 class ArchiveSafetyTests(unittest.TestCase):

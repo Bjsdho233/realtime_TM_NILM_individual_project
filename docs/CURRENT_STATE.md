@@ -83,7 +83,7 @@ T003 的“complete”只覆盖 declared PC Protocol H scope。它没有完成 h
 
 E001 的 Han binary mean macro F1 为 `0.784087`，`threshold_8` 为 `0.801266`，mean paired delta 为 `+0.017179`，wins 为 3/5。它没有达到预设 `promising` rule，因此 Han binary 仍只是 current compatibility baseline，不是 formal Protocol R baseline。
 
-E002 对 training order、`T=10`、hard-negative feedback 和 class balancing 做了 historical exploratory probe。它在合并后仍与正式 Protocol R 分离；详情见 [R001 — Legacy Evidence and Reuse Map](reviews/R001-legacy-evidence-and-reuse-map.md)。
+E002 对 training order、`T=10`、hard-negative feedback 和 class balancing 做了 historical exploratory probe。它在合并后仍与正式 Protocol R 分离；当前 archive 路径为 [`experiments/E002-tm-training-dynamics-probe/`](../experiments/E002-tm-training-dynamics-probe/README.md)，路径迁移记录见 [E002 archive path migration](progress/2026-07-27-e002-archive-path-migration.md)，历史来源见 [R001 — Legacy Evidence and Reuse Map](reviews/R001-legacy-evidence-and-reuse-map.md)。
 
 ## 5. R-series 状态
 

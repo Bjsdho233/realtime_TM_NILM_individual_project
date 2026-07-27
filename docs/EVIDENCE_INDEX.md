@@ -32,7 +32,7 @@
 | Claim | Evidence | Status | Permitted interpretation | Limitation |
 |---|---|---|---|---|
 | `threshold_8` is a reliable replacement for Han binary | [E001 report](../experiments/E001-booleanization-ab-probe/REPORT.md) | `inconclusive` | mean delta 为正，但未达到 predeclared rule；不能 promotion | legacy label-assisted data，5 seeds，H2/H4 未读 |
-| Training order may affect Han TM performance | [E002 fixed archive](https://github.com/Bjsdho233/realtime_TM_NILM_individual_project/blob/e7277cc4a0326350f51fdfc5c17b8777572deddc/experiments/2026-07-22-tm-training-dynamics-probe/README.md), [R001](reviews/R001-legacy-evidence-and-reuse-map.md) | Legacy exploratory evidence | 可作为 formal E/T hypothesis 的来源 | H3 repeatedly viewed；未在 current formal protocol 下确认 |
+| Training order may affect Han TM performance | [E002 current archive](../experiments/E002-tm-training-dynamics-probe/README.md), [fixed source commit](https://github.com/Bjsdho233/realtime_TM_NILM_individual_project/blob/e7277cc4a0326350f51fdfc5c17b8777572deddc/experiments/2026-07-22-tm-training-dynamics-probe/README.md), [R001](reviews/R001-legacy-evidence-and-reuse-map.md) | Legacy exploratory evidence | 可作为 formal E/T hypothesis 的来源 | H3 repeatedly viewed；未在 current formal protocol 下确认 |
 | Historical bounded pre/post context is promising | [R001](reviews/R001-legacy-evidence-and-reuse-map.md), [workflow map](research_notes/2026-07-23-nilm-workflow-layer-map.md) | Historical mechanism evidence | 可支持提出新的 controlled experiment | 旧 task/split，不是 current Protocol R |
 | Complex static FSM improves final system | Historical Round 10I locator in R001 | Historical negative evidence | 现有旧结果不支持用复杂 FSM 修补 upstream errors | 尚未在 current baseline 重验 |
 

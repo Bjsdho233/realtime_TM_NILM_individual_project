@@ -34,7 +34,7 @@ T003 的早期 [pre-reproduction record](reproduction/HAN_MINIMUM_REPRODUCTION_R
 | ID and direct name | Layer | Status | Outcome / evidence |
 |---|---|---|---|
 | E001 — Booleanisation Encoding A/B Probe | Booleanisation | Archived | [`inconclusive` report](../experiments/E001-booleanization-ab-probe/REPORT.md)；没有 promotion |
-| E002 — TM Training Dynamics Probe | TM training and sampling | Legacy archive fixed at `e7277cc4a0326350f51fdfc5c17b8777572deddc` | exploratory H3 result；不得作为 locked dissertation-test evidence；见 [R001](reviews/R001-legacy-evidence-and-reuse-map.md) |
+| E002 — TM Training Dynamics Probe | TM training and sampling | Legacy archive fixed at `e7277cc4a0326350f51fdfc5c17b8777572deddc` | exploratory H3 result；不得作为 locked dissertation-test evidence；见 [current archive](../experiments/E002-tm-training-dynamics-probe/README.md) 和 [R001](reviews/R001-legacy-evidence-and-reuse-map.md) |
 
 新的 E-series 必须由 coordinating agent 串行分配下一个空闲 ID、direct name 和完整 mutable root，再调用 scaffold。experiment worker 不能自行占号。
 
