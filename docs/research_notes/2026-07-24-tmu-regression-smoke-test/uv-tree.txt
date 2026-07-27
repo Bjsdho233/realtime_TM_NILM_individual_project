@@ -1,0 +1,26 @@
+tmu-bootstrap v0.1.0
+├── numpy v1.26.4
+└── tmu v0.8.3
+    ├── cffi v2.1.0
+    │   └── pycparser v3.0
+    ├── numpy v1.26.4
+    ├── pandas v3.0.5
+    │   ├── numpy v1.26.4
+    │   ├── python-dateutil v2.9.0.post0
+    │   │   └── six v1.17.0
+    │   └── tzdata v2026.3
+    ├── requests v2.34.2
+    │   ├── certifi v2026.7.22
+    │   ├── charset-normalizer v3.4.9
+    │   ├── idna v3.18
+    │   └── urllib3 v2.7.0
+    ├── scikit-learn v1.9.0
+    │   ├── joblib v1.5.3
+    │   ├── narwhals v2.24.0
+    │   ├── numpy v1.26.4
+    │   ├── scipy v1.17.1
+    │   │   └── numpy v1.26.4
+    │   └── threadpoolctl v3.6.0
+    ├── tqdm v4.69.0
+    │   └── colorama v0.4.6
+    └── xxhash v3.8.1

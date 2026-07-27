@@ -44,6 +44,13 @@
 | Pico inference latency and parity | No evidence yet | Missing | 不得声称 | T007 尚未完成 |
 | End-to-end real-time NILM | [Han source audit](reproduction/HAN_PIPELINE_SOURCE_AUDIT.md) | Not established | 可说明 current upstream route 包含 SD replay 和 future context | TM compute latency 不能替代 algorithmic decision latency |
 
+## Feasibility and mechanism evidence
+
+| Claim | Evidence | Status | Permitted interpretation | Limitation |
+|---|---|---|---|---|
+| Reviewed rTM papers and pinned public implementations define materially different target mapping, feedback, clipping and weighting behaviour | [R003 — Regression Tsetlin Machine Mechanism Review](reviews/R003-regression-tsetlin-machine-mechanism-review.md) | Literature and pinned-source review complete | 可用于界定后续 source-parity 与 mechanism checks；不能把某一实现行为泛化成所有 rTM | 没有训练、local wheel parity、REDD 或 NILM score |
+| A reproducible Windows CPU TMU regression smoke configuration was prepared | [Historical smoke archive](research_notes/2026-07-24-tmu-regression-smoke-test/README.md) | `inconclusive` | 可复用 exact script、uv lock 和环境清单设计新的 authorised smoke run | 原始 stdout/result 未保存；reported pass 不是 authoritative local execution evidence；本轮未重跑 |
+
 ## Protocol / evidence boundary map
 
 | Evidence | Protocol / scope | Formal dissertation use |

@@ -44,6 +44,7 @@ T003 的早期 [pre-reproduction record](reproduction/HAN_MINIMUM_REPRODUCTION_R
 |---|---|---|---|
 | R001 — Legacy Evidence and Reuse Map | 旧 repo、branch、commit、file 和 reuse boundary | Complete | [Review](reviews/R001-legacy-evidence-and-reuse-map.md) |
 | R002 — Evaluation Protocol Consistency Review | Protocol R/X、row-position 和 binary-output semantics | Complete | [Review](reviews/R002-evaluation-protocol-consistency-review.md) |
+| R003 — Regression Tsetlin Machine Mechanism Review | vanilla/weighted rTM 机制、固定公开源码差异、NILM 假设和验证边界 | Complete | [Review](reviews/R003-regression-tsetlin-machine-mechanism-review.md) |
 
 `R-series review` 与 `Protocol R` 是两件不同的事。前者是只读工作轨道，后者是正式研究 evaluation protocol。
 

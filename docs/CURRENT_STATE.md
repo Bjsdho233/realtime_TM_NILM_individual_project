@@ -3,7 +3,7 @@
 ## Agent Brief
 
 - Status: current governance snapshot
-- Last updated: 2026-07-23
+- Last updated: 2026-07-27
 - Current formal state: Protocol H PC scope archived; primary evaluation contract unresolved; no formal Protocol R baseline
 - Active T-series: none
 - Active E-series: see the exact registry below
@@ -79,11 +79,11 @@ T003 的“complete”只覆盖 declared PC Protocol H scope。它没有完成 h
 | ID and direct name | Status | Outcome and boundary |
 |---|---|---|
 | E001 — Booleanisation Encoding A/B Probe | Archived — 2026-07-22 | `inconclusive`; legacy label-assisted development data；H2/H4 未读；没有 promotion |
-| E002 — TM Training Dynamics Probe | Legacy archive on open draft PR #2 | exploratory H3 evidence；H3 被反复查看，不能作为 locked dissertation-test result；尚未并入 default branch |
+| E002 — TM Training Dynamics Probe | Legacy archive merged via PR #2 — 2026-07-27 | exploratory H3 evidence；H3 被反复查看，不能作为 locked dissertation-test result；没有 formal promotion |
 
 E001 的 Han binary mean macro F1 为 `0.784087`，`threshold_8` 为 `0.801266`，mean paired delta 为 `+0.017179`，wins 为 3/5。它没有达到预设 `promising` rule，因此 Han binary 仍只是 current compatibility baseline，不是 formal Protocol R baseline。
 
-E002 对 training order、`T=10`、hard-negative feedback 和 class balancing 做了 historical exploratory probe。它必须在合并前继续保持与正式 Protocol R 分离；详情见 [R001 — Legacy Evidence and Reuse Map](reviews/R001-legacy-evidence-and-reuse-map.md)。
+E002 对 training order、`T=10`、hard-negative feedback 和 class balancing 做了 historical exploratory probe。它在合并后仍与正式 Protocol R 分离；详情见 [R001 — Legacy Evidence and Reuse Map](reviews/R001-legacy-evidence-and-reuse-map.md)。
 
 ## 5. R-series 状态
 
@@ -91,8 +91,15 @@ E002 对 training order、`T=10`、hard-negative feedback 和 class balancing �
 |---|---|---|
 | R001 — Legacy Evidence and Reuse Map | Complete — 2026-07-23 | 按研究问题定位旧 repo、fixed commit、branch、file 和 reuse boundary |
 | R002 — Evaluation Protocol Consistency Review | Complete — 2026-07-23 | 发现 mixed-house/held-out-house 与 raw-time/row-position 两组冲突 |
+| R003 — Regression Tsetlin Machine Mechanism Review | Complete — 2026-07-24 | 综述 vanilla/weighted rTM 机制、固定公开源码差异、NILM 假设与后续验证边界；没有训练或 REDD 访问 |
 
 R-series 只审查已有材料，不产生新的 model result。
+
+### 5.1 Historical archive maintenance — 2026-07-27
+
+- [TMU regression synthetic smoke archive](research_notes/2026-07-24-tmu-regression-smoke-test/README.md) 保存了 Windows CPU bootstrap 的脚本、uv 锁和环境清单。因原始 stdout/result 未保存且本轮未重跑，证据分类为 `inconclusive`，不能升级为正式接口或模型结论。
+- [T003 first local attempt](research_notes/2026-07-21-t003-failed-pre-training-run.md) 在 Booleanisation 和训练前因 diagnostic harness 的 missing-file handling bug 中断，分类为 `invalid` / debugging，不是研究结论。
+- 后续完整 T003 两次复现、E001、E002 和 R003 已在 default branch 有 durable record；本次没有重复归档其受限输入、预测、模型或大型本地输出。
 
 ## 6. 已核验的项目证据
 
@@ -197,7 +204,7 @@ T003 是 label-assisted、使用 future post-event context 的 Protocol H compat
 - canonical repository: `https://github.com/Bjsdho233/realtime_TM_NILM_individual_project`
 - canonical published state: GitHub default branch
 - project identity 不由本地文件夹名决定
-- open draft PR #2 保存 E002 legacy exploratory archive，尚未自动获得 formal status
+- PR #2 已将 E002 legacy exploratory archive 合入 default branch；该合并不构成 formal promotion
 - branch 不是长期证据索引；durable identity 必须进入 `WORK_INDEX.md` 和 `EVIDENCE_INDEX.md`
 
 新对话必须实际运行 `git status`、检查 default branch，并执行：
