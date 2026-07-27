@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "archive_id": "2026-07-22-tm-training-dynamics-probe",
+  "status": "exploratory_only",
+  "formal_model_selection": false,
+  "run_date": "2026-07-22",
+  "source": {
+    "han_upstream_commit": "8c5e90df34236ba0afcc4ec46ac083d829de4d51",
+    "redd_submodule_commit": "a621bbd6399e49c6798550618fe43b113149455b",
+    "upstream_modified": false
+  },
+  "input": {
+    "kind": "label-assisted matched-transition CSV outputs from the isolated minimum reproduction",
+    "files_included_in_archive": false,
+    "matched_file_count": 16,
+    "matched_file_set_fingerprint_sha256": "3f01651fa952c013e0f9c34fa4e8039666786c88e9b5331c5d2bd6c5d39c49e9",
+    "fingerprint_method": "Sort the 16 basenames, compute sha256sum for each file, then sha256sum the resulting checksum lines.",
+    "classes": [
+      "fridge",
+      "microwave",
+      "dish washer",
+      "electric furnace"
+    ],
+    "train_houses": [1, 2, 4, 5, 6],
+    "evaluation_houses": [3],
+    "train_class_counts": [533, 148, 84, 92],
+    "evaluation_class_counts": [371, 42, 13, 74],
+    "ordered_numeric_slots": 23,
+    "boolean_inputs": 184
+  },
+  "tm": {
+    "clauses": 200,
+    "states": 50,
+    "threshold_T": 20,
+    "specificity_s": 6.0,
+    "epochs": 10,
+    "confirmation_seeds": [0, 1, 2, 3, 4]
+  },
+  "interventions": [
+    "threshold T=10",
+    "per-epoch unique shuffle",
+    "50% and 100% hard-negative class selection",
+    "uniform class sampling",
+    "partial class balancing with P(c) proportional to n_c ** alpha",
+    "coverage-preserving partial class balancing"
+  ],
+  "key_results": {
+    "blocked_baseline": {
+      "seeds": 5,
+      "macro_f1_mean": 0.4809364976701557,
+      "macro_f1_sample_std": 0.020975486983897423,
+      "accuracy_mean": 0.7868
+    },
+    "unique_shuffle": {
+      "seeds": 5,
+      "macro_f1_mean": 0.5287865648469413,
+      "macro_f1_sample_std": 0.009714109551631076,
+      "accuracy_mean": 0.764,
+      "paired_macro_f1_delta_mean": 0.047850067176785596,
+      "paired_wins": 5
+    },
+    "hard_negative_100": {
+      "seeds": 5,
+      "macro_f1_mean": 0.4920313169278373,
+      "macro_f1_sample_std": 0.011053236371294316,
+      "accuracy_mean": 0.7844,
+      "paired_macro_f1_delta_mean": 0.01109481925768152,
+      "paired_wins": 3
+    },
+    "coverage_balance_alpha_0_5": {
+      "seeds": 5,
+      "macro_f1_mean": 0.5242972255113381,
+      "macro_f1_sample_std": 0.013440545642446214,
+      "accuracy_mean": 0.7408,
+      "dishwasher_f1_mean": 0.1121657471598165
+    },
+    "threshold_T_10_screen": {
+      "seeds": 3,
+      "macro_f1_mean": 0.4391964495697181,
+      "corresponding_T_20_macro_f1_mean": 0.46848454924957333
+    }
+  },
+  "final_interpretation": {
+    "supported_control_change": "Shuffle every original training event once per epoch.",
+    "not_supported_by_current_probe": [
+      "T=10 as a replacement for T=20",
+      "hard-negative feedback as a reliable improvement",
+      "global class balancing as a default improvement"
+    ],
+    "formal_status": "The evaluation house was inspected repeatedly, so these results are diagnostic only and are ineligible as locked Protocol R test evidence."
+  }
+}
