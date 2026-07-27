@@ -17,11 +17,11 @@ temporary permissions, and next actions belong only in
 - Direct governance maintenance requested by Tianhang may update governance files
   without creating a research task ID. It cannot alter an accepted protocol
   decision without a corresponding decision record.
-- Once a T/E/R or governance scope is authorised, creating new task-scoped records
-  needed to preserve that work does not require a second permission. This includes
-  new research notes, review reports, manifests, run/debug records, aggregate
-  tables or figures, progress records, and the exact lifecycle/index rows required
-  by this file.
+- Once a T/E/R or governance scope is authorised, creating new task-scoped files
+  inside its authorised mutable/output boundary does not require a second
+  permission. This includes new source, configuration, tests, documents, research
+  notes, review reports, manifests, run/debug records, aggregate tables or figures,
+  progress records, and the exact lifecycle/index rows required by this file.
 - This record-first authority does not permit an unrequested change to existing
   shared code, protocols, accepted decisions, or historical conclusions. An
   instruction that explicitly requests such a change is the confirmation for that
@@ -226,7 +226,7 @@ dissertation-evidence rules are in
   new or unpinned package, modifying a shared environment, or enabling shell
   network access requires explicit authority.
 - An authorised T/E/R or direct-governance instruction includes the task-scoped
-  Git commits and GitHub checkpoint needed to preserve newly created records and
+  Git commits and GitHub checkpoint needed to preserve newly created task files and
   permitted lifecycle/index updates. Unless Tianhang requests local-only work,
   push those records to a non-default branch and open or update a draft pull
   request at a safe checkpoint. Never sweep in unrelated work.
