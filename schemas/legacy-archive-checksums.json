@@ -3,6 +3,22 @@
   "status": "checksum_correction",
   "reason": "The in-archive SHA256SUMS.txt files describe pre-normalisation bytes and do not validate the admitted Git blobs. This append-only manifest records the currently admitted bytes without rewriting historical archives.",
   "archives": {
+    "E002-tm-training-dynamics-probe": {
+      "files": {
+        "CHECKSUMS.sha256": "38e4e1d2275f6b490684c3659b0a519931ee8cc80032d791ae2b6734ab2a3a20",
+        "README.md": "b2d9b4373e29717e823bb08b4615c2d6b2665a7b59cb74b8110284e65e91648c",
+        "experiment_manifest.json": "2c2e52a790c88eeee43ec169c05a8bbb00f0f1ba66f0bc1e7663683fb549eacc",
+        "results/tm_balance_coverage_results.json": "e8437b08cc046653adc1341998ec7bc22738c8ceefd5f6d231c91dd59769499e",
+        "results/tm_balance_sweep_results.json": "e8f41b7d32cc2edc0f636d8666a7191d3839a34baa8833eaaa8a420c5f30b52a",
+        "results/tm_mechanism_confirmation_results.json": "a0d7e4bad4db7b307b10a75809ce106ae24964cfae95e10a4eab490e83aa47cc",
+        "results/tm_mechanism_followup_results.json": "d93565efba0b2159e2ebdb7db92716d033e5796dbc9b9393b43126b5dbe56173",
+        "results/tm_mechanism_probe_results.json": "e91412ea4ed4ee775d607ce3390fa2cd9535a78c3d1d18716a52801f42736829",
+        "scripts/tm_balance_sweep.py": "17e99c1f04d56cc1b7ac70e11c980fdb6a6e48b095f9b8ac2bb5bc133fd5c35f",
+        "scripts/tm_mechanism_confirm.py": "5e244e6b4fd40373b2ddbc0d41e7acffe576ae56ae7670da476972f64d750498",
+        "scripts/tm_mechanism_followup.py": "35aea5f1d7ea910ee38e9fd47dbeb01f82aa68a4fd29458c6e9d4cc8fd74a97b",
+        "scripts/tm_mechanism_probe.py": "88425444981d1a96f46cefe0432e1b4a9cd362df934f389da9cba8cd7fe61455"
+      }
+    },
     "E001-booleanization-ab-probe": {
       "files": {
         "REPORT.md": "cee293d25c3f7e27f1ab1c46ab0dadc4fdbc81327bcf1d8495690bc9b70fc41a",

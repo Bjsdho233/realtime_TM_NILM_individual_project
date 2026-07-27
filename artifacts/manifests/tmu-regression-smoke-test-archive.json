@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "archive_id": "2026-07-24-tmu-regression-smoke-test",
+  "archive_date": "2026-07-27",
+  "classification": "inconclusive",
+  "formal_experiment": false,
+  "formal_method_changed": false,
+  "data": {
+    "kind": "deterministic synthetic regression",
+    "redd_accessed": false,
+    "samples": 160,
+    "continuous_features": 3,
+    "train_samples": 120,
+    "test_samples": 40,
+    "binarizer_fit_scope": "training split only"
+  },
+  "environment": {
+    "manager": "uv",
+    "python_pin": "3.11",
+    "platform": "native Windows CPU",
+    "direct_dependencies": {
+      "numpy": "1.26.4",
+      "tmu": "0.8.3"
+    },
+    "installation_source": "public PyPI registry as recorded in uv.lock",
+    "virtual_environment_archived": false
+  },
+  "models": [
+    {
+      "name": "vanilla_rtm",
+      "weighted_clauses": false
+    },
+    {
+      "name": "weighted_rtm",
+      "weighted_clauses": true
+    }
+  ],
+  "shared_model_parameters": {
+    "number_of_clauses": 64,
+    "T": 40,
+    "s": 3.0,
+    "platform": "CPU",
+    "max_included_literals": 16,
+    "seed": 20260724,
+    "fit_calls": 3
+  },
+  "execution_evidence": {
+    "script_recovered": true,
+    "dependency_lock_recovered": true,
+    "captured_stdout_recovered": false,
+    "structured_result_recovered": false,
+    "prediction_array_recovered": false,
+    "rerun_during_archive": false,
+    "reported_session_outcome": "pass",
+    "admissible_outcome": "inconclusive",
+    "reason": "The reported session outcome is not authoritative local execution evidence and no raw stdout or result file was recoverable."
+  },
+  "metrics": {
+    "prediction_shape": "not recoverable",
+    "prediction_min": "not recoverable",
+    "prediction_max": "not recoverable",
+    "all_finite": "not recoverable",
+    "unique_predictions": "not recoverable",
+    "test_mae": "not recoverable",
+    "mean_baseline_mae": "not recoverable",
+    "runtime": "not recoverable"
+  },
+  "archive_path": "docs/research_notes/2026-07-24-tmu-regression-smoke-test/",
+  "limitations": [
+    "This is environment/interface feasibility material, not NILM evidence.",
+    "No REDD data was used.",
+    "No formal method or protocol decision is supported.",
+    "A later rerun would be new evidence and requires separate authorisation and recording."
+  ]
+}

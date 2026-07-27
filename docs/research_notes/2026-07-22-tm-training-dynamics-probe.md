@@ -2,7 +2,7 @@
 
 An unnumbered exploratory probe was run on 2026-07-22 after the minimum Han reproduction. It examined training order, class sampling, the TM threshold `T`, and hard-negative multiclass feedback while holding the matched events, 23-slot feature vector, 184-bit Booleanisation, model shape, and inference representation fixed.
 
-The archived evidence is in [`experiments/2026-07-22-tm-training-dynamics-probe`](../../experiments/2026-07-22-tm-training-dynamics-probe/README.md).
+The archived evidence is in [`experiments/E002-tm-training-dynamics-probe`](../../experiments/E002-tm-training-dynamics-probe/README.md).
 
 The probe's main finding is that the original appliance-blocked online training order should not remain the comparison baseline. Shuffling every original event once per epoch increased five-seed H3 Macro F1 from `0.4809 +/- 0.0210` to `0.5288 +/- 0.0097`, with all five paired seed labels higher. Accuracy decreased from `0.7868` to `0.7640`.
 

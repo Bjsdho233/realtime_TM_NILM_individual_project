@@ -32,7 +32,7 @@
 | Claim | Evidence | Status | Permitted interpretation | Limitation |
 |---|---|---|---|---|
 | `threshold_8` is a reliable replacement for Han binary | [E001 report](../experiments/E001-booleanization-ab-probe/REPORT.md) | `inconclusive` | mean delta 为正，但未达到 predeclared rule；不能 promotion | legacy label-assisted data，5 seeds，H2/H4 未读 |
-| Training order may affect Han TM performance | [E002 fixed archive](https://github.com/Bjsdho233/realtime_TM_NILM_individual_project/blob/e7277cc4a0326350f51fdfc5c17b8777572deddc/experiments/2026-07-22-tm-training-dynamics-probe/README.md), [R001](reviews/R001-legacy-evidence-and-reuse-map.md) | Legacy exploratory evidence | 可作为 formal E/T hypothesis 的来源 | H3 repeatedly viewed；未在 current formal protocol 下确认 |
+| Training order may affect Han TM performance | [E002 current archive](../experiments/E002-tm-training-dynamics-probe/README.md), [fixed source commit](https://github.com/Bjsdho233/realtime_TM_NILM_individual_project/blob/e7277cc4a0326350f51fdfc5c17b8777572deddc/experiments/2026-07-22-tm-training-dynamics-probe/README.md), [R001](reviews/R001-legacy-evidence-and-reuse-map.md) | Legacy exploratory evidence | 可作为 formal E/T hypothesis 的来源 | H3 repeatedly viewed；未在 current formal protocol 下确认 |
 | Historical bounded pre/post context is promising | [R001](reviews/R001-legacy-evidence-and-reuse-map.md), [workflow map](research_notes/2026-07-23-nilm-workflow-layer-map.md) | Historical mechanism evidence | 可支持提出新的 controlled experiment | 旧 task/split，不是 current Protocol R |
 | Complex static FSM improves final system | Historical Round 10I locator in R001 | Historical negative evidence | 现有旧结果不支持用复杂 FSM 修补 upstream errors | 尚未在 current baseline 重验 |
 
@@ -43,6 +43,13 @@
 | T003 compatibility model C data size | [T003 local archive](../experiments/T003-local-reproduction/LOCAL_REPRODUCTION_REPORT.md) | Verified | `9,058` bytes | 不是 total firmware/flash/RAM |
 | Pico inference latency and parity | No evidence yet | Missing | 不得声称 | T007 尚未完成 |
 | End-to-end real-time NILM | [Han source audit](reproduction/HAN_PIPELINE_SOURCE_AUDIT.md) | Not established | 可说明 current upstream route 包含 SD replay 和 future context | TM compute latency 不能替代 algorithmic decision latency |
+
+## Feasibility and mechanism evidence
+
+| Claim | Evidence | Status | Permitted interpretation | Limitation |
+|---|---|---|---|---|
+| Reviewed rTM papers and pinned public implementations define materially different target mapping, feedback, clipping and weighting behaviour | [R003 — Regression Tsetlin Machine Mechanism Review](reviews/R003-regression-tsetlin-machine-mechanism-review.md) | Literature and pinned-source review complete | 可用于界定后续 source-parity 与 mechanism checks；不能把某一实现行为泛化成所有 rTM | 没有训练、local wheel parity、REDD 或 NILM score |
+| A reproducible Windows CPU TMU regression smoke configuration was prepared | [Historical smoke archive](research_notes/2026-07-24-tmu-regression-smoke-test/README.md) | `inconclusive` | 可复用 exact script、uv lock 和环境清单设计新的 authorised smoke run | 原始 stdout/result 未保存；reported pass 不是 authoritative local execution evidence；本轮未重跑 |
 
 ## Protocol / evidence boundary map
 

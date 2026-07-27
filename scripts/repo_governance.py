@@ -225,6 +225,20 @@ DEPRECATED_CONTRACT_TOKENS = {
 }
 
 LEGACY_ARCHIVE_FILES: dict[str, set[str]] = {
+    "E002-tm-training-dynamics-probe": {
+        "CHECKSUMS.sha256",
+        "README.md",
+        "experiment_manifest.json",
+        "results/tm_balance_coverage_results.json",
+        "results/tm_balance_sweep_results.json",
+        "results/tm_mechanism_confirmation_results.json",
+        "results/tm_mechanism_followup_results.json",
+        "results/tm_mechanism_probe_results.json",
+        "scripts/tm_balance_sweep.py",
+        "scripts/tm_mechanism_confirm.py",
+        "scripts/tm_mechanism_followup.py",
+        "scripts/tm_mechanism_probe.py",
+    },
     "E001-booleanization-ab-probe": {
         "REPORT.md",
         "SHA256SUMS.txt",
@@ -242,6 +256,19 @@ LEGACY_ARCHIVE_FILES: dict[str, set[str]] = {
         "environment.txt",
         "local_reproduction_manifest.json",
     },
+}
+
+LEGACY_MISSING_FINAL_NEWLINE_SHA256: dict[str, str] = {
+    "experiments/E002-tm-training-dynamics-probe/results/tm_balance_coverage_results.json":
+        "e8437b08cc046653adc1341998ec7bc22738c8ceefd5f6d231c91dd59769499e",
+    "experiments/E002-tm-training-dynamics-probe/results/tm_balance_sweep_results.json":
+        "e8f41b7d32cc2edc0f636d8666a7191d3839a34baa8833eaaa8a420c5f30b52a",
+    "experiments/E002-tm-training-dynamics-probe/results/tm_mechanism_confirmation_results.json":
+        "a0d7e4bad4db7b307b10a75809ce106ae24964cfae95e10a4eab490e83aa47cc",
+    "experiments/E002-tm-training-dynamics-probe/results/tm_mechanism_followup_results.json":
+        "d93565efba0b2159e2ebdb7db92716d033e5796dbc9b9393b43126b5dbe56173",
+    "experiments/E002-tm-training-dynamics-probe/results/tm_mechanism_probe_results.json":
+        "e91412ea4ed4ee775d607ce3390fa2cd9535a78c3d1d18716a52801f42736829",
 }
 
 ALLOWED_NEW_ARCHIVE_PATHS: dict[str, set[str]] = {
@@ -2405,7 +2432,10 @@ def validate_text_hygiene(root: Path, paths: Sequence[Path]) -> CheckResult:
                     continue
                 errors.append(f"{relative.as_posix()}:{line_number}: trailing whitespace")
         if content and not content.endswith("\n"):
-            errors.append(f"{relative.as_posix()}: missing final newline")
+            posix = relative.as_posix()
+            expected_legacy_hash = LEGACY_MISSING_FINAL_NEWLINE_SHA256.get(posix)
+            if expected_legacy_hash != sha256_bytes(raw):
+                errors.append(f"{posix}: missing final newline")
     if errors:
         raise GovernanceError("text hygiene failed:\n" + "\n".join(f"  - {item}" for item in errors))
     return CheckResult("Text hygiene", f"{checked} text files checked")
