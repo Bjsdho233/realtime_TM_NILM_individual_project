@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tm-nilm:protocol-r-baseline:1.0",
+  "title": "T005 frozen Protocol R development baseline",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schema_version",
+    "manifest_id",
+    "manifest_status",
+    "task",
+    "frozen_inputs",
+    "access_contract",
+    "reporting_scope",
+    "method",
+    "source_identity",
+    "output_contract",
+    "stop_rules"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "schemas/protocol-r-baseline.schema.json"
+    },
+    "schema_version": {
+      "const": "1.0"
+    },
+    "manifest_id": {
+      "const": "t005-protocol-r-baseline-v1"
+    },
+    "manifest_status": {
+      "const": "frozen before canonical REDD model execution"
+    },
+    "task": {
+      "type": "object"
+    },
+    "frozen_inputs": {
+      "type": "object"
+    },
+    "access_contract": {
+      "type": "object"
+    },
+    "reporting_scope": {
+      "type": "object"
+    },
+    "method": {
+      "type": "object"
+    },
+    "source_identity": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256",
+          "role"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "pattern": "^(?!/)(?![A-Za-z]:[\\\\/]).+"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "role": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    },
+    "output_contract": {
+      "type": "object"
+    },
+    "stop_rules": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 3
+      }
+    }
+  }
+}

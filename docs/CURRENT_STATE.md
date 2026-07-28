@@ -4,11 +4,11 @@
 
 - Status: current governance snapshot
 - Last updated: 2026-07-28
-- Current formal state: T004 evaluation contract complete with documented class limitations; no formal Protocol R model result
-- Active T-series: none
+- Current formal state: T004 evaluation contract complete with documented class limitations; T005 development baseline authorised and active
+- Active T-series: T005 — Protocol R Baseline Implementation
 - Active E-series: see the exact registry below
 - Active R-series review: none
-- Next planned formal task: T005 — Protocol R Baseline Implementation, not authorised
+- Next planned formal task: complete the authorised local-only T005 development baseline; do not begin T006 or another item
 - T004 authority: completed on 2026-07-28; no continuing execution authority
 - Candidate/locked test development access: prohibited
 - Repository health command: `python scripts/check_repo.py`
@@ -29,7 +29,7 @@
 
 | Track | Active item | Authority |
 |---|---|---|
-| T-series | None | T004 已完成；不得自动开始 E003、E004、T005、T011、Protocol X model evaluation、training 或 scoring |
+| T-series | T005 — Protocol R Baseline Implementation | Tianhang 于 2026-07-28 授权 local-only aggregate-main development baseline；仅允许 B1–B4、fridge/microwave/dish washer；禁止 B5、H2/H4、Protocol X、rTM/TMU、host/Pico/hardware 和 push |
 | E-series | See exact registry below | Tianhang 可用一条明确指令启动新的隔离 E-series；执行前必须按下表登记、冻结并锚定 design |
 | R-series review | None | 可在明确请求下进行 read-only review；不训练、不评分 |
 
@@ -70,7 +70,8 @@ substring match 都不构成授权。只有 coordinating agent 可以增加、�
 | T002 — REDD Inventory and Protocol R Preflight | Complete — 2026-07-21 | pinned data inventory、support audit、class fallback 和 candidate manifest；没有 model scoring |
 | T003 — Han Two-Class PC Reproduction | Complete for declared PC scope — 2026-07-22 | label-assisted Protocol H staged PC training/save/reload/export；不是 Protocol R、Pico 或 real-time |
 | T004 — Protocol R Evaluation Contract and Test Freeze | Complete with documented class limitations — 2026-07-28 | 冻结 manifest/audit byte-identical；fridge/microwave full eligible，dish washer development-only，washer dryer support-ineligible；Protocol X support-only audit、machine-readable eligibility、fail-closed access guard 和 tests 完成；没有模型结果 |
-| T005–T013 | Not started; not authorised | 见 [WORK_INDEX.md](WORK_INDEX.md) 和 [PROJECT_PLAN.md](../PROJECT_PLAN.md) |
+| T005 — Protocol R Baseline Implementation | Active — authorised 2026-07-28 | 固定 aggregate-main detector/pairer、Han-compatible features/Booleanisation、one binary TM per appliance；仅 B1–B4 development folds，local-only |
+| T006–T013 | Not started; not authorised | 见 [WORK_INDEX.md](WORK_INDEX.md) 和 [PROJECT_PLAN.md](../PROJECT_PLAN.md) |
 
 T003 的“complete”只覆盖 declared PC Protocol H scope。它没有完成 host-native parity、Pico inference、aggregate-main-only evaluation、strict causality 或 real-time system。
 
@@ -265,7 +266,7 @@ python scripts/check_repo.py
 
 不能自动进行：
 
-- T005；
+- T005 范围之外的方法、数据或后续任务；
 - E003/E004；
 - Protocol R training/scoring；
 - B5 test access；

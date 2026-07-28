@@ -1,0 +1,378 @@
+{
+  "$schema": "schemas/protocol-r-baseline.schema.json",
+  "schema_version": "1.0",
+  "manifest_id": "t005-protocol-r-baseline-v1",
+  "manifest_status": "frozen before canonical REDD model execution",
+  "task": {
+    "work_id": "T005",
+    "direct_name": "Protocol R Baseline Implementation",
+    "task_record": "docs/tasks/T005-protocol-r-baseline-implementation.md",
+    "decision_record": "docs/decisions/D006-protocol-r-v1-development-reporting-scope.md",
+    "execution": "local-only",
+    "external_writes": false
+  },
+  "frozen_inputs": {
+    "starting_commit": "233e5ea064cda2e4c65b0e06001e23667ec906f2",
+    "protocol_r_evaluation_path": "artifacts/manifests/protocol_r_evaluation_v1.json",
+    "protocol_r_evaluation_sha256": "501fbfe1193154a471a932a4f1237ced4a7df9a7ce175fe8a621f1da6d433ae5",
+    "protocol_r_support_audit_path": "artifacts/manifests/protocol_r_support_audit_v1.json",
+    "protocol_r_support_audit_sha256": "c7fde29e9570417d12463e16f64ebf4eb1cb4736b775fc6fb2116e06fb68eed3",
+    "class_eligibility_path": "artifacts/manifests/protocol_r_class_eligibility_v1.json",
+    "class_eligibility_sha256": "3a8e58db1551d5a24899b47f33701bfc8fe46c2ee6a26b3eb001bed7c04876de",
+    "han_feature_source_repository": "https://github.com/wuhanstudio/nilm",
+    "han_feature_source_commit": "8c5e90df34236ba0afcc4ec46ac083d829de4d51",
+    "han_feature_source_symbol": "redd_event_pair.py:episode_feature_row"
+  },
+  "access_contract": {
+    "only_loader": "tools/data/protocol_r_access.py",
+    "houses": [
+      1,
+      3,
+      5,
+      6
+    ],
+    "blocks": [
+      "B1",
+      "B2",
+      "B3",
+      "B4"
+    ],
+    "folds": {
+      "F1": {
+        "training": [
+          "B2",
+          "B3",
+          "B4"
+        ],
+        "validation": "B1"
+      },
+      "F2": {
+        "training": [
+          "B1",
+          "B3",
+          "B4"
+        ],
+        "validation": "B2"
+      },
+      "F3": {
+        "training": [
+          "B1",
+          "B2",
+          "B4"
+        ],
+        "validation": "B3"
+      },
+      "F4": {
+        "training": [
+          "B1",
+          "B2",
+          "B3"
+        ],
+        "validation": "B4"
+      }
+    },
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "denied": [
+      "B5",
+      "test and locked-test aliases",
+      "H2",
+      "H4",
+      "Protocol X",
+      "combined B1-B4 final fit",
+      "unknown houses, roles, blocks or folds"
+    ],
+    "reset_boundaries": [
+      "house",
+      "segment",
+      "block",
+      "split"
+    ]
+  },
+  "reporting_scope": {
+    "full_eligible_macro_2class": {
+      "role": "primary T005 development summary",
+      "appliances": [
+        "fridge",
+        "microwave"
+      ]
+    },
+    "development_scope_macro_3class": {
+      "role": "supplemental development-only evidence",
+      "appliances": [
+        "fridge",
+        "microwave",
+        "dish washer"
+      ]
+    },
+    "deferred": [
+      "washer dryer"
+    ],
+    "forbidden_reporting": [
+      "unnamed macro",
+      "four-class macro",
+      "event exact-match accuracy",
+      "complete or confirmatory dish washer Protocol R result"
+    ]
+  },
+  "method": {
+    "aggregate_main_detector": {
+      "difference": "main[t] - main[t-1]",
+      "rise": "delta >= 50 W",
+      "fall": "delta <= -50 W",
+      "smoothing": "none",
+      "debounce": "none",
+      "non_finite": "break continuity and reset detector/pairer"
+    },
+    "fifo_pairer": {
+      "selection": "oldest eligible rise with first later fall",
+      "maximum_fall_minus_rise_samples": 223,
+      "pre_samples": 32,
+      "post_samples": 8,
+      "prediction_available": "fall+8",
+      "nominal_post_context_seconds": 24,
+      "labels_used": false
+    },
+    "feature_schema": {
+      "schema_version": "t005-aggregate-main-23slot-v1",
+      "sha256": "bb14bf97d79828c003a044573ffabb467666ce1ca65c5466f0c94e22c3212427",
+      "ordered_names": [
+        "transition",
+        "duration",
+        "pos_transition_magnitude",
+        "neg_transition_magnitude",
+        "abs_transition",
+        "log_abs_transition",
+        "duration",
+        "log_duration",
+        "transition_duration_product",
+        "transition_duration_ratio",
+        "episode_mean_main",
+        "episode_std_main",
+        "episode_min_main",
+        "episode_max_main",
+        "episode_range_main",
+        "internal_diff_mean_abs",
+        "internal_diff_max_abs",
+        "internal_edge_count",
+        "subcycle_count_proxy",
+        "active_fraction_proxy",
+        "episode_energy_estimate",
+        "post_minus_pre_mean",
+        "event_internal_edge_count"
+      ],
+      "units": [
+        "W",
+        "samples",
+        "W",
+        "W",
+        "W",
+        "log1p(W)",
+        "samples",
+        "log1p(samples)",
+        "W*sample proxy",
+        "W/sample proxy",
+        "W",
+        "W",
+        "W",
+        "W",
+        "W",
+        "W",
+        "W",
+        "count",
+        "count proxy",
+        "fraction proxy",
+        "W-sample proxy",
+        "W",
+        "count"
+      ],
+      "formula_authority": "tools/baseline/pipeline.py:feature_schema_record",
+      "dtype": "float64",
+      "missing_policy": "exclude any candidate with non-finite dependency",
+      "dependency_interval": "rise-32 through fall+8 inclusive",
+      "available_time": "fall+8",
+      "intentional_duplicate": "duration slots 2 and 7"
+    },
+    "target_truth": {
+      "appliance_columns_used_after_candidate_features": true,
+      "active": "finite appliance power > 15 W",
+      "complete_episode": "at least two active samples with finite inactive samples before and after",
+      "boundary_tolerance_samples": 2,
+      "association_order": [
+        "largest real interval overlap",
+        "smallest combined rise/fall boundary error",
+        "candidate ID",
+        "target episode ID"
+      ],
+      "unmatched_complete_target": "explicit no-output false negative",
+      "missing_column": "label unavailable, never OFF"
+    },
+    "booleanisation": {
+      "shared_encoder": "one per fold",
+      "fit_scope": "training aggregate-main candidates only",
+      "representation": "Han-compatible Gaussian-CDF 8-bit",
+      "zero_std": "standardised value zero",
+      "quantisation": "round-to-even",
+      "bit_order": "MSB-first",
+      "numeric_slots": 23,
+      "boolean_inputs": 184
+    },
+    "binary_tm": {
+      "implementation": "project-owned deterministic repair of pinned Han learning rule",
+      "repair": "derive actions from initialised states and bind all random draws to declared seed",
+      "classes": {
+        "negative": 0,
+        "positive": 1
+      },
+      "N_clause": 200,
+      "N_state": 50,
+      "T": 20,
+      "s": 6.0,
+      "epochs": 10,
+      "shuffle": "seeded unique permutation each epoch",
+      "oversampling": false,
+      "class_weighting": false,
+      "threshold_calibration": false,
+      "signed_vote": "positive class vote - negative class vote",
+      "decision": "signed_vote > 0 positive; otherwise negative"
+    },
+    "metrics": {
+      "primary_boundary": "end-to-end event performance including detector/pairer misses",
+      "per_scope": [
+        "TP",
+        "TN",
+        "FP",
+        "FN",
+        "eligible positive and negative support",
+        "excluded/unavailable reasons",
+        "precision",
+        "recall",
+        "F1",
+        "binary accuracy"
+      ],
+      "zero_denominator": "metric zero plus explicit flag",
+      "aggregation": "per fold/seed/appliance; each seed unweighted F1-F4 mean; mean and sample std across five seeds"
+    },
+    "costs": {
+      "reference": "every fold and seed canonical model bundle",
+      "model_size": "serialized inference bytes",
+      "encoder_metadata": "serialized canonical JSON bytes, shared once",
+      "timer": "time.perf_counter_ns",
+      "batch_size": 1,
+      "warmups": 100,
+      "timed_calls": 1000,
+      "statistics": [
+        "median",
+        "P95 linear interpolation"
+      ],
+      "claim": "Python-reference only"
+    },
+    "execution": {
+      "canonical": "F1-F4 x seeds 0-4 x three appliances",
+      "sentinel": "clean F1 seed 0 rerun of all three models",
+      "sentinel_exact_fields": [
+        "candidate hashes",
+        "encoder hash",
+        "model hashes",
+        "prediction hashes",
+        "aggregate metric hashes"
+      ],
+      "second_method_or_tuning": false
+    }
+  },
+  "source_identity": [
+    {
+      "path": "tools/data/protocol_r_access.py",
+      "sha256": "b4700646666ac812334e806ac10a38ba0b6f7017f48a15e122666541aec043ca",
+      "role": "only admitted data access layer"
+    },
+    {
+      "path": "tools/baseline/__init__.py",
+      "sha256": "189bbb9062893fa8664a939038c0fbd820d2d3d66a2982b400eff32373109c1d",
+      "role": "baseline package identity"
+    },
+    {
+      "path": "tools/baseline/encoding.py",
+      "sha256": "12a75aaba064cd8b67f44b32eb81ad3dc32c0f4cfd399628149640db6353453c",
+      "role": "frozen Booleanisation"
+    },
+    {
+      "path": "tools/baseline/model.py",
+      "sha256": "83de2d411f517fa34263e393c3b8512f943f371950778bc7aab0726d91903832",
+      "role": "frozen binary TM"
+    },
+    {
+      "path": "tools/baseline/pipeline.py",
+      "sha256": "94454e7349d95bf51b4373796cd1108ae236851be90782398efb42f1c13fac7f",
+      "role": "frozen detector, pairer, features and target association"
+    },
+    {
+      "path": "tools/baseline/metrics.py",
+      "sha256": "11fb4bedbca859edd2771f4d89da0e54454472e889c6cf1136cf60ede9aa7a4e",
+      "role": "frozen metrics and aggregation"
+    },
+    {
+      "path": "tools/baseline/run_protocol_r_baseline.py",
+      "sha256": "8a5245675298f649ef904d2a8a6eb2c117df52f1743d3b3b009863776b685921",
+      "role": "canonical execution entry"
+    },
+    {
+      "path": "tests/baseline/test_t005_access.py",
+      "sha256": "41b3e93817c760babc86c328f0bed23fd3da6af3c0e9881c015214c604e7941f",
+      "role": "access refusal tests"
+    },
+    {
+      "path": "tests/baseline/test_t005_model.py",
+      "sha256": "5242b725edf121ddb5084ab5b7d8ddfe26c612cccc1b1e4ead920d8ba0fc0643",
+      "role": "seed, state, vote and save/reload tests"
+    },
+    {
+      "path": "tests/baseline/test_t005_pipeline.py",
+      "sha256": "5b9fe7060423c0fd942845d8c439ab9e49828f29fe96b98cb103146f43dd6159",
+      "role": "containment, label independence and metric tests"
+    }
+  ],
+  "output_contract": {
+    "archive": "experiments/T005-protocol-r-baseline-implementation",
+    "row_level_tracked": false,
+    "aggregate_tables": [
+      {
+        "path": "tables/development_metrics.csv",
+        "max_rows": 300
+      },
+      {
+        "path": "tables/development_summary.csv",
+        "max_rows": 5
+      },
+      {
+        "path": "tables/model_costs.csv",
+        "max_rows": 200
+      },
+      {
+        "path": "tables/pipeline_diagnostics.csv",
+        "max_rows": 40
+      }
+    ],
+    "ignored_artifact_roots": [
+      "models/T005-protocol-r-baseline-implementation",
+      "outputs/T005-protocol-r-baseline-implementation"
+    ],
+    "absolute_paths_in_tracked_evidence": false
+  },
+  "stop_rules": [
+    "frozen input, eligibility, source identity or design drift",
+    "B5, H2/H4, Protocol X or test-role exposure",
+    "dependency boundary or 256/8 limit violation",
+    "appliance label influence on candidate IDs or features",
+    "missing label treated as negative",
+    "training fold without positive and negative candidates",
+    "seed determinism or save/reload parity failure",
+    "new dependency or network installation required",
+    "scope expansion into rTM/TMU, E003/E004, T006+, host/Pico/hardware or publication"
+  ]
+}
