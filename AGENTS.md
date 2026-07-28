@@ -230,6 +230,17 @@ dissertation-evidence rules are in
   permitted lifecycle/index updates. Unless Tianhang requests local-only work,
   push those records to a non-default branch and open or update a draft pull
   request at a safe checkpoint. Never sweep in unrelated work.
+- Tianhang's standing append-only completion-sync authority permits a completed
+  new task to archive, commit, and fast-forward push directly to the GitHub
+  default branch without a second prompt only when the task adds new scoped
+  implementation/records/evidence plus required lifecycle/index updates and
+  does not modify pre-existing implementation, an accepted protocol, a
+  historical record, or an accepted conclusion. All declared checks must pass,
+  the worktree must contain no unrelated changes, and the live remote default
+  branch must still be the expected fast-forward base. Never force-push. A
+  task-specific local-only/no-push instruction or any change to existing code,
+  protocol, history, or conclusions overrides this standing authority and
+  requires a current explicit sync decision.
 - This implicit checkpoint authority does not permit merging into the default
   branch, changing remotes, publishing outside this repository, accessing a new
   external source, operating hardware, or expanding the authorised research
