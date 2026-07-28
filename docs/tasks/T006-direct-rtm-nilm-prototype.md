@@ -101,3 +101,16 @@ The first real-data process was stopped before completion. At termination it had
 The implementation checkpoint remains
 `a8ee6f7eb8691e81f603c6960b4ae812c9b91793`. T006 is paused pending a separately authorised
 `R004 — rTM NILM Input and Booleanisation Review`; this note does not authorise that review or a resumed run.
+
+## 8. Post-R004 method boundary — 2026-07-28
+
+Tianhang accepted
+[D007 — Direct rTM NILM Prototype Method Boundary](../decisions/D007-direct-rtm-nilm-prototype-method-boundary.md).
+The original `32 raw lags + StandardBinarizer` route is retained only as a
+diagnostic reference and must not be resumed as the formal run.
+
+Compact causal level/change/multi-scale input and hybrid cumulative
+Booleanisation may proceed to static audit. Exact horizons, features, bits and
+target clipping/scaling remain pending. The minimum architecture remains vanilla
+direct rTM; the first fridge prototype does not add a cTM gate, weighted rTM or
+OFF resampling. T006 remains paused and this update creates no training authority.

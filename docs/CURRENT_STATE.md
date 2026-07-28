@@ -5,11 +5,11 @@
 - Status: current governance snapshot
 - Last updated: 2026-07-28
 - Delivery posture: prototype-first student dissertation; runnable, readable and explainable over production-grade completeness
-- Current formal state: T006 implementation checkpoint exists; its first real-data run was stopped without a result; R004 review is complete without approving a successor method
-- Active T-series: T006 — Direct rTM NILM Prototype (paused; R004 is complete and no resume or revision is authorised)
+- Current formal state: T006 remains paused; D007 accepts compact causal and hybrid Booleanisation families for static audit only, while exact input and target preprocessing remain pending
+- Active T-series: T006 — Direct rTM NILM Prototype (paused; no training resume is authorised)
 - Active E-series: see the exact registry below
 - Active R-series review: none
-- Next planned formal task: Tianhang decides whether to revise, resume or supersede T006 after reviewing R004; no method or execution is currently authorised
+- Next planned formal task: static audit of exact compact causal feature and hybrid threshold candidates; target clipping/scaling must be separately frozen before any training
 - T004 authority: completed on 2026-07-28; no continuing execution authority
 - Candidate/locked test development access: prohibited
 - Repository health command: `python scripts/check_repo.py`
@@ -54,7 +54,7 @@ host/device 上实际覆盖的 pipeline boundary。
 
 | Track | Active item | Authority |
 |---|---|---|
-| T-series | T006 — Direct rTM NILM Prototype (paused) | first real-data process was stopped on 2026-07-28 without result files；R004 review 已完成但没有批准 successor method；不得恢复 run |
+| T-series | T006 — Direct rTM NILM Prototype (paused) | D007 保留 vanilla direct rTM，允许 compact/hybrid families 进入 static audit；exact horizons/features/bits 和 target clipping/scaling 未冻结；不得恢复 training |
 | E-series | See exact registry below | Tianhang 可用一条明确指令启动新的隔离 E-series；执行前必须按下表登记、冻结并锚定 design |
 | R-series review | None | R004 已完成；可在明确请求下进行新的 read-only review；不训练、不评分 |
 
@@ -96,7 +96,7 @@ substring match 都不构成授权。只有 coordinating agent 可以增加、�
 | T003 — Han Two-Class PC Reproduction | Complete for declared PC scope — 2026-07-22 | label-assisted Protocol H staged PC training/save/reload/export；不是 Protocol R、Pico 或 real-time |
 | T004 — Protocol R Evaluation Contract and Test Freeze | Complete with documented class limitations — 2026-07-28 | 冻结 manifest/audit byte-identical；fridge/microwave full eligible，dish washer development-only，washer dryer support-ineligible；Protocol X support-only audit、machine-readable eligibility、fail-closed access guard 和 tests 完成；没有模型结果 |
 | T005 — Protocol R Baseline Implementation | Complete — 2026-07-28 | 固定 aggregate-main detector/pairer、Han-compatible features/Booleanisation、one binary TM per appliance；仅 B1–B4 development folds；primary two-class macro F1 `0.345818303824`；dish washer 仅 development-only |
-| T006 — Direct rTM NILM Prototype | Paused — 2026-07-28；pending R004 review | implementation checkpoint `a8ee6f7eb8691e81f603c6960b4ae812c9b91793`；first real-data run stopped after about 47m37s wall / 2786.125s CPU；没有 partial result files |
+| T006 — Direct rTM NILM Prototype | Paused — 2026-07-28；D007 static-audit boundary accepted | implementation checkpoint `a8ee6f7eb8691e81f603c6960b4ae812c9b91793`；32-lag/StandardBinarizer 降级为 diagnostic reference；vanilla direct rTM 保留；没有 training authority |
 | T007–T013 | Not started; not authorised | 见 [WORK_INDEX.md](WORK_INDEX.md) 和 [PROJECT_PLAN.md](../PROJECT_PLAN.md) |
 
 T003 的“complete”只覆盖 declared PC Protocol H scope。它没有完成 host-native parity、Pico inference、aggregate-main-only evaluation、strict causality 或 real-time system。
