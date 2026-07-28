@@ -3,7 +3,7 @@
 ## Agent Brief
 
 - Purpose: map RQ and claim to exact evidence
-- Current formal Protocol R result: none
+- Current formal Protocol R development result: T005 B1–B4 baseline; no locked-test result
 - Historical evidence promotion: prohibited without T-series revalidation
 - Update rule: append or supersede; do not silently replace
 
@@ -26,7 +26,7 @@
 | Formal Protocol R evaluation contract is internally consistent | [T004 task](tasks/T004-protocol-r-evaluation-contract-and-test-freeze.md), [D005](decisions/D005-protocol-r-v1-class-and-support-eligibility.md), [frozen manifest](../artifacts/manifests/protocol_r_evaluation_v1.json) | Verified contract; no model result | H1/H3/H5/H6 mixed-house Protocol R、B1–B4 CV、B5 locked、H2/H4 Protocol X、row-position 和 output/metric semantics 已冻结 | fridge/microwave full eligible；dish washer development-only；washer dryer support-ineligible |
 | Frozen class support permits a four-class Protocol R B5 claim | [T004 support audit](../artifacts/manifests/protocol_r_support_audit_v1.json), [eligibility record](../artifacts/manifests/protocol_r_class_eligibility_v1.json) | Not supported | 只能对 fridge/microwave 保留 full Protocol R v1 endpoint；dish washer B1–B4 development feasibility 可继续 | dish washer B5 support fail；washer dryer F1 support fail |
 | Fixed H2+H4 Protocol X supports a future dish washer endpoint | [Protocol X support audit](../artifacts/manifests/protocol_x_support_audit_v1.json), [D005](decisions/D005-protocol-r-v1-class-and-support-eligibility.md) | Support-eligible; not evaluated | pooled 58 dependency-contained episodes、18,171 ON seconds；未来单独授权后可产生 Protocol X cross-house evidence | 没有模型结果；不得称为 Protocol R B5；ordinary development 仍 sealed |
-| Formal Protocol R baseline performance is known | No evidence yet | Missing | 不得引用 T003/E001/历史 round 代替 | T004/T005 尚未完成 |
+| Fixed aggregate-main Protocol R development baseline performance is known | [T005 result](../experiments/T005-protocol-r-baseline-implementation/result.json), [report](../experiments/T005-protocol-r-baseline-implementation/BASELINE_REPORT.md), [aggregate metrics](../experiments/T005-protocol-r-baseline-implementation/tables/development_metrics.csv) | Verified formal development evidence | primary `full_eligible_macro_2class` mean F1 `0.345818303824`；supplemental development-only three-class macro `0.301675954177` | B1–B4 only；不是 B5/Protocol X/confirmatory evidence；dish washer development-only；washer dryer deferred |
 | H2/H4 are completely unseen to the project | T002/T003 records | Not supported | 可说 ordinary development 仍对 H2/H4 sealed | T002 看过 support labels；T003 compatibility training 读过 H2/H4 |
 
 ## RQ3 — Controlled improvements
@@ -62,7 +62,8 @@
 | E001 | exploratory legacy label-assisted | 可作为 Booleanisation ablation/negative or inconclusive evidence，不能当 final result |
 | E002 | legacy exploratory H3 | 已固定到 remote commit；只可作为 hypothesis/history，不能直接变成 formal result |
 | old repositories | historical/mechanism evidence | 通过 R001 定位；不得直接变成 current score |
-| future T005/T009 development results | formal development evidence | 可用于 method selection，不是 locked-test result |
+| T005 development result | Protocol R B1–B4 formal development | 可作为固定 aggregate-main baseline 和 future method comparison reference；不是 locked-test result |
+| future T009 development result | formal development evidence | 若获授权并完成，可用于 promoted method confirmation；不是 locked-test result |
 | future T011 | final Protocol R result | 只有 freeze 和 one-time evaluation 完整时才可作为 primary result |
 | future T012 | Protocol D deployment | 可用于 hardware/deployment，不得冒充 unbiased Protocol R |
 
@@ -74,7 +75,7 @@
 | Dataset / protocol | T002 inventory、D002–D004、R002 conflict record | T004 accepted evaluation contract |
 | Reproduction | T003 local report、repeatability、reload defect | host-native/Pico parity |
 | Controlled experiments | E001、historical locators | formal baseline 后的 promoted experiments |
-| Main results | none | T011 locked-test result |
+| Main results | T005 B1–B4 development baseline | T011 locked-test result |
 | Embedded evaluation | T003 C bytes only | Pico flash/RAM/latency/parity |
 | Limitations | timestamp provenance、Protocol conflict、H2/H4 prior access、weak class support | final method-specific limitations |
 

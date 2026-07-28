@@ -223,6 +223,71 @@ class ArchiveSafetyTests(unittest.TestCase):
             with self.assertRaises(governance.GovernanceError):
                 governance._validate_aggregate_table(path, design)
 
+    def test_predeclared_aggregate_target_counts_are_allowed(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            path = pathlib.Path(temporary) / "episode_counts.csv"
+            path.write_text(
+                "fold,matched_target_episode_count,"
+                "unmatched_target_episode_count,target_diagnostics_json\n"
+                'F1,10,2,"{""incomplete"":1}"\n',
+                encoding="utf-8",
+            )
+            design = {
+                "output_contract": {
+                    "aggregate_tables": [
+                        {
+                            "path": "tables/episode_counts.csv",
+                            "columns": [
+                                "fold",
+                                "matched_target_episode_count",
+                                "unmatched_target_episode_count",
+                                "target_diagnostics_json",
+                            ],
+                            "max_rows": 4,
+                        }
+                    ]
+                }
+            }
+            governance._validate_aggregate_table(path, design)
+
+    def test_boolean_flags_and_non_applicable_cost_bytes_are_typed(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            path = pathlib.Path(temporary) / "costs.csv"
+            path.write_text(
+                "scope,precision_zero_denominator,"
+                "serialized_inference_bytes,shared_encoder_bytes,"
+                "complete_bundle_bytes\n"
+                "algorithmic_waiting,False,,,\n",
+                encoding="utf-8",
+            )
+            design = {
+                "output_contract": {
+                    "aggregate_tables": [
+                        {
+                            "path": "tables/costs.csv",
+                            "columns": [
+                                "scope",
+                                "precision_zero_denominator",
+                                "serialized_inference_bytes",
+                                "shared_encoder_bytes",
+                                "complete_bundle_bytes",
+                            ],
+                            "max_rows": 4,
+                        }
+                    ]
+                }
+            }
+            governance._validate_aggregate_table(path, design)
+            path.write_text(
+                "scope,precision_zero_denominator,"
+                "serialized_inference_bytes,shared_encoder_bytes,"
+                "complete_bundle_bytes\n"
+                "algorithmic_waiting,not-a-boolean,,,\n",
+                encoding="utf-8",
+            )
+            with self.assertRaises(governance.GovernanceError):
+                governance._validate_aggregate_table(path, design)
+
     def test_undeclared_table_does_not_fallback_to_builtin_contract(self):
         with tempfile.TemporaryDirectory() as temporary:
             path = pathlib.Path(temporary) / "run_summary.csv"

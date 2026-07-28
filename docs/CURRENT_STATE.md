@@ -4,11 +4,11 @@
 
 - Status: current governance snapshot
 - Last updated: 2026-07-28
-- Current formal state: T004 evaluation contract complete with documented class limitations; T005 development baseline authorised and active
-- Active T-series: T005 — Protocol R Baseline Implementation
+- Current formal state: T005 fixed Protocol R B1–B4 development baseline complete; no locked-test result
+- Active T-series: none
 - Active E-series: see the exact registry below
 - Active R-series review: none
-- Next planned formal task: complete the authorised local-only T005 development baseline; do not begin T006 or another item
+- Next planned formal task: none authorised; do not begin T006 or another item
 - T004 authority: completed on 2026-07-28; no continuing execution authority
 - Candidate/locked test development access: prohibited
 - Repository health command: `python scripts/check_repo.py`
@@ -29,7 +29,7 @@
 
 | Track | Active item | Authority |
 |---|---|---|
-| T-series | T005 — Protocol R Baseline Implementation | Tianhang 于 2026-07-28 授权 local-only aggregate-main development baseline；仅允许 B1–B4、fridge/microwave/dish washer；禁止 B5、H2/H4、Protocol X、rTM/TMU、host/Pico/hardware 和 push |
+| T-series | None | T005 已于 2026-07-28 完成 local-only aggregate-main development baseline；completion 不授权后续训练、test、push 或另一任务 |
 | E-series | See exact registry below | Tianhang 可用一条明确指令启动新的隔离 E-series；执行前必须按下表登记、冻结并锚定 design |
 | R-series review | None | 可在明确请求下进行 read-only review；不训练、不评分 |
 
@@ -70,7 +70,7 @@ substring match 都不构成授权。只有 coordinating agent 可以增加、�
 | T002 — REDD Inventory and Protocol R Preflight | Complete — 2026-07-21 | pinned data inventory、support audit、class fallback 和 candidate manifest；没有 model scoring |
 | T003 — Han Two-Class PC Reproduction | Complete for declared PC scope — 2026-07-22 | label-assisted Protocol H staged PC training/save/reload/export；不是 Protocol R、Pico 或 real-time |
 | T004 — Protocol R Evaluation Contract and Test Freeze | Complete with documented class limitations — 2026-07-28 | 冻结 manifest/audit byte-identical；fridge/microwave full eligible，dish washer development-only，washer dryer support-ineligible；Protocol X support-only audit、machine-readable eligibility、fail-closed access guard 和 tests 完成；没有模型结果 |
-| T005 — Protocol R Baseline Implementation | Active — authorised 2026-07-28 | 固定 aggregate-main detector/pairer、Han-compatible features/Booleanisation、one binary TM per appliance；仅 B1–B4 development folds，local-only |
+| T005 — Protocol R Baseline Implementation | Complete — 2026-07-28 | 固定 aggregate-main detector/pairer、Han-compatible features/Booleanisation、one binary TM per appliance；仅 B1–B4 development folds；primary two-class macro F1 `0.345818303824`；dish washer 仅 development-only |
 | T006–T013 | Not started; not authorised | 见 [WORK_INDEX.md](WORK_INDEX.md) 和 [PROJECT_PLAN.md](../PROJECT_PLAN.md) |
 
 T003 的“complete”只覆盖 declared PC Protocol H scope。它没有完成 host-native parity、Pico inference、aggregate-main-only evaluation、strict causality 或 real-time system。
@@ -223,6 +223,30 @@ complete episodes 和 18,171 秒 ON support，因此 future Protocol X locked
 confirmatory evaluation support-eligible。该未来 evaluation 仍需单独授权，且
 只能作为 Protocol X cross-house evidence。
 
+### 8.2 T005 fixed development baseline — 2026-07-28
+
+[T005 — Protocol R Baseline Implementation](tasks/T005-protocol-r-baseline-implementation.md)
+已在 pre-run commit
+`4fb5129ee1afcdc50fee2033eedf7b2f2f03aa9f` 冻结后完成唯一一次
+F1–F4 × seeds 0–4 × three-appliance canonical matrix，以及 clean
+F1/seed-0 sentinel。canonical archive 为
+[`experiments/T005-protocol-r-baseline-implementation/`](../experiments/T005-protocol-r-baseline-implementation/BASELINE_REPORT.md)。
+
+- `fridge` seed-fold mean F1：`0.421679382593`，sample std `0.017083083900`；
+- `microwave`：`0.269957225055`，sample std `0.020825136079`；
+- `dish washer` development-only：`0.213391254881`，sample std
+  `0.018117993143`；
+- primary `full_eligible_macro_2class`：`0.345818303824`，sample std
+  `0.006093000187`；
+- supplemental `development_scope_macro_3class`：`0.301675954177`，sample std
+  `0.008474558968`；
+- F1/seed-0 sentinel 的 candidate、encoder、model、prediction 和 aggregate
+  metric hashes 全部 exact match。
+
+这些是 aggregate-main-only B1–B4 formal development evidence，不是 B5
+locked-test、Protocol X、host-native、Pico 或 confirmatory result。没有基于结果
+tuning；没有训练 `washer dryer`；B5/H2/H4 未进入 T005 loader。
+
 ## 9. Locked-test 与 Protocol X 边界
 
 - B5 是唯一 frozen Protocol R locked test；只能由未来 T011 一次性正式 evaluation
@@ -266,9 +290,9 @@ python scripts/check_repo.py
 
 不能自动进行：
 
-- T005 范围之外的方法、数据或后续任务；
+- T005 的任何追加 run、方法变化、数据扩展或后续任务；
 - E003/E004；
-- Protocol R training/scoring；
+- 任何进一步 Protocol R training/scoring；
 - B5 test access；
 - H2/H4 development access；
 - E-series → formal method promotion；
@@ -276,5 +300,5 @@ python scripts/check_repo.py
 - host-native、Pico、firmware 或 hardware work；
 - final test、Protocol D 或论文正式 claim。
 
-T004 closure 不改变这些 authorization boundary。下一项 T/E work 必须由 Tianhang
-另行明确授权；不得把 T004 support audit 当成 model evidence。
+T005 closure 不改变这些 authorization boundary。下一项 T/E work 必须由 Tianhang
+另行明确授权；不得把 development baseline 当成 locked-test evidence。

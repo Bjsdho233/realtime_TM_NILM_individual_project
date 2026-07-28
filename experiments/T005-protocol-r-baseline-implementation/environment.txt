@@ -1,0 +1,10 @@
+platform=Windows-10-10.0.26200-SP0
+python=3.11.3
+python_implementation=CPython
+numpy=2.2.5
+timer=time.perf_counter_ns
+latency_batch_size=1
+latency_warmups=100
+latency_timed_calls=1000
+percentile_interpolation=linear
+data_root=${REDD_ROOT}

@@ -1,0 +1,4 @@
+python -m unittest discover -s tests/baseline -t . -v
+python scripts/check_repo.py
+git diff --check
+python -m tools.baseline.run_protocol_r_baseline --redd-root ${REDD_ROOT} --design-commit ${T005_PRE_RUN_COMMIT}

@@ -17,7 +17,7 @@
 | T002 — REDD Inventory and Protocol R Preflight | 固定数据证据、support 和 candidate manifest | Complete | [Task](tasks/T002-redd-inventory-and-protocol-r-preflight.md) |
 | T003 — Han Two-Class PC Reproduction | 审查并执行 minimum Protocol H staged PC route | Complete for PC scope | [Archived local result](../experiments/T003-local-reproduction/LOCAL_REPRODUCTION_REPORT.md) |
 | T004 — Protocol R Evaluation Contract and Test Freeze | 冻结 Protocol R/X、output、metrics、class eligibility 和 locked-test contract | Complete with documented class limitations — 2026-07-28 | [Task and completion record](tasks/T004-protocol-r-evaluation-contract-and-test-freeze.md), [D005](decisions/D005-protocol-r-v1-class-and-support-eligibility.md) |
-| T005 — Protocol R Baseline Implementation | 实现并在 development folds 运行 aggregate-main baseline | Active — authorised 2026-07-28 | [Task](tasks/T005-protocol-r-baseline-implementation.md), [D006](decisions/D006-protocol-r-v1-development-reporting-scope.md) |
+| T005 — Protocol R Baseline Implementation | 实现并在 development folds 运行 aggregate-main baseline | Complete — 2026-07-28 | [Canonical result](../experiments/T005-protocol-r-baseline-implementation/result.json), [report](../experiments/T005-protocol-r-baseline-implementation/BASELINE_REPORT.md), [task](tasks/T005-protocol-r-baseline-implementation.md), [D006](decisions/D006-protocol-r-v1-development-reporting-scope.md) |
 | T006 — Host-Native Inference Parity | 核对 Python/host Boolean bits、votes 和 predictions | Not started | No task record |
 | T007 — Pico Feature-to-TM Deployment | 编译、烧录、运行并测量 declared Pico boundary | Not started | No task record |
 | T008 — Layered Baseline Error Analysis | 形成 per-layer/per-class failure evidence | Not started | No task record |

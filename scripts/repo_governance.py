@@ -214,6 +214,12 @@ FORBIDDEN_ROW_LEVEL_COLUMN_RE = re.compile(
     r"(?i)(?:^|_)(?:prediction|predictions|pred|y_pred|label|labels|target|"
     r"truth|ground_truth|sample|sample_id|event|event_id|timestamp|row|row_id)(?:$|_)"
 )
+SAFE_AGGREGATE_ROW_TOKEN_COLUMNS = {
+    "matched_target_episode_count",
+    "sample_std",
+    "unmatched_target_episode_count",
+    "target_diagnostics_json",
+}
 MAX_AGGREGATE_CELL_LENGTH = 4096
 DEPRECATED_TEMPLATE_PATHS = {
     Path("docs/templates") / ("EXPERIMENT_DESIGN_MANIFEST_" + "TEMPLATE.json"),
@@ -331,16 +337,11 @@ NUMERIC_AGGREGATE_COLUMNS = {
     "eligible_negative_support",
     "excluded_unavailable_count",
     "binary_accuracy",
-    "precision_zero_denominator",
-    "recall_zero_denominator",
-    "f1_zero_denominator",
-    "accuracy_zero_denominator",
     "matched_target_episode_count",
     "unmatched_target_episode_count",
     "duplicate_candidate_count",
     "candidate_count",
     "episode_coverage",
-    "episode_coverage_zero_denominator",
     "median_value",
     "p95_value",
     "serialized_inference_bytes",
@@ -357,6 +358,18 @@ NUMERIC_AGGREGATE_COLUMNS = {
     "unmatched_fall_count",
     "contained_exclusion_count",
     "non_finite_main_count",
+}
+BOOLEAN_AGGREGATE_COLUMNS = {
+    "precision_zero_denominator",
+    "recall_zero_denominator",
+    "f1_zero_denominator",
+    "accuracy_zero_denominator",
+    "episode_coverage_zero_denominator",
+}
+OPTIONAL_AGGREGATE_MEASURE_COLUMNS = {
+    "serialized_inference_bytes",
+    "shared_encoder_bytes",
+    "complete_bundle_bytes",
 }
 MEASURE_AGGREGATE_COLUMNS = NUMERIC_AGGREGATE_COLUMNS - {"seed", "repeat"}
 
@@ -2067,7 +2080,10 @@ def _validate_aggregate_table(path: Path, design: dict[str, Any] | None = None) 
             forbidden_columns = [
                 name
                 for name in normalised
-                if FORBIDDEN_ROW_LEVEL_COLUMN_RE.search(name)
+                if (
+                    FORBIDDEN_ROW_LEVEL_COLUMN_RE.search(name)
+                    and name not in SAFE_AGGREGATE_ROW_TOKEN_COLUMNS
+                )
             ]
             if forbidden_columns:
                 raise GovernanceError(
@@ -2103,7 +2119,12 @@ def _validate_aggregate_table(path: Path, design: dict[str, Any] | None = None) 
                         f"expected {len(header)}"
                     )
                 stripped = [cell.strip() for cell in row]
-                if any(not cell for cell in stripped):
+                empty_columns = {
+                    normalised[index]
+                    for index, cell in enumerate(stripped)
+                    if not cell
+                }
+                if empty_columns - OPTIONAL_AGGREGATE_MEASURE_COLUMNS:
                     raise GovernanceError(f"{path}:{row_number}: empty cells are forbidden")
                 if any(len(cell) > MAX_AGGREGATE_CELL_LENGTH for cell in stripped):
                     raise GovernanceError(
@@ -2112,6 +2133,8 @@ def _validate_aggregate_table(path: Path, design: dict[str, Any] | None = None) 
                     )
                 for index, name in enumerate(normalised):
                     if name in NUMERIC_AGGREGATE_COLUMNS:
+                        if not stripped[index]:
+                            continue
                         try:
                             numeric = float(stripped[index])
                         except ValueError as exc:
@@ -2122,6 +2145,13 @@ def _validate_aggregate_table(path: Path, design: dict[str, Any] | None = None) 
                             raise GovernanceError(
                                 f"{path}:{row_number}: {name} must be finite"
                             )
+                    if (
+                        name in BOOLEAN_AGGREGATE_COLUMNS
+                        and stripped[index].lower() not in {"true", "false"}
+                    ):
+                        raise GovernanceError(
+                            f"{path}:{row_number}: {name} must be Boolean"
+                        )
                 dimension_key = tuple(stripped[index] for index in dimension_indexes)
                 if dimension_key in seen_dimensions:
                     raise GovernanceError(
