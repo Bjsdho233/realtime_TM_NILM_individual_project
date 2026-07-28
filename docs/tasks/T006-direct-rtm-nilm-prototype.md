@@ -2,7 +2,7 @@
 
 ## Agent Brief
 
-- Status: active
+- Status: paused pending separately authorised R004 review
 - Owner: Tianhang Tan
 - Authorised: 2026-07-28
 - Track: T-series prototype
@@ -91,3 +91,13 @@ expected length and produce the metrics and figure. It shows useful signal only 
 
 The implementation/source/test checkpoint is committed locally before the real run. The final result is
 committed locally after checks. Neither commit is pushed by this task.
+
+## 7. Pause record — 2026-07-28
+
+The first real-data process was stopped before completion. At termination it had run for approximately
+47 minutes 37 seconds wall time and accumulated 2786.125 CPU seconds. No prototype archive directory,
+`result.json`, report, figure, model or row-level output had been created.
+
+The implementation checkpoint remains
+`a8ee6f7eb8691e81f603c6960b4ae812c9b91793`. T006 is paused pending a separately authorised
+`R004 — rTM NILM Input and Booleanisation Review`; this note does not authorise that review or a resumed run.

@@ -18,7 +18,7 @@
 | T003 — Han Two-Class PC Reproduction | 审查并执行 minimum Protocol H staged PC route | Complete for PC scope | [Archived local result](../experiments/T003-local-reproduction/LOCAL_REPRODUCTION_REPORT.md) |
 | T004 — Protocol R Evaluation Contract and Test Freeze | 冻结 Protocol R/X、output、metrics、class eligibility 和 locked-test contract | Complete with documented class limitations — 2026-07-28 | [Task and completion record](tasks/T004-protocol-r-evaluation-contract-and-test-freeze.md), [D005](decisions/D005-protocol-r-v1-class-and-support-eligibility.md) |
 | T005 — Protocol R Baseline Implementation | 实现并在 development folds 运行 aggregate-main baseline | Complete — 2026-07-28 | [Canonical result](../experiments/T005-protocol-r-baseline-implementation/result.json), [report](../experiments/T005-protocol-r-baseline-implementation/BASELINE_REPORT.md), [task](tasks/T005-protocol-r-baseline-implementation.md), [D006](decisions/D006-protocol-r-v1-development-reporting-scope.md) |
-| T006 — Direct rTM NILM Prototype | 用 causal aggregate window 验证 vanilla TMU rTM 的 sample-wise fridge power feasibility | Active — 2026-07-28 | [Task](tasks/T006-direct-rtm-nilm-prototype.md) |
+| T006 — Direct rTM NILM Prototype | 用 causal aggregate window 验证 vanilla TMU rTM 的 sample-wise fridge power feasibility | Paused pending separately authorised R004 review — 2026-07-28 | [Task](tasks/T006-direct-rtm-nilm-prototype.md) |
 | T007 — Pico Feature-to-TM Deployment | 编译、烧录、运行并测量 declared Pico boundary | Not started | No task record |
 | T008 — Layered Baseline Error Analysis | 形成 per-layer/per-class failure evidence | Not started | No task record |
 | T009 — Promoted Method Confirmation | 在 formal development protocol 下重验晋升候选 | Not started | No task record |
@@ -45,6 +45,7 @@ T003 的早期 [pre-reproduction record](reproduction/HAN_MINIMUM_REPRODUCTION_R
 | R001 — Legacy Evidence and Reuse Map | 旧 repo、branch、commit、file 和 reuse boundary | Complete | [Review](reviews/R001-legacy-evidence-and-reuse-map.md) |
 | R002 — Evaluation Protocol Consistency Review | Protocol R/X、row-position 和 binary-output semantics | Complete | [Review](reviews/R002-evaluation-protocol-consistency-review.md) |
 | R003 — Regression Tsetlin Machine Mechanism Review | vanilla/weighted rTM 机制、固定公开源码差异、NILM 假设和验证边界 | Complete | [Review](reviews/R003-regression-tsetlin-machine-mechanism-review.md) |
+| R004 — rTM NILM Input and Booleanisation Review | 审查 direct rTM input representation、Booleanisation 和运行成本边界 | Not started; pending separate authorisation | No review record |
 
 `R-series review` 与 `Protocol R` 是两件不同的事。前者是只读工作轨道，后者是正式研究 evaluation protocol。
 
