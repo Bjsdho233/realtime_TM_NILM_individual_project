@@ -35,6 +35,70 @@ temporary permissions, and next actions belong only in
 - Preserve historical records as historical records; correct them through a
   current-state update or supersession note.
 
+## Research Method Authority and Source Attribution
+
+Tianhang is accountable for the dissertation and owns its research methods.
+Codex may decide how to implement an accepted method, but it must not decide what
+the research method should be. Keep method selection and implementation work
+explicitly separate.
+
+Codex may autonomously perform `Implementation-only` work that preserves the
+accepted algorithmic meaning and evidence population, including:
+
+- file structure, CLI design and configuration plumbing;
+- data readers, caching, batching, vectorisation and implementation-level
+  performance optimisation;
+- logging, plotting and result export;
+- unit tests, boundary checks and failure diagnostics;
+- code refactoring that does not alter the method;
+- implementation of an already accepted or frozen model specification.
+
+The following are research-method choices and require Tianhang's explicit review
+and confirmation before implementation or evidence-producing execution:
+
+- what constitutes one sample;
+- input-window length, causality and permitted delay;
+- raw power, differences, statistics, event features or another representation;
+- Booleanisation method, threshold generation and bits per feature;
+- target definition, transformation and scaling;
+- cTM, rTM, weighted rTM or a combined structure;
+- treatment of OFF-sample imbalance;
+- data splits, evaluation metrics and post-processing;
+- tunable parameters, search space and selection rule;
+- dissertation contribution, originality and novelty framing.
+
+If an authorised coding task encounters an unresolved method choice, stop before
+implementing or running that choice. Present the options, sources, consequences
+and the smallest decision Tianhang must make. A convenient implementation
+assumption, library default or prototype setting is not method approval.
+Implementation optimisation must not silently change samples, features,
+thresholds, targets, splits, model semantics, metrics or claims.
+
+Every method component and material run configuration must identify one of these
+source types in the applicable task, design, review or report before it produces
+evidence:
+
+| Source type | Meaning | Required dissertation treatment |
+|---|---|---|
+| `Inherited` | Directly uses an existing paper or code method. | Cite the exact reference, implementation and version. |
+| `Adapted` | Modifies or applies an existing method for this project. | Cite the original method and state the project modification separately. |
+| `Project-designed` | Chosen by this project from a stated hypothesis or design need. | Record motivation, alternatives considered and the decision process. |
+| `Implementation-only` | Changes code or execution mechanics without changing algorithmic meaning. | Describe only to the extent needed for reproducibility and engineering explanation. |
+
+An absent source is not evidence of novelty. Treat an unsourced project choice as
+`Project-designed`, not as an innovation or original contribution. Novelty may be
+discussed only after an adequate literature review and Tianhang's explicit
+approval of that claim. Do not describe a mixed method as a single “standard”
+method: separate inherited model mechanics and library components from adapted
+task formulation, project-designed inputs/configuration and implementation-only
+engineering.
+
+Prototype parameters such as window length, lag representation, bits per
+feature, row caps, epochs and clause counts are not literature-backed or optimal
+merely because they appear in an authorised run specification. Authorisation
+permits the declared run; it does not promote those choices into the final method
+or a dissertation contribution.
+
 ## Prototype-First Dissertation Scope
 
 This repository is a student individual-project prototype, not a
