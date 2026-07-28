@@ -327,4 +327,3 @@ class BinaryTsetlinMachine:
 
     def inference_sha256(self) -> str:
         return hashlib.sha256(self.to_inference_bytes()).hexdigest()
-

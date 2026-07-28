@@ -231,6 +231,36 @@ class ArchiveSafetyTests(unittest.TestCase):
             with self.assertRaises(governance.GovernanceError):
                 governance._validate_aggregate_table(path, design)
 
+    def test_t_series_result_archive_uses_frozen_manifest_validator(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = pathlib.Path(temporary)
+            archive = (
+                root
+                / "experiments"
+                / "T005-protocol-r-baseline-implementation"
+            )
+            archive.mkdir(parents=True)
+            write_utf8_lf(archive / "result.json", "{}\n")
+            schema_directory = root / "schemas"
+            schema_directory.mkdir()
+            write_utf8_lf(
+                schema_directory / "legacy-archive-checksums.json",
+                '{"archives": {}}\n',
+            )
+            paths = [
+                pathlib.Path(
+                    "experiments/T005-protocol-r-baseline-implementation/result.json"
+                )
+            ]
+            with mock.patch.object(
+                governance, "_validate_t_series_archive"
+            ) as validate_t_archive:
+                result = governance.validate_experiment_archives(root, paths)
+            validate_t_archive.assert_called_once_with(
+                root, archive, {"result.json"}
+            )
+        self.assertEqual(result.name, "Experiment archives")
+
 
 class ArchivePathBypassTests(unittest.TestCase):
     def assertForbiddenTrackablePath(self, relative):

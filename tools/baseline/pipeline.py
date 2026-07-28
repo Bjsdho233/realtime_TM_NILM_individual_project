@@ -577,4 +577,3 @@ def candidate_identity_sha256(candidates: Iterable[CandidateEvent]) -> str:
         digest.update(b"\0")
         digest.update(np.asarray(candidate.features, dtype="<f8").tobytes())
     return digest.hexdigest()
-

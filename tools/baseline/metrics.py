@@ -193,4 +193,3 @@ def fold_seed_appliance_summary(
             }
         )
     return summaries
-

@@ -293,27 +293,27 @@
     },
     {
       "path": "tools/baseline/__init__.py",
-      "sha256": "189bbb9062893fa8664a939038c0fbd820d2d3d66a2982b400eff32373109c1d",
+      "sha256": "c33d0dedb03d33e8b2721dc196a92f52f25ebd32ecf9af4de088ef80fc52e076",
       "role": "baseline package identity"
     },
     {
       "path": "tools/baseline/encoding.py",
-      "sha256": "12a75aaba064cd8b67f44b32eb81ad3dc32c0f4cfd399628149640db6353453c",
+      "sha256": "6bce0cbd2aa8299e50ddc9fc225d118f11a62f6cbb5de852ffcef4055d6f11e3",
       "role": "frozen Booleanisation"
     },
     {
       "path": "tools/baseline/model.py",
-      "sha256": "83de2d411f517fa34263e393c3b8512f943f371950778bc7aab0726d91903832",
+      "sha256": "feab7d7a76c99acf5f6dccb8808c30345d6acb57f796a4c45ff7cfc261c7727c",
       "role": "frozen binary TM"
     },
     {
       "path": "tools/baseline/pipeline.py",
-      "sha256": "94454e7349d95bf51b4373796cd1108ae236851be90782398efb42f1c13fac7f",
+      "sha256": "0f84ff9e4a6c56c7f62552fa80074255d9697bf77e7ce1900a8c1c2c624d905a",
       "role": "frozen detector, pairer, features and target association"
     },
     {
       "path": "tools/baseline/metrics.py",
-      "sha256": "11fb4bedbca859edd2771f4d89da0e54454472e889c6cf1136cf60ede9aa7a4e",
+      "sha256": "dab1115ed3576090d3a9acf67077435af9857bb05c34bc69a29199817c4e66b2",
       "role": "frozen metrics and aggregation"
     },
     {
@@ -323,17 +323,17 @@
     },
     {
       "path": "tests/baseline/test_t005_access.py",
-      "sha256": "41b3e93817c760babc86c328f0bed23fd3da6af3c0e9881c015214c604e7941f",
+      "sha256": "691571f13959bd3be590545ac76605ceb762f48e9caa6405efb099d63a09659b",
       "role": "access refusal tests"
     },
     {
       "path": "tests/baseline/test_t005_model.py",
-      "sha256": "5242b725edf121ddb5084ab5b7d8ddfe26c612cccc1b1e4ead920d8ba0fc0643",
+      "sha256": "7db3d36a52358a376b3900f81650f2ba9f3b1988c6728c617e777a852898b4c3",
       "role": "seed, state, vote and save/reload tests"
     },
     {
       "path": "tests/baseline/test_t005_pipeline.py",
-      "sha256": "5b9fe7060423c0fd942845d8c439ab9e49828f29fe96b98cb103146f43dd6159",
+      "sha256": "69dcc2ab9ecc886f892f177df20112b78c31777ac42e555791acc6f0f6f7bf6b",
       "role": "containment, label independence and metric tests"
     }
   ],
@@ -343,18 +343,85 @@
     "aggregate_tables": [
       {
         "path": "tables/development_metrics.csv",
+        "columns": [
+          "fold",
+          "seed",
+          "house",
+          "appliance",
+          "tp",
+          "tn",
+          "fp",
+          "fn",
+          "eligible_positive_support",
+          "eligible_negative_support",
+          "excluded_unavailable_count",
+          "precision",
+          "recall",
+          "f1",
+          "binary_accuracy",
+          "precision_zero_denominator",
+          "recall_zero_denominator",
+          "f1_zero_denominator",
+          "accuracy_zero_denominator",
+          "matched_target_episode_count",
+          "unmatched_target_episode_count",
+          "duplicate_candidate_count",
+          "candidate_count",
+          "episode_coverage",
+          "episode_coverage_zero_denominator",
+          "excluded_reasons_json"
+        ],
         "max_rows": 300
       },
       {
         "path": "tables/development_summary.csv",
+        "columns": [
+          "scope",
+          "metric",
+          "value",
+          "unit",
+          "aggregation",
+          "sample_std",
+          "seed_values"
+        ],
         "max_rows": 5
       },
       {
         "path": "tables/model_costs.csv",
+        "columns": [
+          "fold",
+          "seed",
+          "scope",
+          "boundary",
+          "median_value",
+          "p95_value",
+          "unit",
+          "serialized_inference_bytes",
+          "shared_encoder_bytes",
+          "complete_bundle_bytes",
+          "warmups",
+          "timed_calls",
+          "batch_size"
+        ],
         "max_rows": 200
       },
       {
         "path": "tables/pipeline_diagnostics.csv",
+        "columns": [
+          "fold",
+          "role",
+          "house",
+          "main_edge_count",
+          "rising_edge_count",
+          "falling_edge_count",
+          "paired_count",
+          "candidate_count",
+          "expired_rise_count",
+          "unmatched_fall_count",
+          "contained_exclusion_count",
+          "non_finite_main_count",
+          "target_diagnostics_json"
+        ],
         "max_rows": 40
       }
     ],

@@ -96,4 +96,3 @@ class GaussianCdfEncoder:
 
     def sha256(self) -> str:
         return hashlib.sha256(self.serialize()).hexdigest()
-

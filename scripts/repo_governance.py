@@ -67,6 +67,7 @@ MUTABLE_OUTPUT_SEGMENTS = {
 IGNORED_LOCAL_ENVIRONMENT_SEGMENTS = {".venv"}
 
 WORK_ID_RE = re.compile(r"^E\d{3}$")
+T_WORK_ID_RE = re.compile(r"^T\d{3}$")
 EXPERIMENT_DIR_RE = re.compile(r"^[ETR]\d{3}-[a-z0-9]+(?:-[a-z0-9]+)*$")
 RELATIVE_PATH_RE = re.compile(r"^(?!/)(?![A-Za-z]:[\\/])(?!.*(?:^|/)\.\.(?:/|$)).+")
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
@@ -321,6 +322,41 @@ NUMERIC_AGGREGATE_COLUMNS = {
     "repetitions",
     "seed",
     "repeat",
+    "sample_std",
+    "tp",
+    "tn",
+    "fp",
+    "fn",
+    "eligible_positive_support",
+    "eligible_negative_support",
+    "excluded_unavailable_count",
+    "binary_accuracy",
+    "precision_zero_denominator",
+    "recall_zero_denominator",
+    "f1_zero_denominator",
+    "accuracy_zero_denominator",
+    "matched_target_episode_count",
+    "unmatched_target_episode_count",
+    "duplicate_candidate_count",
+    "candidate_count",
+    "episode_coverage",
+    "episode_coverage_zero_denominator",
+    "median_value",
+    "p95_value",
+    "serialized_inference_bytes",
+    "shared_encoder_bytes",
+    "complete_bundle_bytes",
+    "warmups",
+    "timed_calls",
+    "batch_size",
+    "main_edge_count",
+    "rising_edge_count",
+    "falling_edge_count",
+    "paired_count",
+    "expired_rise_count",
+    "unmatched_fall_count",
+    "contained_exclusion_count",
+    "non_finite_main_count",
 }
 MEASURE_AGGREGATE_COLUMNS = NUMERIC_AGGREGATE_COLUMNS - {"seed", "repeat"}
 
@@ -333,6 +369,10 @@ ROLE_DIRECTORIES: dict[str, set[str]] = {
     "checksum": {"."},
     "environment": {"."},
     "command_log": {"."},
+}
+
+T_SERIES_ARCHIVE_CONFIGS = {
+    "T005": Path("artifacts/manifests/protocol_r_baseline_v1.json"),
 }
 
 
@@ -2233,6 +2273,229 @@ def _validate_new_archive(
         )
 
 
+def _validate_t_series_archive(
+    root: Path,
+    directory: Path,
+    relative_files: Iterable[str] | None = None,
+) -> None:
+    """Validate a compact result archive governed by a frozen T-series manifest."""
+    validate_tree_has_no_links(
+        directory,
+        MUTABLE_OUTPUT_SEGMENTS | IGNORED_LOCAL_ENVIRONMENT_SEGMENTS,
+    )
+    work_id = directory.name.split("-", 1)[0]
+    manifest_relative = T_SERIES_ARCHIVE_CONFIGS.get(work_id)
+    if manifest_relative is None:
+        raise GovernanceError(f"{directory}: no T-series archive contract is registered")
+
+    manifest_path = safe_repository_file(
+        root, manifest_relative, f"{directory}: T-series manifest"
+    )
+    manifest = load_json(manifest_path)
+    schema_relative = Path(manifest["$schema"])
+    validate_with_schema(manifest, root / schema_relative, str(manifest_path))
+    manifest_hash = canonical_file_sha256(
+        root, manifest_relative, f"{directory}: T-series manifest"
+    )
+    sidecar_relative = manifest_relative.with_suffix(".sha256")
+    expected_sidecar = (
+        f"{manifest_hash}  {manifest_relative.as_posix()}\n".encode("ascii")
+    )
+    actual_sidecar = canonical_index_bytes(
+        root, sidecar_relative, f"{directory}: T-series manifest sidecar"
+    )
+    if actual_sidecar != expected_sidecar:
+        raise GovernanceError(f"{directory}: T-series manifest sidecar mismatch")
+    if manifest["task"]["work_id"] != work_id:
+        raise GovernanceError(f"{directory}: manifest work identity mismatch")
+    expected_archive = directory.relative_to(root).as_posix()
+    if manifest["output_contract"]["archive"] != expected_archive:
+        raise GovernanceError(f"{directory}: manifest archive path mismatch")
+
+    archive_files = _new_archive_files(root, directory, relative_files)
+    actual_relative = {
+        path.relative_to(directory).as_posix() for path in archive_files
+    }
+    required = {
+        "BASELINE_REPORT.md",
+        "result.json",
+        "environment.txt",
+        "commands.log",
+        "model_artifacts.json",
+        "CHECKSUMS.sha256",
+        *{
+            spec["path"]
+            for spec in manifest["output_contract"]["aggregate_tables"]
+        },
+    }
+    if not required.issubset(actual_relative):
+        raise GovernanceError(
+            f"{directory}: T-series archive lacks required files "
+            f"{sorted(required - actual_relative)}"
+        )
+    for path in archive_files:
+        canonical_index_bytes(
+            root, path.relative_to(root), f"{directory}: portable archive file"
+        )
+
+    result_path = directory / RESULT_NAME
+    result = load_json(result_path)
+    validate_with_schema(result, root / RESULT_SCHEMA_PATH, str(result_path))
+    if (
+        result["work_id"] != work_id
+        or result["name"] != manifest["task"]["direct_name"]
+        or result["track"] != "T-series"
+        or result["status"] != "complete"
+    ):
+        raise GovernanceError(f"{directory}: result identity or lifecycle mismatch")
+    if result["design_sha256"] is not None or result["design_commit"] is not None:
+        raise GovernanceError(f"{directory}: T-series result must not claim an E-series anchor")
+    config_files = result["provenance"]["config_files"]
+    if config_files != [
+        {"path": manifest_relative.as_posix(), "sha256": manifest_hash}
+    ]:
+        raise GovernanceError(f"{directory}: result manifest provenance mismatch")
+
+    base_commit = result["provenance"]["base_git_commit"]
+    require_full_git_history(root)
+    commit_object = subprocess.run(
+        ["git", "-C", str(root), "cat-file", "-e", f"{base_commit}^{{commit}}"],
+        check=False,
+        capture_output=True,
+    )
+    if commit_object.returncode:
+        raise GovernanceError(f"{directory}: pre-run commit does not exist")
+    ancestor = subprocess.run(
+        ["git", "-C", str(root), "merge-base", "--is-ancestor", base_commit, "HEAD"],
+        check=False,
+        capture_output=True,
+    )
+    if ancestor.returncode:
+        raise GovernanceError(f"{directory}: pre-run commit is not an ancestor of HEAD")
+    committed_manifest = _git_output(
+        root,
+        ["show", f"{base_commit}:{manifest_relative.as_posix()}"],
+        f"{directory}: committed T-series manifest",
+    )
+    committed_sidecar = _git_output(
+        root,
+        ["show", f"{base_commit}:{sidecar_relative.as_posix()}"],
+        f"{directory}: committed T-series manifest sidecar",
+    )
+    if (
+        sha256_bytes(committed_manifest) != manifest_hash
+        or committed_sidecar != expected_sidecar
+    ):
+        raise GovernanceError(f"{directory}: pre-run manifest anchor mismatch")
+
+    executed_sources = result["provenance"]["executed_source_files"]
+    expected_sources = [
+        {"path": record["path"], "sha256": record["sha256"]}
+        for record in manifest["source_identity"]
+    ]
+    if executed_sources != expected_sources:
+        raise GovernanceError(f"{directory}: executed source identity mismatch")
+    for record in manifest["source_identity"]:
+        committed_source = _git_output(
+            root,
+            ["show", f"{base_commit}:{record['path']}"],
+            f"{directory}: committed source {record['path']}",
+        )
+        if sha256_bytes(committed_source) != record["sha256"]:
+            raise GovernanceError(
+                f"{directory}: pre-run source hash mismatch for {record['path']}"
+            )
+
+    declared: dict[str, dict[str, Any]] = {}
+    for record in result["archive"]["files"]:
+        relative_text = record["path"].replace("\\", "/")
+        _validate_relative_path(relative_text, f"{directory}: archive file")
+        if relative_text == RESULT_NAME or relative_text in declared:
+            raise GovernanceError(
+                f"{directory}: invalid or duplicate archive declaration {relative_text}"
+            )
+        relative = PurePosixPath(relative_text)
+        target = safe_repository_file(
+            root,
+            directory.relative_to(root).joinpath(*relative.parts),
+            f"{directory}: declared archive file",
+        )
+        if canonical_file_sha256(
+            root, target.relative_to(root), f"{directory}: archive file"
+        ) != record["sha256"]:
+            raise GovernanceError(f"{target}: result archive hash mismatch")
+        if record["contains_row_level_data"] or record["contains_sensitive_data"]:
+            raise GovernanceError(f"{target}: compact T-series archive flags are unsafe")
+        expected_role = None
+        if relative_text == "model_artifacts.json":
+            expected_role = "configuration"
+        elif relative_text == "CHECKSUMS.sha256":
+            expected_role = "checksum"
+        elif relative.parts[0] == "tables":
+            expected_role = "aggregate_table"
+        else:
+            expected_roles = {
+                "BASELINE_REPORT.md": "narrative",
+                "environment.txt": "environment",
+                "commands.log": "command_log",
+            }
+            expected_role = expected_roles.get(relative_text)
+        if record["role"] != expected_role:
+            raise GovernanceError(
+                f"{directory}: role {record['role']!r} is incompatible with {relative}"
+            )
+        if record["role"] == "aggregate_table":
+            _validate_aggregate_table(target, manifest)
+        declared[relative_text] = record
+
+    actual_declared = actual_relative - {RESULT_NAME}
+    if set(declared) != actual_declared:
+        raise GovernanceError(
+            f"{directory}: result archive inventory mismatch; "
+            f"undeclared={sorted(actual_declared - set(declared))}, "
+            f"missing={sorted(set(declared) - actual_declared)}"
+        )
+    for evidence in result["evidence"]:
+        declaration = declared.get(evidence["path"])
+        if declaration is None or declaration["role"] not in {
+            "narrative",
+            "aggregate_table",
+        }:
+            raise GovernanceError(
+                f"{directory}: evidence path is not a declared report/table"
+            )
+
+    environment = result["provenance"]["environment"]
+    expected_environment = (
+        directory.relative_to(root).joinpath("environment.txt").as_posix()
+    )
+    if (
+        environment["path"] != expected_environment
+        or environment["sha256"] != declared["environment.txt"]["sha256"]
+    ):
+        raise GovernanceError(f"{directory}: environment provenance mismatch")
+
+    checksum_lines = canonical_index_bytes(
+        root,
+        (directory / "CHECKSUMS.sha256").relative_to(root),
+        f"{directory}: checksums",
+    ).decode("ascii").splitlines()
+    checksum_records: dict[str, str] = {}
+    for line in checksum_lines:
+        match = re.fullmatch(r"([0-9a-f]{64})  (.+)", line)
+        if not match or match.group(2) in checksum_records:
+            raise GovernanceError(f"{directory}: malformed or duplicate checksum line")
+        checksum_records[match.group(2)] = match.group(1)
+    expected_checksum_paths = set(declared) - {"CHECKSUMS.sha256"}
+    if set(checksum_records) != expected_checksum_paths:
+        raise GovernanceError(f"{directory}: checksum inventory mismatch")
+    for relative_text, expected_hash in checksum_records.items():
+        if expected_hash != declared[relative_text]["sha256"]:
+            raise GovernanceError(
+                f"{directory}: checksum differs from result for {relative_text}"
+            )
+
+
 def validate_experiment_archives(root: Path, paths: Sequence[Path]) -> CheckResult:
     experiment_root = root / "experiments"
     if not experiment_root.is_dir():
@@ -2269,10 +2532,13 @@ def validate_experiment_archives(root: Path, paths: Sequence[Path]) -> CheckResu
             for relative in trackable
             if relative.startswith(f"{name}/")
         }
+        work_id = name.split("-", 1)[0]
         if (directory / DESIGN_NAME).is_file():
             if not WORK_ID_RE.fullmatch(name.split("-", 1)[0]):
                 raise GovernanceError(f"{directory}: design manifests are currently E-series only")
             _validate_new_archive(root, directory, relative_files)
+        elif T_WORK_ID_RE.fullmatch(work_id) and (directory / RESULT_NAME).is_file():
+            _validate_t_series_archive(root, directory, relative_files)
         elif name in LEGACY_ARCHIVE_FILES:
             if relative_files != LEGACY_ARCHIVE_FILES[name]:
                 raise GovernanceError(
