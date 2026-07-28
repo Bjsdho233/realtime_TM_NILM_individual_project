@@ -1,0 +1,184 @@
+{
+  "schema_version": "1.0",
+  "work_id": "R006",
+  "direct_name": "Compact rTM Computation Cost Probe",
+  "status": "frozen cost-probe-only execution specification",
+  "claim_scope": "engineering computation cost only; no predictive capability or method approval",
+  "data": {
+    "protocol": "Protocol R v1",
+    "fold": "F1",
+    "role": "training",
+    "blocks": [
+      "B2",
+      "B3",
+      "B4"
+    ],
+    "houses": [
+      1,
+      3,
+      5,
+      6
+    ],
+    "target_population": "frozen T004 valid target ranges with complete 256-sample aggregate dependency",
+    "forbidden": [
+      "B1",
+      "B5",
+      "H2",
+      "H4",
+      "Protocol X",
+      "E003",
+      "E004"
+    ]
+  },
+  "feature_calculation": {
+    "input_dtype": "source values parsed as float64; completed feature matrix cast to float32",
+    "window": "strictly causal and includes current row t",
+    "mean": "arithmetic mean over main[t-h+1:t+1]",
+    "residual": "main[t] - mean_h",
+    "range": "max(main[t-h+1:t+1]) - min(main[t-h+1:t+1])",
+    "reset": [
+      "house",
+      "segment",
+      "block",
+      "split",
+      "non-finite aggregate"
+    ]
+  },
+  "candidates": {
+    "C8": {
+      "role": "low-cost reference only",
+      "features_in_order": [
+        "level_t",
+        "delta_1",
+        "mean_4",
+        "residual_4",
+        "mean_16",
+        "residual_16",
+        "mean_64",
+        "residual_64"
+      ],
+      "numeric_feature_count": 8,
+      "boolean_bit_count": 56
+    },
+    "C11": {
+      "role": "primary computation-cost candidate",
+      "features_in_order": [
+        "level_t",
+        "delta_1",
+        "mean_4",
+        "residual_4",
+        "range_4",
+        "mean_16",
+        "residual_16",
+        "range_16",
+        "mean_64",
+        "residual_64",
+        "range_64"
+      ],
+      "numeric_feature_count": 11,
+      "boolean_bit_count": 74
+    }
+  },
+  "booleaniser": {
+    "fit_population": "all eligible F1 training rows before staircase selection",
+    "nonnegative_features": [
+      "level_t",
+      "mean_4",
+      "range_4",
+      "mean_16",
+      "range_16",
+      "mean_64",
+      "range_64"
+    ],
+    "nonnegative_rule": "value >= pooled quantile threshold",
+    "nonnegative_quantiles": [
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      0.9,
+      0.99
+    ],
+    "signed_features": [
+      "delta_1",
+      "residual_4",
+      "residual_16",
+      "residual_64"
+    ],
+    "signed_rule": "four value >= positive-magnitude thresholds followed by four value <= negative-magnitude thresholds",
+    "signed_magnitude_quantiles": [
+      0.5,
+      0.9,
+      0.99,
+      0.999
+    ],
+    "quantile_method": "NumPy linear",
+    "output_dtype": "uint32",
+    "threshold_parity": "must exactly match corresponding rows in docs/reviews/R005-bit-audit.csv"
+  },
+  "row_selection": {
+    "rule": "round-to-nearest positions from numpy.linspace(0, full_row_count - 1, requested_count)",
+    "staircase_rows": [
+      2048,
+      8192,
+      32768,
+      131072
+    ],
+    "same_indices_for_both_candidates": true,
+    "prediction_sample_rows": 2048,
+    "prediction_sample_rule": "the same deterministic evenly spaced F1 training positions for every fit"
+  },
+  "target_stimulus": {
+    "project_transform": "finite fridge[t] is clamped with max(0, y), stored as float32, then passed to TMU as float64",
+    "tmu_internal_transform": "each fresh model sets min_y and max_y from its selected rows and maps ((y - min_y) / (max_y - min_y) * T) to int32; a constant target maps to zero",
+    "status": "cost-probe-only engineering stimulus; not an approved T006 TargetSpec"
+  },
+  "model": {
+    "implementation": "TMU 0.8.3 TMRegressor",
+    "number_of_clauses": 200,
+    "T": 200,
+    "s": 3.0,
+    "platform": "CPU",
+    "feature_negation": true,
+    "boost_true_positive_feedback": 1,
+    "reuse_random_feedback": 0,
+    "max_included_literals": 16,
+    "number_of_state_bits_ta": 8,
+    "weighted_clauses": false,
+    "clause_drop_p": 0.0,
+    "literal_drop_p": 0.0,
+    "seed": 0,
+    "shuffle": true,
+    "epochs_per_fresh_model": 1
+  },
+  "warmup": {
+    "allowed": true,
+    "rows": 128,
+    "measured": false,
+    "purpose": "one-time backend initialisation only"
+  },
+  "full_c11_gate": {
+    "projected_wall_seconds_max": 300,
+    "requires_stable_scaling": true,
+    "requires_no_probe_induced_swapping": true,
+    "requires_safe_available_memory": true,
+    "full_c8_forbidden": true
+  },
+  "stop_rules": {
+    "step_wall_seconds_max": 600,
+    "minimum_available_physical_bytes": 1073741824,
+    "non_finite_data": "stop",
+    "backend_error": "stop",
+    "unexplained_runtime_or_memory_growth": "stop",
+    "probe_induced_paging": "stop"
+  },
+  "forbidden_outputs": [
+    "MAE",
+    "F1",
+    "NAE",
+    "qualitative prediction assessment",
+    "saved trained model",
+    "T006 method approval",
+    "predictive capability claim"
+  ]
+}
