@@ -5,11 +5,11 @@
 - Status: current governance snapshot
 - Last updated: 2026-07-28
 - Delivery posture: prototype-first student dissertation; runnable, readable and explainable over production-grade completeness
-- Current formal state: T006 implementation checkpoint exists; its first real-data run was stopped without a result
-- Active T-series: T006 — Direct rTM NILM Prototype (paused pending separately authorised R004 review)
+- Current formal state: T006 implementation checkpoint exists; its first real-data run was stopped without a result; R004 review is complete without approving a successor method
+- Active T-series: T006 — Direct rTM NILM Prototype (paused; R004 is complete and no resume or revision is authorised)
 - Active E-series: see the exact registry below
 - Active R-series review: none
-- Next planned formal task: R004 — rTM NILM Input and Booleanisation Review, pending separate authorisation; do not resume T006
+- Next planned formal task: Tianhang decides whether to revise, resume or supersede T006 after reviewing R004; no method or execution is currently authorised
 - T004 authority: completed on 2026-07-28; no continuing execution authority
 - Candidate/locked test development access: prohibited
 - Repository health command: `python scripts/check_repo.py`
@@ -54,9 +54,9 @@ host/device 上实际覆盖的 pipeline boundary。
 
 | Track | Active item | Authority |
 |---|---|---|
-| T-series | T006 — Direct rTM NILM Prototype (paused) | first real-data process was stopped on 2026-07-28 without result files；等待另行授权的 R004 review；不得恢复 run |
+| T-series | T006 — Direct rTM NILM Prototype (paused) | first real-data process was stopped on 2026-07-28 without result files；R004 review 已完成但没有批准 successor method；不得恢复 run |
 | E-series | See exact registry below | Tianhang 可用一条明确指令启动新的隔离 E-series；执行前必须按下表登记、冻结并锚定 design |
-| R-series review | None | 可在明确请求下进行 read-only review；不训练、不评分 |
+| R-series review | None | R004 已完成；可在明确请求下进行新的 read-only review；不训练、不评分 |
 
 ## Active E-series Registry
 
@@ -119,6 +119,7 @@ E002 对 training order、`T=10`、hard-negative feedback 和 class balancing �
 | R001 — Legacy Evidence and Reuse Map | Complete — 2026-07-23 | 按研究问题定位旧 repo、fixed commit、branch、file 和 reuse boundary |
 | R002 — Evaluation Protocol Consistency Review | Complete — 2026-07-23 | 发现 mixed-house/held-out-house 与 raw-time/row-position 两组冲突 |
 | R003 — Regression Tsetlin Machine Mechanism Review | Complete — 2026-07-24 | 综述 vanilla/weighted rTM 机制、固定公开源码差异、NILM 假设与后续验证边界；没有训练或 REDD 访问 |
+| R004 — rTM NILM Input and Booleanisation Review | Complete — 2026-07-28 | 比较 direct rTM 的 input/Booleanisation 候选；建议优先考虑 compact causal multi-scale representation 加 hybrid cumulative thresholds，但未批准或运行任何方法 |
 
 R-series 只审查已有材料，不产生新的 model result。
 
