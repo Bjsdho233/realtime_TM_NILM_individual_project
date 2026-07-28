@@ -35,6 +35,42 @@ temporary permissions, and next actions belong only in
 - Preserve historical records as historical records; correct them through a
   current-state update or supersession note.
 
+## Prototype-First Dissertation Scope
+
+This repository is a student individual-project prototype, not a
+production-delivery programme. Future work must optimise for a runnable,
+readable and honestly explainable dissertation system.
+
+- Make claim-critical questions credible, make secondary questions
+  explainable, and document then defer frontier problems once their boundary is
+  clear.
+- Prefer the smallest end-to-end implementation that supports the main
+  dissertation line. Every new abstraction, layer, experiment family, schema,
+  validator or infrastructure component needs a named claim, safety boundary or
+  demonstrable implementation need. Otherwise omit or defer it.
+- Keep architecture, code paths, configuration and reports compact enough for
+  Tianhang to run and explain. Do not pursue production-grade completeness,
+  exhaustive edge-case coverage, enterprise deployment machinery or speculative
+  extensibility.
+- Verification is proportional: protect data leakage and accepted evaluation
+  boundaries, test the main runnable path and material failure modes, and avoid
+  large test matrices for low-consequence details.
+- T004/T005 remain valid historical records, but their governance and evidence
+  weight is not the default template for later work. Do not expand or rework
+  them merely to simplify their history.
+- Do not turn an optional theoretical concern into a blocker unless it can
+  invalidate the main result, make the claim dishonest, expose protected data or
+  prevent the prototype from running.
+
+For real-time claims, a prototype is sufficient when it consumes data in time
+order, does not revise an emitted decision using later whole-segment knowledge,
+and has a fixed, disclosed and acceptable processing/algorithmic delay. Depending
+on the demonstrated boundary, honest terms include `real-time replay`,
+`bounded-delay streaming inference`, and `real-time-capable inference`. Bit-level
+parity, zero latency and placing every pipeline stage on hardware are not default
+requirements. State the measured and algorithmic delay and the exact host/device
+boundary instead.
+
 ## Starting Work
 
 For a fresh or context-free session, follow

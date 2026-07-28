@@ -4,6 +4,7 @@
 
 - Status: current governance snapshot
 - Last updated: 2026-07-28
+- Delivery posture: prototype-first student dissertation; runnable, readable and explainable over production-grade completeness
 - Current formal state: T005 fixed Protocol R B1–B4 development baseline complete; no locked-test result
 - Active T-series: none
 - Active E-series: see the exact registry below
@@ -25,11 +26,35 @@
 
 如果本文件与实际 worktree、GitHub default branch 或已归档结果冲突，必须先检查并修正状态，不能根据日期或聊天摘要猜测。
 
+### 1.1 Prototype-first dissertation posture
+
+本项目是学生个人毕设原型，不按公司交付级系统建设。后续工作的排序是：
+
+1. 关键问题做到可信；
+2. 次要问题做到可解释；
+3. 前沿难题明确边界后放过。
+
+项目架构、代码、配置、实验和报告应尽量精简，优先保证 Tianhang 能跑通、读懂、
+解释和演示。新增 abstraction、schema、validator、实验矩阵或 infrastructure 必须
+直接服务于主线 claim、数据/评价安全边界或可运行实现；否则省略或 deferred。
+T004/T005 保留为有效历史记录，但其规格重量不再作为后续任务的默认模板。
+
+本项目允许按以下边界诚实使用 real-time terminology：
+
+- 数据按时间顺序进入；
+- 已输出决定不利用之后的整段信息回头修改；
+- processing/algorithmic delay 固定、可接受并明确报告。
+
+满足相应 evidence boundary 时，可称为 `real-time replay`、
+`bounded-delay streaming inference` 或 `real-time-capable inference`。默认不要求
+bit-level perfection、zero latency 或全流程全部上板；只需说明具体延迟以及
+host/device 上实际覆盖的 pipeline boundary。
+
 ## 2. 当前授权
 
 | Track | Active item | Authority |
 |---|---|---|
-| T-series | None | T005 已于 2026-07-28 完成 local-only aggregate-main development baseline；completion 不授权后续训练、test、push 或另一任务 |
+| T-series | None | T005 已完成并在 Tianhang 后续明确授权下同步到 GitHub default main；completion 不授权追加 run、test 或另一任务 |
 | E-series | See exact registry below | Tianhang 可用一条明确指令启动新的隔离 E-series；执行前必须按下表登记、冻结并锚定 design |
 | R-series review | None | 可在明确请求下进行 read-only review；不训练、不评分 |
 
