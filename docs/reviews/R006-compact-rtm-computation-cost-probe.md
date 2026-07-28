@@ -34,15 +34,18 @@ This probe does not approve its `FeatureSpec`, `BooleaniserSpec`, provisional
 - Wrapper PID: `45108`
 - TMU computation child PID: `26332`
 - Process creation time: 2026-07-28 22:41:58 Europe/London
-- Stop observation: the child had accumulated approximately 948.3 CPU seconds;
-  its current 131,072-row fresh-model fit had not returned after more than 10
-  minutes.
+- Stop observation: the child had accumulated approximately 948.3 CPU seconds
+  and the active fresh-model fit had not returned. The runner did not persist or
+  print step boundaries, so the active staircase step and its exact elapsed time
+  cannot be established retrospectively.
 - Memory observation immediately before termination: `PageFileUsage` was
   543,020 KiB (approximately 530.3 MiB) while `WorkingSetSize` had been trimmed
   to 253,952 bytes. System free physical memory was previously observed between
   approximately 2.5 and 3.3 GiB during the run.
-- Action: the exact C8 process was terminated under the frozen stop rule. No C11
-  process was started.
+- Action: the exact C8 process was conservatively terminated under the
+  unexplained-runtime-or-memory-growth stop rule. `PageFileUsage` alone is not
+  treated as proof that operating-system swapping occurred. No C11 process was
+  started.
 - Partial output: none. The intended temporary
   `c8-staircase.json` did not exist after termination.
 
