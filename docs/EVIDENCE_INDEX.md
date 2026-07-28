@@ -37,6 +37,7 @@
 | Training order may affect Han TM performance | [E002 current archive](../experiments/E002-tm-training-dynamics-probe/README.md), [fixed source commit](https://github.com/Bjsdho233/realtime_TM_NILM_individual_project/blob/e7277cc4a0326350f51fdfc5c17b8777572deddc/experiments/2026-07-22-tm-training-dynamics-probe/README.md), [R001](reviews/R001-legacy-evidence-and-reuse-map.md) | Legacy exploratory evidence | 可作为 formal E/T hypothesis 的来源 | H3 repeatedly viewed；未在 current formal protocol 下确认 |
 | Historical bounded pre/post context is promising | [R001](reviews/R001-legacy-evidence-and-reuse-map.md), [workflow map](research_notes/2026-07-23-nilm-workflow-layer-map.md) | Historical mechanism evidence | 可支持提出新的 controlled experiment | 旧 task/split，不是 current Protocol R |
 | Complex static FSM improves final system | Historical Round 10I locator in R001 | Historical negative evidence | 现有旧结果不支持用复杂 FSM 修补 upstream errors | 尚未在 current baseline 重验 |
+| Compact causal and hybrid Boolean input properties are statically characterised | [R005 review](reviews/R005-compact-rtm-input-static-audit.md), [bit audit](reviews/R005-bit-audit.csv), [pattern audit](reviews/R005-pattern-audit.csv) | Aggregate static audit complete | 可比较 horizon coverage、feature distributions、bit sparsity/drift、pattern collision 和 representation cost；C11 是当前最平衡的 audit candidate | 没有 model training/score；exact method 未批准；只读 F1 training roles |
 
 ## RQ4 — Embedded trade-offs
 
@@ -45,6 +46,7 @@
 | T003 compatibility model C data size | [T003 local archive](../experiments/T003-local-reproduction/LOCAL_REPRODUCTION_REPORT.md) | Verified | `9,058` bytes | 不是 total firmware/flash/RAM |
 | Pico inference latency and parity | No evidence yet | Missing | 不得声称 | T007 尚未完成 |
 | End-to-end real-time NILM | [Han source audit](reproduction/HAN_PIPELINE_SOURCE_AUDIT.md) | Not established | 可说明 current upstream route 包含 SD replay 和 future context | TM compute latency 不能替代 algorithmic decision latency |
+| Compact rTM preprocessing fits a small static Pico state estimate | [R005 cost audit](reviews/R005-cost-audit.csv), [R005 interpretation](reviews/R005-compact-rtm-input-static-audit.md) | Static estimate only | C8/C11/C14 scan-range preprocessing state 分别约 323/338/1,124 bytes with packed bits；可用于 architecture choice | 不含 model/I/O/stack；没有 Pico build、benchmark 或 parity |
 
 ## Feasibility and mechanism evidence
 

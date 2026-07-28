@@ -1,0 +1,4 @@
+encoder,bits,lower_saturation_threshold_w,upper_saturation_threshold_w,pooled_tail_saturation_fraction,large_change_definition_w,large_change_rows,large_change_tail_saturation_fraction,large_change_distinct_codes,positive_max_to_upper_threshold_ratio,negative_absmax_to_lower_threshold_ratio
+TMU_StandardBinarizer_8_reference,8,-6485.6494140625,21.6300048828125,0.00738181247055128,50.0,6017,0.44507229516370284,3,543.9176039685541,1.3550285674276366
+pure_quantile_8_reference,8,-2.420013427734375,2.239990234375,0.22229811418615608,50.0,6017,1.0,2,5252.228446866485,3631.484079244379
+hybrid_signed_core_tail_8_audit,8,-1572.0579832763895,1610.192633056654,0.000909486049068416,50.0,6017,0.08276549775635698,6,7.306542203806963,5.590277412070434

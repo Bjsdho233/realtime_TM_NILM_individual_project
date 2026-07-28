@@ -5,11 +5,11 @@
 - Status: current governance snapshot
 - Last updated: 2026-07-28
 - Delivery posture: prototype-first student dissertation; runnable, readable and explainable over production-grade completeness
-- Current formal state: T006 remains paused; D007 accepts compact causal and hybrid Booleanisation families for static audit only, while exact input and target preprocessing remain pending
+- Current formal state: T006 remains paused; R005 completed the D007 static audit, but exact input, bits and target preprocessing remain pending Tianhang's decision
 - Active T-series: T006 — Direct rTM NILM Prototype (paused; no training resume is authorised)
 - Active E-series: see the exact registry below
 - Active R-series review: none
-- Next planned formal task: static audit of exact compact causal feature and hybrid threshold candidates; target clipping/scaling must be separately frozen before any training
+- Next planned formal task: Tianhang selects or rejects an exact R005 input/Booleanisation candidate and separately freezes target clipping/scaling; no training is authorised
 - T004 authority: completed on 2026-07-28; no continuing execution authority
 - Candidate/locked test development access: prohibited
 - Repository health command: `python scripts/check_repo.py`
@@ -56,7 +56,7 @@ host/device 上实际覆盖的 pipeline boundary。
 |---|---|---|
 | T-series | T006 — Direct rTM NILM Prototype (paused) | D007 保留 vanilla direct rTM，允许 compact/hybrid families 进入 static audit；exact horizons/features/bits 和 target clipping/scaling 未冻结；不得恢复 training |
 | E-series | See exact registry below | Tianhang 可用一条明确指令启动新的隔离 E-series；执行前必须按下表登记、冻结并锚定 design |
-| R-series review | None | R004 已完成；可在明确请求下进行新的 read-only review；不训练、不评分 |
+| R-series review | None | R005 已完成；可在明确请求下进行新的 read-only review；不训练、不评分 |
 
 ## Active E-series Registry
 
@@ -120,6 +120,7 @@ E002 对 training order、`T=10`、hard-negative feedback 和 class balancing �
 | R002 — Evaluation Protocol Consistency Review | Complete — 2026-07-23 | 发现 mixed-house/held-out-house 与 raw-time/row-position 两组冲突 |
 | R003 — Regression Tsetlin Machine Mechanism Review | Complete — 2026-07-24 | 综述 vanilla/weighted rTM 机制、固定公开源码差异、NILM 假设与后续验证边界；没有训练或 REDD 访问 |
 | R004 — rTM NILM Input and Booleanisation Review | Complete — 2026-07-28 | 比较 direct rTM 的 input/Booleanisation 候选；建议优先考虑 compact causal multi-scale representation 加 hybrid cumulative thresholds，但未批准或运行任何方法 |
+| R005 — Compact rTM Input Static Audit | Complete — 2026-07-28 | 64/256-sample onset coverage 为 16.12%/59.06%；C11 在 static cost 与 pattern diversity 间最平衡，但 range bits 有明显 house drift；没有批准方法或训练 |
 
 R-series 只审查已有材料，不产生新的 model result。
 
