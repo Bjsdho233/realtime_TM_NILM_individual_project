@@ -5,11 +5,11 @@
 - Status: current governance snapshot
 - Last updated: 2026-07-28
 - Delivery posture: prototype-first student dissertation; runnable, readable and explainable over production-grade completeness
-- Current formal state: T006 remains paused; R005 is accepted and closed; R006 is authorised only to measure C8/C11 TMU computation cost
+- Current formal state: T006 remains paused; R005 is accepted and closed; R006 halted after its first C8 run triggered the runtime/paging stop rule
 - Active T-series: T006 — Direct rTM NILM Prototype (paused; no training resume is authorised)
 - Active E-series: see the exact registry below
-- Active R-series review: R006 — Compact rTM Computation Cost Probe (explicit cost-measurement exception; not a read-only review)
-- Next planned formal task: complete only R006 C8/C11 one-epoch cost measurements; do not approve or resume T006
+- Active R-series review: R006 — Compact rTM Computation Cost Probe (halted; no further execution authorised)
+- Next planned formal task: Tianhang reviews the R006 halted-run record; do not resume R006 or T006 without a separate instruction
 - T004 authority: completed on 2026-07-28; no continuing execution authority
 - Candidate/locked test development access: prohibited
 - Repository health command: `python scripts/check_repo.py`
@@ -56,7 +56,7 @@ host/device 上实际覆盖的 pipeline boundary。
 |---|---|---|
 | T-series | T006 — Direct rTM NILM Prototype (paused) | D007 保留 vanilla direct rTM，允许 compact/hybrid families 进入 static audit；exact horizons/features/bits 和 target clipping/scaling 未冻结；不得恢复 training |
 | E-series | See exact registry below | Tianhang 可用一条明确指令启动新的隔离 E-series；执行前必须按下表登记、冻结并锚定 design |
-| R-series review | R006 — Compact rTM Computation Cost Probe | Tianhang 明确授权的 cost-only exception：只运行 C8/C11 fresh one-epoch TMU fits，禁止 performance metrics、method approval、B1/B5/H2/H4 和 T006 resume |
+| R-series review | R006 — Compact rTM Computation Cost Probe (halted) | 首次 C8 run 在 131,072-row fit 中触发 runtime/paging stop rule；C11 未启动，后续 execution 需另行指示 |
 
 ## Active E-series Registry
 
@@ -121,7 +121,7 @@ E002 对 training order、`T=10`、hard-negative feedback 和 class balancing �
 | R003 — Regression Tsetlin Machine Mechanism Review | Complete — 2026-07-24 | 综述 vanilla/weighted rTM 机制、固定公开源码差异、NILM 假设与后续验证边界；没有训练或 REDD 访问 |
 | R004 — rTM NILM Input and Booleanisation Review | Complete — 2026-07-28 | 比较 direct rTM 的 input/Booleanisation 候选；建议优先考虑 compact causal multi-scale representation 加 hybrid cumulative thresholds，但未批准或运行任何方法 |
 | R005 — Compact rTM Input Static Audit | Complete — 2026-07-28 | 64/256-sample onset coverage 为 16.12%/59.06%；C11 在 static cost 与 pattern diversity 间最平衡，但 range bits 有明显 house drift；没有批准方法或训练 |
-| R006 — Compact rTM Computation Cost Probe | Active — 2026-07-28 | C11 为主候选、C8 为低成本 reference、C14 deferred；只测真实 TMU one-epoch time/RSS/prediction throughput/model size，不计算 performance |
+| R006 — Compact rTM Computation Cost Probe | Halted — 2026-07-28 | 首次 C8 staircase 在 131,072-row fit 中超过 10 分钟并出现 working-set trimming/pagefile pressure；进程已停止、无 partial result、C11 未启动 |
 
 R-series 只审查已有材料，不产生新的 model result。
 

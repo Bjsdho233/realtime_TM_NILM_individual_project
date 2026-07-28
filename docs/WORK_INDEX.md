@@ -47,7 +47,7 @@ T003 的早期 [pre-reproduction record](reproduction/HAN_MINIMUM_REPRODUCTION_R
 | R003 — Regression Tsetlin Machine Mechanism Review | vanilla/weighted rTM 机制、固定公开源码差异、NILM 假设和验证边界 | Complete | [Review](reviews/R003-regression-tsetlin-machine-mechanism-review.md) |
 | R004 — rTM NILM Input and Booleanisation Review | 审查 direct rTM input representation、Booleanisation 和运行成本边界 | Complete — 2026-07-28 | [Review](reviews/R004-rtm-nilm-input-and-booleanisation-review.md) |
 | R005 — Compact rTM Input Static Audit | 审计 compact causal features、hybrid Boolean bits、pattern collision、cross-house drift 和 implementation cost | Complete — 2026-07-28 | [Review](reviews/R005-compact-rtm-input-static-audit.md) |
-| R006 — Compact rTM Computation Cost Probe | 只测 frozen C8/C11 在真实 TMU CPU path 的 time、RSS、throughput 和 calculated model size | Active — 2026-07-28 | [Probe record](reviews/R006-compact-rtm-computation-cost-probe.md) |
+| R006 — Compact rTM Computation Cost Probe | 只测 frozen C8/C11 在真实 TMU CPU path 的 time、RSS、throughput 和 calculated model size | Halted — 2026-07-28；首次 C8 run 触发 stop rule，C11 未运行 | [Probe record](reviews/R006-compact-rtm-computation-cost-probe.md) |
 
 `R-series review` 与 `Protocol R` 是两件不同的事。前者是只读工作轨道，后者是正式研究 evaluation protocol。
 
