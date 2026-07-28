@@ -1,0 +1,53 @@
+house,segment_id,source_file,protocol_role,block_id,block_role,validation_fold,row_start_inclusive,row_end_exclusive,row_count,valid_target_start_inclusive,valid_target_end_exclusive,valid_target_count,appliance,column_present,training_folds,finite_valid_targets,missing_valid_targets,on_valid_target_samples,on_valid_target_duration_seconds,complete_episodes,dependency_contained_complete_episodes,left_censored_runs,right_censored_runs
+2,redd_house2_0,redd/redd_house2_0.csv,protocol_x_held_out_house,PX,protocol_x,,0,34429,34429,255,34421,34166,fridge,True,,34166,0,13683,41049,44,44,1,1
+2,redd_house2_0,redd/redd_house2_0.csv,protocol_x_held_out_house,PX,protocol_x,,0,34429,34429,255,34421,34166,microwave,True,,34166,0,5679,17037,9,9,0,1
+2,redd_house2_0,redd/redd_house2_0.csv,protocol_x_held_out_house,PX,protocol_x,,0,34429,34429,255,34421,34166,dish washer,True,,34166,0,908,2724,9,9,0,0
+2,redd_house2_0,redd/redd_house2_0.csv,protocol_x_held_out_house,PX,protocol_x,,0,34429,34429,255,34421,34166,washer dryer,True,,34166,0,0,0,0,0,0,0
+2,redd_house2_1,redd/redd_house2_1.csv,protocol_x_held_out_house,PX,protocol_x,,0,48110,48110,255,48102,47847,fridge,True,,47847,0,18445,55335,78,77,0,0
+2,redd_house2_1,redd/redd_house2_1.csv,protocol_x_held_out_house,PX,protocol_x,,0,48110,48110,255,48102,47847,microwave,True,,47847,0,4192,12576,5,5,0,0
+2,redd_house2_1,redd/redd_house2_1.csv,protocol_x_held_out_house,PX,protocol_x,,0,48110,48110,255,48102,47847,dish washer,True,,47847,0,930,2790,10,10,0,0
+2,redd_house2_1,redd/redd_house2_1.csv,protocol_x_held_out_house,PX,protocol_x,,0,48110,48110,255,48102,47847,washer dryer,True,,47847,0,0,0,0,0,0,0
+2,redd_house2_2,redd/redd_house2_2.csv,protocol_x_held_out_house,PX,protocol_x,,0,29378,29378,255,29370,29115,fridge,True,,29115,0,12082,36246,34,34,0,1
+2,redd_house2_2,redd/redd_house2_2.csv,protocol_x_held_out_house,PX,protocol_x,,0,29378,29378,255,29370,29115,microwave,True,,29115,0,6964,20892,6,6,0,0
+2,redd_house2_2,redd/redd_house2_2.csv,protocol_x_held_out_house,PX,protocol_x,,0,29378,29378,255,29370,29115,dish washer,True,,29115,0,920,2760,9,9,0,0
+2,redd_house2_2,redd/redd_house2_2.csv,protocol_x_held_out_house,PX,protocol_x,,0,29378,29378,255,29370,29115,washer dryer,True,,29115,0,0,0,0,0,0,0
+2,redd_house2_3,redd/redd_house2_3.csv,protocol_x_held_out_house,PX,protocol_x,,0,24010,24010,255,24002,23747,fridge,True,,23747,0,13618,40854,29,29,1,1
+2,redd_house2_3,redd/redd_house2_3.csv,protocol_x_held_out_house,PX,protocol_x,,0,24010,24010,255,24002,23747,microwave,True,,23747,0,2954,8862,10,8,0,1
+2,redd_house2_3,redd/redd_house2_3.csv,protocol_x_held_out_house,PX,protocol_x,,0,24010,24010,255,24002,23747,dish washer,True,,23747,0,0,0,0,0,0,0
+2,redd_house2_3,redd/redd_house2_3.csv,protocol_x_held_out_house,PX,protocol_x,,0,24010,24010,255,24002,23747,washer dryer,True,,23747,0,0,0,0,0,0,0
+2,redd_house2_4,redd/redd_house2_4.csv,protocol_x_held_out_house,PX,protocol_x,,0,33612,33612,255,33604,33349,fridge,True,,33349,0,15516,46548,61,61,1,0
+2,redd_house2_4,redd/redd_house2_4.csv,protocol_x_held_out_house,PX,protocol_x,,0,33612,33612,255,33604,33349,microwave,True,,33349,0,4630,13890,13,13,1,0
+2,redd_house2_4,redd/redd_house2_4.csv,protocol_x_held_out_house,PX,protocol_x,,0,33612,33612,255,33604,33349,dish washer,True,,33349,0,0,0,0,0,0,0
+2,redd_house2_4,redd/redd_house2_4.csv,protocol_x_held_out_house,PX,protocol_x,,0,33612,33612,255,33604,33349,washer dryer,True,,33349,0,0,0,0,0,0,0
+2,redd_house2_5,redd/redd_house2_5.csv,protocol_x_held_out_house,PX,protocol_x,,0,99258,99258,255,99250,98995,fridge,True,,98995,0,48745,146235,119,118,0,0
+2,redd_house2_5,redd/redd_house2_5.csv,protocol_x_held_out_house,PX,protocol_x,,0,99258,99258,255,99250,98995,microwave,True,,98995,0,4296,12888,16,16,0,0
+2,redd_house2_5,redd/redd_house2_5.csv,protocol_x_held_out_house,PX,protocol_x,,0,99258,99258,255,99250,98995,dish washer,True,,98995,0,1826,5478,19,19,0,0
+2,redd_house2_5,redd/redd_house2_5.csv,protocol_x_held_out_house,PX,protocol_x,,0,99258,99258,255,99250,98995,washer dryer,True,,98995,0,0,0,0,0,0,0
+2,redd_house2_6,redd/redd_house2_6.csv,protocol_x_held_out_house,PX,protocol_x,,0,23266,23266,255,23258,23003,fridge,True,,23003,0,10632,31896,29,28,0,1
+2,redd_house2_6,redd/redd_house2_6.csv,protocol_x_held_out_house,PX,protocol_x,,0,23266,23266,255,23258,23003,microwave,True,,23003,0,2277,6831,7,7,0,0
+2,redd_house2_6,redd/redd_house2_6.csv,protocol_x_held_out_house,PX,protocol_x,,0,23266,23266,255,23258,23003,dish washer,True,,23003,0,0,0,0,0,0,0
+2,redd_house2_6,redd/redd_house2_6.csv,protocol_x_held_out_house,PX,protocol_x,,0,23266,23266,255,23258,23003,washer dryer,True,,23003,0,0,0,0,0,0,0
+4,redd_house4_0,redd/redd_house4_0.csv,protocol_x_held_out_house,PX,protocol_x,,0,36688,36688,255,36680,36425,fridge,False,,,,,,,,,
+4,redd_house4_0,redd/redd_house4_0.csv,protocol_x_held_out_house,PX,protocol_x,,0,36688,36688,255,36680,36425,microwave,False,,,,,,,,,
+4,redd_house4_0,redd/redd_house4_0.csv,protocol_x_held_out_house,PX,protocol_x,,0,36688,36688,255,36680,36425,dish washer,True,,36425,0,2,6,0,0,0,0
+4,redd_house4_0,redd/redd_house4_0.csv,protocol_x_held_out_house,PX,protocol_x,,0,36688,36688,255,36680,36425,washer dryer,True,,36425,0,1685,5055,1,1,0,0
+4,redd_house4_1,redd/redd_house4_1.csv,protocol_x_held_out_house,PX,protocol_x,,0,22594,22594,255,22586,22331,fridge,False,,,,,,,,,
+4,redd_house4_1,redd/redd_house4_1.csv,protocol_x_held_out_house,PX,protocol_x,,0,22594,22594,255,22586,22331,microwave,False,,,,,,,,,
+4,redd_house4_1,redd/redd_house4_1.csv,protocol_x_held_out_house,PX,protocol_x,,0,22594,22594,255,22586,22331,dish washer,True,,22331,0,0,0,0,0,0,0
+4,redd_house4_1,redd/redd_house4_1.csv,protocol_x_held_out_house,PX,protocol_x,,0,22594,22594,255,22586,22331,washer dryer,True,,22331,0,1271,3813,1,1,0,0
+4,redd_house4_2,redd/redd_house4_2.csv,protocol_x_held_out_house,PX,protocol_x,,0,43118,43118,255,43110,42855,fridge,False,,,,,,,,,
+4,redd_house4_2,redd/redd_house4_2.csv,protocol_x_held_out_house,PX,protocol_x,,0,43118,43118,255,43110,42855,microwave,False,,,,,,,,,
+4,redd_house4_2,redd/redd_house4_2.csv,protocol_x_held_out_house,PX,protocol_x,,0,43118,43118,255,43110,42855,dish washer,True,,42855,0,0,0,0,0,0,0
+4,redd_house4_2,redd/redd_house4_2.csv,protocol_x_held_out_house,PX,protocol_x,,0,43118,43118,255,43110,42855,washer dryer,True,,42855,0,971,2913,9,9,0,1
+4,redd_house4_3,redd/redd_house4_3.csv,protocol_x_held_out_house,PX,protocol_x,,0,22835,22835,255,22827,22572,fridge,False,,,,,,,,,
+4,redd_house4_3,redd/redd_house4_3.csv,protocol_x_held_out_house,PX,protocol_x,,0,22835,22835,255,22827,22572,microwave,False,,,,,,,,,
+4,redd_house4_3,redd/redd_house4_3.csv,protocol_x_held_out_house,PX,protocol_x,,0,22835,22835,255,22827,22572,dish washer,True,,22572,0,0,0,0,0,0,0
+4,redd_house4_3,redd/redd_house4_3.csv,protocol_x_held_out_house,PX,protocol_x,,0,22835,22835,255,22827,22572,washer dryer,True,,22572,0,0,0,0,0,0,0
+4,redd_house4_4,redd/redd_house4_4.csv,protocol_x_held_out_house,PX,protocol_x,,0,40867,40867,255,40859,40604,fridge,False,,,,,,,,,
+4,redd_house4_4,redd/redd_house4_4.csv,protocol_x_held_out_house,PX,protocol_x,,0,40867,40867,255,40859,40604,microwave,False,,,,,,,,,
+4,redd_house4_4,redd/redd_house4_4.csv,protocol_x_held_out_house,PX,protocol_x,,0,40867,40867,255,40859,40604,dish washer,True,,40604,0,772,2316,6,6,0,0
+4,redd_house4_4,redd/redd_house4_4.csv,protocol_x_held_out_house,PX,protocol_x,,0,40867,40867,255,40859,40604,washer dryer,True,,40604,0,0,0,0,0,0,0
+4,redd_house4_5,redd/redd_house4_5.csv,protocol_x_held_out_house,PX,protocol_x,,0,108881,108881,255,108873,108618,fridge,False,,,,,,,,,
+4,redd_house4_5,redd/redd_house4_5.csv,protocol_x_held_out_house,PX,protocol_x,,0,108881,108881,255,108873,108618,microwave,False,,,,,,,,,
+4,redd_house4_5,redd/redd_house4_5.csv,protocol_x_held_out_house,PX,protocol_x,,0,108881,108881,255,108873,108618,dish washer,True,,108618,0,699,2097,5,5,0,0
+4,redd_house4_5,redd/redd_house4_5.csv,protocol_x_held_out_house,PX,protocol_x,,0,108881,108881,255,108873,108618,washer dryer,True,,108618,0,1,3,0,0,0,0

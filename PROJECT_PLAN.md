@@ -7,7 +7,7 @@
 - Last updated: 2026-07-23
 - Primary model: Tsetlin Machine
 - Primary dataset: REDD
-- Formal research protocol: unresolved until T004
+- Formal research protocol: Protocol R v1 contract frozen by T004; no formal model result
 - Formal delivery line: T001–T013
 - Parallel exploration: E-series
 - Read-only analysis: R-series review
@@ -100,7 +100,8 @@ feature count、Boolean representation、TM structure 和 parameters 如何影�
 - macro/per-class precision、recall、F1；
 - model size 和 latency。
 
-“one binary TM per appliance”目前只定义了 model family，没有定义完整 output semantics。T004 还需冻结：
+T004 已在 frozen manifest 中把 “one binary TM per appliance” 定义为 independent
+multi-label outputs，并冻结：
 
 - simultaneous positives；
 - all-negative/reject；
@@ -110,7 +111,8 @@ feature count、Boolean representation、TM structure 和 parameters 如何影�
 - per-model 与 ensemble model size/latency；
 - decision time 与 future context。
 
-在这些语义冻结前，不能把普通 `accuracy` 字段当成无歧义指标。
+普通 `accuracy` 只能按 frozen contract 写成 per-appliance binary accuracy；
+event exact-match 仅在四类 label 全部 observable 时可报告。
 
 ## 5. Han-compatible engineering path
 
@@ -152,23 +154,23 @@ pre-Booleanised input 可以作为 smoke test，但不能代替 feature-to-TM pa
 | Protocol | Purpose | Current evidence |
 |---|---|---|
 | Protocol H | compatibility reproduction | T003 PC evidence exists |
-| Protocol R | primary dissertation evaluation | no formal baseline/result |
-| Protocol X | held-out-house generalisation/stress test | not run |
+| Protocol R | primary mixed-house dissertation evaluation | T004 contract frozen；no formal baseline/result |
+| Protocol X | fixed H2+H4 held-out-house generalisation/stress test | support-only audit exists；no model result |
 | Protocol D | final deployment model after method freeze | not run |
 
-### 当前冲突
+### T004 resolution
 
-D002 将 Protocol R 定义为 mixed-house primary evaluation，将 Protocol X 定义为 held-out-house generalisation；当前 candidate manifest 却完整留出 H2/H4。当前数据也只能支持 independent segment 内的 row position，不能证明 original raw timestamps。
+[D005](docs/decisions/D005-protocol-r-v1-class-and-support-eligibility.md) 已解决
+R002 识别的冲突：
 
-因此：
+- Protocol R 使用 H1/H3/H5/H6 mixed-house within-population；
+- 每 segment 为 B1–B5 floor split，B1–B4 四折 CV，B5 locked；
+- Protocol X 固定 H2+H4，与 development/model selection 分离；
+- 使用 `sequence-first, row-position blocked`，不声称 original raw time；
+- fridge/microwave full eligible，dish washer development-only，washer dryer
+  support-ineligible。
 
-- 使用 `sequence-first, row-position blocked` 描述当前数据能力；
-- H2/H4 继续对 development sealed；
-- 当前 candidate manifest 不是 final locked Protocol R test；
-- T004 必须明确选择 mixed-house Protocol R 或 held-out-house primary evaluation；
-- 任何正式评分前必须冻结 exact manifest/hash 和 metric semantics。
-
-完整分析见 [R002](docs/reviews/R002-evaluation-protocol-consistency-review.md)。
+这只是 evaluation contract，不是 formal baseline result。
 
 ## 7. Scope
 
@@ -218,7 +220,10 @@ Deferred 不等于永久排除。可以用 isolated E-series 做 bounded feasibi
 - REDD submodule: `a621bbd6399e49c6798550618fe43b113149455b`
 - 35 preprocessed independent segments
 - nominal 3-second cadence
-- approved candidate classes: fridge、microwave、dish washer、washer dryer
+- frozen recorded classes: fridge、microwave、dish washer、washer dryer
+- Protocol R v1 eligibility: fridge/microwave full；dish washer
+  development-only；washer dryer support-ineligible/deferred
+- core manifest: `artifacts/manifests/protocol_r_evaluation_v1.json`
 
 所有正式 data pipeline 必须：
 
@@ -230,7 +235,8 @@ Deferred 不等于永久排除。可以用 isolated E-series 做 bounded feasibi
 - development mode 明确拒绝 candidate/locked test；
 - 用 automated tests 证明拒绝行为。
 
-missing appliance column 不能自动解释为 appliance OFF。eligibility 必须在 T004 冻结。
+missing appliance column 不能自动解释为 appliance OFF。T004 eligibility record
+按 house/appliance 保留 unavailable identity。
 
 ## 9. Feature、Booleanisation 与 model contracts
 
@@ -366,7 +372,7 @@ washer dryer 在某些 held-out houses support 很低，单个样本会显著改
 | T001 — Governance Review and Repository Bootstrap | governance 和 clean repository verified |
 | T002 — REDD Inventory and Protocol R Preflight | data/support/candidate manifest recorded without model scoring |
 | T003 — Han Two-Class PC Reproduction | minimum staged Protocol H PC route audited, run, repeated and bounded |
-| T004 — Protocol R Evaluation Contract and Test Freeze | protocol population、eligibility、binary outputs、metrics、access gate 和 exact test hash accepted |
+| T004 — Protocol R Evaluation Contract and Test Freeze | Completed with documented class limitations；protocol population、eligibility、binary outputs、metrics、access gate 和 exact test hash accepted |
 | T005 — Protocol R Baseline Implementation | development baseline reproducibly runs without test access |
 | T006 — Host-Native Inference Parity | host bits/votes/predictions match Python fixtures |
 | T007 — Pico Feature-to-TM Deployment | board compiles、flashes、runs and records parity/resource evidence |
@@ -414,7 +420,7 @@ washer dryer 在某些 held-out houses support 很低，单个样本会显著改
 
 | Risk | Response |
 |---|---|
-| Protocol 定义冲突 | T004 先冻结 research question 和 population |
+| Protocol 定义冲突 | T004/D005 已冻结 research question、population 和 class eligibility；后续不得静默改写 |
 | 原始 timestamp provenance 缺失 | 使用 honest row-position contract，避免 raw-time claim |
 | weak class support | 报告 support/uncertainty，必要时调整 formal class decision |
 | event detection/pairing bottleneck | 分层诊断，不用 TM 参数掩盖 upstream error |

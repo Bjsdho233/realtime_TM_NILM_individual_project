@@ -3,13 +3,13 @@
 ## Agent Brief
 
 - Status: current governance snapshot
-- Last updated: 2026-07-27
-- Current formal state: Protocol H PC scope archived; primary evaluation contract unresolved; no formal Protocol R baseline
+- Last updated: 2026-07-28
+- Current formal state: T004 evaluation contract complete with documented class limitations; no formal Protocol R model result
 - Active T-series: none
 - Active E-series: see the exact registry below
 - Active R-series review: none
-- Next planned formal task: T004 — Protocol R Evaluation Contract and Test Freeze
-- T004 authority: not authorised
+- Next planned formal task: T005 — Protocol R Baseline Implementation, not authorised
+- T004 authority: completed on 2026-07-28; no continuing execution authority
 - Candidate/locked test development access: prohibited
 - Repository health command: `python scripts/check_repo.py`
 
@@ -29,7 +29,7 @@
 
 | Track | Active item | Authority |
 |---|---|---|
-| T-series | None | 不得开始 T004、Protocol R implementation、host/Pico、final evaluation 或 deployment |
+| T-series | None | T004 已完成；不得自动开始 E003、E004、T005、T011、Protocol X model evaluation、training 或 scoring |
 | E-series | See exact registry below | Tianhang 可用一条明确指令启动新的隔离 E-series；执行前必须按下表登记、冻结并锚定 design |
 | R-series review | None | 可在明确请求下进行 read-only review；不训练、不评分 |
 
@@ -69,7 +69,7 @@ substring match 都不构成授权。只有 coordinating agent 可以增加、�
 | T001 — Governance Review and Repository Bootstrap | Complete — 2026-07-21 | clean repository 和初始 governance baseline |
 | T002 — REDD Inventory and Protocol R Preflight | Complete — 2026-07-21 | pinned data inventory、support audit、class fallback 和 candidate manifest；没有 model scoring |
 | T003 — Han Two-Class PC Reproduction | Complete for declared PC scope — 2026-07-22 | label-assisted Protocol H staged PC training/save/reload/export；不是 Protocol R、Pico 或 real-time |
-| T004 — Protocol R Evaluation Contract and Test Freeze | Planned; not authorised | 必须解决 Protocol R/X、row-position wording、binary output、metrics 和 exact locked-test manifest |
+| T004 — Protocol R Evaluation Contract and Test Freeze | Complete with documented class limitations — 2026-07-28 | 冻结 manifest/audit byte-identical；fridge/microwave full eligible，dish washer development-only，washer dryer support-ineligible；Protocol X support-only audit、machine-readable eligibility、fail-closed access guard 和 tests 完成；没有模型结果 |
 | T005–T013 | Not started; not authorised | 见 [WORK_INDEX.md](WORK_INDEX.md) 和 [PROJECT_PLAN.md](../PROJECT_PLAN.md) |
 
 T003 的“complete”只覆盖 declared PC Protocol H scope。它没有完成 host-native parity、Pico inference、aggregate-main-only evaluation、strict causality 或 real-time system。
@@ -170,34 +170,70 @@ T003 是 label-assisted、使用 future post-event context 的 Protocol H compat
 
 修复已完成，详情见 [Archive Checksum Correction](progress/2026-07-23-archive-checksum-correction.md)。该勘误不改变 T003/E001 的 metrics 或 evidence boundary，只纠正 archive integrity metadata。
 
-## 8. 正式基线与当前未决冲突
+## 8. 正式基线与 T004 contract
 
 正式 baseline 方向为：
 
 `REDD → event detection → event pairing → feature extraction → Booleanisation → one binary TM per appliance → unified evaluation`
 
-但它还不是可评分的 formal baseline，因为以下决定未冻结：
+T004 已冻结 evaluation contract，但尚未运行 formal baseline：
 
-- Protocol R 是 mixed-house within-population，还是 held-out-house primary evaluation；
-- H2/H4 最终属于 Protocol R 还是 Protocol X；
-- 当前数据的 row-position contract 如何取代不准确的 `raw-time` 表述；
-- missing-label 和 overlap eligibility；
-- cross-house / per-house aggregation；
-- simultaneous positives、all-negative 和 conflict resolution；
-- accuracy/confusion-matrix 的准确定义；
-- seeds、folds、uncertainty 和 weak-class support；
-- per-model / ensemble model bytes 与 latency；
-- final locked-test manifest/hash。
+- Protocol R：H1/H3/H5/H6 mixed-house within-population；
+- Protocol X：固定 H2+H4 held-out composite，与 development/model selection 分离；
+- time contract：`sequence-first, row-position blocked`，不声称 raw timestamps；
+- 每个 Protocol R segment 使用 B1–B5 floor split；B1–B4 四折 CV，B5 locked；
+- `L_max=256`、`D_max=8`，所有 dependency 必须完整包含在 segment/block 内；
+- multi-label one-binary-TM-per-appliance output、rTM target/metric、cTM latency、
+  seed/fold aggregation、model-size 和 latency semantics 已进入 frozen manifest；
+- ordinary development access 只允许 B1–B4，B5 和 H2/H4 fail-closed。
 
-完整审查见 [R002](reviews/R002-evaluation-protocol-consistency-review.md)。这些事项必须由 [T004 task specification](tasks/T004-protocol-r-evaluation-contract-and-test-freeze.md) 在明确授权后解决。
+完整 conflict history 见 [R002](reviews/R002-evaluation-protocol-consistency-review.md)，
+accepted resolution 和 class scope 见
+[D005 — Protocol R v1 Class and Support Eligibility](decisions/D005-protocol-r-v1-class-and-support-eligibility.md)。
 
-## 9. Candidate-test 边界
+### 8.1 T004 frozen support and eligibility — 2026-07-28
 
-- H2/H4 对 ordinary development 继续 sealed。
-- 现有 candidate manifest 不是已经冻结的 final Protocol R test。
+Tianhang 已正式授权 T004。工作区按固定规则先生成
+[`protocol_r_evaluation_v1.json`](../artifacts/manifests/protocol_r_evaluation_v1.json)，
+其 byte SHA-256 为
+`501fbfe1193154a471a932a4f1237ced4a7df9a7ce175fe8a621f1da6d433ae5`；
+之后才运行
+[`protocol_r_support_audit_v1.json`](../artifacts/manifests/protocol_r_support_audit_v1.json)。
+
+冻结后的 B5 support audit 发现：
+
+- `dish washer`：0 个 dependency-contained complete episodes、15 秒 ON target
+  support，低于既有 minimum 10 episodes / 600 seconds；
+- `washer dryer`：B5 通过，但 F1 validation 只有 0 个
+  dependency-contained complete episodes，低于 minimum 5；
+- `fridge`、`microwave` 的 F1–F4 与 B5 support 均通过。
+
+Tianhang 随后正式决定：
+
+- `fridge`、`microwave`：full Protocol R v1 eligible；
+- `dish washer`：B1–B4 development-only；不得生成 Protocol R B5 result；
+- `washer dryer`：Protocol R v1 support-ineligible，从当前 E003/E004 scope
+  deferred；B5 support 不能补偿 F1 failure。
+
+独立
+[`protocol_x_support_audit_v1.json`](../artifacts/manifests/protocol_x_support_audit_v1.json)
+确认 `dish washer` 在固定 H2+H4 composite 有 58 个 dependency-contained
+complete episodes 和 18,171 秒 ON support，因此 future Protocol X locked
+confirmatory evaluation support-eligible。该未来 evaluation 仍需单独授权，且
+只能作为 Protocol X cross-house evidence。
+
+## 9. Locked-test 与 Protocol X 边界
+
+- B5 是唯一 frozen Protocol R locked test；只能由未来 T011 一次性正式 evaluation
+  访问。
+- H2/H4 是固定 Protocol X composite，对 ordinary development 继续 sealed；
+  support-only audit 不构成 development access 或 model evaluation。
+- T002 的三块 candidate manifest 保留为 historical preflight，不是 T004 final
+  split。
 - T003 曾在固定 Protocol H training split 中读取 H2/H4。该访问是 compatibility-only，不得把 T003 model、normalizer、threshold 或 learned state 迁入 clean Protocol R。
 - final report 不得声称 H2/H4 从未被项目人员接触。
-- 在统一 data access gate 和拒绝测试完成前，不运行正式 Protocol R baseline。
+- unified development access guard 已有 exact-hash、B5/H2/H4 refusal 和
+  boundary-containment tests；T004 completion 不自动授权 baseline execution。
 
 ## 10. GitHub 与仓库现实
 
@@ -221,20 +257,23 @@ python scripts/check_repo.py
 可以在新授权下进行：
 
 - R-series read-only review；
-- 不访问 H2/H4 的隔离 E-series；若研究 provisional output semantics，必须在
-  frozen design 明示，它只能支撑 exploratory diagnostic/feasibility claim，
-  不能被写成 final output contract 或 formal Protocol R result；
+- 不访问 B5/H2/H4 的隔离 E-series；`fridge`、`microwave` 和 `dish washer`
+  可在未来明确授权的 E003/E004 中使用 B1–B4，且 `dish washer` 只能产生
+  development feasibility evidence；`washer dryer` deferred；
 - repository tooling、documentation 和 evidence-index maintenance；
 - 旧代码的 read-only provenance review。
 
 不能自动进行：
 
-- T004/T005；
+- T005；
+- E003/E004；
 - Protocol R training/scoring；
+- B5 test access；
 - H2/H4 development access；
 - E-series → formal method promotion；
 - dependency/network expansion；
 - host-native、Pico、firmware 或 hardware work；
 - final test、Protocol D 或论文正式 claim。
 
-正式下一步建议是由 Tianhang 审查 R002，并明确授权 T004 解决 evaluation contract。T004 完成也不自动授权 T005。
+T004 closure 不改变这些 authorization boundary。下一项 T/E work 必须由 Tianhang
+另行明确授权；不得把 T004 support audit 当成 model evidence。

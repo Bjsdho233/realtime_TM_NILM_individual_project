@@ -1,0 +1,2212 @@
+{
+  "schema_version": "1.0",
+  "manifest_id": "t004-protocol-r-evaluation-v1",
+  "manifest_status": "frozen evaluation contract; B5 locked until T011",
+  "generator": {
+    "name": "freeze_protocol_r_evaluation.py",
+    "version": "1.0.0",
+    "determinism": "no generation timestamp; UTF-8 LF JSON; source order is numeric house/chunk"
+  },
+  "source_dataset": {
+    "identity": "Han preprocessed synchronized REDD submodule CSV chunks",
+    "upstream_commit": "8c5e90df34236ba0afcc4ec46ac083d829de4d51",
+    "redd_submodule_commit": "a621bbd6399e49c6798550618fe43b113149455b",
+    "t002_inventory_content_tree_sha256": "5e1ee53cdce2a5ad2d5007a08527bd1fc9486130d56dc008cf8c8ba8e336e73d",
+    "source_file_set_sha256": "a573bbb412d74b9eefc92ff32b979834e2c1b2a88a8b6de8db7b1a9ce4a61f76",
+    "canonical_root_locator": "${HAN_UPSTREAM_SNAPSHOT}/redd",
+    "absolute_path_stored": false,
+    "docs_redd_used": false,
+    "original_raw_redd_provenance": "unresolved"
+  },
+  "time_contract": {
+    "name": "sequence-first, row-position blocked",
+    "nominal_cadence_seconds": 3,
+    "row_identity": [
+      "house",
+      "segment_id",
+      "zero_based_row_position"
+    ],
+    "original_timestamp_claimed": false,
+    "cross_segment_order_defined": false
+  },
+  "protocol_r": {
+    "version": "1.0",
+    "population_houses": [
+      1,
+      3,
+      5,
+      6
+    ],
+    "evaluation_type": "mixed-house within-population",
+    "block_formula": {
+      "count": 5,
+      "start_k": "floor(n * (k - 1) / 5)",
+      "end_k": "floor(n * k / 5)",
+      "interval": "half-open [start_k, end_k)"
+    },
+    "development_blocks": [
+      "B1",
+      "B2",
+      "B3",
+      "B4"
+    ],
+    "locked_test_block": "B5",
+    "blocked_cv": [
+      {
+        "fold_id": "F1",
+        "validation_block": "B1",
+        "training_blocks": [
+          "B2",
+          "B3",
+          "B4"
+        ]
+      },
+      {
+        "fold_id": "F2",
+        "validation_block": "B2",
+        "training_blocks": [
+          "B1",
+          "B3",
+          "B4"
+        ]
+      },
+      {
+        "fold_id": "F3",
+        "validation_block": "B3",
+        "training_blocks": [
+          "B1",
+          "B2",
+          "B4"
+        ]
+      },
+      {
+        "fold_id": "F4",
+        "validation_block": "B4",
+        "training_blocks": [
+          "B1",
+          "B2",
+          "B3"
+        ]
+      }
+    ],
+    "final_development_fit": "after method freeze only, B1-B4 may be combined",
+    "locked_test_authority": "T011 one-time final Protocol R evaluation only"
+  },
+  "protocol_x": {
+    "version": "1.0",
+    "held_out_houses": [
+      2,
+      4
+    ],
+    "role": "separate optional held-out-house generalisation",
+    "development_access": false,
+    "model_selection_use": false,
+    "t004_access": "source identity and aggregate support audit only; no model evaluation"
+  },
+  "dependency_contract": {
+    "maximum_history_samples": 256,
+    "maximum_future_context_samples": 8,
+    "valid_target_rule": "block_start + 255 <= t < block_end - 8",
+    "containment": "all history, future context, lag, rolling state, event pairing, and post-context must remain inside one segment and block",
+    "crossing_episode_policy": "discard",
+    "state_reset_boundaries": [
+      "house",
+      "segment",
+      "block",
+      "split"
+    ],
+    "fit_scope": "current training blocks only",
+    "fit_forbidden_roles": [
+      "validation",
+      "locked_test",
+      "protocol_x"
+    ],
+    "larger_dependency_policy": "requires a new protocol version and manifest"
+  },
+  "target_contract": {
+    "approved_appliances": [
+      "fridge",
+      "microwave",
+      "dish washer",
+      "washer dryer"
+    ],
+    "missing_column": "label unavailable; exclude that house-appliance unit; never impute all-zero ground truth",
+    "missing_or_non_finite_label": "exclude affected target/episode for that appliance and break episode continuity",
+    "overlap": "retain independent multi-label positives when every contributing approved appliance label is observable",
+    "ambiguous_or_incomplete_episode": "exclude from event-level scoring and report exclusion count",
+    "on_state_threshold_watts": 15.0
+  },
+  "binary_classification_contract": {
+    "model_family": "one binary TM per appliance",
+    "scoring_unit": "eligible event with an availability mask over appliance labels",
+    "simultaneous_positives": "retained as independent positives",
+    "multiple_positive_predictions": "retained; no forced single-class resolver",
+    "all_negative_prediction": "background/reject",
+    "decision_rule": "signed vote > 0 is positive; signed vote <= 0 is negative",
+    "tie_rule": "zero signed vote is negative",
+    "confusion_representation": "one TP/FP/FN/TN matrix per appliance over eligible units",
+    "accuracy_name": "per-appliance binary accuracy; event exact-match accuracy may be reported only where all four labels are observable",
+    "macro_rule": "unweighted mean over the four frozen appliances; unavailable house-appliance units do not become zero-support classes"
+  },
+  "regression_contract": {
+    "target": "y_t = max(0, appliance submeter power at row t)",
+    "pre_threshold_target": false,
+    "state_threshold_use": "15 W is used only for derived ON/OFF metrics",
+    "target_time": "t",
+    "available_time": "t + D",
+    "raw_prediction_required": true,
+    "clipped_prediction_upper_bound": "maximum target fitted from the current training blocks only",
+    "raw_and_clipped_metrics_separate": true,
+    "metrics": [
+      "pooled NAE (constant-zero prediction is exactly 1 when true energy is positive)",
+      "full-stream MAE",
+      "full-stream median absolute error",
+      "ON-only MAE",
+      "state precision, recall, and F1 at 15 W",
+      "OFF false-positive watts and energy",
+      "symmetric absolute energy error (SAE)",
+      "missed energy",
+      "episode energy error",
+      "error stratified by frozen true-power bins",
+      "fraction of raw predictions outside the training target range"
+    ],
+    "reporting_slices": [
+      "fold",
+      "house",
+      "appliance",
+      "pooled"
+    ]
+  },
+  "ctm_timing_contract": {
+    "source_episode": "inclusive [rise, fall] rows within one segment and block",
+    "event_classification_time": "row/time at which the binary class decision is emitted",
+    "post_context_completion_time": "fall row/time plus declared post-context D",
+    "model_computation_time": "measured compute duration excluding event waiting",
+    "onset_to_output_latency": "classification output time minus rise time",
+    "fall_to_output_latency": "classification output time minus fall time",
+    "summary": [
+      "median",
+      "P95"
+    ],
+    "sample_level_backfill": "prohibited unless separately defined and validated"
+  },
+  "metric_and_uncertainty_contract": {
+    "development_metrics": "B1-B4 validation folds only",
+    "locked_test_metrics": "B5, T011 only",
+    "protocol_x_metrics": "separate report; never used for Protocol R model selection",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "seed_summary": [
+      "per-seed values",
+      "mean",
+      "sample standard deviation"
+    ],
+    "fold_summary": [
+      "per-fold values",
+      "unweighted mean across F1-F4"
+    ],
+    "house_and_appliance_reporting": true,
+    "pooled_reporting": true,
+    "weak_support_rule": "always report eligible support and exclusions; do not suppress or replace weak units",
+    "power_bins_watts": [
+      {
+        "label": "[0,15)",
+        "start_inclusive": 0,
+        "end_exclusive": 15
+      },
+      {
+        "label": "[15,100)",
+        "start_inclusive": 15,
+        "end_exclusive": 100
+      },
+      {
+        "label": "[100,500)",
+        "start_inclusive": 100,
+        "end_exclusive": 500
+      },
+      {
+        "label": "[500,+inf)",
+        "start_inclusive": 500,
+        "end_exclusive": null
+      }
+    ],
+    "model_size": [
+      "per-model serialized bytes",
+      "ensemble serialized bytes"
+    ],
+    "latency": [
+      "per-model compute latency",
+      "full-ensemble compute latency",
+      "feature-to-decision latency",
+      "event/post-context waiting time"
+    ]
+  },
+  "access_contract": {
+    "development_roles": [
+      "training",
+      "validation"
+    ],
+    "development_houses": [
+      1,
+      3,
+      5,
+      6
+    ],
+    "development_blocks": [
+      "B1",
+      "B2",
+      "B3",
+      "B4"
+    ],
+    "denied_roles": [
+      "B5",
+      "locked_test",
+      "protocol_x"
+    ],
+    "denied_houses": [
+      2,
+      4
+    ],
+    "ordinary_entry_has_locked_test_switch": false,
+    "formal_test_entry": "future independent T011 command with explicit authority"
+  },
+  "house_channel_mapping": [
+    {
+      "house": 1,
+      "source_columns": [
+        "dish washer",
+        "electric space heater",
+        "electric stove",
+        "fridge",
+        "microwave",
+        "washer dryer",
+        "main"
+      ],
+      "aggregate_main_column": "main",
+      "target_columns": {
+        "fridge": "fridge",
+        "microwave": "microwave",
+        "dish washer": "dish washer",
+        "washer dryer": "washer dryer"
+      }
+    },
+    {
+      "house": 2,
+      "source_columns": [
+        "dish washer",
+        "electric stove",
+        "fridge",
+        "microwave",
+        "washer dryer",
+        "waste disposal unit",
+        "main"
+      ],
+      "aggregate_main_column": "main",
+      "target_columns": {
+        "fridge": "fridge",
+        "microwave": "microwave",
+        "dish washer": "dish washer",
+        "washer dryer": "washer dryer"
+      }
+    },
+    {
+      "house": 3,
+      "source_columns": [
+        "CE appliance",
+        "dish washer",
+        "electric furnace",
+        "fridge",
+        "microwave",
+        "washer dryer",
+        "waste disposal unit",
+        "main"
+      ],
+      "aggregate_main_column": "main",
+      "target_columns": {
+        "fridge": "fridge",
+        "microwave": "microwave",
+        "dish washer": "dish washer",
+        "washer dryer": "washer dryer"
+      }
+    },
+    {
+      "house": 4,
+      "source_columns": [
+        "dish washer",
+        "electric furnace",
+        "electric stove",
+        "washer dryer",
+        "main"
+      ],
+      "aggregate_main_column": "main",
+      "target_columns": {
+        "fridge": null,
+        "microwave": null,
+        "dish washer": "dish washer",
+        "washer dryer": "washer dryer"
+      }
+    },
+    {
+      "house": 5,
+      "source_columns": [
+        "CE appliance",
+        "dish washer",
+        "electric furnace",
+        "electric space heater",
+        "fridge",
+        "microwave",
+        "washer dryer",
+        "waste disposal unit",
+        "main"
+      ],
+      "aggregate_main_column": "main",
+      "target_columns": {
+        "fridge": "fridge",
+        "microwave": "microwave",
+        "dish washer": "dish washer",
+        "washer dryer": "washer dryer"
+      }
+    },
+    {
+      "house": 6,
+      "source_columns": [
+        "CE appliance",
+        "dish washer",
+        "electric space heater",
+        "electric stove",
+        "fridge",
+        "washer dryer",
+        "main"
+      ],
+      "aggregate_main_column": "main",
+      "target_columns": {
+        "fridge": "fridge",
+        "microwave": null,
+        "dish washer": "dish washer",
+        "washer dryer": "washer dryer"
+      }
+    }
+  ],
+  "source_files": [
+    {
+      "relative_path": "redd/redd_house1_0.csv",
+      "sha256": "2b2707d59767a51323137385236876252e508cc7233f73b77a4a03b8df58a72e",
+      "segment_id": "redd_house1_0",
+      "house": 1,
+      "chunk": 0,
+      "row_count": 23302,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 4660,
+          "row_count": 4660,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 4652,
+            "target_count": 4397
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 4660,
+          "row_end_exclusive": 9320,
+          "row_count": 4660,
+          "valid_target_range": {
+            "row_start_inclusive": 4915,
+            "row_end_exclusive": 9312,
+            "target_count": 4397
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 9320,
+          "row_end_exclusive": 13981,
+          "row_count": 4661,
+          "valid_target_range": {
+            "row_start_inclusive": 9575,
+            "row_end_exclusive": 13973,
+            "target_count": 4398
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 13981,
+          "row_end_exclusive": 18641,
+          "row_count": 4660,
+          "valid_target_range": {
+            "row_start_inclusive": 14236,
+            "row_end_exclusive": 18633,
+            "target_count": 4397
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 18641,
+          "row_end_exclusive": 23302,
+          "row_count": 4661,
+          "valid_target_range": {
+            "row_start_inclusive": 18896,
+            "row_end_exclusive": 23294,
+            "target_count": 4398
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house1_1.csv",
+      "sha256": "07dd6ab3432e928d877823ebc9d2831d7270707d880c7310c4f06d3092db782e",
+      "segment_id": "redd_house1_1",
+      "house": 1,
+      "chunk": 1,
+      "row_count": 25839,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 5167,
+          "row_count": 5167,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 5159,
+            "target_count": 4904
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 5167,
+          "row_end_exclusive": 10335,
+          "row_count": 5168,
+          "valid_target_range": {
+            "row_start_inclusive": 5422,
+            "row_end_exclusive": 10327,
+            "target_count": 4905
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 10335,
+          "row_end_exclusive": 15503,
+          "row_count": 5168,
+          "valid_target_range": {
+            "row_start_inclusive": 10590,
+            "row_end_exclusive": 15495,
+            "target_count": 4905
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 15503,
+          "row_end_exclusive": 20671,
+          "row_count": 5168,
+          "valid_target_range": {
+            "row_start_inclusive": 15758,
+            "row_end_exclusive": 20663,
+            "target_count": 4905
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 20671,
+          "row_end_exclusive": 25839,
+          "row_count": 5168,
+          "valid_target_range": {
+            "row_start_inclusive": 20926,
+            "row_end_exclusive": 25831,
+            "target_count": 4905
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house1_2.csv",
+      "sha256": "ff69a39eb6a960c7540702e7db92b0a4eb04f474758237b81cf980508df5cf19",
+      "segment_id": "redd_house1_2",
+      "house": 1,
+      "chunk": 2,
+      "row_count": 28165,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 5633,
+          "row_count": 5633,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 5625,
+            "target_count": 5370
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 5633,
+          "row_end_exclusive": 11266,
+          "row_count": 5633,
+          "valid_target_range": {
+            "row_start_inclusive": 5888,
+            "row_end_exclusive": 11258,
+            "target_count": 5370
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 11266,
+          "row_end_exclusive": 16899,
+          "row_count": 5633,
+          "valid_target_range": {
+            "row_start_inclusive": 11521,
+            "row_end_exclusive": 16891,
+            "target_count": 5370
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 16899,
+          "row_end_exclusive": 22532,
+          "row_count": 5633,
+          "valid_target_range": {
+            "row_start_inclusive": 17154,
+            "row_end_exclusive": 22524,
+            "target_count": 5370
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 22532,
+          "row_end_exclusive": 28165,
+          "row_count": 5633,
+          "valid_target_range": {
+            "row_start_inclusive": 22787,
+            "row_end_exclusive": 28157,
+            "target_count": 5370
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house1_3.csv",
+      "sha256": "c073d725e1feb15aed3e3ff9566c962a800404ec88841aa49741c32abe99fbc6",
+      "segment_id": "redd_house1_3",
+      "house": 1,
+      "chunk": 3,
+      "row_count": 30213,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 6042,
+          "row_count": 6042,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 6034,
+            "target_count": 5779
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 6042,
+          "row_end_exclusive": 12085,
+          "row_count": 6043,
+          "valid_target_range": {
+            "row_start_inclusive": 6297,
+            "row_end_exclusive": 12077,
+            "target_count": 5780
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 12085,
+          "row_end_exclusive": 18127,
+          "row_count": 6042,
+          "valid_target_range": {
+            "row_start_inclusive": 12340,
+            "row_end_exclusive": 18119,
+            "target_count": 5779
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 18127,
+          "row_end_exclusive": 24170,
+          "row_count": 6043,
+          "valid_target_range": {
+            "row_start_inclusive": 18382,
+            "row_end_exclusive": 24162,
+            "target_count": 5780
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 24170,
+          "row_end_exclusive": 30213,
+          "row_count": 6043,
+          "valid_target_range": {
+            "row_start_inclusive": 24425,
+            "row_end_exclusive": 30205,
+            "target_count": 5780
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house1_4.csv",
+      "sha256": "e882bac89e37b32589d8333bc83e62c12427905f39c645f334dc19b9499b3461",
+      "segment_id": "redd_house1_4",
+      "house": 1,
+      "chunk": 4,
+      "row_count": 56399,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 11279,
+          "row_count": 11279,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 11271,
+            "target_count": 11016
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 11279,
+          "row_end_exclusive": 22559,
+          "row_count": 11280,
+          "valid_target_range": {
+            "row_start_inclusive": 11534,
+            "row_end_exclusive": 22551,
+            "target_count": 11017
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 22559,
+          "row_end_exclusive": 33839,
+          "row_count": 11280,
+          "valid_target_range": {
+            "row_start_inclusive": 22814,
+            "row_end_exclusive": 33831,
+            "target_count": 11017
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 33839,
+          "row_end_exclusive": 45119,
+          "row_count": 11280,
+          "valid_target_range": {
+            "row_start_inclusive": 34094,
+            "row_end_exclusive": 45111,
+            "target_count": 11017
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 45119,
+          "row_end_exclusive": 56399,
+          "row_count": 11280,
+          "valid_target_range": {
+            "row_start_inclusive": 45374,
+            "row_end_exclusive": 56391,
+            "target_count": 11017
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house1_5.csv",
+      "sha256": "ef84bbe9aa76bcb9b3cb6d3c4223d56fc7058f9713290f19497ff6e9a19034c4",
+      "segment_id": "redd_house1_5",
+      "house": 1,
+      "chunk": 5,
+      "row_count": 27685,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 5537,
+          "row_count": 5537,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 5529,
+            "target_count": 5274
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 5537,
+          "row_end_exclusive": 11074,
+          "row_count": 5537,
+          "valid_target_range": {
+            "row_start_inclusive": 5792,
+            "row_end_exclusive": 11066,
+            "target_count": 5274
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 11074,
+          "row_end_exclusive": 16611,
+          "row_count": 5537,
+          "valid_target_range": {
+            "row_start_inclusive": 11329,
+            "row_end_exclusive": 16603,
+            "target_count": 5274
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 16611,
+          "row_end_exclusive": 22148,
+          "row_count": 5537,
+          "valid_target_range": {
+            "row_start_inclusive": 16866,
+            "row_end_exclusive": 22140,
+            "target_count": 5274
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 22148,
+          "row_end_exclusive": 27685,
+          "row_count": 5537,
+          "valid_target_range": {
+            "row_start_inclusive": 22403,
+            "row_end_exclusive": 27677,
+            "target_count": 5274
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house1_6.csv",
+      "sha256": "54b91c2989ccad27a5a89cf16741163600c091973bd653a672a21a65aaf709cb",
+      "segment_id": "redd_house1_6",
+      "house": 1,
+      "chunk": 6,
+      "row_count": 36273,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 7254,
+          "row_count": 7254,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 7246,
+            "target_count": 6991
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 7254,
+          "row_end_exclusive": 14509,
+          "row_count": 7255,
+          "valid_target_range": {
+            "row_start_inclusive": 7509,
+            "row_end_exclusive": 14501,
+            "target_count": 6992
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 14509,
+          "row_end_exclusive": 21763,
+          "row_count": 7254,
+          "valid_target_range": {
+            "row_start_inclusive": 14764,
+            "row_end_exclusive": 21755,
+            "target_count": 6991
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 21763,
+          "row_end_exclusive": 29018,
+          "row_count": 7255,
+          "valid_target_range": {
+            "row_start_inclusive": 22018,
+            "row_end_exclusive": 29010,
+            "target_count": 6992
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 29018,
+          "row_end_exclusive": 36273,
+          "row_count": 7255,
+          "valid_target_range": {
+            "row_start_inclusive": 29273,
+            "row_end_exclusive": 36265,
+            "target_count": 6992
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house1_7.csv",
+      "sha256": "792ec90d658e3d1dfd89b6f943b05650b336efa42718c4c7de52f38743a181f9",
+      "segment_id": "redd_house1_7",
+      "house": 1,
+      "chunk": 7,
+      "row_count": 32433,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 6486,
+          "row_count": 6486,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 6478,
+            "target_count": 6223
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 6486,
+          "row_end_exclusive": 12973,
+          "row_count": 6487,
+          "valid_target_range": {
+            "row_start_inclusive": 6741,
+            "row_end_exclusive": 12965,
+            "target_count": 6224
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 12973,
+          "row_end_exclusive": 19459,
+          "row_count": 6486,
+          "valid_target_range": {
+            "row_start_inclusive": 13228,
+            "row_end_exclusive": 19451,
+            "target_count": 6223
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 19459,
+          "row_end_exclusive": 25946,
+          "row_count": 6487,
+          "valid_target_range": {
+            "row_start_inclusive": 19714,
+            "row_end_exclusive": 25938,
+            "target_count": 6224
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 25946,
+          "row_end_exclusive": 32433,
+          "row_count": 6487,
+          "valid_target_range": {
+            "row_start_inclusive": 26201,
+            "row_end_exclusive": 32425,
+            "target_count": 6224
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house1_8.csv",
+      "sha256": "8cbb25f12f8f15c9801a9e565ad28d0a6bcdbd26d4b81c277a1bd95af3610889",
+      "segment_id": "redd_house1_8",
+      "house": 1,
+      "chunk": 8,
+      "row_count": 25480,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 5096,
+          "row_count": 5096,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 5088,
+            "target_count": 4833
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 5096,
+          "row_end_exclusive": 10192,
+          "row_count": 5096,
+          "valid_target_range": {
+            "row_start_inclusive": 5351,
+            "row_end_exclusive": 10184,
+            "target_count": 4833
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 10192,
+          "row_end_exclusive": 15288,
+          "row_count": 5096,
+          "valid_target_range": {
+            "row_start_inclusive": 10447,
+            "row_end_exclusive": 15280,
+            "target_count": 4833
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 15288,
+          "row_end_exclusive": 20384,
+          "row_count": 5096,
+          "valid_target_range": {
+            "row_start_inclusive": 15543,
+            "row_end_exclusive": 20376,
+            "target_count": 4833
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 20384,
+          "row_end_exclusive": 25480,
+          "row_count": 5096,
+          "valid_target_range": {
+            "row_start_inclusive": 20639,
+            "row_end_exclusive": 25472,
+            "target_count": 4833
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house1_9.csv",
+      "sha256": "825df5ca37755c484053e88edbcc55538f4c4bc077ea097e59f8efe4011ed510",
+      "segment_id": "redd_house1_9",
+      "house": 1,
+      "chunk": 9,
+      "row_count": 33725,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 6745,
+          "row_count": 6745,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 6737,
+            "target_count": 6482
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 6745,
+          "row_end_exclusive": 13490,
+          "row_count": 6745,
+          "valid_target_range": {
+            "row_start_inclusive": 7000,
+            "row_end_exclusive": 13482,
+            "target_count": 6482
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 13490,
+          "row_end_exclusive": 20235,
+          "row_count": 6745,
+          "valid_target_range": {
+            "row_start_inclusive": 13745,
+            "row_end_exclusive": 20227,
+            "target_count": 6482
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 20235,
+          "row_end_exclusive": 26980,
+          "row_count": 6745,
+          "valid_target_range": {
+            "row_start_inclusive": 20490,
+            "row_end_exclusive": 26972,
+            "target_count": 6482
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 26980,
+          "row_end_exclusive": 33725,
+          "row_count": 6745,
+          "valid_target_range": {
+            "row_start_inclusive": 27235,
+            "row_end_exclusive": 33717,
+            "target_count": 6482
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house1_10.csv",
+      "sha256": "66c5a648cf71bd7c2a055397247ae62866eb7f0df0c5b9dbcb7f130b2bd0af24",
+      "segment_id": "redd_house1_10",
+      "house": 1,
+      "chunk": 10,
+      "row_count": 29217,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 5843,
+          "row_count": 5843,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 5835,
+            "target_count": 5580
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 5843,
+          "row_end_exclusive": 11686,
+          "row_count": 5843,
+          "valid_target_range": {
+            "row_start_inclusive": 6098,
+            "row_end_exclusive": 11678,
+            "target_count": 5580
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 11686,
+          "row_end_exclusive": 17530,
+          "row_count": 5844,
+          "valid_target_range": {
+            "row_start_inclusive": 11941,
+            "row_end_exclusive": 17522,
+            "target_count": 5581
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 17530,
+          "row_end_exclusive": 23373,
+          "row_count": 5843,
+          "valid_target_range": {
+            "row_start_inclusive": 17785,
+            "row_end_exclusive": 23365,
+            "target_count": 5580
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 23373,
+          "row_end_exclusive": 29217,
+          "row_count": 5844,
+          "valid_target_range": {
+            "row_start_inclusive": 23628,
+            "row_end_exclusive": 29209,
+            "target_count": 5581
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house2_0.csv",
+      "sha256": "600d9f4a25c80894b04bc0e1720940476f2702fb79fdf74f2b4eebb47a08b8d1",
+      "segment_id": "redd_house2_0",
+      "house": 2,
+      "chunk": 0,
+      "row_count": 34429,
+      "protocol_role": "protocol_x_held_out_house",
+      "source_range": {
+        "row_start_inclusive": 0,
+        "row_end_exclusive": 34429
+      },
+      "valid_target_range": {
+        "row_start_inclusive": 255,
+        "row_end_exclusive": 34421,
+        "target_count": 34166
+      },
+      "blocks": []
+    },
+    {
+      "relative_path": "redd/redd_house2_1.csv",
+      "sha256": "4a72990a19863dd445c58f2c17c8fed8f43c50fa56da6a69b155e2183d9d8b40",
+      "segment_id": "redd_house2_1",
+      "house": 2,
+      "chunk": 1,
+      "row_count": 48110,
+      "protocol_role": "protocol_x_held_out_house",
+      "source_range": {
+        "row_start_inclusive": 0,
+        "row_end_exclusive": 48110
+      },
+      "valid_target_range": {
+        "row_start_inclusive": 255,
+        "row_end_exclusive": 48102,
+        "target_count": 47847
+      },
+      "blocks": []
+    },
+    {
+      "relative_path": "redd/redd_house2_2.csv",
+      "sha256": "e8e4661a87a136b25d70796c91ccc72d727f1f99e3e93fadaa1b105f4e635077",
+      "segment_id": "redd_house2_2",
+      "house": 2,
+      "chunk": 2,
+      "row_count": 29378,
+      "protocol_role": "protocol_x_held_out_house",
+      "source_range": {
+        "row_start_inclusive": 0,
+        "row_end_exclusive": 29378
+      },
+      "valid_target_range": {
+        "row_start_inclusive": 255,
+        "row_end_exclusive": 29370,
+        "target_count": 29115
+      },
+      "blocks": []
+    },
+    {
+      "relative_path": "redd/redd_house2_3.csv",
+      "sha256": "8c6d27c8b425cde4865eaadc063540a74c58b70f94678d6cbed1a5e41dbb57c4",
+      "segment_id": "redd_house2_3",
+      "house": 2,
+      "chunk": 3,
+      "row_count": 24010,
+      "protocol_role": "protocol_x_held_out_house",
+      "source_range": {
+        "row_start_inclusive": 0,
+        "row_end_exclusive": 24010
+      },
+      "valid_target_range": {
+        "row_start_inclusive": 255,
+        "row_end_exclusive": 24002,
+        "target_count": 23747
+      },
+      "blocks": []
+    },
+    {
+      "relative_path": "redd/redd_house2_4.csv",
+      "sha256": "a3e3dee5e4dfae80d5cc780d63f47a3bf4054afebc89f583766ea040d484f154",
+      "segment_id": "redd_house2_4",
+      "house": 2,
+      "chunk": 4,
+      "row_count": 33612,
+      "protocol_role": "protocol_x_held_out_house",
+      "source_range": {
+        "row_start_inclusive": 0,
+        "row_end_exclusive": 33612
+      },
+      "valid_target_range": {
+        "row_start_inclusive": 255,
+        "row_end_exclusive": 33604,
+        "target_count": 33349
+      },
+      "blocks": []
+    },
+    {
+      "relative_path": "redd/redd_house2_5.csv",
+      "sha256": "0f1958f12f6a546080ac822b37578d8c0fd0b6d4b53f9d835d435979e52168b7",
+      "segment_id": "redd_house2_5",
+      "house": 2,
+      "chunk": 5,
+      "row_count": 99258,
+      "protocol_role": "protocol_x_held_out_house",
+      "source_range": {
+        "row_start_inclusive": 0,
+        "row_end_exclusive": 99258
+      },
+      "valid_target_range": {
+        "row_start_inclusive": 255,
+        "row_end_exclusive": 99250,
+        "target_count": 98995
+      },
+      "blocks": []
+    },
+    {
+      "relative_path": "redd/redd_house2_6.csv",
+      "sha256": "02f4bc8cea15ec973739a120b7a06a12b215add6fc8ca6118856adbe3c10ee98",
+      "segment_id": "redd_house2_6",
+      "house": 2,
+      "chunk": 6,
+      "row_count": 23266,
+      "protocol_role": "protocol_x_held_out_house",
+      "source_range": {
+        "row_start_inclusive": 0,
+        "row_end_exclusive": 23266
+      },
+      "valid_target_range": {
+        "row_start_inclusive": 255,
+        "row_end_exclusive": 23258,
+        "target_count": 23003
+      },
+      "blocks": []
+    },
+    {
+      "relative_path": "redd/redd_house3_0.csv",
+      "sha256": "1da31fbe7453ef7b9471f2032a0e232d61f2de732d2f04e339ce2242d3731fdf",
+      "segment_id": "redd_house3_0",
+      "house": 3,
+      "chunk": 0,
+      "row_count": 35491,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 7098,
+          "row_count": 7098,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 7090,
+            "target_count": 6835
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 7098,
+          "row_end_exclusive": 14196,
+          "row_count": 7098,
+          "valid_target_range": {
+            "row_start_inclusive": 7353,
+            "row_end_exclusive": 14188,
+            "target_count": 6835
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 14196,
+          "row_end_exclusive": 21294,
+          "row_count": 7098,
+          "valid_target_range": {
+            "row_start_inclusive": 14451,
+            "row_end_exclusive": 21286,
+            "target_count": 6835
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 21294,
+          "row_end_exclusive": 28392,
+          "row_count": 7098,
+          "valid_target_range": {
+            "row_start_inclusive": 21549,
+            "row_end_exclusive": 28384,
+            "target_count": 6835
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 28392,
+          "row_end_exclusive": 35491,
+          "row_count": 7099,
+          "valid_target_range": {
+            "row_start_inclusive": 28647,
+            "row_end_exclusive": 35483,
+            "target_count": 6836
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house3_1.csv",
+      "sha256": "dc162e4ead37c3e1265cd14b15dab06bc79bd4a8f43272de232008be237d8fd2",
+      "segment_id": "redd_house3_1",
+      "house": 3,
+      "chunk": 1,
+      "row_count": 23798,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 4759,
+          "row_count": 4759,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 4751,
+            "target_count": 4496
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 4759,
+          "row_end_exclusive": 9519,
+          "row_count": 4760,
+          "valid_target_range": {
+            "row_start_inclusive": 5014,
+            "row_end_exclusive": 9511,
+            "target_count": 4497
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 9519,
+          "row_end_exclusive": 14278,
+          "row_count": 4759,
+          "valid_target_range": {
+            "row_start_inclusive": 9774,
+            "row_end_exclusive": 14270,
+            "target_count": 4496
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 14278,
+          "row_end_exclusive": 19038,
+          "row_count": 4760,
+          "valid_target_range": {
+            "row_start_inclusive": 14533,
+            "row_end_exclusive": 19030,
+            "target_count": 4497
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 19038,
+          "row_end_exclusive": 23798,
+          "row_count": 4760,
+          "valid_target_range": {
+            "row_start_inclusive": 19293,
+            "row_end_exclusive": 23790,
+            "target_count": 4497
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house3_2.csv",
+      "sha256": "3ff10aab25387a86d9b44f3ec3903b9e87a395a24ca7b6d5b5530a4067713970",
+      "segment_id": "redd_house3_2",
+      "house": 3,
+      "chunk": 2,
+      "row_count": 29139,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 5827,
+          "row_count": 5827,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 5819,
+            "target_count": 5564
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 5827,
+          "row_end_exclusive": 11655,
+          "row_count": 5828,
+          "valid_target_range": {
+            "row_start_inclusive": 6082,
+            "row_end_exclusive": 11647,
+            "target_count": 5565
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 11655,
+          "row_end_exclusive": 17483,
+          "row_count": 5828,
+          "valid_target_range": {
+            "row_start_inclusive": 11910,
+            "row_end_exclusive": 17475,
+            "target_count": 5565
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 17483,
+          "row_end_exclusive": 23311,
+          "row_count": 5828,
+          "valid_target_range": {
+            "row_start_inclusive": 17738,
+            "row_end_exclusive": 23303,
+            "target_count": 5565
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 23311,
+          "row_end_exclusive": 29139,
+          "row_count": 5828,
+          "valid_target_range": {
+            "row_start_inclusive": 23566,
+            "row_end_exclusive": 29131,
+            "target_count": 5565
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house3_3.csv",
+      "sha256": "9eaabcc0b57633169be452c0e0848fc903c43939472110613b8fbb0cecd98362",
+      "segment_id": "redd_house3_3",
+      "house": 3,
+      "chunk": 3,
+      "row_count": 45274,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 9054,
+          "row_count": 9054,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 9046,
+            "target_count": 8791
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 9054,
+          "row_end_exclusive": 18109,
+          "row_count": 9055,
+          "valid_target_range": {
+            "row_start_inclusive": 9309,
+            "row_end_exclusive": 18101,
+            "target_count": 8792
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 18109,
+          "row_end_exclusive": 27164,
+          "row_count": 9055,
+          "valid_target_range": {
+            "row_start_inclusive": 18364,
+            "row_end_exclusive": 27156,
+            "target_count": 8792
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 27164,
+          "row_end_exclusive": 36219,
+          "row_count": 9055,
+          "valid_target_range": {
+            "row_start_inclusive": 27419,
+            "row_end_exclusive": 36211,
+            "target_count": 8792
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 36219,
+          "row_end_exclusive": 45274,
+          "row_count": 9055,
+          "valid_target_range": {
+            "row_start_inclusive": 36474,
+            "row_end_exclusive": 45266,
+            "target_count": 8792
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house3_4.csv",
+      "sha256": "c35f2a6cc55a03e79c3d529ebe2c359b4b804adefd57bb85f1af439a1664814b",
+      "segment_id": "redd_house3_4",
+      "house": 3,
+      "chunk": 4,
+      "row_count": 29535,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 5907,
+          "row_count": 5907,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 5899,
+            "target_count": 5644
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 5907,
+          "row_end_exclusive": 11814,
+          "row_count": 5907,
+          "valid_target_range": {
+            "row_start_inclusive": 6162,
+            "row_end_exclusive": 11806,
+            "target_count": 5644
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 11814,
+          "row_end_exclusive": 17721,
+          "row_count": 5907,
+          "valid_target_range": {
+            "row_start_inclusive": 12069,
+            "row_end_exclusive": 17713,
+            "target_count": 5644
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 17721,
+          "row_end_exclusive": 23628,
+          "row_count": 5907,
+          "valid_target_range": {
+            "row_start_inclusive": 17976,
+            "row_end_exclusive": 23620,
+            "target_count": 5644
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 23628,
+          "row_end_exclusive": 29535,
+          "row_count": 5907,
+          "valid_target_range": {
+            "row_start_inclusive": 23883,
+            "row_end_exclusive": 29527,
+            "target_count": 5644
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house3_5.csv",
+      "sha256": "d6946733483d44b817e471dcbe337b9eca790c0c210041bfd48854f5e0127240",
+      "segment_id": "redd_house3_5",
+      "house": 3,
+      "chunk": 5,
+      "row_count": 78807,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 15761,
+          "row_count": 15761,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 15753,
+            "target_count": 15498
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 15761,
+          "row_end_exclusive": 31522,
+          "row_count": 15761,
+          "valid_target_range": {
+            "row_start_inclusive": 16016,
+            "row_end_exclusive": 31514,
+            "target_count": 15498
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 31522,
+          "row_end_exclusive": 47284,
+          "row_count": 15762,
+          "valid_target_range": {
+            "row_start_inclusive": 31777,
+            "row_end_exclusive": 47276,
+            "target_count": 15499
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 47284,
+          "row_end_exclusive": 63045,
+          "row_count": 15761,
+          "valid_target_range": {
+            "row_start_inclusive": 47539,
+            "row_end_exclusive": 63037,
+            "target_count": 15498
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 63045,
+          "row_end_exclusive": 78807,
+          "row_count": 15762,
+          "valid_target_range": {
+            "row_start_inclusive": 63300,
+            "row_end_exclusive": 78799,
+            "target_count": 15499
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house4_0.csv",
+      "sha256": "ab37a744b96c0c3c0e47e9db43c2b72cbab0a0598b224a1208b6861a2b8ad729",
+      "segment_id": "redd_house4_0",
+      "house": 4,
+      "chunk": 0,
+      "row_count": 36688,
+      "protocol_role": "protocol_x_held_out_house",
+      "source_range": {
+        "row_start_inclusive": 0,
+        "row_end_exclusive": 36688
+      },
+      "valid_target_range": {
+        "row_start_inclusive": 255,
+        "row_end_exclusive": 36680,
+        "target_count": 36425
+      },
+      "blocks": []
+    },
+    {
+      "relative_path": "redd/redd_house4_1.csv",
+      "sha256": "94c4bdbe7d1be597fbb2f04ac10fc93ce32805add4280a761e9c4d8ef2964d53",
+      "segment_id": "redd_house4_1",
+      "house": 4,
+      "chunk": 1,
+      "row_count": 22594,
+      "protocol_role": "protocol_x_held_out_house",
+      "source_range": {
+        "row_start_inclusive": 0,
+        "row_end_exclusive": 22594
+      },
+      "valid_target_range": {
+        "row_start_inclusive": 255,
+        "row_end_exclusive": 22586,
+        "target_count": 22331
+      },
+      "blocks": []
+    },
+    {
+      "relative_path": "redd/redd_house4_2.csv",
+      "sha256": "8f6728684c0bef5e2e345ac20b44bf27476ee97b234fbd02baaeb0ce90a0fc88",
+      "segment_id": "redd_house4_2",
+      "house": 4,
+      "chunk": 2,
+      "row_count": 43118,
+      "protocol_role": "protocol_x_held_out_house",
+      "source_range": {
+        "row_start_inclusive": 0,
+        "row_end_exclusive": 43118
+      },
+      "valid_target_range": {
+        "row_start_inclusive": 255,
+        "row_end_exclusive": 43110,
+        "target_count": 42855
+      },
+      "blocks": []
+    },
+    {
+      "relative_path": "redd/redd_house4_3.csv",
+      "sha256": "897459c23d27746528a046d5b000a321c1866b1790f76f512c10469807765c09",
+      "segment_id": "redd_house4_3",
+      "house": 4,
+      "chunk": 3,
+      "row_count": 22835,
+      "protocol_role": "protocol_x_held_out_house",
+      "source_range": {
+        "row_start_inclusive": 0,
+        "row_end_exclusive": 22835
+      },
+      "valid_target_range": {
+        "row_start_inclusive": 255,
+        "row_end_exclusive": 22827,
+        "target_count": 22572
+      },
+      "blocks": []
+    },
+    {
+      "relative_path": "redd/redd_house4_4.csv",
+      "sha256": "83450e753c223baed8b00566c1298208c480d6f32ff06793cc02e69cddb64acb",
+      "segment_id": "redd_house4_4",
+      "house": 4,
+      "chunk": 4,
+      "row_count": 40867,
+      "protocol_role": "protocol_x_held_out_house",
+      "source_range": {
+        "row_start_inclusive": 0,
+        "row_end_exclusive": 40867
+      },
+      "valid_target_range": {
+        "row_start_inclusive": 255,
+        "row_end_exclusive": 40859,
+        "target_count": 40604
+      },
+      "blocks": []
+    },
+    {
+      "relative_path": "redd/redd_house4_5.csv",
+      "sha256": "c823da650ad46e580466a7bce419b83f332813131b1ba108916b7bdb263bf51d",
+      "segment_id": "redd_house4_5",
+      "house": 4,
+      "chunk": 5,
+      "row_count": 108881,
+      "protocol_role": "protocol_x_held_out_house",
+      "source_range": {
+        "row_start_inclusive": 0,
+        "row_end_exclusive": 108881
+      },
+      "valid_target_range": {
+        "row_start_inclusive": 255,
+        "row_end_exclusive": 108873,
+        "target_count": 108618
+      },
+      "blocks": []
+    },
+    {
+      "relative_path": "redd/redd_house5_0.csv",
+      "sha256": "2c407301a06fef00f7cf6d09950b1e6750f66a0e3e61a6863352babcd9abb4c3",
+      "segment_id": "redd_house5_0",
+      "house": 5,
+      "chunk": 0,
+      "row_count": 24181,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 4836,
+          "row_count": 4836,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 4828,
+            "target_count": 4573
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 4836,
+          "row_end_exclusive": 9672,
+          "row_count": 4836,
+          "valid_target_range": {
+            "row_start_inclusive": 5091,
+            "row_end_exclusive": 9664,
+            "target_count": 4573
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 9672,
+          "row_end_exclusive": 14508,
+          "row_count": 4836,
+          "valid_target_range": {
+            "row_start_inclusive": 9927,
+            "row_end_exclusive": 14500,
+            "target_count": 4573
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 14508,
+          "row_end_exclusive": 19344,
+          "row_count": 4836,
+          "valid_target_range": {
+            "row_start_inclusive": 14763,
+            "row_end_exclusive": 19336,
+            "target_count": 4573
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 19344,
+          "row_end_exclusive": 24181,
+          "row_count": 4837,
+          "valid_target_range": {
+            "row_start_inclusive": 19599,
+            "row_end_exclusive": 24173,
+            "target_count": 4574
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house6_0.csv",
+      "sha256": "2aaf95c48941106362de39426969a88bb55d8fc9decf84301e49ff3f849f0c8c",
+      "segment_id": "redd_house6_0",
+      "house": 6,
+      "chunk": 0,
+      "row_count": 169361,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 33872,
+          "row_count": 33872,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 33864,
+            "target_count": 33609
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 33872,
+          "row_end_exclusive": 67744,
+          "row_count": 33872,
+          "valid_target_range": {
+            "row_start_inclusive": 34127,
+            "row_end_exclusive": 67736,
+            "target_count": 33609
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 67744,
+          "row_end_exclusive": 101616,
+          "row_count": 33872,
+          "valid_target_range": {
+            "row_start_inclusive": 67999,
+            "row_end_exclusive": 101608,
+            "target_count": 33609
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 101616,
+          "row_end_exclusive": 135488,
+          "row_count": 33872,
+          "valid_target_range": {
+            "row_start_inclusive": 101871,
+            "row_end_exclusive": 135480,
+            "target_count": 33609
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 135488,
+          "row_end_exclusive": 169361,
+          "row_count": 33873,
+          "valid_target_range": {
+            "row_start_inclusive": 135743,
+            "row_end_exclusive": 169353,
+            "target_count": 33610
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house6_1.csv",
+      "sha256": "f22c4737c82967b935b1010a4e8858bedc57b46e7403a93e8d4dcced324f4010",
+      "segment_id": "redd_house6_1",
+      "house": 6,
+      "chunk": 1,
+      "row_count": 42193,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 8438,
+          "row_count": 8438,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 8430,
+            "target_count": 8175
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 8438,
+          "row_end_exclusive": 16877,
+          "row_count": 8439,
+          "valid_target_range": {
+            "row_start_inclusive": 8693,
+            "row_end_exclusive": 16869,
+            "target_count": 8176
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 16877,
+          "row_end_exclusive": 25315,
+          "row_count": 8438,
+          "valid_target_range": {
+            "row_start_inclusive": 17132,
+            "row_end_exclusive": 25307,
+            "target_count": 8175
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 25315,
+          "row_end_exclusive": 33754,
+          "row_count": 8439,
+          "valid_target_range": {
+            "row_start_inclusive": 25570,
+            "row_end_exclusive": 33746,
+            "target_count": 8176
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 33754,
+          "row_end_exclusive": 42193,
+          "row_count": 8439,
+          "valid_target_range": {
+            "row_start_inclusive": 34009,
+            "row_end_exclusive": 42185,
+            "target_count": 8176
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house6_2.csv",
+      "sha256": "12d8a47cecab6f52a077997eab4d24a42a088c5101965e597c0abec1fdc94d1a",
+      "segment_id": "redd_house6_2",
+      "house": 6,
+      "chunk": 2,
+      "row_count": 77212,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 15442,
+          "row_count": 15442,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 15434,
+            "target_count": 15179
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 15442,
+          "row_end_exclusive": 30884,
+          "row_count": 15442,
+          "valid_target_range": {
+            "row_start_inclusive": 15697,
+            "row_end_exclusive": 30876,
+            "target_count": 15179
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 30884,
+          "row_end_exclusive": 46327,
+          "row_count": 15443,
+          "valid_target_range": {
+            "row_start_inclusive": 31139,
+            "row_end_exclusive": 46319,
+            "target_count": 15180
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 46327,
+          "row_end_exclusive": 61769,
+          "row_count": 15442,
+          "valid_target_range": {
+            "row_start_inclusive": 46582,
+            "row_end_exclusive": 61761,
+            "target_count": 15179
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 61769,
+          "row_end_exclusive": 77212,
+          "row_count": 15443,
+          "valid_target_range": {
+            "row_start_inclusive": 62024,
+            "row_end_exclusive": 77204,
+            "target_count": 15180
+          },
+          "role": "locked_test"
+        }
+      ]
+    },
+    {
+      "relative_path": "redd/redd_house6_3.csv",
+      "sha256": "03ef4d1afa315b39c2089f796e4aff9888016df44a00267919c3f8416bed5fa0",
+      "segment_id": "redd_house6_3",
+      "house": 6,
+      "chunk": 3,
+      "row_count": 37810,
+      "protocol_role": "protocol_r_population",
+      "blocks": [
+        {
+          "block_id": "B1",
+          "row_start_inclusive": 0,
+          "row_end_exclusive": 7562,
+          "row_count": 7562,
+          "valid_target_range": {
+            "row_start_inclusive": 255,
+            "row_end_exclusive": 7554,
+            "target_count": 7299
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B2",
+          "row_start_inclusive": 7562,
+          "row_end_exclusive": 15124,
+          "row_count": 7562,
+          "valid_target_range": {
+            "row_start_inclusive": 7817,
+            "row_end_exclusive": 15116,
+            "target_count": 7299
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B3",
+          "row_start_inclusive": 15124,
+          "row_end_exclusive": 22686,
+          "row_count": 7562,
+          "valid_target_range": {
+            "row_start_inclusive": 15379,
+            "row_end_exclusive": 22678,
+            "target_count": 7299
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B4",
+          "row_start_inclusive": 22686,
+          "row_end_exclusive": 30248,
+          "row_count": 7562,
+          "valid_target_range": {
+            "row_start_inclusive": 22941,
+            "row_end_exclusive": 30240,
+            "target_count": 7299
+          },
+          "role": "development"
+        },
+        {
+          "block_id": "B5",
+          "row_start_inclusive": 30248,
+          "row_end_exclusive": 37810,
+          "row_count": 7562,
+          "valid_target_range": {
+            "row_start_inclusive": 30503,
+            "row_end_exclusive": 37802,
+            "target_count": 7299
+          },
+          "role": "locked_test"
+        }
+      ]
+    }
+  ],
+  "known_limitations": [
+    "original calendar timestamps and recording gaps are not recovered",
+    "historical raw-to-preprocessed REDD provenance is incomplete",
+    "H2/H4 support labels were inspected during T002 and H2/H4 were used by Protocol H compatibility work",
+    "Protocol X remains optional and is not a Protocol R model-selection source"
+  ]
+}

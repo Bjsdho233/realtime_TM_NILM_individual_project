@@ -1,0 +1,191 @@
+{
+  "schema_version": "1.0",
+  "record_id": "t004-protocol-r-v1-class-eligibility",
+  "decision_status": "accepted by Tianhang on 2026-07-28",
+  "decision_record": "docs/decisions/D005-protocol-r-v1-class-and-support-eligibility.md",
+  "frozen_inputs": [
+    {
+      "path": "artifacts/manifests/protocol_r_evaluation_v1.json",
+      "sha256": "501fbfe1193154a471a932a4f1237ced4a7df9a7ce175fe8a621f1da6d433ae5",
+      "byte_identical_required": true
+    },
+    {
+      "path": "artifacts/manifests/protocol_r_support_audit_v1.json",
+      "sha256": "c7fde29e9570417d12463e16f64ebf4eb1cb4736b775fc6fb2116e06fb68eed3",
+      "byte_identical_required": true
+    },
+    {
+      "path": "artifacts/manifests/protocol_x_support_audit_v1.json",
+      "sha256": "ebeaffb4807d830cc47c48c9f67fc82827795bbcbaaf1e1d72ccef2bcdc4f163",
+      "byte_identical_required": true
+    }
+  ],
+  "unchanged_contract": {
+    "protocol_r_houses": [
+      "H1",
+      "H3",
+      "H5",
+      "H6"
+    ],
+    "protocol_x_houses": [
+      "H2",
+      "H4"
+    ],
+    "protocol_r_blocks": [
+      "B1",
+      "B2",
+      "B3",
+      "B4",
+      "B5"
+    ],
+    "development_cv": "four blocked folds over B1-B4",
+    "locked_test": "B5",
+    "maximum_history_samples": 256,
+    "maximum_future_context_samples": 8,
+    "active_threshold_watts": 15,
+    "minimum_each_validation_fold_dependency_contained_complete_episodes": 5,
+    "minimum_test_dependency_contained_complete_episodes": 10,
+    "minimum_test_on_duration_seconds": 600,
+    "boundary_or_minimum_changes_allowed": false
+  },
+  "appliances": {
+    "fridge": {
+      "development_cv": {
+        "support_pass": true,
+        "eligible": true,
+        "validation_dependency_contained_complete_episodes": {
+          "F1": 209,
+          "F2": 232,
+          "F3": 218,
+          "F4": 201
+        }
+      },
+      "protocol_r_b5": {
+        "support_pass": true,
+        "evaluation_eligible": true,
+        "dependency_contained_complete_episodes": 208,
+        "on_duration_seconds": 202902
+      },
+      "protocol_r_v1_status": "full_eligible",
+      "future_e003_e004_development_scope": true,
+      "protocol_x": {
+        "support_pass": true,
+        "pooled_dependency_contained_complete_episodes": 391,
+        "pooled_on_duration_seconds": 398163,
+        "house_label_availability": {
+          "H2": true,
+          "H4": false
+        },
+        "status": "future_locked_confirmatory_evaluation_eligible_with_H4_label_unavailable",
+        "development_access": false
+      }
+    },
+    "microwave": {
+      "development_cv": {
+        "support_pass": true,
+        "eligible": true,
+        "validation_dependency_contained_complete_episodes": {
+          "F1": 34,
+          "F2": 48,
+          "F3": 47,
+          "F4": 30
+        }
+      },
+      "protocol_r_b5": {
+        "support_pass": true,
+        "evaluation_eligible": true,
+        "dependency_contained_complete_episodes": 34,
+        "on_duration_seconds": 7875
+      },
+      "protocol_r_v1_status": "full_eligible",
+      "future_e003_e004_development_scope": true,
+      "protocol_x": {
+        "support_pass": true,
+        "pooled_dependency_contained_complete_episodes": 64,
+        "pooled_on_duration_seconds": 92976,
+        "house_label_availability": {
+          "H2": true,
+          "H4": false
+        },
+        "status": "future_locked_confirmatory_evaluation_eligible_with_H4_label_unavailable",
+        "development_access": false
+      }
+    },
+    "dish washer": {
+      "development_cv": {
+        "support_pass": true,
+        "eligible": true,
+        "validation_dependency_contained_complete_episodes": {
+          "F1": 21,
+          "F2": 20,
+          "F3": 70,
+          "F4": 52
+        }
+      },
+      "protocol_r_b5": {
+        "support_pass": false,
+        "evaluation_eligible": false,
+        "dependency_contained_complete_episodes": 0,
+        "on_duration_seconds": 15,
+        "prohibited_claim": "no Protocol R B5 result may be generated or claimed"
+      },
+      "protocol_r_v1_status": "development_only",
+      "future_e003_e004_development_scope": true,
+      "development_claim_boundary": "B1-B4 feasibility evidence only; not a complete or confirmatory Protocol R result",
+      "protocol_x": {
+        "support_pass": true,
+        "pooled_dependency_contained_complete_episodes": 58,
+        "pooled_on_duration_seconds": 18171,
+        "house_label_availability": {
+          "H2": true,
+          "H4": true
+        },
+        "status": "future_locked_confirmatory_evaluation_eligible",
+        "reporting_scope": "Protocol X cross-house evidence only; never Protocol R B5",
+        "development_access": false
+      }
+    },
+    "washer dryer": {
+      "development_cv": {
+        "support_pass": false,
+        "eligible": false,
+        "validation_dependency_contained_complete_episodes": {
+          "F1": 0,
+          "F2": 24,
+          "F3": 39,
+          "F4": 14
+        },
+        "reason": "F1 has fewer than 5 dependency-contained complete episodes"
+      },
+      "protocol_r_b5": {
+        "support_pass": true,
+        "evaluation_eligible": false,
+        "dependency_contained_complete_episodes": 10,
+        "on_duration_seconds": 5766,
+        "reason": "B5 support cannot compensate for a failed development validation fold"
+      },
+      "protocol_r_v1_status": "support_ineligible",
+      "future_e003_e004_development_scope": false,
+      "scope_status": "deferred",
+      "protocol_x": {
+        "support_pass": true,
+        "pooled_dependency_contained_complete_episodes": 11,
+        "pooled_on_duration_seconds": 11784,
+        "house_label_availability": {
+          "H2": true,
+          "H4": true
+        },
+        "status": "support_eligible_but_formal_evaluation_deferred_without_eligible_development_scope",
+        "development_access": false
+      }
+    }
+  },
+  "global_prohibitions": [
+    "do not move any segment, block, house, or class boundary",
+    "do not lower any support minimum",
+    "do not use B5 or Protocol X for development or model selection",
+    "do not generate a dish washer Protocol R B5 result",
+    "do not represent development-only evidence as a complete or confirmatory Protocol R result",
+    "do not delete support-ineligible classes from the frozen manifest or audits"
+  ]
+}
