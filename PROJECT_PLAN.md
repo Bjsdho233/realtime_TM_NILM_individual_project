@@ -4,7 +4,7 @@
 
 - Status: accepted direction; live authority is elsewhere
 - Owner: Tianhang Tan
-- Last updated: 2026-07-23
+- Last updated: 2026-07-28
 - Primary model: Tsetlin Machine
 - Primary dataset: REDD
 - Formal research protocol: Protocol R v1 contract frozen by T004; no formal model result
@@ -30,6 +30,19 @@ REDD
   → host-native parity
   → Raspberry Pi Pico parity and measurement
 ```
+
+同时保留一条更直接、适合学生原型的 sample-wise rTM 路径：
+
+```text
+causal aggregate window
+  → training-only Booleanisation
+  → one rTM per appliance
+  → current appliance power estimate
+```
+
+T006 只用 fridge / Protocol R F1 检查这条路径能否跑通并出现基本有效信号。它不预先承诺
+host parity、Pico、weighted rTM、gating、多 appliance、调参或正式 test；这些工作只有在原型结果
+值得继续且 Tianhang 另行授权时才展开。
 
 项目同时回答三个层面的问题：
 
@@ -374,7 +387,7 @@ washer dryer 在某些 held-out houses support 很低，单个样本会显著改
 | T003 — Han Two-Class PC Reproduction | minimum staged Protocol H PC route audited, run, repeated and bounded |
 | T004 — Protocol R Evaluation Contract and Test Freeze | Completed with documented class limitations；protocol population、eligibility、binary outputs、metrics、access gate 和 exact test hash accepted |
 | T005 — Protocol R Baseline Implementation | development baseline reproducibly runs without test access |
-| T006 — Host-Native Inference Parity | host bits/votes/predictions match Python fixtures |
+| T006 — Direct rTM NILM Prototype | 一个 causal aggregate-window fridge rTM prototype 跑通并如实记录结果 |
 | T007 — Pico Feature-to-TM Deployment | board compiles、flashes、runs and records parity/resource evidence |
 | T008 — Layered Baseline Error Analysis | per-layer/per-class bottlenecks supported by development evidence |
 | T009 — Promoted Method Confirmation | selected E candidates revalidated under formal development protocol |

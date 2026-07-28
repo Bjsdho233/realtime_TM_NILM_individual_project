@@ -387,6 +387,13 @@ ROLE_DIRECTORIES: dict[str, set[str]] = {
 T_SERIES_ARCHIVE_CONFIGS = {
     "T005": Path("artifacts/manifests/protocol_r_baseline_v1.json"),
 }
+PROTOTYPE_T_SERIES_ARCHIVES = {
+    "T006-direct-rtm-nilm-prototype": {
+        "PROTOTYPE_REPORT.md",
+        "result.json",
+        "figures/direct_rtm_excerpt.svg",
+    },
+}
 
 
 class GovernanceError(RuntimeError):
@@ -2526,6 +2533,80 @@ def _validate_t_series_archive(
             )
 
 
+def _validate_prototype_t_series_archive(
+    root: Path,
+    directory: Path,
+    relative_files: Iterable[str],
+) -> None:
+    """Validate the deliberately compact T006 prototype result."""
+
+    validate_tree_has_no_links(
+        directory,
+        MUTABLE_OUTPUT_SEGMENTS | IGNORED_LOCAL_ENVIRONMENT_SEGMENTS,
+    )
+    expected = PROTOTYPE_T_SERIES_ARCHIVES[directory.name]
+    actual = set(relative_files)
+    if actual != expected:
+        raise GovernanceError(
+            f"{directory}: prototype archive inventory mismatch; "
+            f"expected={sorted(expected)}, actual={sorted(actual)}"
+        )
+    for relative_text in sorted(actual):
+        path = directory / relative_text
+        if path.suffix.lower() in GOVERNED_TEXT_SUFFIXES:
+            canonical_index_bytes(
+                root, path.relative_to(root), f"{directory}: portable prototype file"
+            )
+
+    result = load_json(directory / RESULT_NAME)
+    if (
+        result.get("work_id") != "T006"
+        or result.get("name") != "Direct rTM NILM Prototype"
+        or result.get("track") != "T-series"
+        or result.get("status") != "complete"
+    ):
+        raise GovernanceError(f"{directory}: prototype result identity mismatch")
+    protocol = result.get("protocol")
+    if not isinstance(protocol, dict) or (
+        protocol.get("fold") != "F1"
+        or protocol.get("training_blocks") != ["B2", "B3", "B4"]
+        or protocol.get("validation_block") != "B1"
+        or protocol.get("locked_test_access") is not False
+        or protocol.get("protocol_x_access") is not False
+    ):
+        raise GovernanceError(f"{directory}: prototype protocol boundary mismatch")
+    data = result.get("data")
+    if not isinstance(data, dict) or (
+        data.get("appliance") != "fridge"
+        or data.get("window_samples") != 32
+        or data.get("output_delay_samples") != 0
+    ):
+        raise GovernanceError(f"{directory}: prototype data contract mismatch")
+    interpretation = result.get("interpretation")
+    if not isinstance(interpretation, dict) or interpretation.get("operational") is not True:
+        raise GovernanceError(f"{directory}: prototype did not complete operationally")
+
+    implementation_commit = result.get("implementation_commit")
+    if not isinstance(implementation_commit, str) or not re.fullmatch(
+        r"[0-9a-f]{40}", implementation_commit
+    ):
+        raise GovernanceError(f"{directory}: invalid prototype implementation commit")
+    commit_object = subprocess.run(
+        ["git", "-C", str(root), "cat-file", "-e", f"{implementation_commit}^{{commit}}"],
+        check=False,
+        capture_output=True,
+    )
+    if commit_object.returncode:
+        raise GovernanceError(f"{directory}: prototype implementation commit is unavailable")
+    ancestor = subprocess.run(
+        ["git", "-C", str(root), "merge-base", "--is-ancestor", implementation_commit, "HEAD"],
+        check=False,
+        capture_output=True,
+    )
+    if ancestor.returncode:
+        raise GovernanceError(f"{directory}: prototype implementation commit is not an ancestor")
+
+
 def validate_experiment_archives(root: Path, paths: Sequence[Path]) -> CheckResult:
     experiment_root = root / "experiments"
     if not experiment_root.is_dir():
@@ -2567,6 +2648,8 @@ def validate_experiment_archives(root: Path, paths: Sequence[Path]) -> CheckResu
             if not WORK_ID_RE.fullmatch(name.split("-", 1)[0]):
                 raise GovernanceError(f"{directory}: design manifests are currently E-series only")
             _validate_new_archive(root, directory, relative_files)
+        elif name in PROTOTYPE_T_SERIES_ARCHIVES:
+            _validate_prototype_t_series_archive(root, directory, relative_files)
         elif T_WORK_ID_RE.fullmatch(work_id) and (directory / RESULT_NAME).is_file():
             _validate_t_series_archive(root, directory, relative_files)
         elif name in LEGACY_ARCHIVE_FILES:

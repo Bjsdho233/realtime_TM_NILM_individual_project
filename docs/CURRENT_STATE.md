@@ -5,11 +5,11 @@
 - Status: current governance snapshot
 - Last updated: 2026-07-28
 - Delivery posture: prototype-first student dissertation; runnable, readable and explainable over production-grade completeness
-- Current formal state: T005 fixed Protocol R B1–B4 development baseline complete; no locked-test result
-- Active T-series: none
+- Current formal state: T006 direct rTM fridge prototype authorised on Protocol R F1 development data; no locked-test result
+- Active T-series: T006 — Direct rTM NILM Prototype
 - Active E-series: see the exact registry below
 - Active R-series review: none
-- Next planned formal task: none authorised; do not begin T006 or another item
+- Next planned formal task: complete only the bounded T006 prototype; do not begin another item
 - T004 authority: completed on 2026-07-28; no continuing execution authority
 - Candidate/locked test development access: prohibited
 - Repository health command: `python scripts/check_repo.py`
@@ -54,7 +54,7 @@ host/device 上实际覆盖的 pipeline boundary。
 
 | Track | Active item | Authority |
 |---|---|---|
-| T-series | None | T005 已完成并在 Tianhang 后续明确授权下同步到 GitHub default main；completion 不授权追加 run、test 或另一任务 |
+| T-series | T006 — Direct rTM NILM Prototype | 仅运行一个 fridge / F1 / seed 0 的 causal aggregate-window vanilla TMU rTM prototype；禁止 B5、Protocol X、调参、部署和后续任务 |
 | E-series | See exact registry below | Tianhang 可用一条明确指令启动新的隔离 E-series；执行前必须按下表登记、冻结并锚定 design |
 | R-series review | None | 可在明确请求下进行 read-only review；不训练、不评分 |
 
@@ -96,7 +96,8 @@ substring match 都不构成授权。只有 coordinating agent 可以增加、�
 | T003 — Han Two-Class PC Reproduction | Complete for declared PC scope — 2026-07-22 | label-assisted Protocol H staged PC training/save/reload/export；不是 Protocol R、Pico 或 real-time |
 | T004 — Protocol R Evaluation Contract and Test Freeze | Complete with documented class limitations — 2026-07-28 | 冻结 manifest/audit byte-identical；fridge/microwave full eligible，dish washer development-only，washer dryer support-ineligible；Protocol X support-only audit、machine-readable eligibility、fail-closed access guard 和 tests 完成；没有模型结果 |
 | T005 — Protocol R Baseline Implementation | Complete — 2026-07-28 | 固定 aggregate-main detector/pairer、Han-compatible features/Booleanisation、one binary TM per appliance；仅 B1–B4 development folds；primary two-class macro F1 `0.345818303824`；dish washer 仅 development-only |
-| T006–T013 | Not started; not authorised | 见 [WORK_INDEX.md](WORK_INDEX.md) 和 [PROJECT_PLAN.md](../PROJECT_PLAN.md) |
+| T006 — Direct rTM NILM Prototype | Active — 2026-07-28 | fridge；F1 train B2/B3/B4、validation B1；32-sample causal aggregate window；TMU v0.8.3 vanilla rTM；仅 development feasibility |
+| T007–T013 | Not started; not authorised | 见 [WORK_INDEX.md](WORK_INDEX.md) 和 [PROJECT_PLAN.md](../PROJECT_PLAN.md) |
 
 T003 的“complete”只覆盖 declared PC Protocol H scope。它没有完成 host-native parity、Pico inference、aggregate-main-only evaluation、strict causality 或 real-time system。
 
