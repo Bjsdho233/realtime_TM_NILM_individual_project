@@ -244,6 +244,30 @@ class BoundedSupervisorTests(unittest.TestCase):
         self.assertEqual(len(list((output / "steps").iterdir())), 1)
         self.assertTrue(any((output / "events").glob("*-adaptive_stop.json")))
 
+    def test_total_run_timeout_terminates_a_later_step(self) -> None:
+        spec_path, _ = self.make_spec(
+            "quick", per_step_timeout=2.0, total_timeout=2.2
+        )
+        payload = json.loads(spec_path.read_text(encoding="utf-8"))
+        payload["candidates"] = ["quick", "hang"]
+        raw = (json.dumps(payload) + "\n").encode("utf-8")
+        spec_path.write_bytes(raw)
+        output = self.root / "total-timeout-output"
+        terminal = run_supervised(
+            spec_path=spec_path,
+            expected_spec_sha256=hashlib.sha256(raw).hexdigest(),
+            output_dir=output,
+            repository_root=self.repository,
+        )
+        self.assertEqual(terminal["execution_status"], "TIMED_OUT")
+        self.assertEqual(terminal["completed_steps"], 1)
+        step_terminals = sorted(
+            (output / "events").glob("*-step_terminal.json")
+        )
+        self.assertEqual(len(step_terminals), 2)
+        second = json.loads(step_terminals[-1].read_text(encoding="utf-8"))
+        self.assertEqual(second["reason"], "total run wall timeout")
+
     def test_memory_gate_stops_before_child_launch(self) -> None:
         spec_path, _ = self.make_spec("quick")
         payload = json.loads(spec_path.read_text(encoding="utf-8"))
