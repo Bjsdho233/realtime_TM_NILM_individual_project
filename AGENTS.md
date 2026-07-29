@@ -159,6 +159,19 @@ readable and honestly explainable dissertation system.
   Tianhang to run and explain. Do not pursue production-grade completeness,
   exhaustive edge-case coverage, enterprise deployment machinery or speculative
   extensibility.
+- Build the minimum runnable path first and expand only for an observed need, a
+  dissertation question, or repeated code that actually exists. A possible
+  future dataset, model, benchmark or deployment mode is not by itself a reason
+  to generalise the current implementation.
+- Match the architecture to the actual project scale: one REDD data path and one
+  primary rTM workflow do not need a multi-dataset, multi-model benchmark
+  framework. Prefer a visible, shallow flow covering data supply, feature and
+  Boolean input construction, model definition, training, evaluation or replay,
+  and a thin entry point.
+- Flat does not mean monolithic or maximally compressed. Split modules by clear
+  functional responsibility and likely independent change; merge them only when
+  that improves cohesion and readability. Do not optimise for either the fewest
+  files or the most complete-looking package structure.
 - Verification is proportional: protect data leakage and accepted evaluation
   boundaries, test the main runnable path and material failure modes, and avoid
   large test matrices for low-consequence details.
@@ -436,6 +449,13 @@ dissertation-evidence rules are in
 ## Implementation and Completion
 
 - Use direct domain names, explicit control flow, and short stage comments.
+- Prefer direct functions, small explicit data structures and a shallow call
+  graph. Add factories, registries, plugins, service layers or generic framework
+  interfaces only when a current second implementation, claim boundary or
+  concrete test need justifies them.
+- Give each module one coherent job without forcing unrelated work into an
+  oversized script. Avoid pass-through wrappers and layers that only rename or
+  forward another call.
 - Comment non-obvious assumptions, units, boundaries, and algorithm choices; do
   not narrate self-evident code.
 - Avoid speculative abstractions, unused wrappers, broad `try/except` blocks,
