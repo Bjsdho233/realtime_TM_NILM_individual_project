@@ -201,6 +201,26 @@ parity, zero latency and placing every pipeline stage on hardware are not defaul
 requirements. State the measured and algorithmic delay and the exact host/device
 boundary instead.
 
+## Public System Workspace
+
+[`system/`](system/README.md) is the public-facing implementation workspace and
+the intended root of a future standalone code release. Put new runnable NILM
+source, required configuration, focused implementation tests, examples and user
+documentation there when they belong to the final prototype.
+
+- Keep agent instructions, governance, task and review records, dissertation
+  working notes, raw REDD data, local reference files, experiment runs and
+  internal evidence outside `system/`.
+- Code under `system/` must not require internal `docs/`, `experiments/` or
+  agent-governance files at runtime. Translate an approved method into direct
+  public configuration or code rather than importing an internal decision record.
+- Do not create a nested Git repository. The directory remains part of this
+  research repository during development and can be exported later.
+- Do not pre-populate speculative package layers or empty scaffolding. Add files
+  when the runnable workflow needs their concrete responsibility.
+- This location boundary does not approve a research method or execution. The
+  same method-authority, data-access and experiment-budget rules still apply.
+
 ## Starting Work
 
 For a fresh or context-free session, follow

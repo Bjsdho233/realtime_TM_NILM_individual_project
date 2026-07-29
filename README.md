@@ -10,6 +10,7 @@
 
 - Canonical repository: `Bjsdho233/realtime_TM_NILM_individual_project`
 - Stable rules: [AGENTS.md](AGENTS.md)
+- Public implementation workspace: [system/](system/README.md)
 - Papers and external code: [Reference Library](references/README.md)
 - Live state and authority: [CURRENT_STATE.md](docs/CURRENT_STATE.md)
 - Formal roadmap: [PROJECT_PLAN.md](PROJECT_PLAN.md)
