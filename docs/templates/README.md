@@ -6,7 +6,12 @@
 - [T-series task](T_SERIES_TASK_TEMPLATE.md)
 - [R-series review](R_SERIES_REVIEW_TEMPLATE.md)
 
-machine-readable design/result 不在这里维护第二套 JSON template，避免与 executable contract 漂移。唯一权威来源是：
+此外，[EXPERIMENT_RUN_SPEC.yaml](EXPERIMENT_RUN_SPEC.yaml) 是所有 training、
+benchmark、大规模扫描和参数测试必须填写的 execution-budget contract。它不定义
+research method，也不替代 E-series design/result schema；完整规则见
+[Experiment Execution Policy](../governance/EXPERIMENT_EXECUTION_POLICY.md)。
+
+machine-readable research design/result 不在这里维护第二套 JSON template，避免与 executable contract 漂移。唯一权威来源是：
 
 - `schemas/e-series-design.schema.json`
 - `schemas/work-result.schema.json`

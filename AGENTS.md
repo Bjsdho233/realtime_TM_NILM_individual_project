@@ -99,6 +99,49 @@ merely because they appear in an authorised run specification. Authorisation
 permits the declared run; it does not promote those choices into the final method
 or a dissertation contribution.
 
+## Experiment Execution Safety
+
+These rules apply to every training run, benchmark, large data scan and parameter
+test. They are mandatory and cannot be replaced by a prompt-level request to
+stop after a stated time.
+
+- Authority to implement a runner never authorises execution on real data.
+- Before real execution, freeze a complete machine-readable `RunSpec` based on
+  [`docs/templates/EXPERIMENT_RUN_SPEC.yaml`](docs/templates/EXPERIMENT_RUN_SPEC.yaml).
+  A missing or invalid field permits preparation only.
+- The `RunSpec` must bind the implementation commit, data allow/deny lists,
+  candidates, row schedule, epochs, seed, concurrency, per-step timeout, total
+  timeout, minimum available RAM, checkpoint interval, outputs, forbidden
+  actions and stop conditions.
+- New methods progress through synthetic smoke, small real probe, staircase and
+  formal execution. Do not start at full scale.
+- Every step runs in its own child process under
+  [`tools/governance/bounded_supervisor.py`](tools/governance/bounded_supervisor.py).
+  The supervisor, not the child, enforces step and total timeouts, available-RAM
+  gates, atomic checkpoints and complete process-tree cleanup.
+- Before each next step, multiply its projected runtime by a safety factor of at
+  least `2.0`; do not launch it when that projection exceeds either remaining
+  budget.
+- Persist start, heartbeat, resource peak and terminal evidence incrementally.
+  Never wait until the whole run ends to save completed-step evidence.
+- Default to one execution process. Concurrency requires an explicitly approved
+  `RunSpec` and a supervisor implementation that supports it.
+- After timeout, memory stop, crash or interruption, do not retry, shrink,
+  substitute or change configuration without a newly approved `RunSpec`.
+- Unless Tianhang approves another budget, ordinary probes are limited to 120
+  seconds per step and 600 seconds total; formal cost probes are limited to 300
+  seconds per step and 1,200 seconds total. A longer formal run must state its
+  worst-case duration before approval.
+- Execution status is one of `COMPLETED`, `TIMED_OUT`, `MEMORY_STOPPED`,
+  `INTERRUPTED`, `INFRASTRUCTURE_FAILED` and `PROTOCOL_INVALID`. Scientific
+  conclusions use `SUPPORTED`, `NOT_SUPPORTED` or `INCONCLUSIVE` separately.
+  A safe resource stop is valid execution evidence, not automatic model failure.
+- The bounded supervisor must pass fake quick, hang, crash, descendant-process
+  and manual-interrupt tests before any real training system is connected.
+
+The complete protocol and status semantics are in
+[`docs/governance/EXPERIMENT_EXECUTION_POLICY.md`](docs/governance/EXPERIMENT_EXECUTION_POLICY.md).
+
 ## Prototype-First Dissertation Scope
 
 This repository is a student individual-project prototype, not a

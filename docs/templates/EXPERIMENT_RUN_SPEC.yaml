@@ -1,0 +1,63 @@
+{
+  "experiment_id": "REPLACE_WITH_ID_AND_DIRECT_NAME",
+  "research_question": "REPLACE_WITH_ONE_QUESTION",
+  "execution_type": "cost_probe",
+  "execution_authority": "REPLACE_WITH_TIANHANG_APPROVAL_RECORD",
+  "implementation_commit": "REPLACE_WITH_40_HEX_COMMIT",
+  "data_allowlist": [
+    "REPLACE_WITH_EXACT_ALLOWED_POPULATION"
+  ],
+  "data_denylist": [
+    "REPLACE_WITH_EXACT_FORBIDDEN_POPULATION"
+  ],
+  "candidates": [
+    "REPLACE_WITH_FROZEN_CANDIDATE"
+  ],
+  "row_schedule": [
+    2048,
+    8192
+  ],
+  "epochs": 1,
+  "seed": 0,
+  "max_workers": 1,
+  "per_step_timeout_s": 300,
+  "total_run_timeout_s": 1200,
+  "minimum_available_ram": 1073741824,
+  "checkpoint_interval_s": 10,
+  "allowed_outputs": [
+    "supervisor_events",
+    "run_state",
+    "step_stdout",
+    "step_stderr",
+    "declared_step_outputs"
+  ],
+  "forbidden_actions": [
+    "automatic_retry",
+    "unapproved_configuration_change",
+    "undeclared_data_access",
+    "scientific_conclusion_from_execution_status"
+  ],
+  "stop_conditions": [
+    "per_step_timeout",
+    "total_run_timeout",
+    "minimum_available_ram",
+    "nonzero_exit",
+    "manual_interrupt"
+  ],
+  "next_step_safety_factor": 2.0,
+  "step_command": [
+    "{python}",
+    "-m",
+    "REPLACE_WITH_STEP_MODULE",
+    "--candidate",
+    "{candidate}",
+    "--rows",
+    "{rows}",
+    "--epochs",
+    "{epochs}",
+    "--seed",
+    "{seed}",
+    "--output",
+    "{step_dir}"
+  ]
+}

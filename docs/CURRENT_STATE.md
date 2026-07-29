@@ -3,13 +3,14 @@
 ## Agent Brief
 
 - Status: current governance snapshot
-- Last updated: 2026-07-28
+- Last updated: 2026-07-29
 - Delivery posture: prototype-first student dissertation; runnable, readable and explainable over production-grade completeness
 - Current formal state: T006 remains paused; R005 is accepted and closed; R006 halted after unexplained runtime/memory observations in its first C8 run
 - Active T-series: T006 — Direct rTM NILM Prototype (paused; no training resume is authorised)
 - Active E-series: see the exact registry below
 - Active R-series review: R006 — Compact rTM Computation Cost Probe (halted; no further execution authorised)
-- Next planned formal task: Tianhang reviews the R006 halted-run record; do not resume R006 or T006 without a separate instruction
+- Experiment execution safety: mandatory policy, RunSpec template and bounded supervisor verified with fake tasks; no real runner is connected
+- Next planned formal task: any future training/benchmark/large scan requires separate execution authority, a frozen RunSpec and supervisor integration; R006 and T006 remain paused
 - T004 authority: completed on 2026-07-28; no continuing execution authority
 - Candidate/locked test development access: prohibited
 - Repository health command: `python scripts/check_repo.py`
