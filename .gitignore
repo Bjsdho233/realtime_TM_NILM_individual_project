@@ -81,6 +81,10 @@ node_modules/
 **/low_freq/
 **/high_freq/
 
+# Tianhang-owned local reference materials
+/references/user_materials/*
+!/references/user_materials/README.md
+
 # Local external repository checkouts
 /external/
 /vendor/

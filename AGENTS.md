@@ -99,6 +99,16 @@ merely because they appear in an authorised run specification. Authorisation
 permits the declared run; it does not promote those choices into the final method
 or a dissertation contribution.
 
+Use [`references/`](references/README.md) as the repository-wide intake and
+navigation point for papers, datasets and external code. Before an external
+method or implementation produces evidence, register its stable DOI, version,
+tag or commit and link the applicable work record. A catalog entry records
+provenance; it does not approve the method or establish novelty.
+Files placed by Tianhang under `references/user_materials/` are user-owned.
+Do not delete, rename, overwrite or reorganise them without an explicit request.
+Register or hash a supplied file when it becomes relevant to an authorised
+review or method decision; do not treat its presence as method approval.
+
 ## Experiment Execution Safety
 
 These rules apply to every training run, benchmark, large data scan and parameter
