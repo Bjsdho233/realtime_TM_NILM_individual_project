@@ -86,6 +86,36 @@ class MarkdownLinkTests(unittest.TestCase):
                 governance.validate_markdown_links(root, [pathlib.Path("note.md")])
 
 
+class VersionedReddDataTests(unittest.TestCase):
+    def test_only_declared_redd_tables_receive_the_larger_limit(self):
+        approved = pathlib.Path("system/data/protocol_r/house_1.csv")
+        unexpected_house = pathlib.Path("system/data/protocol_r/house_2.csv")
+        unrelated = pathlib.Path("outputs/large.csv")
+
+        self.assertTrue(governance.is_versioned_redd_table(approved))
+        self.assertEqual(
+            governance.tracked_file_size_limit(approved),
+            governance.MAX_VERSIONED_REDD_FILE_BYTES,
+        )
+        self.assertFalse(governance.is_versioned_redd_table(unexpected_house))
+        self.assertEqual(
+            governance.tracked_file_size_limit(unrelated),
+            governance.MAX_TRACKED_FILE_BYTES,
+        )
+
+    def test_versioned_redd_csv_preserves_source_line_endings(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = pathlib.Path(temporary)
+            relative = pathlib.Path("system/data/redd/redd_house1_0.csv")
+            path = root / relative
+            path.parent.mkdir(parents=True)
+            path.write_bytes(b",main\r\n0,100\r\n")
+
+            result = governance.validate_text_hygiene(root, [relative])
+
+        self.assertEqual(result.name, "Text hygiene")
+
+
 class TextHygieneTests(unittest.TestCase):
     def test_hash_pinned_legacy_file_may_omit_final_newline(self):
         with tempfile.TemporaryDirectory() as temporary:

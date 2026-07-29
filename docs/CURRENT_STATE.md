@@ -5,13 +5,14 @@
 - Status: current governance snapshot
 - Last updated: 2026-07-29
 - Delivery posture: prototype-first student dissertation; runnable, readable and explainable over production-grade completeness
-- Current formal state: D008 selects a flat public rTM workflow and TMU 0.8.3 integer-weighted model family; exact input, Booleanisation, target and training configuration remain pending
-- Active T-series: T006 — Direct rTM NILM Prototype (paused; D008 supersedes its vanilla-only model boundary, but no implementation or training resume is authorised)
+- Current formal state: D008 selects a flat public rTM workflow and TMU 0.8.3 integer-weighted model family; Tianhang has additionally fixed the source-CSV-as-segment REDD block construction for the public data-supply path; exact input, Booleanisation, target and training configuration remain pending
+- Active T-series: T006 — Direct rTM NILM Prototype (public REDD data-supply increment complete; feature, model and training work remain paused)
 - Active E-series: see the exact registry below
 - Active R-series review: R006 — Compact rTM Computation Cost Probe (halted; no further execution authorised)
 - Experiment execution safety: mandatory policy, RunSpec template and bounded supervisor verified with fake tasks; the first real-TMU synthetic adapter attempt stopped `INFRASTRUCTURE_FAILED` before TMU import or fit because the worker-parent PID contract did not account for the Windows virtual-environment launcher process
 - Active integration validation: stopped after the single authorised attempt; C8 did not reach TMU fit, C11 was not launched, and no retry is authorised
-- Next planned formal task: build the public workflow only after a scoped implementation instruction; any TMU execution still requires a repaired bounded adapter and separate RunSpec authority; R006 remains HALTED / INCONCLUSIVE and T006 remains PAUSED
+- Completed scoped implementation: `system/split_redd_blocks.py` treats every source CSV as one independent segment; Protocol R segments are split positionally into B1–B5 and Protocol X remains a separate unsplit `PX` held-out path; Tianhang explicitly authorised the reviewed preprocessed source copy and deterministic split outputs for Git publication under `system/data/`
+- Next planned formal task: define the next public workflow increment only after Tianhang's review; feature, Booleanisation, target and training decisions remain pending; any TMU execution still requires a repaired bounded adapter and separate RunSpec authority; R006 remains HALTED / INCONCLUSIVE and T006 model work remains PAUSED
 - T004 authority: completed on 2026-07-28; no continuing execution authority
 - Candidate/locked test development access: prohibited
 - Repository health command: `python scripts/check_repo.py`
@@ -56,7 +57,7 @@ host/device 上实际覆盖的 pipeline boundary。
 
 | Track | Active item | Authority |
 |---|---|---|
-| T-series | T006 — Direct rTM NILM Prototype (paused) | D008 选择 flat public workflow 和 TMU 0.8.3 integer-weighted rTM；exact features/Booleanisation/target/config 仍未冻结；不得恢复 training |
+| T-series | T006 — Direct rTM NILM Prototype (paused after data-supply increment) | `system/split_redd_blocks.py` 已实现并运行；单个源 CSV 定义为独立 segment，Protocol R 各 segment 按冻结公式切 B1–B5，Protocol X 独立输出且保持 `PX`；不得继续实现 feature/Booleanisation/model，不得恢复 training、prediction 或 scoring |
 | E-series | See exact registry below | Tianhang 可用一条明确指令启动新的隔离 E-series；执行前必须按下表登记、冻结并锚定 design |
 | R-series review | R006 — Compact rTM Computation Cost Probe (halted) | 首次 C8 run 因 unexplained runtime/memory observations 保守停止；无 step checkpoint，C11 未启动，后续 execution 需另行指示 |
 
@@ -98,7 +99,7 @@ substring match 都不构成授权。只有 coordinating agent 可以增加、�
 | T003 — Han Two-Class PC Reproduction | Complete for declared PC scope — 2026-07-22 | label-assisted Protocol H staged PC training/save/reload/export；不是 Protocol R、Pico 或 real-time |
 | T004 — Protocol R Evaluation Contract and Test Freeze | Complete with documented class limitations — 2026-07-28 | 冻结 manifest/audit byte-identical；fridge/microwave full eligible，dish washer development-only，washer dryer support-ineligible；Protocol X support-only audit、machine-readable eligibility、fail-closed access guard 和 tests 完成；没有模型结果 |
 | T005 — Protocol R Baseline Implementation | Complete — 2026-07-28 | 固定 aggregate-main detector/pairer、Han-compatible features/Booleanisation、one binary TM per appliance；仅 B1–B4 development folds；primary two-class macro F1 `0.345818303824`；dish washer 仅 development-only |
-| T006 — Direct rTM NILM Prototype | Paused；D008 model-family decision accepted — 2026-07-29 | old unweighted checkpoint `a8ee6f7eb8691e81f603c6960b4ae812c9b91793` 仅作 diagnostic/history；public workflow 选择 TMU 0.8.3 integer-weighted rTM；input/target/config pending；没有 training authority |
+| T006 — Direct rTM NILM Prototype | Paused；public REDD data-supply increment complete — 2026-07-29 | `system/split_redd_blocks.py` 已生成独立 Protocol R/X local outputs；old unweighted checkpoint `a8ee6f7eb8691e81f603c6960b4ae812c9b91793` 仅作 diagnostic/history；input/target/config pending；没有 training authority |
 | T007–T013 | Not started; not authorised | 见 [WORK_INDEX.md](WORK_INDEX.md) 和 [PROJECT_PLAN.md](../PROJECT_PLAN.md) |
 
 T003 的“complete”只覆盖 declared PC Protocol H scope。它没有完成 host-native parity、Pico inference、aggregate-main-only evaluation、strict causality 或 real-time system。

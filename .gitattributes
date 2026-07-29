@@ -23,6 +23,9 @@
 *.js text eol=lf
 *.ts text eol=lf
 
+# Versioned REDD inputs and deterministic split tables retain their verified bytes.
+system/data/**/*.csv binary
+
 # Generated or visual binary formats must not be newline-normalised.
 *.png binary
 *.jpg binary

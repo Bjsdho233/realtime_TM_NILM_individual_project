@@ -21,9 +21,14 @@ This workspace may contain:
 - focused tests for the runnable path and material failure modes;
 - concise installation, usage and example documentation.
 
-It does not contain:
+The reviewed preprocessed REDD copy and deterministic split tables under
+`data/` are included so the public prototype can be run without reconstructing
+the local research workspace. Their upstream commit and per-file hashes are
+recorded by the split manifest.
 
-- raw or redistributed REDD data;
+The tracked public workspace does not contain:
+
+- original raw REDD recordings;
 - agent instructions or repository governance;
 - internal task, review or experiment records;
 - private reference files, temporary runs, caches or trained artefacts.
@@ -32,6 +37,31 @@ During development `system/` remains part of the surrounding research
 repository; it is not a nested Git repository. Public code should remain usable
 without runtime imports from the surrounding internal documentation and
 governance files.
+
+## REDD block preparation
+
+`split_redd_blocks.py` treats every source CSV as an independent acquisition
+segment. It does not assume that two files from the same house are temporally
+continuous.
+
+For Protocol R houses H1, H3, H5 and H6, every segment is independently divided
+by row position into B1–B5 using the frozen `floor(n*k/5)` boundaries. Portions
+with the same block name are then combined within each house. Protocol X houses
+H2 and H4 take a physically separate output path and remain complete held-out
+segments labelled `PX`.
+
+Run from this directory or from the surrounding repository:
+
+```bash
+python split_redd_blocks.py
+```
+
+Outputs are written to `data/protocol_r/`, `data/protocol_x/` and
+`data/split_manifest.json`. Re-running the command overwrites the same outputs;
+it never appends rows.
+
+Missing `main` values already present in the source are preserved and reported;
+downstream causal windows must treat them as continuity breaks.
 
 ## Development style
 

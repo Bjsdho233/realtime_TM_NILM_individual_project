@@ -1,0 +1,1396 @@
+{
+  "schema_version": "1.0",
+  "generator": "split_redd_blocks.py",
+  "source": {
+    "dataset": "preprocessed REDD from wuhanstudio/redd",
+    "redd_submodule_commit": "a621bbd6399e49c6798550618fe43b113149455b",
+    "input_directory": "data/redd",
+    "segment_definition": "one source CSV file",
+    "cross_file_continuity_assumed": false,
+    "unnamed_index_use": "validated as 0..N-1 then removed"
+  },
+  "split_rule": {
+    "protocol_r_houses": [
+      1,
+      3,
+      5,
+      6
+    ],
+    "protocol_x_houses": [
+      2,
+      4
+    ],
+    "protocol_r_blocks": [
+      "B1",
+      "B2",
+      "B3",
+      "B4",
+      "B5"
+    ],
+    "protocol_r_boundary_formula": "floor(n*k/5), k=0..5",
+    "protocol_x_block": "PX",
+    "randomness": "none"
+  },
+  "sanity_checks": {
+    "minimum_block_rows_warning": 30,
+    "constant_main_run_warning_rows": 100,
+    "main_must_be_finite_and_nonnegative": true
+  },
+  "protocol_r": {
+    "output_directory": "data/protocol_r",
+    "houses": {
+      "H1": {
+        "segments": 11,
+        "rows": 348731,
+        "output_file": "house_1.csv",
+        "output_sha256": "1223398d2bd2f7a431efa2d3a023fb97d8c0e055543c1648f84b22ed96fdcdfa",
+        "segment_details": [
+          {
+            "segment_id": "redd_house1_0",
+            "segment_number": 0,
+            "source_file": "redd_house1_0.csv",
+            "source_sha256": "2b2707d59767a51323137385236876252e508cc7233f73b77a4a03b8df58a72e",
+            "rows": 23302,
+            "main": {
+              "minimum": 95.4499969482,
+              "maximum": 5866.54003906,
+              "missing_values": 0,
+              "unique_values": 13595,
+              "maximum_constant_run_rows": 4
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 4660,
+                "rows": 4660
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 4660,
+                "row_end_exclusive": 9320,
+                "rows": 4660
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 9320,
+                "row_end_exclusive": 13981,
+                "rows": 4661
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 13981,
+                "row_end_exclusive": 18641,
+                "rows": 4660
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 18641,
+                "row_end_exclusive": 23302,
+                "rows": 4661
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house1_1",
+            "segment_number": 1,
+            "source_file": "redd_house1_1.csv",
+            "source_sha256": "07dd6ab3432e928d877823ebc9d2831d7270707d880c7310c4f06d3092db782e",
+            "rows": 25839,
+            "main": {
+              "minimum": 96.4599990845,
+              "maximum": 2579.40991211,
+              "missing_values": 0,
+              "unique_values": 10239,
+              "maximum_constant_run_rows": 10
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 5167,
+                "rows": 5167
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 5167,
+                "row_end_exclusive": 10335,
+                "rows": 5168
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 10335,
+                "row_end_exclusive": 15503,
+                "rows": 5168
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 15503,
+                "row_end_exclusive": 20671,
+                "rows": 5168
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 20671,
+                "row_end_exclusive": 25839,
+                "rows": 5168
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house1_2",
+            "segment_number": 2,
+            "source_file": "redd_house1_2.csv",
+            "source_sha256": "ff69a39eb6a960c7540702e7db92b0a4eb04f474758237b81cf980508df5cf19",
+            "rows": 28165,
+            "main": {
+              "minimum": 93.0100021362,
+              "maximum": 2097.87011719,
+              "missing_values": 0,
+              "unique_values": 11827,
+              "maximum_constant_run_rows": 4
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 5633,
+                "rows": 5633
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 5633,
+                "row_end_exclusive": 11266,
+                "rows": 5633
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 11266,
+                "row_end_exclusive": 16899,
+                "rows": 5633
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 16899,
+                "row_end_exclusive": 22532,
+                "rows": 5633
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 22532,
+                "row_end_exclusive": 28165,
+                "rows": 5633
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house1_3",
+            "segment_number": 3,
+            "source_file": "redd_house1_3.csv",
+            "source_sha256": "c073d725e1feb15aed3e3ff9566c962a800404ec88841aa49741c32abe99fbc6",
+            "rows": 30213,
+            "main": {
+              "minimum": 93.2900009155,
+              "maximum": 7613.41015625,
+              "missing_values": 0,
+              "unique_values": 13309,
+              "maximum_constant_run_rows": 5
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 6042,
+                "rows": 6042
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 6042,
+                "row_end_exclusive": 12085,
+                "rows": 6043
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 12085,
+                "row_end_exclusive": 18127,
+                "rows": 6042
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 18127,
+                "row_end_exclusive": 24170,
+                "rows": 6043
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 24170,
+                "row_end_exclusive": 30213,
+                "rows": 6043
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house1_4",
+            "segment_number": 4,
+            "source_file": "redd_house1_4.csv",
+            "source_sha256": "e882bac89e37b32589d8333bc83e62c12427905f39c645f334dc19b9499b3461",
+            "rows": 56399,
+            "main": {
+              "minimum": 93.1399993896,
+              "maximum": 3522.01000977,
+              "missing_values": 0,
+              "unique_values": 21318,
+              "maximum_constant_run_rows": 5
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 11279,
+                "rows": 11279
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 11279,
+                "row_end_exclusive": 22559,
+                "rows": 11280
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 22559,
+                "row_end_exclusive": 33839,
+                "rows": 11280
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 33839,
+                "row_end_exclusive": 45119,
+                "rows": 11280
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 45119,
+                "row_end_exclusive": 56399,
+                "rows": 11280
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house1_5",
+            "segment_number": 5,
+            "source_file": "redd_house1_5.csv",
+            "source_sha256": "ef84bbe9aa76bcb9b3cb6d3c4223d56fc7058f9713290f19497ff6e9a19034c4",
+            "rows": 27685,
+            "main": {
+              "minimum": 93.5899963379,
+              "maximum": 2927.91992188,
+              "missing_values": 0,
+              "unique_values": 10295,
+              "maximum_constant_run_rows": 9
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 5537,
+                "rows": 5537
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 5537,
+                "row_end_exclusive": 11074,
+                "rows": 5537
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 11074,
+                "row_end_exclusive": 16611,
+                "rows": 5537
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 16611,
+                "row_end_exclusive": 22148,
+                "rows": 5537
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 22148,
+                "row_end_exclusive": 27685,
+                "rows": 5537
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house1_6",
+            "segment_number": 6,
+            "source_file": "redd_house1_6.csv",
+            "source_sha256": "54b91c2989ccad27a5a89cf16741163600c091973bd653a672a21a65aaf709cb",
+            "rows": 36273,
+            "main": {
+              "minimum": 96.3899993896,
+              "maximum": 11926.5605469,
+              "missing_values": 0,
+              "unique_values": 19604,
+              "maximum_constant_run_rows": 4
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 7254,
+                "rows": 7254
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 7254,
+                "row_end_exclusive": 14509,
+                "rows": 7255
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 14509,
+                "row_end_exclusive": 21763,
+                "rows": 7254
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 21763,
+                "row_end_exclusive": 29018,
+                "rows": 7255
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 29018,
+                "row_end_exclusive": 36273,
+                "rows": 7255
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house1_7",
+            "segment_number": 7,
+            "source_file": "redd_house1_7.csv",
+            "source_sha256": "792ec90d658e3d1dfd89b6f943b05650b336efa42718c4c7de52f38743a181f9",
+            "rows": 32433,
+            "main": {
+              "minimum": 91.1100006104,
+              "maximum": 8717.04980469,
+              "missing_values": 0,
+              "unique_values": 12292,
+              "maximum_constant_run_rows": 6
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 6486,
+                "rows": 6486
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 6486,
+                "row_end_exclusive": 12973,
+                "rows": 6487
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 12973,
+                "row_end_exclusive": 19459,
+                "rows": 6486
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 19459,
+                "row_end_exclusive": 25946,
+                "rows": 6487
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 25946,
+                "row_end_exclusive": 32433,
+                "rows": 6487
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house1_8",
+            "segment_number": 8,
+            "source_file": "redd_house1_8.csv",
+            "source_sha256": "8cbb25f12f8f15c9801a9e565ad28d0a6bcdbd26d4b81c277a1bd95af3610889",
+            "rows": 25480,
+            "main": {
+              "minimum": 90.9300003052,
+              "maximum": 2181.92993164,
+              "missing_values": 0,
+              "unique_values": 10737,
+              "maximum_constant_run_rows": 4
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 5096,
+                "rows": 5096
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 5096,
+                "row_end_exclusive": 10192,
+                "rows": 5096
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 10192,
+                "row_end_exclusive": 15288,
+                "rows": 5096
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 15288,
+                "row_end_exclusive": 20384,
+                "rows": 5096
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 20384,
+                "row_end_exclusive": 25480,
+                "rows": 5096
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house1_9",
+            "segment_number": 9,
+            "source_file": "redd_house1_9.csv",
+            "source_sha256": "825df5ca37755c484053e88edbcc55538f4c4bc077ea097e59f8efe4011ed510",
+            "rows": 33725,
+            "main": {
+              "minimum": 93.4800033569,
+              "maximum": 4490.85009766,
+              "missing_values": 0,
+              "unique_values": 10729,
+              "maximum_constant_run_rows": 4
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 6745,
+                "rows": 6745
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 6745,
+                "row_end_exclusive": 13490,
+                "rows": 6745
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 13490,
+                "row_end_exclusive": 20235,
+                "rows": 6745
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 20235,
+                "row_end_exclusive": 26980,
+                "rows": 6745
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 26980,
+                "row_end_exclusive": 33725,
+                "rows": 6745
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house1_10",
+            "segment_number": 10,
+            "source_file": "redd_house1_10.csv",
+            "source_sha256": "66c5a648cf71bd7c2a055397247ae62866eb7f0df0c5b9dbcb7f130b2bd0af24",
+            "rows": 29217,
+            "main": {
+              "minimum": 92.4799957275,
+              "maximum": 6258.12988281,
+              "missing_values": 1,
+              "unique_values": 15575,
+              "maximum_constant_run_rows": 4
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 5843,
+                "rows": 5843
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 5843,
+                "row_end_exclusive": 11686,
+                "rows": 5843
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 11686,
+                "row_end_exclusive": 17530,
+                "rows": 5844
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 17530,
+                "row_end_exclusive": 23373,
+                "rows": 5843
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 23373,
+                "row_end_exclusive": 29217,
+                "rows": 5844
+              }
+            ]
+          }
+        ]
+      },
+      "H3": {
+        "segments": 6,
+        "rows": 242044,
+        "output_file": "house_3.csv",
+        "output_sha256": "3a6b3a44f677d8addb3b5c049a6676b26e846a69a0d4661615c45f19a33c881e",
+        "segment_details": [
+          {
+            "segment_id": "redd_house3_0",
+            "segment_number": 0,
+            "source_file": "redd_house3_0.csv",
+            "source_sha256": "1da31fbe7453ef7b9471f2032a0e232d61f2de732d2f04e339ce2242d3731fdf",
+            "rows": 35491,
+            "main": {
+              "minimum": 120.0,
+              "maximum": 6360.54003906,
+              "missing_values": 0,
+              "unique_values": 17107,
+              "maximum_constant_run_rows": 6
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 7098,
+                "rows": 7098
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 7098,
+                "row_end_exclusive": 14196,
+                "rows": 7098
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 14196,
+                "row_end_exclusive": 21294,
+                "rows": 7098
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 21294,
+                "row_end_exclusive": 28392,
+                "rows": 7098
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 28392,
+                "row_end_exclusive": 35491,
+                "rows": 7099
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house3_1",
+            "segment_number": 1,
+            "source_file": "redd_house3_1.csv",
+            "source_sha256": "dc162e4ead37c3e1265cd14b15dab06bc79bd4a8f43272de232008be237d8fd2",
+            "rows": 23798,
+            "main": {
+              "minimum": 127.220001221,
+              "maximum": 2586.94995117,
+              "missing_values": 0,
+              "unique_values": 11916,
+              "maximum_constant_run_rows": 6
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 4759,
+                "rows": 4759
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 4759,
+                "row_end_exclusive": 9519,
+                "rows": 4760
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 9519,
+                "row_end_exclusive": 14278,
+                "rows": 4759
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 14278,
+                "row_end_exclusive": 19038,
+                "rows": 4760
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 19038,
+                "row_end_exclusive": 23798,
+                "rows": 4760
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house3_2",
+            "segment_number": 2,
+            "source_file": "redd_house3_2.csv",
+            "source_sha256": "3ff10aab25387a86d9b44f3ec3903b9e87a395a24ca7b6d5b5530a4067713970",
+            "rows": 29139,
+            "main": {
+              "minimum": 124.509994507,
+              "maximum": 1150.9699707,
+              "missing_values": 0,
+              "unique_values": 7776,
+              "maximum_constant_run_rows": 4
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 5827,
+                "rows": 5827
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 5827,
+                "row_end_exclusive": 11655,
+                "rows": 5828
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 11655,
+                "row_end_exclusive": 17483,
+                "rows": 5828
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 17483,
+                "row_end_exclusive": 23311,
+                "rows": 5828
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 23311,
+                "row_end_exclusive": 29139,
+                "rows": 5828
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house3_3",
+            "segment_number": 3,
+            "source_file": "redd_house3_3.csv",
+            "source_sha256": "9eaabcc0b57633169be452c0e0848fc903c43939472110613b8fbb0cecd98362",
+            "rows": 45274,
+            "main": {
+              "minimum": 121.61000061,
+              "maximum": 7930.00976562,
+              "missing_values": 0,
+              "unique_values": 25421,
+              "maximum_constant_run_rows": 6
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 9054,
+                "rows": 9054
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 9054,
+                "row_end_exclusive": 18109,
+                "rows": 9055
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 18109,
+                "row_end_exclusive": 27164,
+                "rows": 9055
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 27164,
+                "row_end_exclusive": 36219,
+                "rows": 9055
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 36219,
+                "row_end_exclusive": 45274,
+                "rows": 9055
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house3_4",
+            "segment_number": 4,
+            "source_file": "redd_house3_4.csv",
+            "source_sha256": "c35f2a6cc55a03e79c3d529ebe2c359b4b804adefd57bb85f1af439a1664814b",
+            "rows": 29535,
+            "main": {
+              "minimum": 105.959999084,
+              "maximum": 7616.33984375,
+              "missing_values": 0,
+              "unique_values": 18613,
+              "maximum_constant_run_rows": 4
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 5907,
+                "rows": 5907
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 5907,
+                "row_end_exclusive": 11814,
+                "rows": 5907
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 11814,
+                "row_end_exclusive": 17721,
+                "rows": 5907
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 17721,
+                "row_end_exclusive": 23628,
+                "rows": 5907
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 23628,
+                "row_end_exclusive": 29535,
+                "rows": 5907
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house3_5",
+            "segment_number": 5,
+            "source_file": "redd_house3_5.csv",
+            "source_sha256": "d6946733483d44b817e471dcbe337b9eca790c0c210041bfd48854f5e0127240",
+            "rows": 78807,
+            "main": {
+              "minimum": 106.230003357,
+              "maximum": 3529.39990234,
+              "missing_values": 0,
+              "unique_values": 34061,
+              "maximum_constant_run_rows": 4
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 15761,
+                "rows": 15761
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 15761,
+                "row_end_exclusive": 31522,
+                "rows": 15761
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 31522,
+                "row_end_exclusive": 47284,
+                "rows": 15762
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 47284,
+                "row_end_exclusive": 63045,
+                "rows": 15761
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 63045,
+                "row_end_exclusive": 78807,
+                "rows": 15762
+              }
+            ]
+          }
+        ]
+      },
+      "H5": {
+        "segments": 1,
+        "rows": 24181,
+        "output_file": "house_5.csv",
+        "output_sha256": "01ef26e4c7497308c6cf73894babf8e5417d212981c57cf6762332d60385fe10",
+        "segment_details": [
+          {
+            "segment_id": "redd_house5_0",
+            "segment_number": 0,
+            "source_file": "redd_house5_0.csv",
+            "source_sha256": "2c407301a06fef00f7cf6d09950b1e6750f66a0e3e61a6863352babcd9abb4c3",
+            "rows": 24181,
+            "main": {
+              "minimum": 158.320007324,
+              "maximum": 12065.0605469,
+              "missing_values": 0,
+              "unique_values": 13678,
+              "maximum_constant_run_rows": 6
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 4836,
+                "rows": 4836
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 4836,
+                "row_end_exclusive": 9672,
+                "rows": 4836
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 9672,
+                "row_end_exclusive": 14508,
+                "rows": 4836
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 14508,
+                "row_end_exclusive": 19344,
+                "rows": 4836
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 19344,
+                "row_end_exclusive": 24181,
+                "rows": 4837
+              }
+            ]
+          }
+        ]
+      },
+      "H6": {
+        "segments": 4,
+        "rows": 326576,
+        "output_file": "house_6.csv",
+        "output_sha256": "1e14767a1f8e46f846096b529ad42aff014be8b2985036f48864ca3975848677",
+        "segment_details": [
+          {
+            "segment_id": "redd_house6_0",
+            "segment_number": 0,
+            "source_file": "redd_house6_0.csv",
+            "source_sha256": "2aaf95c48941106362de39426969a88bb55d8fc9decf84301e49ff3f849f0c8c",
+            "rows": 169361,
+            "main": {
+              "minimum": 157.789993286,
+              "maximum": 5675.6796875,
+              "missing_values": 0,
+              "unique_values": 55021,
+              "maximum_constant_run_rows": 10
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 33872,
+                "rows": 33872
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 33872,
+                "row_end_exclusive": 67744,
+                "rows": 33872
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 67744,
+                "row_end_exclusive": 101616,
+                "rows": 33872
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 101616,
+                "row_end_exclusive": 135488,
+                "rows": 33872
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 135488,
+                "row_end_exclusive": 169361,
+                "rows": 33873
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house6_1",
+            "segment_number": 1,
+            "source_file": "redd_house6_1.csv",
+            "source_sha256": "f22c4737c82967b935b1010a4e8858bedc57b46e7403a93e8d4dcced324f4010",
+            "rows": 42193,
+            "main": {
+              "minimum": 205.460006714,
+              "maximum": 5780.87011719,
+              "missing_values": 0,
+              "unique_values": 23390,
+              "maximum_constant_run_rows": 4
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 8438,
+                "rows": 8438
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 8438,
+                "row_end_exclusive": 16877,
+                "rows": 8439
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 16877,
+                "row_end_exclusive": 25315,
+                "rows": 8438
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 25315,
+                "row_end_exclusive": 33754,
+                "rows": 8439
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 33754,
+                "row_end_exclusive": 42193,
+                "rows": 8439
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house6_2",
+            "segment_number": 2,
+            "source_file": "redd_house6_2.csv",
+            "source_sha256": "12d8a47cecab6f52a077997eab4d24a42a088c5101965e597c0abec1fdc94d1a",
+            "rows": 77212,
+            "main": {
+              "minimum": 186.199996948,
+              "maximum": 7686.62011719,
+              "missing_values": 0,
+              "unique_values": 33692,
+              "maximum_constant_run_rows": 4
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 15442,
+                "rows": 15442
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 15442,
+                "row_end_exclusive": 30884,
+                "rows": 15442
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 30884,
+                "row_end_exclusive": 46327,
+                "rows": 15443
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 46327,
+                "row_end_exclusive": 61769,
+                "rows": 15442
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 61769,
+                "row_end_exclusive": 77212,
+                "rows": 15443
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house6_3",
+            "segment_number": 3,
+            "source_file": "redd_house6_3.csv",
+            "source_sha256": "03ef4d1afa315b39c2089f796e4aff9888016df44a00267919c3f8416bed5fa0",
+            "rows": 37810,
+            "main": {
+              "minimum": 185.629989624,
+              "maximum": 2253.75,
+              "missing_values": 0,
+              "unique_values": 20080,
+              "maximum_constant_run_rows": 3
+            },
+            "blocks": [
+              {
+                "block": "B1",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 7562,
+                "rows": 7562
+              },
+              {
+                "block": "B2",
+                "row_start_inclusive": 7562,
+                "row_end_exclusive": 15124,
+                "rows": 7562
+              },
+              {
+                "block": "B3",
+                "row_start_inclusive": 15124,
+                "row_end_exclusive": 22686,
+                "rows": 7562
+              },
+              {
+                "block": "B4",
+                "row_start_inclusive": 22686,
+                "row_end_exclusive": 30248,
+                "rows": 7562
+              },
+              {
+                "block": "B5",
+                "row_start_inclusive": 30248,
+                "row_end_exclusive": 37810,
+                "rows": 7562
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "protocol_x": {
+    "output_directory": "data/protocol_x",
+    "development_split_created": false,
+    "houses": {
+      "H2": {
+        "segments": 7,
+        "rows": 292063,
+        "output_file": "house_2.csv",
+        "output_sha256": "149bd46e367f9fba958e9b45e6a11d57448b4e8a167bc34d9552afd822f839b8",
+        "segment_details": [
+          {
+            "segment_id": "redd_house2_0",
+            "segment_number": 0,
+            "source_file": "redd_house2_0.csv",
+            "source_sha256": "600d9f4a25c80894b04bc0e1720940476f2702fb79fdf74f2b4eebb47a08b8d1",
+            "rows": 34429,
+            "main": {
+              "minimum": 36.8099975586,
+              "maximum": 2242.98999023,
+              "missing_values": 0,
+              "unique_values": 13654,
+              "maximum_constant_run_rows": 5
+            },
+            "blocks": [
+              {
+                "block": "PX",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 34429,
+                "rows": 34429
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house2_1",
+            "segment_number": 1,
+            "source_file": "redd_house2_1.csv",
+            "source_sha256": "4a72990a19863dd445c58f2c17c8fed8f43c50fa56da6a69b155e2183d9d8b40",
+            "rows": 48110,
+            "main": {
+              "minimum": 36.6500015259,
+              "maximum": 3195.11010742,
+              "missing_values": 0,
+              "unique_values": 18354,
+              "maximum_constant_run_rows": 5
+            },
+            "blocks": [
+              {
+                "block": "PX",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 48110,
+                "rows": 48110
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house2_2",
+            "segment_number": 2,
+            "source_file": "redd_house2_2.csv",
+            "source_sha256": "e8e4661a87a136b25d70796c91ccc72d727f1f99e3e93fadaa1b105f4e635077",
+            "rows": 29378,
+            "main": {
+              "minimum": 36.5099983215,
+              "maximum": 3092.66992188,
+              "missing_values": 0,
+              "unique_values": 10137,
+              "maximum_constant_run_rows": 8
+            },
+            "blocks": [
+              {
+                "block": "PX",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 29378,
+                "rows": 29378
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house2_3",
+            "segment_number": 3,
+            "source_file": "redd_house2_3.csv",
+            "source_sha256": "8c6d27c8b425cde4865eaadc063540a74c58b70f94678d6cbed1a5e41dbb57c4",
+            "rows": 24010,
+            "main": {
+              "minimum": 36.4700012207,
+              "maximum": 2341.55004883,
+              "missing_values": 0,
+              "unique_values": 10839,
+              "maximum_constant_run_rows": 9
+            },
+            "blocks": [
+              {
+                "block": "PX",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 24010,
+                "rows": 24010
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house2_4",
+            "segment_number": 4,
+            "source_file": "redd_house2_4.csv",
+            "source_sha256": "a3e3dee5e4dfae80d5cc780d63f47a3bf4054afebc89f583766ea040d484f154",
+            "rows": 33612,
+            "main": {
+              "minimum": 36.3600006104,
+              "maximum": 2353.2800293,
+              "missing_values": 0,
+              "unique_values": 11593,
+              "maximum_constant_run_rows": 6
+            },
+            "blocks": [
+              {
+                "block": "PX",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 33612,
+                "rows": 33612
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house2_5",
+            "segment_number": 5,
+            "source_file": "redd_house2_5.csv",
+            "source_sha256": "0f1958f12f6a546080ac822b37578d8c0fd0b6d4b53f9d835d435979e52168b7",
+            "rows": 99258,
+            "main": {
+              "minimum": 36.5499992371,
+              "maximum": 3232.97998047,
+              "missing_values": 0,
+              "unique_values": 17737,
+              "maximum_constant_run_rows": 6
+            },
+            "blocks": [
+              {
+                "block": "PX",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 99258,
+                "rows": 99258
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house2_6",
+            "segment_number": 6,
+            "source_file": "redd_house2_6.csv",
+            "source_sha256": "02f4bc8cea15ec973739a120b7a06a12b215add6fc8ca6118856adbe3c10ee98",
+            "rows": 23266,
+            "main": {
+              "minimum": 37.0299987793,
+              "maximum": 2227.01977539,
+              "missing_values": 0,
+              "unique_values": 6935,
+              "maximum_constant_run_rows": 6
+            },
+            "blocks": [
+              {
+                "block": "PX",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 23266,
+                "rows": 23266
+              }
+            ]
+          }
+        ]
+      },
+      "H4": {
+        "segments": 6,
+        "rows": 274983,
+        "output_file": "house_4.csv",
+        "output_sha256": "8e86d53899412cefa17fe555dd3f625469c3740fd4810e9a9a100735587aae0a",
+        "segment_details": [
+          {
+            "segment_id": "redd_house4_0",
+            "segment_number": 0,
+            "source_file": "redd_house4_0.csv",
+            "source_sha256": "ab37a744b96c0c3c0e47e9db43c2b72cbab0a0598b224a1208b6861a2b8ad729",
+            "rows": 36688,
+            "main": {
+              "minimum": 114.470001221,
+              "maximum": 2362.26000977,
+              "missing_values": 0,
+              "unique_values": 11190,
+              "maximum_constant_run_rows": 4
+            },
+            "blocks": [
+              {
+                "block": "PX",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 36688,
+                "rows": 36688
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house4_1",
+            "segment_number": 1,
+            "source_file": "redd_house4_1.csv",
+            "source_sha256": "94c4bdbe7d1be597fbb2f04ac10fc93ce32805add4280a761e9c4d8ef2964d53",
+            "rows": 22594,
+            "main": {
+              "minimum": 102.880004883,
+              "maximum": 2190.87988281,
+              "missing_values": 0,
+              "unique_values": 15780,
+              "maximum_constant_run_rows": 5
+            },
+            "blocks": [
+              {
+                "block": "PX",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 22594,
+                "rows": 22594
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house4_2",
+            "segment_number": 2,
+            "source_file": "redd_house4_2.csv",
+            "source_sha256": "8f6728684c0bef5e2e345ac20b44bf27476ee97b234fbd02baaeb0ce90a0fc88",
+            "rows": 43118,
+            "main": {
+              "minimum": 98.9799957275,
+              "maximum": 2861.9699707,
+              "missing_values": 0,
+              "unique_values": 26546,
+              "maximum_constant_run_rows": 8
+            },
+            "blocks": [
+              {
+                "block": "PX",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 43118,
+                "rows": 43118
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house4_3",
+            "segment_number": 3,
+            "source_file": "redd_house4_3.csv",
+            "source_sha256": "897459c23d27746528a046d5b000a321c1866b1790f76f512c10469807765c09",
+            "rows": 22835,
+            "main": {
+              "minimum": 103.5,
+              "maximum": 1635.08996582,
+              "missing_values": 0,
+              "unique_values": 11499,
+              "maximum_constant_run_rows": 4
+            },
+            "blocks": [
+              {
+                "block": "PX",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 22835,
+                "rows": 22835
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house4_4",
+            "segment_number": 4,
+            "source_file": "redd_house4_4.csv",
+            "source_sha256": "83450e753c223baed8b00566c1298208c480d6f32ff06793cc02e69cddb64acb",
+            "rows": 40867,
+            "main": {
+              "minimum": 102.519996643,
+              "maximum": 3598.2199707,
+              "missing_values": 0,
+              "unique_values": 21134,
+              "maximum_constant_run_rows": 9
+            },
+            "blocks": [
+              {
+                "block": "PX",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 40867,
+                "rows": 40867
+              }
+            ]
+          },
+          {
+            "segment_id": "redd_house4_5",
+            "segment_number": 5,
+            "source_file": "redd_house4_5.csv",
+            "source_sha256": "c823da650ad46e580466a7bce419b83f332813131b1ba108916b7bdb263bf51d",
+            "rows": 108881,
+            "main": {
+              "minimum": 108.009994507,
+              "maximum": 2514.20996094,
+              "missing_values": 0,
+              "unique_values": 32507,
+              "maximum_constant_run_rows": 9
+            },
+            "blocks": [
+              {
+                "block": "PX",
+                "row_start_inclusive": 0,
+                "row_end_exclusive": 108881,
+                "rows": 108881
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

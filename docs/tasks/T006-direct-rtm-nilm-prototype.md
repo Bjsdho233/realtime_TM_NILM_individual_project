@@ -133,3 +133,40 @@ Exact features, Boolean bits and thresholds, target transformation, model
 hyperparameters and run configuration remain pending. T006 remains paused; this
 decision creates no implementation, REDD-access, training, prediction or
 scoring authority.
+
+## 10. Public REDD data-supply increment — 2026-07-29
+
+Tianhang separately authorised the first public implementation increment:
+[`system/split_redd_blocks.py`](../../system/split_redd_blocks.py).
+
+The accepted data construction is:
+
+- one source `redd_houseN_M.csv` file is one independent segment;
+- no temporal continuity is assumed between source files from the same house;
+- every Protocol R segment in H1/H3/H5/H6 is independently divided into B1–B5
+  with the frozen `floor(n*k/5)` half-open boundaries;
+- portions with the same block name are combined within each house while
+  retaining `segment_id` and `row_in_segment`;
+- H2/H4 take a physically separate Protocol X output path and retain the single
+  `PX` held-out role; this increment does not create a Protocol X development
+  split;
+- `Unnamed: 0` must equal `0..N-1` within its source file and is then removed.
+
+The source-CSV segment boundary and proportional within-segment split are
+`Project-designed` choices grounded in the absence of cross-file continuity
+evidence. The exact B1–B5 boundary formula is inherited from the frozen T004
+contract. File discovery, labelling, validation, manifest writing and
+idempotent overwrite behaviour are `Implementation-only`.
+
+The script discovered 35 segments without hard-coded per-house counts:
+H1=11, H2=7, H3=6, H4=6, H5=1 and H6=4. It generated one table per house plus
+`system/data/split_manifest.json`. A second complete run changed none of the
+seven output hashes. Tianhang subsequently authorised the reviewed preprocessed
+source copy and these deterministic outputs for Git publication under
+`system/data/`. One source `main` value is missing at the first row of
+`redd_house1_10`; it is preserved and recorded as a continuity break rather
+than silently filled.
+
+This increment did not construct features, Booleanise inputs, schedule folds,
+import TMU, train a model, predict, score or inspect model performance. T006
+feature/model/training work remains paused.

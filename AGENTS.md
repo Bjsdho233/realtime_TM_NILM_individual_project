@@ -400,9 +400,11 @@ dissertation-evidence rules are in
   research, deployment, and historical evidence distinct.
 - Track and evidence grade are independent: T-series is not automatically a
   Protocol R result, and E-series is never formal without promotion.
-- Keep REDD, matched-event CSVs, models, caches, environments, and large generated
-  outputs out of version control. Do not overwrite archived results; append and
-  link corrections.
+- The reviewed preprocessed REDD copy and deterministic split tables under
+  `system/data/` are intentionally versioned for the public prototype. Keep
+  other REDD copies, matched-event CSVs, models, caches, environments, and large
+  generated outputs out of version control. Do not overwrite archived results;
+  append and link corrections.
 - A development experiment may use only a schema-valid development-data
   manifest whose admitted roles are non-test roles and whose sealed-test flag is
   false. A caller-supplied JSON file or a self-declared safety Boolean is not an

@@ -28,6 +28,14 @@ DESIGN_NAME = "design_manifest.json"
 DESIGN_HASH_NAME = "design_manifest.sha256"
 RESULT_NAME = "result.json"
 MAX_TRACKED_FILE_BYTES = 5 * 1024 * 1024
+MAX_VERSIONED_REDD_FILE_BYTES = 25 * 1024 * 1024
+VERSIONED_REDD_TABLE_RE = re.compile(
+    r"^system/data/(?:"
+    r"redd/redd_house[1-6]_\d+\.csv|"
+    r"protocol_r/house_(?:1|3|5|6)\.csv|"
+    r"protocol_x/house_(?:2|4)\.csv"
+    r")$"
+)
 GOVERNED_TEXT_SUFFIXES = {
     ".c",
     ".cc",
@@ -2704,6 +2712,16 @@ def _is_probably_text(path: Path) -> bool:
     return b"\0" not in sample
 
 
+def is_versioned_redd_table(relative: Path) -> bool:
+    return VERSIONED_REDD_TABLE_RE.fullmatch(relative.as_posix()) is not None
+
+
+def tracked_file_size_limit(relative: Path) -> int:
+    if is_versioned_redd_table(relative):
+        return MAX_VERSIONED_REDD_FILE_BYTES
+    return MAX_TRACKED_FILE_BYTES
+
+
 def validate_sensitive_content(root: Path, paths: Sequence[Path]) -> CheckResult:
     allowed_absolute, allowed_sensitive = _load_scan_allowlist(root)
     used_absolute: set[tuple[str, str]] = set()
@@ -2713,6 +2731,8 @@ def validate_sensitive_content(root: Path, paths: Sequence[Path]) -> CheckResult
     for relative in paths:
         posix = relative.as_posix()
         if relative == SCAN_ALLOWLIST_PATH:
+            continue
+        if is_versioned_redd_table(relative):
             continue
         if SENSITIVE_FILE_RE.search(posix) and not posix.endswith((".env.example", ".env.template")):
             errors.append(f"{posix}: sensitive filename is trackable")
@@ -2771,9 +2791,10 @@ def validate_file_sizes(root: Path, paths: Sequence[Path]) -> CheckResult:
     for relative in paths:
         size = (root / relative).stat().st_size
         largest = max(largest, size)
-        if size > MAX_TRACKED_FILE_BYTES:
+        limit = tracked_file_size_limit(relative)
+        if size > limit:
             errors.append(
-                f"{relative.as_posix()}: {size} bytes exceeds {MAX_TRACKED_FILE_BYTES}"
+                f"{relative.as_posix()}: {size} bytes exceeds {limit}"
             )
     if errors:
         raise GovernanceError("large-file scan failed:\n" + "\n".join(f"  - {item}" for item in errors))
@@ -2788,6 +2809,8 @@ def validate_text_hygiene(root: Path, paths: Sequence[Path]) -> CheckResult:
     checked = 0
     for relative in paths:
         path = root / relative
+        if is_versioned_redd_table(relative):
+            continue
         if path.stat().st_size > MAX_TRACKED_FILE_BYTES:
             continue
         if relative.suffix.lower() in GOVERNED_TEXT_SUFFIXES:
