@@ -40,8 +40,8 @@ causal aggregate window
   → current appliance power estimate
 ```
 
-T006 只用 fridge / Protocol R F1 检查这条路径能否跑通并出现基本有效信号。它不预先承诺
-host parity、Pico、weighted rTM、gating、多 appliance、调参或正式 test；这些工作只有在原型结果
+T006 只用 fridge / Protocol R F1 检查这条路径能否跑通并出现基本有效信号。D008 已选择
+TMU 0.8.3 integer-weighted rTM model family；它仍不预先承诺 host parity、Pico、gating、多 appliance、调参或正式 test；这些工作只有在原型结果
 值得继续且 Tianhang 另行授权时才展开。
 
 项目同时回答三个层面的问题：

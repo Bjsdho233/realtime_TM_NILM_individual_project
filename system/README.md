@@ -10,6 +10,10 @@ such as data supply, feature and Boolean input construction, model definition,
 training, evaluation and chronological replay. The final structure will follow
 actual code needs rather than a pre-generated framework.
 
+The selected model family is TMU 0.8.3 `TMRegressor` with integer-weighted
+clauses. Exact features, Booleanisation, target transformation and training
+configuration are intentionally not implied by that model choice.
+
 This workspace may contain:
 
 - runnable source code and thin command-line entry points;

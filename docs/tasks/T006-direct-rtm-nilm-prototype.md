@@ -114,3 +114,22 @@ Booleanisation may proceed to static audit. Exact horizons, features, bits and
 target clipping/scaling remain pending. The minimum architecture remains vanilla
 direct rTM; the first fridge prototype does not add a cTM gate, weighted rTM or
 OFF resampling. T006 remains paused and this update creates no training authority.
+
+## 9. D008 workflow and model-family decision — 2026-07-29
+
+Tianhang accepted
+[D008 — Public rTM Workflow and Integer-Weighted Model Family](../decisions/D008-public-rtm-workflow-and-integer-weighted-model.md).
+The public implementation will be a flat workflow under `system/`, with clear
+data generation/supply, feature, Booleanisation, model, training, testing and
+thin-entry responsibilities. Replacing a feature or Booleanisation candidate
+must not change the main training/testing flow.
+
+The selected model family is TMU 0.8.3 `TMRegressor` with
+`weighted_clauses=True`. This supersedes D007's vanilla-only boundary and
+weighted-rTM deferral. It does not modify or validate the old unweighted
+checkpoint, which remains diagnostic/history only.
+
+Exact features, Boolean bits and thresholds, target transformation, model
+hyperparameters and run configuration remain pending. T006 remains paused; this
+decision creates no implementation, REDD-access, training, prediction or
+scoring authority.
