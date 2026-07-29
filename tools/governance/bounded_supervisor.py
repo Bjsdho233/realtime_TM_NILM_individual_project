@@ -9,6 +9,7 @@ import json
 import math
 import os
 import re
+import secrets
 import signal
 import subprocess
 import sys
@@ -68,10 +69,15 @@ REQUIRED_STOP_CONDITIONS = {
     "minimum_available_ram",
 }
 HEX_40 = re.compile(r"^[0-9a-f]{40}$")
+HEX_64 = re.compile(r"^[0-9a-f]{64}$")
 
 
 class RunSpecError(ValueError):
     """The run must not start because its execution contract is invalid."""
+
+
+class StepResultError(ValueError):
+    """A completed child did not produce its declared atomic result."""
 
 
 def utc_now() -> str:
@@ -212,6 +218,55 @@ def validate_run_spec(spec: dict[str, Any]) -> None:
     for placeholder in ("{candidate}", "{rows}"):
         if placeholder not in joined:
             raise RunSpecError(f"step_command must contain {placeholder}")
+
+    parent_forbidden = spec.get("parent_forbidden_imports", [])
+    if not isinstance(parent_forbidden, list) or any(
+        not isinstance(name, str) or not name for name in parent_forbidden
+    ):
+        raise RunSpecError("parent_forbidden_imports must be a string list")
+
+    result_contract = spec.get("step_result_contract")
+    if result_contract is not None:
+        if not isinstance(result_contract, dict):
+            raise RunSpecError("step_result_contract must be an object")
+        required_contract = {
+            "filename",
+            "probe_spec_sha256",
+            "input_bits_by_candidate",
+            "required_tmu_version",
+        }
+        missing_contract = sorted(required_contract - result_contract.keys())
+        if missing_contract:
+            raise RunSpecError(
+                "step_result_contract missing fields: "
+                + ", ".join(missing_contract)
+            )
+        filename = result_contract["filename"]
+        if (
+            not isinstance(filename, str)
+            or not filename
+            or Path(filename).name != filename
+        ):
+            raise RunSpecError("step result filename must be one safe basename")
+        if not isinstance(result_contract["probe_spec_sha256"], str) or not HEX_64.fullmatch(
+            result_contract["probe_spec_sha256"]
+        ):
+            raise RunSpecError("probe_spec_sha256 must be lowercase 64-hex")
+        input_bits = result_contract["input_bits_by_candidate"]
+        if not isinstance(input_bits, dict) or set(input_bits) != set(spec["candidates"]):
+            raise RunSpecError(
+                "input_bits_by_candidate must exactly cover declared candidates"
+            )
+        if any(
+            isinstance(bits, bool) or not isinstance(bits, int) or bits <= 0
+            for bits in input_bits.values()
+        ):
+            raise RunSpecError("input bit counts must be positive integers")
+        if (
+            not isinstance(result_contract["required_tmu_version"], str)
+            or not result_contract["required_tmu_version"]
+        ):
+            raise RunSpecError("required_tmu_version must be a non-empty string")
 
     ordinary_limit = (120.0, 600.0)
     cost_limit = (300.0, 1200.0)
@@ -510,6 +565,14 @@ def expand_step_command(
     epochs: int,
     seed: int,
     step_dir: Path,
+    step_id: str,
+    run_id: str,
+    run_spec_path: Path,
+    run_spec_sha256: str,
+    implementation_commit: str,
+    step_authority_path: Path,
+    step_result_path: Path,
+    probe_spec_sha256: str | None,
 ) -> list[str]:
     values = {
         "{python}": sys.executable,
@@ -518,6 +581,14 @@ def expand_step_command(
         "{epochs}": str(epochs),
         "{seed}": str(seed),
         "{step_dir}": str(step_dir),
+        "{step_id}": step_id,
+        "{run_id}": run_id,
+        "{run_spec_path}": str(run_spec_path),
+        "{run_spec_sha256}": run_spec_sha256,
+        "{implementation_commit}": implementation_commit,
+        "{step_authority_path}": str(step_authority_path),
+        "{step_result_path}": str(step_result_path),
+        "{probe_spec_sha256}": probe_spec_sha256 or "",
     }
     expanded = []
     for argument in command:
@@ -551,6 +622,7 @@ class StepResult:
     returncode: int | None
     peak_job_memory_bytes: int | None
     task_pid: int | None
+    child_result_sha256: str | None
 
 
 def _read_task_pid(path: Path) -> int | None:
@@ -560,6 +632,89 @@ def _read_task_pid(path: Path) -> int | None:
         return int(json.loads(path.read_text(encoding="utf-8"))["task_pid"])
     except (KeyError, TypeError, ValueError, json.JSONDecodeError):
         return None
+
+
+def _strict_json_bytes(raw: bytes, label: str) -> dict[str, Any]:
+    try:
+        payload = json.loads(
+            raw.decode("utf-8"),
+            object_pairs_hook=_strict_object,
+            parse_constant=_reject_constant,
+        )
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise StepResultError(f"{label} is not strict UTF-8 JSON: {exc}") from exc
+    if not isinstance(payload, dict):
+        raise StepResultError(f"{label} root must be an object")
+    return payload
+
+
+def verify_step_result(
+    *,
+    spec: dict[str, Any],
+    spec_hash: str,
+    step_id: str,
+    candidate: str,
+    rows: int,
+    task_pid: int | None,
+    step_result_path: Path,
+    authority_sha256: str,
+) -> str | None:
+    contract = spec.get("step_result_contract")
+    if contract is None:
+        return None
+    if not step_result_path.is_file():
+        raise StepResultError("declared child result is missing")
+    first = step_result_path.read_bytes()
+    time.sleep(0.01)
+    second = step_result_path.read_bytes()
+    if first != second:
+        raise StepResultError("child result changed during supervisor verification")
+    payload = _strict_json_bytes(first, "child result")
+    expected = {
+        "result_schema_version": "1.0",
+        "run_id": spec["experiment_id"],
+        "step_id": step_id,
+        "candidate": candidate,
+        "rows": rows,
+        "input_shape": [
+            rows,
+            contract["input_bits_by_candidate"][candidate],
+        ],
+        "implementation_commit": spec["implementation_commit"],
+        "run_spec_sha256": spec_hash,
+        "probe_spec_sha256": contract["probe_spec_sha256"],
+        "seed": spec["seed"],
+        "epochs": spec["epochs"],
+        "process_pid": task_pid,
+        "terminal_status": "COMPLETED",
+        "step_authority_sha256": authority_sha256,
+    }
+    for key, value in expected.items():
+        if payload.get(key) != value:
+            raise StepResultError(
+                f"child result {key} mismatch: expected {value!r}, got {payload.get(key)!r}"
+            )
+    versions = payload.get("versions")
+    if not isinstance(versions, dict):
+        raise StepResultError("child result versions must be an object")
+    for key in ("python", "numpy", "tmu"):
+        if not isinstance(versions.get(key), str) or not versions[key]:
+            raise StepResultError(f"child result is missing {key} version")
+    if versions["tmu"] != contract["required_tmu_version"]:
+        raise StepResultError(
+            f"TMU version mismatch: expected {contract['required_tmu_version']}, "
+            f"got {versions['tmu']}"
+        )
+    if payload.get("scientific_conclusion") is not None:
+        raise StepResultError("child result must not contain a scientific conclusion")
+    if payload.get("predictive_metrics_computed") is not False:
+        raise StepResultError("child result must declare no predictive metrics")
+    if payload.get("saved_model") is not False:
+        raise StepResultError("child result must declare no saved model")
+    temporary_files = list(step_result_path.parent.glob(f".{step_result_path.name}.*.tmp"))
+    if temporary_files:
+        raise StepResultError("atomic child result left temporary files behind")
+    return hashlib.sha256(first).hexdigest()
 
 
 def run_step(
@@ -578,6 +733,14 @@ def run_step(
     step_id = f"{step_index:03d}-{candidate}-{rows}"
     step_dir = store.output_dir / "steps" / step_id
     step_dir.mkdir(parents=True)
+    step_authority_path = step_dir / "step_authority.json"
+    result_contract = spec.get("step_result_contract")
+    result_filename = (
+        result_contract["filename"]
+        if isinstance(result_contract, dict)
+        else "worker_result.json"
+    )
+    step_result_path = step_dir / result_filename
     command = expand_step_command(
         spec["step_command"],
         candidate=candidate,
@@ -585,6 +748,18 @@ def run_step(
         epochs=spec["epochs"],
         seed=spec["seed"],
         step_dir=step_dir,
+        step_id=step_id,
+        run_id=spec["experiment_id"],
+        run_spec_path=store.output_dir / "frozen_run_spec.yaml",
+        run_spec_sha256=spec_hash,
+        implementation_commit=spec["implementation_commit"],
+        step_authority_path=step_authority_path,
+        step_result_path=step_result_path,
+        probe_spec_sha256=(
+            result_contract.get("probe_spec_sha256")
+            if isinstance(result_contract, dict)
+            else None
+        ),
     )
     command_file = step_dir / "command.json"
     go_file = step_dir / "go.signal"
@@ -622,6 +797,21 @@ def run_step(
             tree.bind(bootstrap)
             started = time.monotonic()
             step_deadline = started + float(spec["per_step_timeout_s"])
+            authority = {
+                "run_id": spec["experiment_id"],
+                "step_id": step_id,
+                "candidate": candidate,
+                "rows": rows,
+                "run_spec_sha256": spec_hash,
+                "implementation_commit": spec["implementation_commit"],
+                "supervisor_pid": os.getpid(),
+                "bootstrap_pid": bootstrap.pid,
+                "nonce": secrets.token_hex(32),
+            }
+            atomic_json(step_authority_path, authority)
+            authority_sha256 = hashlib.sha256(
+                step_authority_path.read_bytes()
+            ).hexdigest()
             store.event(
                 "step_started",
                 {
@@ -634,6 +824,7 @@ def run_step(
                     "bootstrap_pid": bootstrap.pid,
                     "spec_sha256": spec_hash,
                     "implementation_commit": spec["implementation_commit"],
+                    "step_authority_sha256": authority_sha256,
                 },
             )
             atomic_text(go_file, "go\n")
@@ -649,13 +840,24 @@ def run_step(
                 f"task_pid={task_pid}"
             )
 
-            heartbeat_due = started
             status = "INFRASTRUCTURE_FAILED"
             reason = "supervisor monitor did not establish a terminal state"
             returncode: int | None = None
-            last_metrics: dict[str, int | float | None] = {
-                "peak_job_memory_bytes": None
-            }
+            initial_available = available_ram_bytes()
+            last_metrics = tree.metrics()
+            store.event(
+                "heartbeat",
+                {
+                    "step_id": step_id,
+                    "candidate": candidate,
+                    "rows": rows,
+                    "elapsed_wall_seconds": time.monotonic() - started,
+                    "available_ram_bytes": initial_available,
+                    "task_pid": _read_task_pid(task_pid_file),
+                    **last_metrics,
+                },
+            )
+            heartbeat_due = started + float(spec["checkpoint_interval_s"])
             try:
                 while True:
                     now = time.monotonic()
@@ -679,14 +881,13 @@ def run_step(
                         reason = "available RAM fell below RunSpec minimum"
                         tree.terminate()
                         break
-                    if now >= step_deadline:
+                    if now >= min(step_deadline, run_deadline):
                         status = "TIMED_OUT"
-                        reason = "per-step wall timeout"
-                        tree.terminate()
-                        break
-                    if now >= run_deadline:
-                        status = "TIMED_OUT"
-                        reason = "total run wall timeout"
+                        reason = (
+                            "total run wall timeout"
+                            if run_deadline <= step_deadline
+                            else "per-step wall timeout"
+                        )
                         tree.terminate()
                         break
                     if now >= heartbeat_due:
@@ -717,6 +918,22 @@ def run_step(
                     tree.terminate()
                     bootstrap.wait(timeout=5)
             returncode = bootstrap.returncode
+            child_result_sha256 = None
+            if status == "COMPLETED":
+                try:
+                    child_result_sha256 = verify_step_result(
+                        spec=spec,
+                        spec_hash=spec_hash,
+                        step_id=step_id,
+                        candidate=candidate,
+                        rows=rows,
+                        task_pid=_read_task_pid(task_pid_file),
+                        step_result_path=step_result_path,
+                        authority_sha256=authority_sha256,
+                    )
+                except StepResultError as exc:
+                    status = "INFRASTRUCTURE_FAILED"
+                    reason = f"child result verification failed: {exc}"
             try:
                 last_metrics = tree.metrics()
             except OSError:
@@ -733,6 +950,7 @@ def run_step(
                     else None
                 ),
                 task_pid=_read_task_pid(task_pid_file),
+                child_result_sha256=child_result_sha256,
             )
             store.event(
                 "step_terminal",
@@ -746,6 +964,12 @@ def run_step(
                     "returncode": result.returncode,
                     "peak_job_memory_bytes": result.peak_job_memory_bytes,
                     "task_pid": result.task_pid,
+                    "child_result_sha256": result.child_result_sha256,
+                    "child_result_file": (
+                        result_filename
+                        if result.child_result_sha256 is not None
+                        else None
+                    ),
                 },
             )
             return result
@@ -798,6 +1022,18 @@ def run_supervised(
             f"RunSpec hash mismatch: expected {expected_spec_sha256}, got {spec_hash}"
         )
     verify_repository_binding(repository_root, spec["implementation_commit"])
+    forbidden_parent_imports = spec.get("parent_forbidden_imports", [])
+    imported_forbidden = sorted(
+        name
+        for name in forbidden_parent_imports
+        if name in sys.modules
+        or any(module.startswith(f"{name}.") for module in sys.modules)
+    )
+    if imported_forbidden:
+        raise RunSpecError(
+            "forbidden modules are already imported in supervisor: "
+            + ", ".join(imported_forbidden)
+        )
 
     store = EvidenceStore(output_dir, spec_bytes, spec_hash)
     steps = [
@@ -831,6 +1067,8 @@ def run_supervised(
             "supervisor_pid": os.getpid(),
             "spec_sha256": spec_hash,
             "implementation_commit": spec["implementation_commit"],
+            "forbidden_parent_imports": forbidden_parent_imports,
+            "forbidden_parent_imports_present": [],
         },
     )
     store.state(

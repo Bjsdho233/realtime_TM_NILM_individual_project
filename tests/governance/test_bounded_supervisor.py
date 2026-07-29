@@ -164,11 +164,96 @@ class BoundedSupervisorTests(unittest.TestCase):
         )
         return terminal, output
 
+    def make_contract_spec(self, mode: str) -> tuple[Path, str]:
+        spec_path, _ = self.make_spec(mode)
+        payload = json.loads(spec_path.read_text(encoding="utf-8"))
+        payload["step_result_contract"] = {
+            "filename": "worker_result.json",
+            "probe_spec_sha256": "1" * 64,
+            "input_bits_by_candidate": {mode: 4},
+            "required_tmu_version": "0.8.3",
+        }
+        payload["step_command"] = [
+            "{python}",
+            str(FAKE_TASK),
+            "--mode",
+            "{candidate}",
+            "--rows",
+            "{rows}",
+            "--step-dir",
+            "{step_dir}",
+            "--result-path",
+            "{step_result_path}",
+            "--run-id",
+            "{run_id}",
+            "--step-id",
+            "{step_id}",
+            "--candidate",
+            "{candidate}",
+            "--implementation-commit",
+            "{implementation_commit}",
+            "--run-spec-sha256",
+            "{run_spec_sha256}",
+            "--probe-spec-sha256",
+            "{probe_spec_sha256}",
+            "--seed",
+            "{seed}",
+            "--epochs",
+            "{epochs}",
+            "--input-bits",
+            "4",
+            "--step-authority",
+            "{step_authority_path}",
+        ]
+        raw = (json.dumps(payload, indent=2) + "\n").encode("utf-8")
+        spec_path.write_bytes(raw)
+        return spec_path, hashlib.sha256(raw).hexdigest()
+
     def test_repository_template_is_machine_readable_and_complete(self) -> None:
         template = json.loads(RUN_SPEC_TEMPLATE.read_text(encoding="utf-8"))
         self.assertTrue(REQUIRED_FIELDS <= template.keys())
         self.assertEqual(template["max_workers"], 1)
         self.assertGreaterEqual(template["next_step_safety_factor"], 2.0)
+
+    def test_completed_child_result_is_atomically_verified(self) -> None:
+        spec_path, digest = self.make_contract_spec("contract_complete")
+        output = self.root / "contract-complete-output"
+        terminal = run_supervised(
+            spec_path=spec_path,
+            expected_spec_sha256=digest,
+            output_dir=output,
+            repository_root=self.repository,
+        )
+        self.assertEqual(terminal["execution_status"], "COMPLETED")
+        step_dir = next((output / "steps").iterdir())
+        result = step_dir / "worker_result.json"
+        self.assertTrue(result.is_file())
+        step_terminal = json.loads(
+            next((output / "events").glob("*-step_terminal.json")).read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(
+            step_terminal["child_result_sha256"],
+            hashlib.sha256(result.read_bytes()).hexdigest(),
+        )
+        self.assertFalse(list(step_dir.glob(".worker_result.json.*.tmp")))
+
+    def test_missing_or_malformed_child_result_is_infrastructure_failed(self) -> None:
+        for mode in ("missing_result", "malformed_result"):
+            with self.subTest(mode=mode):
+                spec_path, digest = self.make_contract_spec(mode)
+                output = self.root / f"contract-{mode}-output"
+                terminal = run_supervised(
+                    spec_path=spec_path,
+                    expected_spec_sha256=digest,
+                    output_dir=output,
+                    repository_root=self.repository,
+                )
+                self.assertEqual(
+                    terminal["execution_status"], "INFRASTRUCTURE_FAILED"
+                )
+                self.assertIn("child result verification failed", terminal["reason"])
 
     def test_quick_task_completes_with_incremental_evidence(self) -> None:
         terminal, output = self.run_mode("quick")

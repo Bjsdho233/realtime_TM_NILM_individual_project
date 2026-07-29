@@ -10,7 +10,8 @@
 - Active E-series: see the exact registry below
 - Active R-series review: R006 — Compact rTM Computation Cost Probe (halted; no further execution authorised)
 - Experiment execution safety: mandatory policy, RunSpec template and bounded supervisor verified with fake tasks; no real runner is connected
-- Next planned formal task: any future training/benchmark/large scan requires separate execution authority, a frozen RunSpec and supervisor integration; R006 and T006 remain paused
+- Active integration validation: R006 Infrastructure Integration — Bounded TMU Adapter; synthetic generated data only, no REDD access or cost claim
+- Next planned formal task: complete only the bounded synthetic TMU adapter validation; R006 remains HALTED / INCONCLUSIVE and T006 remains PAUSED
 - T004 authority: completed on 2026-07-28; no continuing execution authority
 - Candidate/locked test development access: prohibited
 - Repository health command: `python scripts/check_repo.py`

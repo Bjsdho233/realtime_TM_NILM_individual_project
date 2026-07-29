@@ -577,109 +577,24 @@ def calculated_model_sizes(model: object) -> dict[str, int]:
     }
 
 
-def model_factory():
-    from tmu.models.regression.vanilla_regressor import TMRegressor
+class UnsupervisedExecutionDenied(RuntimeError):
+    """Legacy R006 fitting must be launched through the bounded supervisor."""
 
-    return TMRegressor(**MODEL_PARAMETERS)
+
+def model_factory() -> None:
+    raise UnsupervisedExecutionDenied(
+        "direct R006 TMU construction is disabled; use bounded_supervisor.py"
+    )
 
 
 def unmeasured_warmup(encoded: np.ndarray, targets: np.ndarray) -> None:
-    indices = evenly_spaced_indices(encoded.shape[0], min(128, encoded.shape[0]))
-    model = model_factory()
-    model.fit(encoded[indices], targets[indices].astype(float), shuffle=True)
-    del model
-    gc.collect()
+    del encoded, targets
+    model_factory()
 
 
-def measure_step(
-    encoded: np.ndarray,
-    targets: np.ndarray,
-    prediction_encoded: np.ndarray,
-    requested_rows: int,
-    baseline_paging: dict[str, float | int | None],
-) -> dict[str, object]:
-    selected = evenly_spaced_indices(encoded.shape[0], requested_rows)
-    train_x = np.ascontiguousarray(encoded[selected], dtype=np.uint32)
-    train_y = targets[selected].astype(float)
-    before = process_memory()
-    available_before = available_physical_bytes()
-    constructor_start = time.perf_counter()
-    model = model_factory()
-    constructor_seconds = time.perf_counter() - constructor_start
-
-    with ResourceMonitor() as monitor:
-        lazy_wall_start = time.perf_counter()
-        lazy_cpu_start = time.process_time()
-        model.init(train_x, train_y)
-        lazy_wall = time.perf_counter() - lazy_wall_start
-        lazy_cpu = time.process_time() - lazy_cpu_start
-
-        fit_wall_start = time.perf_counter()
-        fit_cpu_start = time.process_time()
-        model.fit(train_x, train_y, shuffle=True)
-        fit_cpu = time.process_time() - fit_cpu_start
-        fit_wall = time.perf_counter() - fit_wall_start
-
-        predict_wall_start = time.perf_counter()
-        predict_cpu_start = time.process_time()
-        prediction = model.predict(prediction_encoded)
-        predict_cpu = time.process_time() - predict_cpu_start
-        predict_wall = time.perf_counter() - predict_wall_start
-
-    if prediction.shape != (prediction_encoded.shape[0],) or not np.isfinite(
-        prediction
-    ).all():
-        raise RuntimeError("TMU prediction validity check failed")
-    sizes = calculated_model_sizes(model)
-    after = process_memory()
-    available_after = available_physical_bytes()
-    post_paging = paging_samples(2)
-    baseline_mean = baseline_paging.get("pages_input_mean")
-    post_mean = post_paging.get("pages_input_mean")
-    paging_limit = max(
-        1000.0,
-        5.0 * float(baseline_mean) if baseline_mean is not None else 1000.0,
-    )
-    available_drop = max(0, available_before - monitor.min_available)
-    probe_induced_paging = bool(
-        post_mean is not None
-        and float(post_mean) > paging_limit
-        and available_drop > 512 * 1024 * 1024
-    )
-    del prediction, model, train_x, train_y
-    gc.collect()
-    return {
-        "rows": requested_rows,
-        "selection_sha256": index_sha256(selected),
-        "target_min_w": float(targets[selected].min()),
-        "target_max_w": float(targets[selected].max()),
-        "model_constructor_wall_seconds": constructor_seconds,
-        "model_lazy_init_wall_seconds": lazy_wall,
-        "model_lazy_init_cpu_seconds": lazy_cpu,
-        "fit_wall_seconds": fit_wall,
-        "fit_cpu_seconds": fit_cpu,
-        "training_rows_per_wall_second": requested_rows / fit_wall,
-        "prediction_rows": int(prediction_encoded.shape[0]),
-        "prediction_wall_seconds": predict_wall,
-        "prediction_cpu_seconds": predict_cpu,
-        "prediction_rows_per_wall_second": prediction_encoded.shape[0]
-        / predict_wall,
-        "prediction_wall_microseconds_per_row": predict_wall
-        / prediction_encoded.shape[0]
-        * 1_000_000,
-        "process_working_set_before_bytes": before["working_set_bytes"],
-        "process_working_set_after_bytes": after["working_set_bytes"],
-        "peak_process_working_set_bytes": monitor.peak_working_set,
-        "peak_process_private_bytes": monitor.peak_private,
-        "process_page_fault_delta": monitor.end_faults - monitor.start_faults,
-        "available_physical_before_bytes": available_before,
-        "minimum_available_physical_bytes": monitor.min_available,
-        "available_physical_after_bytes": available_after,
-        "available_physical_drop_bytes": available_drop,
-        "post_step_paging": post_paging,
-        "probe_induced_paging": probe_induced_paging,
-        **sizes,
-    }
+def measure_step(*_: object, **__: object) -> dict[str, object]:
+    model_factory()
+    raise AssertionError("unreachable")
 
 
 def scaling_analysis(
@@ -938,21 +853,10 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
-    args = parse_args()
-    project_root = args.project_root.resolve()
-    verify_repository(project_root, args.expected_head)
-    verify_spec(project_root)
-    if args.output.exists():
-        raise FileExistsError(f"refusing to overwrite existing output: {args.output}")
-    if args.full:
-        if args.gate_result is None:
-            raise ValueError("--full requires --gate-result")
-        gate_result = json.loads(args.gate_result.read_text(encoding="utf-8"))
-        result = run_full_c11(project_root, args.redd_root.resolve(), gate_result)
-    else:
-        result = run_staircase(project_root, args.redd_root.resolve(), args.candidate)
-    canonical_json(args.output, result)
-    print(json.dumps(result, indent=2, sort_keys=True))
+    raise UnsupervisedExecutionDenied(
+        "legacy multi-step R006 execution is disabled; use bounded_supervisor.py "
+        "with r006_tmu_step_worker.py"
+    )
 
 
 if __name__ == "__main__":
