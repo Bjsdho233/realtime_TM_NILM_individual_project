@@ -50,10 +50,11 @@ with the same block name are then combined within each house. Protocol X houses
 H2 and H4 take a physically separate output path and remain complete held-out
 segments labelled `PX`.
 
-Run from this directory or from the surrounding repository:
+Create the locked environment and run from this directory:
 
 ```bash
-python split_redd_blocks.py
+uv sync --locked
+uv run --locked python split_redd_blocks.py
 ```
 
 Outputs are written to `data/protocol_r/`, `data/protocol_x/` and
@@ -62,6 +63,17 @@ it never appends rows.
 
 Missing `main` values already present in the source are preserved and reported;
 downstream causal windows must treat them as continuity breaks.
+
+## Python environment
+
+`system/` has its own small `uv` environment. Python 3.11, NumPy 1.26.4 and
+TMU 0.8.3 follow the Windows CPU combination already verified by this project;
+Pandas 2.2.3 supplies the tabular REDD data path.
+
+Restore the exact environment with `uv sync --locked`. For VS Code, select
+`system/.venv/Scripts/python.exe` as the Python interpreter. The local `.venv/`
+is ignored by Git; `pyproject.toml`, `uv.lock` and `.python-version` are the
+reproducible environment definition.
 
 ## Development style
 

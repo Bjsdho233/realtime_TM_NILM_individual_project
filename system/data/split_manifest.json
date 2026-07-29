@@ -34,7 +34,10 @@
   "sanity_checks": {
     "minimum_block_rows_warning": 30,
     "constant_main_run_warning_rows": 100,
-    "main_must_be_finite_and_nonnegative": true
+    "finite_main_values_must_be_nonnegative": true,
+    "missing_main_values": "preserved as continuity breaks",
+    "appliance_active_threshold_watts": 15.0,
+    "appliance_fraction_denominator": "all segment rows; missing rows are not nonzero or active"
   },
   "protocol_r": {
     "output_directory": "data/protocol_r",
@@ -51,12 +54,83 @@
             "source_file": "redd_house1_0.csv",
             "source_sha256": "2b2707d59767a51323137385236876252e508cc7233f73b77a4a03b8df58a72e",
             "rows": 23302,
+            "columns": [
+              "dish washer",
+              "electric space heater",
+              "electric stove",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 95.4499969482,
               "maximum": 5866.54003906,
               "missing_values": 0,
               "unique_values": 13595,
               "maximum_constant_run_rows": 4
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 1287.0,
+                "finite_rows": 23302,
+                "missing_rows": 0,
+                "nonzero_rows": 2737,
+                "nonzero_row_fraction": 0.1174577289503047,
+                "above_active_threshold_rows": 1856,
+                "above_active_threshold_row_fraction": 0.07964981546648356
+              },
+              "electric space heater": {
+                "minimum": 0.0,
+                "maximum": 11.0,
+                "finite_rows": 23302,
+                "missing_rows": 0,
+                "nonzero_rows": 819,
+                "nonzero_row_fraction": 0.03514719766543644,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 9.0,
+                "finite_rows": 23302,
+                "missing_rows": 0,
+                "nonzero_rows": 582,
+                "nonzero_row_fraction": 0.024976396875804652,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "fridge": {
+                "minimum": 2.0,
+                "maximum": 1647.0,
+                "finite_rows": 23302,
+                "missing_rows": 0,
+                "nonzero_rows": 23302,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 5638,
+                "above_active_threshold_row_fraction": 0.24195348038794953
+              },
+              "microwave": {
+                "minimum": 2.0,
+                "maximum": 1614.0,
+                "finite_rows": 23302,
+                "missing_rows": 0,
+                "nonzero_rows": 23302,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 485,
+                "above_active_threshold_row_fraction": 0.020813664063170544
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 4.0,
+                "finite_rows": 23302,
+                "missing_rows": 0,
+                "nonzero_rows": 1459,
+                "nonzero_row_fraction": 0.0626126512745687,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              }
             },
             "blocks": [
               {
@@ -97,12 +171,83 @@
             "source_file": "redd_house1_1.csv",
             "source_sha256": "07dd6ab3432e928d877823ebc9d2831d7270707d880c7310c4f06d3092db782e",
             "rows": 25839,
+            "columns": [
+              "dish washer",
+              "electric space heater",
+              "electric stove",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 96.4599990845,
               "maximum": 2579.40991211,
               "missing_values": 0,
               "unique_values": 10239,
               "maximum_constant_run_rows": 10
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 9.0,
+                "finite_rows": 25839,
+                "missing_rows": 0,
+                "nonzero_rows": 1158,
+                "nonzero_row_fraction": 0.04481597585045861,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "electric space heater": {
+                "minimum": 0.0,
+                "maximum": 12.0,
+                "finite_rows": 25839,
+                "missing_rows": 0,
+                "nonzero_rows": 440,
+                "nonzero_row_fraction": 0.017028522775649212,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 9.0,
+                "finite_rows": 25839,
+                "missing_rows": 0,
+                "nonzero_rows": 751,
+                "nonzero_row_fraction": 0.02906459228298309,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "fridge": {
+                "minimum": 5.0,
+                "maximum": 2134.0,
+                "finite_rows": 25839,
+                "missing_rows": 0,
+                "nonzero_rows": 25839,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 6261,
+                "above_active_threshold_row_fraction": 0.242308138859863
+              },
+              "microwave": {
+                "minimum": 2.0,
+                "maximum": 1597.0,
+                "finite_rows": 25839,
+                "missing_rows": 0,
+                "nonzero_rows": 25839,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 375,
+                "above_active_threshold_row_fraction": 0.014512945547428307
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 5.0,
+                "finite_rows": 25839,
+                "missing_rows": 0,
+                "nonzero_rows": 138,
+                "nonzero_row_fraction": 0.0053407639614536165,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              }
             },
             "blocks": [
               {
@@ -143,12 +288,83 @@
             "source_file": "redd_house1_2.csv",
             "source_sha256": "ff69a39eb6a960c7540702e7db92b0a4eb04f474758237b81cf980508df5cf19",
             "rows": 28165,
+            "columns": [
+              "dish washer",
+              "electric space heater",
+              "electric stove",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 93.0100021362,
               "maximum": 2097.87011719,
               "missing_values": 0,
               "unique_values": 11827,
               "maximum_constant_run_rows": 4
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 10.0,
+                "finite_rows": 28165,
+                "missing_rows": 0,
+                "nonzero_rows": 1300,
+                "nonzero_row_fraction": 0.046156577312267,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "electric space heater": {
+                "minimum": 0.0,
+                "maximum": 18.0,
+                "finite_rows": 28165,
+                "missing_rows": 0,
+                "nonzero_rows": 210,
+                "nonzero_row_fraction": 0.007456062488904669,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 3.550505947097461e-05
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 12.0,
+                "finite_rows": 28165,
+                "missing_rows": 0,
+                "nonzero_rows": 418,
+                "nonzero_row_fraction": 0.01484111485886739,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "fridge": {
+                "minimum": 5.0,
+                "maximum": 1432.0,
+                "finite_rows": 28165,
+                "missing_rows": 0,
+                "nonzero_rows": 28165,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 6358,
+                "above_active_threshold_row_fraction": 0.2257411681164566
+              },
+              "microwave": {
+                "minimum": 2.0,
+                "maximum": 1604.0,
+                "finite_rows": 28165,
+                "missing_rows": 0,
+                "nonzero_rows": 28165,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 95,
+                "above_active_threshold_row_fraction": 0.003372980649742588
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 3.0,
+                "finite_rows": 28165,
+                "missing_rows": 0,
+                "nonzero_rows": 172,
+                "nonzero_row_fraction": 0.0061068702290076335,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              }
             },
             "blocks": [
               {
@@ -189,12 +405,83 @@
             "source_file": "redd_house1_3.csv",
             "source_sha256": "c073d725e1feb15aed3e3ff9566c962a800404ec88841aa49741c32abe99fbc6",
             "rows": 30213,
+            "columns": [
+              "dish washer",
+              "electric space heater",
+              "electric stove",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 93.2900009155,
               "maximum": 7613.41015625,
               "missing_values": 0,
               "unique_values": 13309,
               "maximum_constant_run_rows": 5
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 1270.0,
+                "finite_rows": 30213,
+                "missing_rows": 0,
+                "nonzero_rows": 3417,
+                "nonzero_row_fraction": 0.11309701122033562,
+                "above_active_threshold_rows": 1799,
+                "above_active_threshold_row_fraction": 0.05954390494158144
+              },
+              "electric space heater": {
+                "minimum": 0.0,
+                "maximum": 11.0,
+                "finite_rows": 30213,
+                "missing_rows": 0,
+                "nonzero_rows": 402,
+                "nonzero_row_fraction": 0.01330553073180419,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 9.0,
+                "finite_rows": 30213,
+                "missing_rows": 0,
+                "nonzero_rows": 366,
+                "nonzero_row_fraction": 0.012113990666269487,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "fridge": {
+                "minimum": 1.0,
+                "maximum": 2359.0,
+                "finite_rows": 30213,
+                "missing_rows": 0,
+                "nonzero_rows": 30213,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 7504,
+                "above_active_threshold_row_fraction": 0.24836990699367822
+              },
+              "microwave": {
+                "minimum": 2.0,
+                "maximum": 1588.0,
+                "finite_rows": 30213,
+                "missing_rows": 0,
+                "nonzero_rows": 30213,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 244,
+                "above_active_threshold_row_fraction": 0.008075993777512992
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 3511.5,
+                "finite_rows": 30213,
+                "missing_rows": 0,
+                "nonzero_rows": 3020,
+                "nonzero_row_fraction": 0.09995697216430013,
+                "above_active_threshold_rows": 1374,
+                "above_active_threshold_row_fraction": 0.04547711250124119
+              }
             },
             "blocks": [
               {
@@ -235,12 +522,83 @@
             "source_file": "redd_house1_4.csv",
             "source_sha256": "e882bac89e37b32589d8333bc83e62c12427905f39c645f334dc19b9499b3461",
             "rows": 56399,
+            "columns": [
+              "dish washer",
+              "electric space heater",
+              "electric stove",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 93.1399993896,
               "maximum": 3522.01000977,
               "missing_values": 0,
               "unique_values": 21318,
               "maximum_constant_run_rows": 5
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 1422.0,
+                "finite_rows": 56399,
+                "missing_rows": 0,
+                "nonzero_rows": 6162,
+                "nonzero_row_fraction": 0.10925725633433217,
+                "above_active_threshold_rows": 3109,
+                "above_active_threshold_row_fraction": 0.055125090870405506
+              },
+              "electric space heater": {
+                "minimum": 0.0,
+                "maximum": 12.0,
+                "finite_rows": 56399,
+                "missing_rows": 0,
+                "nonzero_rows": 862,
+                "nonzero_row_fraction": 0.015283958935442118,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 21.0,
+                "finite_rows": 56399,
+                "missing_rows": 0,
+                "nonzero_rows": 1138,
+                "nonzero_row_fraction": 0.020177662724516394,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 1.7730810829979254e-05
+              },
+              "fridge": {
+                "minimum": 5.0,
+                "maximum": 2230.0,
+                "finite_rows": 56399,
+                "missing_rows": 0,
+                "nonzero_rows": 56399,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 14947,
+                "above_active_threshold_row_fraction": 0.2650224294756999
+              },
+              "microwave": {
+                "minimum": 1.0,
+                "maximum": 1585.0,
+                "finite_rows": 56399,
+                "missing_rows": 0,
+                "nonzero_rows": 56399,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 807,
+                "above_active_threshold_row_fraction": 0.01430876433979326
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 7.0,
+                "finite_rows": 56399,
+                "missing_rows": 0,
+                "nonzero_rows": 3105,
+                "nonzero_row_fraction": 0.055054167627085586,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              }
             },
             "blocks": [
               {
@@ -281,12 +639,83 @@
             "source_file": "redd_house1_5.csv",
             "source_sha256": "ef84bbe9aa76bcb9b3cb6d3c4223d56fc7058f9713290f19497ff6e9a19034c4",
             "rows": 27685,
+            "columns": [
+              "dish washer",
+              "electric space heater",
+              "electric stove",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 93.5899963379,
               "maximum": 2927.91992188,
               "missing_values": 0,
               "unique_values": 10295,
               "maximum_constant_run_rows": 9
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 137.0,
+                "finite_rows": 27685,
+                "missing_rows": 0,
+                "nonzero_rows": 435,
+                "nonzero_row_fraction": 0.015712479682138344,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 3.6120642947444464e-05
+              },
+              "electric space heater": {
+                "minimum": 0.0,
+                "maximum": 11.0,
+                "finite_rows": 27685,
+                "missing_rows": 0,
+                "nonzero_rows": 257,
+                "nonzero_row_fraction": 0.009283005237493227,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 9.0,
+                "finite_rows": 27685,
+                "missing_rows": 0,
+                "nonzero_rows": 307,
+                "nonzero_row_fraction": 0.01108903738486545,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "fridge": {
+                "minimum": 6.0,
+                "maximum": 2257.0,
+                "finite_rows": 27685,
+                "missing_rows": 0,
+                "nonzero_rows": 27685,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 6484,
+                "above_active_threshold_row_fraction": 0.2342062488712299
+              },
+              "microwave": {
+                "minimum": 2.0,
+                "maximum": 1587.0,
+                "finite_rows": 27685,
+                "missing_rows": 0,
+                "nonzero_rows": 27685,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 168,
+                "above_active_threshold_row_fraction": 0.00606826801517067
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 3.0,
+                "finite_rows": 27685,
+                "missing_rows": 0,
+                "nonzero_rows": 44,
+                "nonzero_row_fraction": 0.0015893082896875565,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              }
             },
             "blocks": [
               {
@@ -327,12 +756,83 @@
             "source_file": "redd_house1_6.csv",
             "source_sha256": "54b91c2989ccad27a5a89cf16741163600c091973bd653a672a21a65aaf709cb",
             "rows": 36273,
+            "columns": [
+              "dish washer",
+              "electric space heater",
+              "electric stove",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 96.3899993896,
               "maximum": 11926.5605469,
               "missing_values": 0,
               "unique_values": 19604,
               "maximum_constant_run_rows": 4
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 1396.0,
+                "finite_rows": 36273,
+                "missing_rows": 0,
+                "nonzero_rows": 6270,
+                "nonzero_row_fraction": 0.17285584318914896,
+                "above_active_threshold_rows": 3605,
+                "above_active_threshold_row_fraction": 0.0993852176550051
+              },
+              "electric space heater": {
+                "minimum": 0.0,
+                "maximum": 21.0,
+                "finite_rows": 36273,
+                "missing_rows": 0,
+                "nonzero_rows": 856,
+                "nonzero_row_fraction": 0.02359882005899705,
+                "above_active_threshold_rows": 11,
+                "above_active_threshold_row_fraction": 0.000303255865244121
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 17.0,
+                "finite_rows": 36273,
+                "missing_rows": 0,
+                "nonzero_rows": 1048,
+                "nonzero_row_fraction": 0.028892013343258072,
+                "above_active_threshold_rows": 11,
+                "above_active_threshold_row_fraction": 0.000303255865244121
+              },
+              "fridge": {
+                "minimum": 0.0,
+                "maximum": 2138.0,
+                "finite_rows": 36273,
+                "missing_rows": 0,
+                "nonzero_rows": 36230,
+                "nonzero_row_fraction": 0.9988145452540457,
+                "above_active_threshold_rows": 8954,
+                "above_active_threshold_row_fraction": 0.24685027430871448
+              },
+              "microwave": {
+                "minimum": 1.0,
+                "maximum": 1614.0,
+                "finite_rows": 36273,
+                "missing_rows": 0,
+                "nonzero_rows": 36273,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 645,
+                "above_active_threshold_row_fraction": 0.017781821189314366
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 4856.0,
+                "finite_rows": 36273,
+                "missing_rows": 0,
+                "nonzero_rows": 5725,
+                "nonzero_row_fraction": 0.15783089350205387,
+                "above_active_threshold_rows": 2625,
+                "above_active_threshold_row_fraction": 0.07236787693325614
+              }
             },
             "blocks": [
               {
@@ -373,12 +873,83 @@
             "source_file": "redd_house1_7.csv",
             "source_sha256": "792ec90d658e3d1dfd89b6f943b05650b336efa42718c4c7de52f38743a181f9",
             "rows": 32433,
+            "columns": [
+              "dish washer",
+              "electric space heater",
+              "electric stove",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 91.1100006104,
               "maximum": 8717.04980469,
               "missing_values": 0,
               "unique_values": 12292,
               "maximum_constant_run_rows": 6
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 45.0,
+                "finite_rows": 32433,
+                "missing_rows": 0,
+                "nonzero_rows": 1923,
+                "nonzero_row_fraction": 0.05929146239940801,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 3.0832793759442546e-05
+              },
+              "electric space heater": {
+                "minimum": 0.0,
+                "maximum": 31.0,
+                "finite_rows": 32433,
+                "missing_rows": 0,
+                "nonzero_rows": 331,
+                "nonzero_row_fraction": 0.010205654734375482,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 3.0832793759442546e-05
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 22.0,
+                "finite_rows": 32433,
+                "missing_rows": 0,
+                "nonzero_rows": 526,
+                "nonzero_row_fraction": 0.016218049517466776,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 3.0832793759442546e-05
+              },
+              "fridge": {
+                "minimum": 1.0,
+                "maximum": 2302.0,
+                "finite_rows": 32433,
+                "missing_rows": 0,
+                "nonzero_rows": 32433,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 8052,
+                "above_active_threshold_row_fraction": 0.24826565535103134
+              },
+              "microwave": {
+                "minimum": 1.0,
+                "maximum": 1600.0,
+                "finite_rows": 32433,
+                "missing_rows": 0,
+                "nonzero_rows": 32433,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 215,
+                "above_active_threshold_row_fraction": 0.006629050658280147
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 3561.0,
+                "finite_rows": 32433,
+                "missing_rows": 0,
+                "nonzero_rows": 1256,
+                "nonzero_row_fraction": 0.03872598896185983,
+                "above_active_threshold_rows": 1117,
+                "above_active_threshold_row_fraction": 0.03444023062929732
+              }
             },
             "blocks": [
               {
@@ -419,12 +990,83 @@
             "source_file": "redd_house1_8.csv",
             "source_sha256": "8cbb25f12f8f15c9801a9e565ad28d0a6bcdbd26d4b81c277a1bd95af3610889",
             "rows": 25480,
+            "columns": [
+              "dish washer",
+              "electric space heater",
+              "electric stove",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 90.9300003052,
               "maximum": 2181.92993164,
               "missing_values": 0,
               "unique_values": 10737,
               "maximum_constant_run_rows": 4
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 1278.0,
+                "finite_rows": 25480,
+                "missing_rows": 0,
+                "nonzero_rows": 3491,
+                "nonzero_row_fraction": 0.1370094191522763,
+                "above_active_threshold_rows": 2009,
+                "above_active_threshold_row_fraction": 0.07884615384615384
+              },
+              "electric space heater": {
+                "minimum": 0.0,
+                "maximum": 11.0,
+                "finite_rows": 25480,
+                "missing_rows": 0,
+                "nonzero_rows": 139,
+                "nonzero_row_fraction": 0.005455259026687598,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 9.0,
+                "finite_rows": 25480,
+                "missing_rows": 0,
+                "nonzero_rows": 408,
+                "nonzero_row_fraction": 0.016012558869701727,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "fridge": {
+                "minimum": 6.0,
+                "maximum": 1494.0,
+                "finite_rows": 25480,
+                "missing_rows": 0,
+                "nonzero_rows": 25480,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 6383,
+                "above_active_threshold_row_fraction": 0.25051020408163266
+              },
+              "microwave": {
+                "minimum": 2.0,
+                "maximum": 1614.0,
+                "finite_rows": 25480,
+                "missing_rows": 0,
+                "nonzero_rows": 25480,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 88,
+                "above_active_threshold_row_fraction": 0.003453689167974882
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 6.0,
+                "finite_rows": 25480,
+                "missing_rows": 0,
+                "nonzero_rows": 914,
+                "nonzero_row_fraction": 0.0358712715855573,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              }
             },
             "blocks": [
               {
@@ -465,12 +1107,83 @@
             "source_file": "redd_house1_9.csv",
             "source_sha256": "825df5ca37755c484053e88edbcc55538f4c4bc077ea097e59f8efe4011ed510",
             "rows": 33725,
+            "columns": [
+              "dish washer",
+              "electric space heater",
+              "electric stove",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 93.4800033569,
               "maximum": 4490.85009766,
               "missing_values": 0,
               "unique_values": 10729,
               "maximum_constant_run_rows": 4
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 16.0,
+                "finite_rows": 33725,
+                "missing_rows": 0,
+                "nonzero_rows": 823,
+                "nonzero_row_fraction": 0.02440326167531505,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 2.9651593773165308e-05
+              },
+              "electric space heater": {
+                "minimum": 0.0,
+                "maximum": 11.0,
+                "finite_rows": 33725,
+                "missing_rows": 0,
+                "nonzero_rows": 364,
+                "nonzero_row_fraction": 0.010793180133432173,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 21.0,
+                "finite_rows": 33725,
+                "missing_rows": 0,
+                "nonzero_rows": 540,
+                "nonzero_row_fraction": 0.016011860637509267,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 2.9651593773165308e-05
+              },
+              "fridge": {
+                "minimum": 6.0,
+                "maximum": 2211.0,
+                "finite_rows": 33725,
+                "missing_rows": 0,
+                "nonzero_rows": 33725,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 7777,
+                "above_active_threshold_row_fraction": 0.2306004447739066
+              },
+              "microwave": {
+                "minimum": 1.0,
+                "maximum": 1603.0,
+                "finite_rows": 33725,
+                "missing_rows": 0,
+                "nonzero_rows": 33725,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 234,
+                "above_active_threshold_row_fraction": 0.006938472942920682
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 4.0,
+                "finite_rows": 33725,
+                "missing_rows": 0,
+                "nonzero_rows": 35,
+                "nonzero_row_fraction": 0.0010378057820607859,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              }
             },
             "blocks": [
               {
@@ -511,12 +1224,83 @@
             "source_file": "redd_house1_10.csv",
             "source_sha256": "66c5a648cf71bd7c2a055397247ae62866eb7f0df0c5b9dbcb7f130b2bd0af24",
             "rows": 29217,
+            "columns": [
+              "dish washer",
+              "electric space heater",
+              "electric stove",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 92.4799957275,
               "maximum": 6258.12988281,
               "missing_values": 1,
               "unique_values": 15575,
               "maximum_constant_run_rows": 4
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 1242.0,
+                "finite_rows": 29217,
+                "missing_rows": 0,
+                "nonzero_rows": 3617,
+                "nonzero_row_fraction": 0.12379778895848308,
+                "above_active_threshold_rows": 1876,
+                "above_active_threshold_row_fraction": 0.06420919327788616
+              },
+              "electric space heater": {
+                "minimum": 0.0,
+                "maximum": 32.0,
+                "finite_rows": 29217,
+                "missing_rows": 0,
+                "nonzero_rows": 676,
+                "nonzero_row_fraction": 0.023137214635315057,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 3.4226648868809256e-05
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 9.0,
+                "finite_rows": 29217,
+                "missing_rows": 0,
+                "nonzero_rows": 795,
+                "nonzero_row_fraction": 0.027210185850703356,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "fridge": {
+                "minimum": 2.0,
+                "maximum": 2173.0,
+                "finite_rows": 29217,
+                "missing_rows": 0,
+                "nonzero_rows": 29217,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 8063,
+                "above_active_threshold_row_fraction": 0.275969469829209
+              },
+              "microwave": {
+                "minimum": 2.0,
+                "maximum": 1603.0,
+                "finite_rows": 29217,
+                "missing_rows": 0,
+                "nonzero_rows": 29217,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 604,
+                "above_active_threshold_row_fraction": 0.02067289591676079
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 667.0,
+                "finite_rows": 29216,
+                "missing_rows": 1,
+                "nonzero_rows": 2421,
+                "nonzero_row_fraction": 0.0828627169113872,
+                "above_active_threshold_rows": 262,
+                "above_active_threshold_row_fraction": 0.008967382003628024
+              }
             },
             "blocks": [
               {
@@ -565,12 +1349,94 @@
             "source_file": "redd_house3_0.csv",
             "source_sha256": "1da31fbe7453ef7b9471f2032a0e232d61f2de732d2f04e339ce2242d3731fdf",
             "rows": 35491,
+            "columns": [
+              "CE appliance",
+              "dish washer",
+              "electric furnace",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "waste disposal unit",
+              "main"
+            ],
             "main": {
               "minimum": 120.0,
               "maximum": 6360.54003906,
               "missing_values": 0,
               "unique_values": 17107,
               "maximum_constant_run_rows": 6
+            },
+            "appliances": {
+              "CE appliance": {
+                "minimum": 50.0,
+                "maximum": 1235.0,
+                "finite_rows": 35491,
+                "missing_rows": 0,
+                "nonzero_rows": 35491,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 35491,
+                "above_active_threshold_row_fraction": 1.0
+              },
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 25.0,
+                "finite_rows": 35491,
+                "missing_rows": 0,
+                "nonzero_rows": 32214,
+                "nonzero_row_fraction": 0.9076667324110338,
+                "above_active_threshold_rows": 2,
+                "above_active_threshold_row_fraction": 5.635231467132513e-05
+              },
+              "electric furnace": {
+                "minimum": 1.0,
+                "maximum": 1167.0,
+                "finite_rows": 35491,
+                "missing_rows": 0,
+                "nonzero_rows": 35491,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 2334,
+                "above_active_threshold_row_fraction": 0.06576315122143642
+              },
+              "fridge": {
+                "minimum": 0.0,
+                "maximum": 1535.0,
+                "finite_rows": 35491,
+                "missing_rows": 0,
+                "nonzero_rows": 20507,
+                "nonzero_row_fraction": 0.5778084584824321,
+                "above_active_threshold_rows": 11379,
+                "above_active_threshold_row_fraction": 0.3206164943225043
+              },
+              "microwave": {
+                "minimum": 0.0,
+                "maximum": 1777.0,
+                "finite_rows": 35491,
+                "missing_rows": 0,
+                "nonzero_rows": 34192,
+                "nonzero_row_fraction": 0.9633991716209743,
+                "above_active_threshold_rows": 190,
+                "above_active_threshold_row_fraction": 0.005353469893775887
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 5122.5,
+                "finite_rows": 35491,
+                "missing_rows": 0,
+                "nonzero_rows": 718,
+                "nonzero_row_fraction": 0.02023048096700572,
+                "above_active_threshold_rows": 528,
+                "above_active_threshold_row_fraction": 0.014877011073229833
+              },
+              "waste disposal unit": {
+                "minimum": 0.0,
+                "maximum": 345.0,
+                "finite_rows": 35491,
+                "missing_rows": 0,
+                "nonzero_rows": 2468,
+                "nonzero_row_fraction": 0.06953875630441521,
+                "above_active_threshold_rows": 4,
+                "above_active_threshold_row_fraction": 0.00011270462934265026
+              }
             },
             "blocks": [
               {
@@ -611,12 +1477,94 @@
             "source_file": "redd_house3_1.csv",
             "source_sha256": "dc162e4ead37c3e1265cd14b15dab06bc79bd4a8f43272de232008be237d8fd2",
             "rows": 23798,
+            "columns": [
+              "CE appliance",
+              "dish washer",
+              "electric furnace",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "waste disposal unit",
+              "main"
+            ],
             "main": {
               "minimum": 127.220001221,
               "maximum": 2586.94995117,
               "missing_values": 0,
               "unique_values": 11916,
               "maximum_constant_run_rows": 6
+            },
+            "appliances": {
+              "CE appliance": {
+                "minimum": 54.0,
+                "maximum": 205.0,
+                "finite_rows": 23798,
+                "missing_rows": 0,
+                "nonzero_rows": 23798,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 23798,
+                "above_active_threshold_row_fraction": 1.0
+              },
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 780.0,
+                "finite_rows": 23798,
+                "missing_rows": 0,
+                "nonzero_rows": 23135,
+                "nonzero_row_fraction": 0.9721405160097487,
+                "above_active_threshold_rows": 998,
+                "above_active_threshold_row_fraction": 0.04193629716782923
+              },
+              "electric furnace": {
+                "minimum": 0.0,
+                "maximum": 1194.0,
+                "finite_rows": 23798,
+                "missing_rows": 0,
+                "nonzero_rows": 23305,
+                "nonzero_row_fraction": 0.9792839734431464,
+                "above_active_threshold_rows": 2075,
+                "above_active_threshold_row_fraction": 0.08719220102529625
+              },
+              "fridge": {
+                "minimum": 0.0,
+                "maximum": 1513.0,
+                "finite_rows": 23798,
+                "missing_rows": 0,
+                "nonzero_rows": 14527,
+                "nonzero_row_fraction": 0.6104294478527608,
+                "above_active_threshold_rows": 8064,
+                "above_active_threshold_row_fraction": 0.33885200437011515
+              },
+              "microwave": {
+                "minimum": 0.0,
+                "maximum": 1817.0,
+                "finite_rows": 23798,
+                "missing_rows": 0,
+                "nonzero_rows": 23158,
+                "nonzero_row_fraction": 0.9731069837801496,
+                "above_active_threshold_rows": 456,
+                "above_active_threshold_row_fraction": 0.019161274056643415
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 10.0,
+                "finite_rows": 23798,
+                "missing_rows": 0,
+                "nonzero_rows": 124,
+                "nonzero_row_fraction": 0.005210521892596016,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "waste disposal unit": {
+                "minimum": 0.0,
+                "maximum": 368.0,
+                "finite_rows": 23798,
+                "missing_rows": 0,
+                "nonzero_rows": 2622,
+                "nonzero_row_fraction": 0.11017732582569964,
+                "above_active_threshold_rows": 6,
+                "above_active_threshold_row_fraction": 0.0002521220270610976
+              }
             },
             "blocks": [
               {
@@ -657,12 +1605,94 @@
             "source_file": "redd_house3_2.csv",
             "source_sha256": "3ff10aab25387a86d9b44f3ec3903b9e87a395a24ca7b6d5b5530a4067713970",
             "rows": 29139,
+            "columns": [
+              "CE appliance",
+              "dish washer",
+              "electric furnace",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "waste disposal unit",
+              "main"
+            ],
             "main": {
               "minimum": 124.509994507,
               "maximum": 1150.9699707,
               "missing_values": 0,
               "unique_values": 7776,
               "maximum_constant_run_rows": 4
+            },
+            "appliances": {
+              "CE appliance": {
+                "minimum": 55.0,
+                "maximum": 128.0,
+                "finite_rows": 29139,
+                "missing_rows": 0,
+                "nonzero_rows": 29139,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 29139,
+                "above_active_threshold_row_fraction": 1.0
+              },
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 11.0,
+                "finite_rows": 29139,
+                "missing_rows": 0,
+                "nonzero_rows": 28588,
+                "nonzero_row_fraction": 0.9810906345447682,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "electric furnace": {
+                "minimum": 1.0,
+                "maximum": 6.0,
+                "finite_rows": 29139,
+                "missing_rows": 0,
+                "nonzero_rows": 29139,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "fridge": {
+                "minimum": 0.0,
+                "maximum": 1296.0,
+                "finite_rows": 29139,
+                "missing_rows": 0,
+                "nonzero_rows": 13138,
+                "nonzero_row_fraction": 0.4508733999107725,
+                "above_active_threshold_rows": 7208,
+                "above_active_threshold_row_fraction": 0.24736607296063695
+              },
+              "microwave": {
+                "minimum": 1.0,
+                "maximum": 2.0,
+                "finite_rows": 29139,
+                "missing_rows": 0,
+                "nonzero_rows": 29139,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 2.5,
+                "finite_rows": 29139,
+                "missing_rows": 0,
+                "nonzero_rows": 5,
+                "nonzero_row_fraction": 0.00017159133806925428,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "waste disposal unit": {
+                "minimum": 0.0,
+                "maximum": 12.0,
+                "finite_rows": 29139,
+                "missing_rows": 0,
+                "nonzero_rows": 166,
+                "nonzero_row_fraction": 0.005696832423899242,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              }
             },
             "blocks": [
               {
@@ -703,12 +1733,94 @@
             "source_file": "redd_house3_3.csv",
             "source_sha256": "9eaabcc0b57633169be452c0e0848fc903c43939472110613b8fbb0cecd98362",
             "rows": 45274,
+            "columns": [
+              "CE appliance",
+              "dish washer",
+              "electric furnace",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "waste disposal unit",
+              "main"
+            ],
             "main": {
               "minimum": 121.61000061,
               "maximum": 7930.00976562,
               "missing_values": 0,
               "unique_values": 25421,
               "maximum_constant_run_rows": 6
+            },
+            "appliances": {
+              "CE appliance": {
+                "minimum": 55.0,
+                "maximum": 1321.0,
+                "finite_rows": 45274,
+                "missing_rows": 0,
+                "nonzero_rows": 45274,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 45274,
+                "above_active_threshold_row_fraction": 1.0
+              },
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 23.0,
+                "finite_rows": 45274,
+                "missing_rows": 0,
+                "nonzero_rows": 35194,
+                "nonzero_row_fraction": 0.7773556566682864,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 2.208773247338428e-05
+              },
+              "electric furnace": {
+                "minimum": 0.0,
+                "maximum": 1162.0,
+                "finite_rows": 45274,
+                "missing_rows": 0,
+                "nonzero_rows": 45273,
+                "nonzero_row_fraction": 0.9999779122675266,
+                "above_active_threshold_rows": 573,
+                "above_active_threshold_row_fraction": 0.012656270707249194
+              },
+              "fridge": {
+                "minimum": 0.0,
+                "maximum": 1582.0,
+                "finite_rows": 45274,
+                "missing_rows": 0,
+                "nonzero_rows": 31033,
+                "nonzero_row_fraction": 0.6854486018465344,
+                "above_active_threshold_rows": 19114,
+                "above_active_threshold_row_fraction": 0.42218491849626716
+              },
+              "microwave": {
+                "minimum": 0.0,
+                "maximum": 1782.0,
+                "finite_rows": 45274,
+                "missing_rows": 0,
+                "nonzero_rows": 44299,
+                "nonzero_row_fraction": 0.9784644608384503,
+                "above_active_threshold_rows": 280,
+                "above_active_threshold_row_fraction": 0.006184565092547599
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 5557.5,
+                "finite_rows": 45274,
+                "missing_rows": 0,
+                "nonzero_rows": 5076,
+                "nonzero_row_fraction": 0.11211733003489861,
+                "above_active_threshold_rows": 4168,
+                "above_active_threshold_row_fraction": 0.09206166894906569
+              },
+              "waste disposal unit": {
+                "minimum": 0.0,
+                "maximum": 328.0,
+                "finite_rows": 45274,
+                "missing_rows": 0,
+                "nonzero_rows": 1664,
+                "nonzero_row_fraction": 0.03675398683571145,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 2.208773247338428e-05
+              }
             },
             "blocks": [
               {
@@ -749,12 +1861,94 @@
             "source_file": "redd_house3_4.csv",
             "source_sha256": "c35f2a6cc55a03e79c3d529ebe2c359b4b804adefd57bb85f1af439a1664814b",
             "rows": 29535,
+            "columns": [
+              "CE appliance",
+              "dish washer",
+              "electric furnace",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "waste disposal unit",
+              "main"
+            ],
             "main": {
               "minimum": 105.959999084,
               "maximum": 7616.33984375,
               "missing_values": 0,
               "unique_values": 18613,
               "maximum_constant_run_rows": 4
+            },
+            "appliances": {
+              "CE appliance": {
+                "minimum": 48.0,
+                "maximum": 278.0,
+                "finite_rows": 29535,
+                "missing_rows": 0,
+                "nonzero_rows": 29535,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 29535,
+                "above_active_threshold_row_fraction": 1.0
+              },
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 735.0,
+                "finite_rows": 29535,
+                "missing_rows": 0,
+                "nonzero_rows": 22680,
+                "nonzero_row_fraction": 0.7679024885728797,
+                "above_active_threshold_rows": 997,
+                "above_active_threshold_row_fraction": 0.033756560013543255
+              },
+              "electric furnace": {
+                "minimum": 0.0,
+                "maximum": 7.0,
+                "finite_rows": 29535,
+                "missing_rows": 0,
+                "nonzero_rows": 28878,
+                "nonzero_row_fraction": 0.9777552056881665,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "fridge": {
+                "minimum": 0.0,
+                "maximum": 1456.0,
+                "finite_rows": 29535,
+                "missing_rows": 0,
+                "nonzero_rows": 16735,
+                "nonzero_row_fraction": 0.5666158794650414,
+                "above_active_threshold_rows": 11849,
+                "above_active_threshold_row_fraction": 0.4011850347045878
+              },
+              "microwave": {
+                "minimum": 0.0,
+                "maximum": 1785.0,
+                "finite_rows": 29535,
+                "missing_rows": 0,
+                "nonzero_rows": 29478,
+                "nonzero_row_fraction": 0.9980700863382428,
+                "above_active_threshold_rows": 410,
+                "above_active_threshold_row_fraction": 0.01388183511088539
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 5497.5,
+                "finite_rows": 29535,
+                "missing_rows": 0,
+                "nonzero_rows": 4940,
+                "nonzero_row_fraction": 0.16725918401896056,
+                "above_active_threshold_rows": 3806,
+                "above_active_threshold_row_fraction": 0.12886405959031658
+              },
+              "waste disposal unit": {
+                "minimum": 0.0,
+                "maximum": 341.0,
+                "finite_rows": 29535,
+                "missing_rows": 0,
+                "nonzero_rows": 1490,
+                "nonzero_row_fraction": 0.05044862028102252,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 3.3858134416793634e-05
+              }
             },
             "blocks": [
               {
@@ -795,12 +1989,94 @@
             "source_file": "redd_house3_5.csv",
             "source_sha256": "d6946733483d44b817e471dcbe337b9eca790c0c210041bfd48854f5e0127240",
             "rows": 78807,
+            "columns": [
+              "CE appliance",
+              "dish washer",
+              "electric furnace",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "waste disposal unit",
+              "main"
+            ],
             "main": {
               "minimum": 106.230003357,
               "maximum": 3529.39990234,
               "missing_values": 0,
               "unique_values": 34061,
               "maximum_constant_run_rows": 4
+            },
+            "appliances": {
+              "CE appliance": {
+                "minimum": 45.0,
+                "maximum": 1301.0,
+                "finite_rows": 78807,
+                "missing_rows": 0,
+                "nonzero_rows": 78807,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 78807,
+                "above_active_threshold_row_fraction": 1.0
+              },
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 786.0,
+                "finite_rows": 78807,
+                "missing_rows": 0,
+                "nonzero_rows": 51785,
+                "nonzero_row_fraction": 0.6571116778966335,
+                "above_active_threshold_rows": 1009,
+                "above_active_threshold_row_fraction": 0.012803431167282095
+              },
+              "electric furnace": {
+                "minimum": 0.0,
+                "maximum": 21.0,
+                "finite_rows": 78807,
+                "missing_rows": 0,
+                "nonzero_rows": 78159,
+                "nonzero_row_fraction": 0.9917773801819635,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 1.268922811425381e-05
+              },
+              "fridge": {
+                "minimum": 0.0,
+                "maximum": 1565.0,
+                "finite_rows": 78807,
+                "missing_rows": 0,
+                "nonzero_rows": 58160,
+                "nonzero_row_fraction": 0.7380055071250016,
+                "above_active_threshold_rows": 34255,
+                "above_active_threshold_row_fraction": 0.4346695090537643
+              },
+              "microwave": {
+                "minimum": 0.0,
+                "maximum": 1776.0,
+                "finite_rows": 78807,
+                "missing_rows": 0,
+                "nonzero_rows": 78653,
+                "nonzero_row_fraction": 0.9980458588704049,
+                "above_active_threshold_rows": 451,
+                "above_active_threshold_row_fraction": 0.0057228418795284685
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 30.0,
+                "finite_rows": 78807,
+                "missing_rows": 0,
+                "nonzero_rows": 392,
+                "nonzero_row_fraction": 0.004974177420787493,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 1.268922811425381e-05
+              },
+              "waste disposal unit": {
+                "minimum": 0.0,
+                "maximum": 354.0,
+                "finite_rows": 78807,
+                "missing_rows": 0,
+                "nonzero_rows": 1990,
+                "nonzero_row_fraction": 0.025251563947365083,
+                "above_active_threshold_rows": 6,
+                "above_active_threshold_row_fraction": 7.613536868552285e-05
+              }
             },
             "blocks": [
               {
@@ -849,12 +2125,105 @@
             "source_file": "redd_house5_0.csv",
             "source_sha256": "2c407301a06fef00f7cf6d09950b1e6750f66a0e3e61a6863352babcd9abb4c3",
             "rows": 24181,
+            "columns": [
+              "CE appliance",
+              "dish washer",
+              "electric furnace",
+              "electric space heater",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "waste disposal unit",
+              "main"
+            ],
             "main": {
               "minimum": 158.320007324,
               "maximum": 12065.0605469,
               "missing_values": 0,
               "unique_values": 13678,
               "maximum_constant_run_rows": 6
+            },
+            "appliances": {
+              "CE appliance": {
+                "minimum": 2.5,
+                "maximum": 75.0,
+                "finite_rows": 24181,
+                "missing_rows": 0,
+                "nonzero_rows": 24181,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 1783,
+                "above_active_threshold_row_fraction": 0.07373557751954013
+              },
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 2.0,
+                "finite_rows": 24181,
+                "missing_rows": 0,
+                "nonzero_rows": 20432,
+                "nonzero_row_fraction": 0.8449609197303668,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "electric furnace": {
+                "minimum": 0.0,
+                "maximum": 2808.0,
+                "finite_rows": 24181,
+                "missing_rows": 0,
+                "nonzero_rows": 18060,
+                "nonzero_row_fraction": 0.7468673752119432,
+                "above_active_threshold_rows": 4933,
+                "above_active_threshold_row_fraction": 0.20400314296348374
+              },
+              "electric space heater": {
+                "minimum": 0.0,
+                "maximum": 8884.0,
+                "finite_rows": 24180,
+                "missing_rows": 1,
+                "nonzero_rows": 3339,
+                "nonzero_row_fraction": 0.1380836193705802,
+                "above_active_threshold_rows": 3064,
+                "above_active_threshold_row_fraction": 0.12671105413341052
+              },
+              "fridge": {
+                "minimum": 0.0,
+                "maximum": 603.0,
+                "finite_rows": 24181,
+                "missing_rows": 0,
+                "nonzero_rows": 12392,
+                "nonzero_row_fraction": 0.512468466978206,
+                "above_active_threshold_rows": 11077,
+                "above_active_threshold_row_fraction": 0.45808692775319465
+              },
+              "microwave": {
+                "minimum": 0.0,
+                "maximum": 430.0,
+                "finite_rows": 24181,
+                "missing_rows": 0,
+                "nonzero_rows": 24180,
+                "nonzero_row_fraction": 0.9999586452173194,
+                "above_active_threshold_rows": 1747,
+                "above_active_threshold_row_fraction": 0.07224680534303793
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 65.0,
+                "finite_rows": 24180,
+                "missing_rows": 1,
+                "nonzero_rows": 3344,
+                "nonzero_row_fraction": 0.1382903932839833,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 4.135478268061701e-05
+              },
+              "waste disposal unit": {
+                "minimum": 0.0,
+                "maximum": 2.0,
+                "finite_rows": 24181,
+                "missing_rows": 0,
+                "nonzero_rows": 159,
+                "nonzero_row_fraction": 0.006575410446218105,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              }
             },
             "blocks": [
               {
@@ -903,12 +2272,83 @@
             "source_file": "redd_house6_0.csv",
             "source_sha256": "2aaf95c48941106362de39426969a88bb55d8fc9decf84301e49ff3f849f0c8c",
             "rows": 169361,
+            "columns": [
+              "CE appliance",
+              "dish washer",
+              "electric space heater",
+              "electric stove",
+              "fridge",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 157.789993286,
               "maximum": 5675.6796875,
               "missing_values": 0,
               "unique_values": 55021,
               "maximum_constant_run_rows": 10
+            },
+            "appliances": {
+              "CE appliance": {
+                "minimum": 0.0,
+                "maximum": 726.0,
+                "finite_rows": 169361,
+                "missing_rows": 0,
+                "nonzero_rows": 2392,
+                "nonzero_row_fraction": 0.014123676643383069,
+                "above_active_threshold_rows": 1933,
+                "above_active_threshold_row_fraction": 0.011413489528285733
+              },
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 103.0,
+                "finite_rows": 169361,
+                "missing_rows": 0,
+                "nonzero_rows": 38725,
+                "nonzero_row_fraction": 0.22865358612667616,
+                "above_active_threshold_rows": 119,
+                "above_active_threshold_row_fraction": 0.0007026411039141243
+              },
+              "electric space heater": {
+                "minimum": 0.0,
+                "maximum": 467.0,
+                "finite_rows": 169361,
+                "missing_rows": 0,
+                "nonzero_rows": 169356,
+                "nonzero_row_fraction": 0.9999704772645415,
+                "above_active_threshold_rows": 47031,
+                "above_active_threshold_row_fraction": 0.2776967542704637
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 1773.0,
+                "finite_rows": 169361,
+                "missing_rows": 0,
+                "nonzero_rows": 169356,
+                "nonzero_row_fraction": 0.9999704772645415,
+                "above_active_threshold_rows": 50,
+                "above_active_threshold_row_fraction": 0.0002952273545857665
+              },
+              "fridge": {
+                "minimum": 0.0,
+                "maximum": 2223.0,
+                "finite_rows": 169361,
+                "missing_rows": 0,
+                "nonzero_rows": 123384,
+                "nonzero_row_fraction": 0.7285266383642043,
+                "above_active_threshold_rows": 91577,
+                "above_active_threshold_row_fraction": 0.5407207090180147
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 16.0,
+                "finite_rows": 169361,
+                "missing_rows": 0,
+                "nonzero_rows": 169354,
+                "nonzero_row_fraction": 0.999958668170358,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 5.90454709171533e-06
+              }
             },
             "blocks": [
               {
@@ -949,12 +2389,83 @@
             "source_file": "redd_house6_1.csv",
             "source_sha256": "f22c4737c82967b935b1010a4e8858bedc57b46e7403a93e8d4dcced324f4010",
             "rows": 42193,
+            "columns": [
+              "CE appliance",
+              "dish washer",
+              "electric space heater",
+              "electric stove",
+              "fridge",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 205.460006714,
               "maximum": 5780.87011719,
               "missing_values": 0,
               "unique_values": 23390,
               "maximum_constant_run_rows": 4
+            },
+            "appliances": {
+              "CE appliance": {
+                "minimum": 0.0,
+                "maximum": 33.0,
+                "finite_rows": 42193,
+                "missing_rows": 0,
+                "nonzero_rows": 64,
+                "nonzero_row_fraction": 0.001516839286137511,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 2.3700613845898608e-05
+              },
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 11.0,
+                "finite_rows": 42193,
+                "missing_rows": 0,
+                "nonzero_rows": 10231,
+                "nonzero_row_fraction": 0.24248098025738868,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "electric space heater": {
+                "minimum": 2.0,
+                "maximum": 147.0,
+                "finite_rows": 42193,
+                "missing_rows": 0,
+                "nonzero_rows": 42193,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 22542,
+                "above_active_threshold_row_fraction": 0.5342592373142464
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 1751.0,
+                "finite_rows": 42193,
+                "missing_rows": 0,
+                "nonzero_rows": 42192,
+                "nonzero_row_fraction": 0.9999762993861541,
+                "above_active_threshold_rows": 61,
+                "above_active_threshold_row_fraction": 0.0014457374445998152
+              },
+              "fridge": {
+                "minimum": 0.0,
+                "maximum": 1338.0,
+                "finite_rows": 42193,
+                "missing_rows": 0,
+                "nonzero_rows": 29087,
+                "nonzero_row_fraction": 0.6893797549356528,
+                "above_active_threshold_rows": 21773,
+                "above_active_threshold_row_fraction": 0.5160334652667504
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 15.0,
+                "finite_rows": 42193,
+                "missing_rows": 0,
+                "nonzero_rows": 42190,
+                "nonzero_row_fraction": 0.9999288981584623,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              }
             },
             "blocks": [
               {
@@ -995,12 +2506,83 @@
             "source_file": "redd_house6_2.csv",
             "source_sha256": "12d8a47cecab6f52a077997eab4d24a42a088c5101965e597c0abec1fdc94d1a",
             "rows": 77212,
+            "columns": [
+              "CE appliance",
+              "dish washer",
+              "electric space heater",
+              "electric stove",
+              "fridge",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 186.199996948,
               "maximum": 7686.62011719,
               "missing_values": 0,
               "unique_values": 33692,
               "maximum_constant_run_rows": 4
+            },
+            "appliances": {
+              "CE appliance": {
+                "minimum": 0.0,
+                "maximum": 969.0,
+                "finite_rows": 77212,
+                "missing_rows": 0,
+                "nonzero_rows": 2985,
+                "nonzero_row_fraction": 0.03865979381443299,
+                "above_active_threshold_rows": 2300,
+                "above_active_threshold_row_fraction": 0.02978811583691654
+              },
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 112.0,
+                "finite_rows": 77212,
+                "missing_rows": 0,
+                "nonzero_rows": 21224,
+                "nonzero_row_fraction": 0.27487955240118117,
+                "above_active_threshold_rows": 3,
+                "above_active_threshold_row_fraction": 3.885406413510853e-05
+              },
+              "electric space heater": {
+                "minimum": 1.0,
+                "maximum": 227.0,
+                "finite_rows": 77212,
+                "missing_rows": 0,
+                "nonzero_rows": 77212,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 27357,
+                "above_active_threshold_row_fraction": 0.3543102108480547
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 1830.0,
+                "finite_rows": 77212,
+                "missing_rows": 0,
+                "nonzero_rows": 76959,
+                "nonzero_row_fraction": 0.9967233072579392,
+                "above_active_threshold_rows": 168,
+                "above_active_threshold_row_fraction": 0.0021758275915660778
+              },
+              "fridge": {
+                "minimum": 0.0,
+                "maximum": 2336.0,
+                "finite_rows": 77212,
+                "missing_rows": 0,
+                "nonzero_rows": 47324,
+                "nonzero_row_fraction": 0.6129099103766253,
+                "above_active_threshold_rows": 36585,
+                "above_active_threshold_row_fraction": 0.47382531212764856
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 11.0,
+                "finite_rows": 77212,
+                "missing_rows": 0,
+                "nonzero_rows": 77206,
+                "nonzero_row_fraction": 0.9999222918717298,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              }
             },
             "blocks": [
               {
@@ -1041,12 +2623,83 @@
             "source_file": "redd_house6_3.csv",
             "source_sha256": "03ef4d1afa315b39c2089f796e4aff9888016df44a00267919c3f8416bed5fa0",
             "rows": 37810,
+            "columns": [
+              "CE appliance",
+              "dish washer",
+              "electric space heater",
+              "electric stove",
+              "fridge",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 185.629989624,
               "maximum": 2253.75,
               "missing_values": 0,
               "unique_values": 20080,
               "maximum_constant_run_rows": 3
+            },
+            "appliances": {
+              "CE appliance": {
+                "minimum": 0.0,
+                "maximum": 309.0,
+                "finite_rows": 37810,
+                "missing_rows": 0,
+                "nonzero_rows": 95,
+                "nonzero_row_fraction": 0.002512562814070352,
+                "above_active_threshold_rows": 4,
+                "above_active_threshold_row_fraction": 0.0001057921184871727
+              },
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 11.0,
+                "finite_rows": 37810,
+                "missing_rows": 0,
+                "nonzero_rows": 4684,
+                "nonzero_row_fraction": 0.12388257074847923,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "electric space heater": {
+                "minimum": 1.0,
+                "maximum": 192.0,
+                "finite_rows": 37810,
+                "missing_rows": 0,
+                "nonzero_rows": 37810,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 10421,
+                "above_active_threshold_row_fraction": 0.2756149166887067
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 1761.0,
+                "finite_rows": 37810,
+                "missing_rows": 0,
+                "nonzero_rows": 37799,
+                "nonzero_row_fraction": 0.9997090716741602,
+                "above_active_threshold_rows": 83,
+                "above_active_threshold_row_fraction": 0.0021951864586088336
+              },
+              "fridge": {
+                "minimum": 0.0,
+                "maximum": 1942.0,
+                "finite_rows": 37810,
+                "missing_rows": 0,
+                "nonzero_rows": 24047,
+                "nonzero_row_fraction": 0.6359957683152605,
+                "above_active_threshold_rows": 16386,
+                "above_active_threshold_row_fraction": 0.43337741338270297
+              },
+              "washer dryer": {
+                "minimum": 1.0,
+                "maximum": 13.0,
+                "finite_rows": 37810,
+                "missing_rows": 0,
+                "nonzero_rows": 37810,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              }
             },
             "blocks": [
               {
@@ -1101,12 +2754,83 @@
             "source_file": "redd_house2_0.csv",
             "source_sha256": "600d9f4a25c80894b04bc0e1720940476f2702fb79fdf74f2b4eebb47a08b8d1",
             "rows": 34429,
+            "columns": [
+              "dish washer",
+              "electric stove",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "waste disposal unit",
+              "main"
+            ],
             "main": {
               "minimum": 36.8099975586,
               "maximum": 2242.98999023,
               "missing_values": 0,
               "unique_values": 13654,
               "maximum_constant_run_rows": 5
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 1335.0,
+                "finite_rows": 34429,
+                "missing_rows": 0,
+                "nonzero_rows": 3026,
+                "nonzero_row_fraction": 0.0878910221034593,
+                "above_active_threshold_rows": 908,
+                "above_active_threshold_row_fraction": 0.026373115687356587
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 21.0,
+                "finite_rows": 34429,
+                "missing_rows": 0,
+                "nonzero_rows": 17518,
+                "nonzero_row_fraction": 0.5088152429637806,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 2.9045281594005055e-05
+              },
+              "fridge": {
+                "minimum": 1.0,
+                "maximum": 457.0,
+                "finite_rows": 34429,
+                "missing_rows": 0,
+                "nonzero_rows": 34429,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 13760,
+                "above_active_threshold_row_fraction": 0.39966307473350954
+              },
+              "microwave": {
+                "minimum": 3.0,
+                "maximum": 1952.0,
+                "finite_rows": 34429,
+                "missing_rows": 0,
+                "nonzero_rows": 34429,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 5687,
+                "above_active_threshold_row_fraction": 0.16518051642510675
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 8.0,
+                "finite_rows": 34429,
+                "missing_rows": 0,
+                "nonzero_rows": 34405,
+                "nonzero_row_fraction": 0.9993029132417439,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "waste disposal unit": {
+                "minimum": 0.0,
+                "maximum": 609.0,
+                "finite_rows": 34429,
+                "missing_rows": 0,
+                "nonzero_rows": 864,
+                "nonzero_row_fraction": 0.025095123297220367,
+                "above_active_threshold_rows": 4,
+                "above_active_threshold_row_fraction": 0.00011618112637602022
+              }
             },
             "blocks": [
               {
@@ -1123,12 +2847,83 @@
             "source_file": "redd_house2_1.csv",
             "source_sha256": "4a72990a19863dd445c58f2c17c8fed8f43c50fa56da6a69b155e2183d9d8b40",
             "rows": 48110,
+            "columns": [
+              "dish washer",
+              "electric stove",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "waste disposal unit",
+              "main"
+            ],
             "main": {
               "minimum": 36.6500015259,
               "maximum": 3195.11010742,
               "missing_values": 0,
               "unique_values": 18354,
               "maximum_constant_run_rows": 5
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 1425.0,
+                "finite_rows": 48110,
+                "missing_rows": 0,
+                "nonzero_rows": 4818,
+                "nonzero_row_fraction": 0.10014549989607151,
+                "above_active_threshold_rows": 930,
+                "above_active_threshold_row_fraction": 0.019330700478071085
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 434.0,
+                "finite_rows": 48110,
+                "missing_rows": 0,
+                "nonzero_rows": 20625,
+                "nonzero_row_fraction": 0.42870505092496364,
+                "above_active_threshold_rows": 392,
+                "above_active_threshold_row_fraction": 0.008147994180004158
+              },
+              "fridge": {
+                "minimum": 0.0,
+                "maximum": 1924.0,
+                "finite_rows": 48110,
+                "missing_rows": 0,
+                "nonzero_rows": 48109,
+                "nonzero_row_fraction": 0.9999792143005612,
+                "above_active_threshold_rows": 18533,
+                "above_active_threshold_row_fraction": 0.3852213676990231
+              },
+              "microwave": {
+                "minimum": 3.0,
+                "maximum": 1932.0,
+                "finite_rows": 48110,
+                "missing_rows": 0,
+                "nonzero_rows": 48110,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 4192,
+                "above_active_threshold_row_fraction": 0.08713365204739139
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 8.0,
+                "finite_rows": 48110,
+                "missing_rows": 0,
+                "nonzero_rows": 47418,
+                "nonzero_row_fraction": 0.98561629598836,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "waste disposal unit": {
+                "minimum": 0.0,
+                "maximum": 369.0,
+                "finite_rows": 48110,
+                "missing_rows": 0,
+                "nonzero_rows": 871,
+                "nonzero_row_fraction": 0.018104344211182705,
+                "above_active_threshold_rows": 2,
+                "above_active_threshold_row_fraction": 4.157139887757223e-05
+              }
             },
             "blocks": [
               {
@@ -1145,12 +2940,83 @@
             "source_file": "redd_house2_2.csv",
             "source_sha256": "e8e4661a87a136b25d70796c91ccc72d727f1f99e3e93fadaa1b105f4e635077",
             "rows": 29378,
+            "columns": [
+              "dish washer",
+              "electric stove",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "waste disposal unit",
+              "main"
+            ],
             "main": {
               "minimum": 36.5099983215,
               "maximum": 3092.66992188,
               "missing_values": 0,
               "unique_values": 10137,
               "maximum_constant_run_rows": 8
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 1457.0,
+                "finite_rows": 29378,
+                "missing_rows": 0,
+                "nonzero_rows": 3917,
+                "nonzero_row_fraction": 0.13333106406154266,
+                "above_active_threshold_rows": 920,
+                "above_active_threshold_row_fraction": 0.031315950711416705
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 9.0,
+                "finite_rows": 29378,
+                "missing_rows": 0,
+                "nonzero_rows": 15880,
+                "nonzero_row_fraction": 0.5405405405405406,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "fridge": {
+                "minimum": 0.0,
+                "maximum": 2143.0,
+                "finite_rows": 29378,
+                "missing_rows": 0,
+                "nonzero_rows": 29376,
+                "nonzero_row_fraction": 0.9999319218462795,
+                "above_active_threshold_rows": 12090,
+                "above_active_threshold_row_fraction": 0.4115324392402478
+              },
+              "microwave": {
+                "minimum": 2.0,
+                "maximum": 1914.0,
+                "finite_rows": 29378,
+                "missing_rows": 0,
+                "nonzero_rows": 29378,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 6964,
+                "above_active_threshold_row_fraction": 0.23704813125468038
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 12.0,
+                "finite_rows": 29378,
+                "missing_rows": 0,
+                "nonzero_rows": 28334,
+                "nonzero_row_fraction": 0.9644632037579141,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "waste disposal unit": {
+                "minimum": 0.0,
+                "maximum": 366.0,
+                "finite_rows": 29378,
+                "missing_rows": 0,
+                "nonzero_rows": 871,
+                "nonzero_row_fraction": 0.029648035945265164,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 3.403907686023555e-05
+              }
             },
             "blocks": [
               {
@@ -1167,12 +3033,83 @@
             "source_file": "redd_house2_3.csv",
             "source_sha256": "8c6d27c8b425cde4865eaadc063540a74c58b70f94678d6cbed1a5e41dbb57c4",
             "rows": 24010,
+            "columns": [
+              "dish washer",
+              "electric stove",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "waste disposal unit",
+              "main"
+            ],
             "main": {
               "minimum": 36.4700012207,
               "maximum": 2341.55004883,
               "missing_values": 0,
               "unique_values": 10839,
               "maximum_constant_run_rows": 9
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 1.0,
+                "finite_rows": 24010,
+                "missing_rows": 0,
+                "nonzero_rows": 1509,
+                "nonzero_row_fraction": 0.06284881299458558,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 3.0,
+                "finite_rows": 24010,
+                "missing_rows": 0,
+                "nonzero_rows": 8001,
+                "nonzero_row_fraction": 0.33323615160349856,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "fridge": {
+                "minimum": 0.0,
+                "maximum": 600.0,
+                "finite_rows": 24010,
+                "missing_rows": 0,
+                "nonzero_rows": 24009,
+                "nonzero_row_fraction": 0.9999583506872136,
+                "above_active_threshold_rows": 13881,
+                "above_active_threshold_row_fraction": 0.578134110787172
+              },
+              "microwave": {
+                "minimum": 2.0,
+                "maximum": 1914.0,
+                "finite_rows": 24010,
+                "missing_rows": 0,
+                "nonzero_rows": 24010,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 2986,
+                "above_active_threshold_row_fraction": 0.12436484798000833
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 55.0,
+                "finite_rows": 24010,
+                "missing_rows": 0,
+                "nonzero_rows": 23012,
+                "nonzero_row_fraction": 0.9584339858392337,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 4.1649312786339026e-05
+              },
+              "waste disposal unit": {
+                "minimum": 0.0,
+                "maximum": 0.0,
+                "finite_rows": 24010,
+                "missing_rows": 0,
+                "nonzero_rows": 0,
+                "nonzero_row_fraction": 0.0,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              }
             },
             "blocks": [
               {
@@ -1189,12 +3126,83 @@
             "source_file": "redd_house2_4.csv",
             "source_sha256": "a3e3dee5e4dfae80d5cc780d63f47a3bf4054afebc89f583766ea040d484f154",
             "rows": 33612,
+            "columns": [
+              "dish washer",
+              "electric stove",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "waste disposal unit",
+              "main"
+            ],
             "main": {
               "minimum": 36.3600006104,
               "maximum": 2353.2800293,
               "missing_values": 0,
               "unique_values": 11593,
               "maximum_constant_run_rows": 6
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 1.0,
+                "finite_rows": 33612,
+                "missing_rows": 0,
+                "nonzero_rows": 3473,
+                "nonzero_row_fraction": 0.10332619302630013,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 457.0,
+                "finite_rows": 33612,
+                "missing_rows": 0,
+                "nonzero_rows": 14846,
+                "nonzero_row_fraction": 0.44168749256218015,
+                "above_active_threshold_rows": 760,
+                "above_active_threshold_row_fraction": 0.022610972271807687
+              },
+              "fridge": {
+                "minimum": 1.0,
+                "maximum": 2101.0,
+                "finite_rows": 33612,
+                "missing_rows": 0,
+                "nonzero_rows": 33612,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 15771,
+                "above_active_threshold_row_fraction": 0.4692074259193145
+              },
+              "microwave": {
+                "minimum": 1.0,
+                "maximum": 1946.0,
+                "finite_rows": 33612,
+                "missing_rows": 0,
+                "nonzero_rows": 33612,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 4885,
+                "above_active_threshold_row_fraction": 0.1453349994049744
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 8.0,
+                "finite_rows": 33612,
+                "missing_rows": 0,
+                "nonzero_rows": 33012,
+                "nonzero_row_fraction": 0.9821492324169939,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "waste disposal unit": {
+                "minimum": 0.0,
+                "maximum": 409.0,
+                "finite_rows": 33612,
+                "missing_rows": 0,
+                "nonzero_rows": 8,
+                "nonzero_row_fraction": 0.00023801023444008093,
+                "above_active_threshold_rows": 8,
+                "above_active_threshold_row_fraction": 0.00023801023444008093
+              }
             },
             "blocks": [
               {
@@ -1211,12 +3219,83 @@
             "source_file": "redd_house2_5.csv",
             "source_sha256": "0f1958f12f6a546080ac822b37578d8c0fd0b6d4b53f9d835d435979e52168b7",
             "rows": 99258,
+            "columns": [
+              "dish washer",
+              "electric stove",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "waste disposal unit",
+              "main"
+            ],
             "main": {
               "minimum": 36.5499992371,
               "maximum": 3232.97998047,
               "missing_values": 0,
               "unique_values": 17737,
               "maximum_constant_run_rows": 6
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 1405.0,
+                "finite_rows": 99258,
+                "missing_rows": 0,
+                "nonzero_rows": 6504,
+                "nonzero_row_fraction": 0.06552620443692196,
+                "above_active_threshold_rows": 1826,
+                "above_active_threshold_row_fraction": 0.0183965020451752
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 73.0,
+                "finite_rows": 99258,
+                "missing_rows": 0,
+                "nonzero_rows": 52779,
+                "nonzero_row_fraction": 0.5317354772411291,
+                "above_active_threshold_rows": 2,
+                "above_active_threshold_row_fraction": 2.0149509359447097e-05
+              },
+              "fridge": {
+                "minimum": 0.0,
+                "maximum": 2246.0,
+                "finite_rows": 99258,
+                "missing_rows": 0,
+                "nonzero_rows": 99251,
+                "nonzero_row_fraction": 0.999929476717242,
+                "above_active_threshold_rows": 48752,
+                "above_active_threshold_row_fraction": 0.49116444014588245
+              },
+              "microwave": {
+                "minimum": 0.0,
+                "maximum": 1956.0,
+                "finite_rows": 99258,
+                "missing_rows": 0,
+                "nonzero_rows": 99257,
+                "nonzero_row_fraction": 0.9999899252453203,
+                "above_active_threshold_rows": 4296,
+                "above_active_threshold_row_fraction": 0.043281146104092366
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 7.0,
+                "finite_rows": 99258,
+                "missing_rows": 0,
+                "nonzero_rows": 99015,
+                "nonzero_row_fraction": 0.9975518346128271,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "waste disposal unit": {
+                "minimum": 0.0,
+                "maximum": 367.0,
+                "finite_rows": 99258,
+                "missing_rows": 0,
+                "nonzero_rows": 1713,
+                "nonzero_row_fraction": 0.017258054766366437,
+                "above_active_threshold_rows": 3,
+                "above_active_threshold_row_fraction": 3.0224264039170645e-05
+              }
             },
             "blocks": [
               {
@@ -1233,12 +3312,83 @@
             "source_file": "redd_house2_6.csv",
             "source_sha256": "02f4bc8cea15ec973739a120b7a06a12b215add6fc8ca6118856adbe3c10ee98",
             "rows": 23266,
+            "columns": [
+              "dish washer",
+              "electric stove",
+              "fridge",
+              "microwave",
+              "washer dryer",
+              "waste disposal unit",
+              "main"
+            ],
             "main": {
               "minimum": 37.0299987793,
               "maximum": 2227.01977539,
               "missing_values": 0,
               "unique_values": 6935,
               "maximum_constant_run_rows": 6
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 1.0,
+                "finite_rows": 23266,
+                "missing_rows": 0,
+                "nonzero_rows": 2586,
+                "nonzero_row_fraction": 0.11114931659932949,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 12.0,
+                "finite_rows": 23266,
+                "missing_rows": 0,
+                "nonzero_rows": 13021,
+                "nonzero_row_fraction": 0.5596578698530044,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "fridge": {
+                "minimum": 1.0,
+                "maximum": 2156.0,
+                "finite_rows": 23266,
+                "missing_rows": 0,
+                "nonzero_rows": 23266,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 10723,
+                "above_active_threshold_row_fraction": 0.46088713143643084
+              },
+              "microwave": {
+                "minimum": 1.0,
+                "maximum": 1951.0,
+                "finite_rows": 23266,
+                "missing_rows": 0,
+                "nonzero_rows": 23266,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 2277,
+                "above_active_threshold_row_fraction": 0.09786813375741425
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 5.0,
+                "finite_rows": 23266,
+                "missing_rows": 0,
+                "nonzero_rows": 23260,
+                "nonzero_row_fraction": 0.9997421129545259,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "waste disposal unit": {
+                "minimum": 0.0,
+                "maximum": 0.0,
+                "finite_rows": 23266,
+                "missing_rows": 0,
+                "nonzero_rows": 0,
+                "nonzero_row_fraction": 0.0,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              }
             },
             "blocks": [
               {
@@ -1263,12 +3413,61 @@
             "source_file": "redd_house4_0.csv",
             "source_sha256": "ab37a744b96c0c3c0e47e9db43c2b72cbab0a0598b224a1208b6861a2b8ad729",
             "rows": 36688,
+            "columns": [
+              "dish washer",
+              "electric furnace",
+              "electric stove",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 114.470001221,
               "maximum": 2362.26000977,
               "missing_values": 0,
               "unique_values": 11190,
               "maximum_constant_run_rows": 4
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 73.0,
+                "finite_rows": 36688,
+                "missing_rows": 0,
+                "nonzero_rows": 8918,
+                "nonzero_row_fraction": 0.24307675534234627,
+                "above_active_threshold_rows": 2,
+                "above_active_threshold_row_fraction": 5.4513737461840385e-05
+              },
+              "electric furnace": {
+                "minimum": 25.0,
+                "maximum": 814.0,
+                "finite_rows": 36688,
+                "missing_rows": 0,
+                "nonzero_rows": 36688,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 36688,
+                "above_active_threshold_row_fraction": 1.0
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 1926.0,
+                "finite_rows": 36688,
+                "missing_rows": 0,
+                "nonzero_rows": 36647,
+                "nonzero_row_fraction": 0.9988824683820323,
+                "above_active_threshold_rows": 102,
+                "above_active_threshold_row_fraction": 0.0027802006105538597
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 912.0,
+                "finite_rows": 36688,
+                "missing_rows": 0,
+                "nonzero_rows": 32975,
+                "nonzero_row_fraction": 0.8987952464020933,
+                "above_active_threshold_rows": 1685,
+                "above_active_threshold_row_fraction": 0.04592782381160052
+              }
             },
             "blocks": [
               {
@@ -1285,12 +3484,61 @@
             "source_file": "redd_house4_1.csv",
             "source_sha256": "94c4bdbe7d1be597fbb2f04ac10fc93ce32805add4280a761e9c4d8ef2964d53",
             "rows": 22594,
+            "columns": [
+              "dish washer",
+              "electric furnace",
+              "electric stove",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 102.880004883,
               "maximum": 2190.87988281,
               "missing_values": 0,
               "unique_values": 15780,
               "maximum_constant_run_rows": 5
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 13.0,
+                "finite_rows": 22594,
+                "missing_rows": 0,
+                "nonzero_rows": 1530,
+                "nonzero_row_fraction": 0.06771709303354873,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "electric furnace": {
+                "minimum": 27.0,
+                "maximum": 891.0,
+                "finite_rows": 22594,
+                "missing_rows": 0,
+                "nonzero_rows": 22594,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 22594,
+                "above_active_threshold_row_fraction": 1.0
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 13.0,
+                "finite_rows": 22594,
+                "missing_rows": 0,
+                "nonzero_rows": 22561,
+                "nonzero_row_fraction": 0.998539435248296,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 846.0,
+                "finite_rows": 22594,
+                "missing_rows": 0,
+                "nonzero_rows": 12781,
+                "nonzero_row_fraction": 0.5656811542887492,
+                "above_active_threshold_rows": 1271,
+                "above_active_threshold_row_fraction": 0.056253872709568914
+              }
             },
             "blocks": [
               {
@@ -1307,12 +3555,61 @@
             "source_file": "redd_house4_2.csv",
             "source_sha256": "8f6728684c0bef5e2e345ac20b44bf27476ee97b234fbd02baaeb0ce90a0fc88",
             "rows": 43118,
+            "columns": [
+              "dish washer",
+              "electric furnace",
+              "electric stove",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 98.9799957275,
               "maximum": 2861.9699707,
               "missing_values": 0,
               "unique_values": 26546,
               "maximum_constant_run_rows": 8
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 10.0,
+                "finite_rows": 43118,
+                "missing_rows": 0,
+                "nonzero_rows": 2687,
+                "nonzero_row_fraction": 0.062317361658704024,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "electric furnace": {
+                "minimum": 23.0,
+                "maximum": 1066.0,
+                "finite_rows": 43118,
+                "missing_rows": 0,
+                "nonzero_rows": 43118,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 43118,
+                "above_active_threshold_row_fraction": 1.0
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 1920.0,
+                "finite_rows": 43118,
+                "missing_rows": 0,
+                "nonzero_rows": 42889,
+                "nonzero_row_fraction": 0.9946889929959646,
+                "above_active_threshold_rows": 110,
+                "above_active_threshold_row_fraction": 0.002551138735562874
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 1016.0,
+                "finite_rows": 43118,
+                "missing_rows": 0,
+                "nonzero_rows": 25804,
+                "nonzero_row_fraction": 0.5984507630224036,
+                "above_active_threshold_rows": 979,
+                "above_active_threshold_row_fraction": 0.022705134746509578
+              }
             },
             "blocks": [
               {
@@ -1329,12 +3626,61 @@
             "source_file": "redd_house4_3.csv",
             "source_sha256": "897459c23d27746528a046d5b000a321c1866b1790f76f512c10469807765c09",
             "rows": 22835,
+            "columns": [
+              "dish washer",
+              "electric furnace",
+              "electric stove",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 103.5,
               "maximum": 1635.08996582,
               "missing_values": 0,
               "unique_values": 11499,
               "maximum_constant_run_rows": 4
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 8.0,
+                "finite_rows": 22835,
+                "missing_rows": 0,
+                "nonzero_rows": 2118,
+                "nonzero_row_fraction": 0.0927523538427852,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "electric furnace": {
+                "minimum": 24.0,
+                "maximum": 791.0,
+                "finite_rows": 22835,
+                "missing_rows": 0,
+                "nonzero_rows": 22835,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 22835,
+                "above_active_threshold_row_fraction": 1.0
+              },
+              "electric stove": {
+                "minimum": 0.0,
+                "maximum": 7.0,
+                "finite_rows": 22835,
+                "missing_rows": 0,
+                "nonzero_rows": 22834,
+                "nonzero_row_fraction": 0.9999562075760894,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 11.0,
+                "finite_rows": 22835,
+                "missing_rows": 0,
+                "nonzero_rows": 19682,
+                "nonzero_row_fraction": 0.8619224874096781,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              }
             },
             "blocks": [
               {
@@ -1351,12 +3697,61 @@
             "source_file": "redd_house4_4.csv",
             "source_sha256": "83450e753c223baed8b00566c1298208c480d6f32ff06793cc02e69cddb64acb",
             "rows": 40867,
+            "columns": [
+              "dish washer",
+              "electric furnace",
+              "electric stove",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 102.519996643,
               "maximum": 3598.2199707,
               "missing_values": 0,
               "unique_values": 21134,
               "maximum_constant_run_rows": 9
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 1346.0,
+                "finite_rows": 40867,
+                "missing_rows": 0,
+                "nonzero_rows": 6154,
+                "nonzero_row_fraction": 0.15058604742212542,
+                "above_active_threshold_rows": 772,
+                "above_active_threshold_row_fraction": 0.018890547385421
+              },
+              "electric furnace": {
+                "minimum": 1.0,
+                "maximum": 988.0,
+                "finite_rows": 40867,
+                "missing_rows": 0,
+                "nonzero_rows": 40867,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 40865,
+                "above_active_threshold_row_fraction": 0.9999510607580688
+              },
+              "electric stove": {
+                "minimum": 1.0,
+                "maximum": 1949.0,
+                "finite_rows": 40867,
+                "missing_rows": 0,
+                "nonzero_rows": 40867,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 146,
+                "above_active_threshold_row_fraction": 0.0035725646609734013
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 11.0,
+                "finite_rows": 40867,
+                "missing_rows": 0,
+                "nonzero_rows": 33974,
+                "nonzero_row_fraction": 0.8313309026843174,
+                "above_active_threshold_rows": 0,
+                "above_active_threshold_row_fraction": 0.0
+              }
             },
             "blocks": [
               {
@@ -1373,12 +3768,61 @@
             "source_file": "redd_house4_5.csv",
             "source_sha256": "c823da650ad46e580466a7bce419b83f332813131b1ba108916b7bdb263bf51d",
             "rows": 108881,
+            "columns": [
+              "dish washer",
+              "electric furnace",
+              "electric stove",
+              "washer dryer",
+              "main"
+            ],
             "main": {
               "minimum": 108.009994507,
               "maximum": 2514.20996094,
               "missing_values": 0,
               "unique_values": 32507,
               "maximum_constant_run_rows": 9
+            },
+            "appliances": {
+              "dish washer": {
+                "minimum": 0.0,
+                "maximum": 1344.0,
+                "finite_rows": 108881,
+                "missing_rows": 0,
+                "nonzero_rows": 13301,
+                "nonzero_row_fraction": 0.12216089124824349,
+                "above_active_threshold_rows": 699,
+                "above_active_threshold_row_fraction": 0.006419852866891377
+              },
+              "electric furnace": {
+                "minimum": 17.0,
+                "maximum": 582.0,
+                "finite_rows": 108881,
+                "missing_rows": 0,
+                "nonzero_rows": 108881,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 108881,
+                "above_active_threshold_row_fraction": 1.0
+              },
+              "electric stove": {
+                "minimum": 1.0,
+                "maximum": 1936.0,
+                "finite_rows": 108881,
+                "missing_rows": 0,
+                "nonzero_rows": 108881,
+                "nonzero_row_fraction": 1.0,
+                "above_active_threshold_rows": 306,
+                "above_active_threshold_row_fraction": 0.0028104076928022336
+              },
+              "washer dryer": {
+                "minimum": 0.0,
+                "maximum": 16.0,
+                "finite_rows": 108881,
+                "missing_rows": 0,
+                "nonzero_rows": 45394,
+                "nonzero_row_fraction": 0.41691387845445943,
+                "above_active_threshold_rows": 1,
+                "above_active_threshold_row_fraction": 9.184338865366777e-06
+              }
             },
             "blocks": [
               {

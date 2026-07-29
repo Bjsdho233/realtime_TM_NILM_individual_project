@@ -170,3 +170,27 @@ than silently filled.
 This increment did not construct features, Booleanise inputs, schedule folds,
 import TMU, train a model, predict, score or inspect model performance. T006
 feature/model/training work remains paused.
+
+### Code-only split validation patch
+
+Tianhang subsequently required two fail-closed protections before any further
+split execution: all segments within one house must have exactly the same source
+column set, and the combined table must retain the exact expected row and column
+shape. The script now checks both conditions before writing outputs.
+
+Future manifests also report each segment's retained column list and, for every
+appliance column, minimum, maximum, finite/missing rows, strict nonzero row
+fraction, and row fraction above the already frozen `> 15 W` ON threshold. Both
+fractions use all segment rows as the denominator; missing rows count as neither
+nonzero nor active.
+
+This was first verified with synthetic tests only. Tianhang then manually ran
+the patched script, regenerating `system/data/split_manifest.json`.
+
+### Public Python environment
+
+The public workspace now has a small independent `uv` environment. Its tracked
+inputs freeze Python 3.11, NumPy 1.26.4, Pandas 2.2.3 and TMU 0.8.3 under
+`system/`; the generated `.venv/` remains local. This is implementation and
+dependency configuration only. It does not authorise TMU execution or approve
+the pending feature, Booleanisation, target or training methods.

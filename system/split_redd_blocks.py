@@ -17,6 +17,7 @@ import pandas as pd
 PROTOCOL_R_HOUSES = (1, 3, 5, 6)
 PROTOCOL_X_HOUSES = (2, 4)
 BLOCK_NAMES = ("B1", "B2", "B3", "B4", "B5")
+APPLIANCE_ACTIVE_THRESHOLD_WATTS = 15.0
 REDD_SUBMODULE_COMMIT = "a621bbd6399e49c6798550618fe43b113149455b"
 SOURCE_NAME = re.compile(r"^redd_house(?P<house>\d+)_(?P<segment>\d+)\.csv$")
 
@@ -157,6 +158,74 @@ def check_main(
     }
 
 
+def summarize_appliances(
+    frame: pd.DataFrame,
+    segment_id: str,
+) -> dict[str, dict[str, float | int | None]]:
+    summaries: dict[str, dict[str, float | int | None]] = {}
+    row_count = len(frame)
+
+    # 补丁：manifest 显式记录 appliance 可用性，避免只看 main 掩盖空列。
+    for column in frame.columns:
+        if column == "main":
+            continue
+
+        numeric = pd.to_numeric(frame[column], errors="coerce")
+        invalid_text = frame[column].notna() & numeric.isna()
+        if invalid_text.any():
+            raise ValueError(f"{segment_id}: {column} contains non-numeric values")
+
+        values = numeric.to_numpy(dtype=np.float64)
+        if np.isinf(values).any():
+            raise ValueError(f"{segment_id}: {column} contains infinite values")
+
+        finite = values[np.isfinite(values)]
+        missing_rows = int(np.isnan(values).sum())
+        nonzero_rows = int(np.count_nonzero(finite != 0))
+        above_threshold_rows = int(
+            np.count_nonzero(finite > APPLIANCE_ACTIVE_THRESHOLD_WATTS)
+        )
+        summaries[column] = {
+            "minimum": float(finite.min()) if len(finite) else None,
+            "maximum": float(finite.max()) if len(finite) else None,
+            "finite_rows": int(len(finite)),
+            "missing_rows": missing_rows,
+            "nonzero_rows": nonzero_rows,
+            "nonzero_row_fraction": nonzero_rows / row_count,
+            "above_active_threshold_rows": above_threshold_rows,
+            "above_active_threshold_row_fraction": (
+                above_threshold_rows / row_count
+            ),
+        }
+
+    return summaries
+
+
+def validate_house_segment_columns(
+    house: int,
+    expected_columns: list[str],
+    actual_columns: list[str],
+    segment_id: str,
+) -> None:
+    expected = set(expected_columns)
+    actual = set(actual_columns)
+    if actual != expected:
+        missing = sorted(expected - actual)
+        unexpected = sorted(actual - expected)
+        raise ValueError(
+            f"H{house} segment columns differ at {segment_id}: "
+            f"missing={missing}, unexpected={unexpected}"
+        )
+
+
+def align_segment_columns(
+    frame: pd.DataFrame,
+    source_columns: list[str],
+) -> pd.DataFrame:
+    metadata_columns = ["house", "segment_id", "row_in_segment"]
+    return frame.loc[:, metadata_columns + source_columns]
+
+
 def read_segment(
     path: Path,
     house: int,
@@ -177,7 +246,9 @@ def read_segment(
         raise ValueError(f"{segment_id}: Unnamed: 0 must equal 0..N-1")
 
     frame = frame.drop(columns=["Unnamed: 0"])
+    source_columns = frame.columns.tolist()
     main_summary = check_main(frame, segment_id, constant_run_warning)
+    appliance_summaries = summarize_appliances(frame, segment_id)
     frame.insert(0, "row_in_segment", expected_rows)
     frame.insert(0, "segment_id", segment_id)
     frame.insert(0, "house", house)
@@ -189,7 +260,9 @@ def read_segment(
         "source_file": path.name,
         "source_sha256": source_sha256,
         "rows": row_count,
+        "columns": source_columns,
         "main": main_summary,
+        "appliances": appliance_summaries,
     }
     return frame, summary
 
@@ -246,14 +319,39 @@ def label_protocol_x_segment(
     return labelled, summary
 
 
-def combine_protocol_r_segments(frames: list[pd.DataFrame]) -> pd.DataFrame:
+def assert_combined_shape(
+    frames: list[pd.DataFrame],
+    combined: pd.DataFrame,
+    house: int,
+) -> None:
+    if not frames:
+        raise AssertionError(f"H{house}: no segment frames to combine")
+
+    expected_rows = sum(len(frame) for frame in frames)
+    expected_columns = frames[0].columns.tolist()
+    if combined.shape != (expected_rows, len(expected_columns)):
+        raise AssertionError(
+            f"H{house}: concat shape changed from expected "
+            f"({expected_rows}, {len(expected_columns)}) to {combined.shape}"
+        )
+    if combined.columns.tolist() != expected_columns:
+        raise AssertionError(f"H{house}: concat changed the output columns")
+
+
+def combine_protocol_r_segments(
+    frames: list[pd.DataFrame],
+    house: int,
+) -> pd.DataFrame:
     # 同编号 block 物理合并；segment_id 明确保留文件边界。
     parts = [
         frame.loc[frame["block"] == block]
         for block in BLOCK_NAMES
         for frame in frames
     ]
-    return pd.concat(parts, ignore_index=True)
+    combined = pd.concat(parts, ignore_index=True)
+    # 补丁：合并后锁定 rows/columns，防止 concat 静默扩列或丢行。
+    assert_combined_shape(frames, combined, house)
+    return combined
 
 
 def write_csv(frame: pd.DataFrame, output_path: Path) -> None:
@@ -277,17 +375,30 @@ def process_protocol_r(
     for house, house_sources in sources.items():
         frames: list[pd.DataFrame] = []
         segment_summaries: list[dict[str, object]] = []
+        expected_source_columns: list[str] | None = None
         for segment_number, path in house_sources:
             frame, summary = read_segment(
                 path, house, segment_number, constant_run_warning
             )
+            actual_source_columns = list(summary["columns"])
+            if expected_source_columns is None:
+                expected_source_columns = actual_source_columns
+            else:
+                # 补丁：同一 house schema 不一致时必须在 concat 前失败。
+                validate_house_segment_columns(
+                    house,
+                    expected_source_columns,
+                    actual_source_columns,
+                    str(summary["segment_id"]),
+                )
+                frame = align_segment_columns(frame, expected_source_columns)
             frame, summary = label_protocol_r_segment(
                 frame, summary, min_block_rows
             )
             frames.append(frame)
             segment_summaries.append(summary)
 
-        combined = combine_protocol_r_segments(frames)
+        combined = combine_protocol_r_segments(frames, house)
         output_path = output_dir / f"house_{house}.csv"
         write_csv(combined, output_path)
         expected_outputs.add(output_path)
@@ -314,15 +425,29 @@ def process_protocol_x(
     for house, house_sources in sources.items():
         frames: list[pd.DataFrame] = []
         segment_summaries: list[dict[str, object]] = []
+        expected_source_columns: list[str] | None = None
         for segment_number, path in house_sources:
             frame, summary = read_segment(
                 path, house, segment_number, constant_run_warning
             )
+            actual_source_columns = list(summary["columns"])
+            if expected_source_columns is None:
+                expected_source_columns = actual_source_columns
+            else:
+                # Protocol X 使用相同的 same-house schema hard check。
+                validate_house_segment_columns(
+                    house,
+                    expected_source_columns,
+                    actual_source_columns,
+                    str(summary["segment_id"]),
+                )
+                frame = align_segment_columns(frame, expected_source_columns)
             frame, summary = label_protocol_x_segment(frame, summary)
             frames.append(frame)
             segment_summaries.append(summary)
 
         combined = pd.concat(frames, ignore_index=True)
+        assert_combined_shape(frames, combined, house)
         output_path = output_dir / f"house_{house}.csv"
         write_csv(combined, output_path)
         expected_outputs.add(output_path)
@@ -425,7 +550,14 @@ def main() -> None:
         "sanity_checks": {
             "minimum_block_rows_warning": args.min_block_rows,
             "constant_main_run_warning_rows": args.constant_run_warning,
-            "main_must_be_finite_and_nonnegative": True,
+            "finite_main_values_must_be_nonnegative": True,
+            "missing_main_values": "preserved as continuity breaks",
+            "appliance_active_threshold_watts": (
+                APPLIANCE_ACTIVE_THRESHOLD_WATTS
+            ),
+            "appliance_fraction_denominator": (
+                "all segment rows; missing rows are not nonzero or active"
+            ),
         },
         "protocol_r": {"output_directory": "data/protocol_r", "houses": protocol_r},
         "protocol_x": {

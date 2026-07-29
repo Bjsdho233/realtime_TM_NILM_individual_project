@@ -1,0 +1,13 @@
+[project]
+name = "rtm-nilm-prototype"
+version = "0.1.0"
+description = "Flat REDD to integer-weighted rTM NILM prototype"
+requires-python = "==3.11.*"
+dependencies = [
+    "numpy==1.26.4",
+    "pandas==2.2.3",
+    "tmu==0.8.3",
+]
+
+[tool.uv]
+package = false

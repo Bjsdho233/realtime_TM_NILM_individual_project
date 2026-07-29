@@ -6,12 +6,14 @@
 - Last updated: 2026-07-29
 - Delivery posture: prototype-first student dissertation; runnable, readable and explainable over production-grade completeness
 - Current formal state: D008 selects a flat public rTM workflow and TMU 0.8.3 integer-weighted model family; Tianhang has additionally fixed the source-CSV-as-segment REDD block construction for the public data-supply path; exact input, Booleanisation, target and training configuration remain pending
-- Active T-series: T006 — Direct rTM NILM Prototype (public REDD data-supply increment complete; feature, model and training work remain paused)
+- Active T-series: T006 — Direct rTM NILM Prototype (`split_redd_blocks.py` validation/manifest patch and isolated `system` uv environment complete; feature, model and training work remain paused)
 - Active E-series: see the exact registry below
 - Active R-series review: R006 — Compact rTM Computation Cost Probe (halted; no further execution authorised)
 - Experiment execution safety: mandatory policy, RunSpec template and bounded supervisor verified with fake tasks; the first real-TMU synthetic adapter attempt stopped `INFRASTRUCTURE_FAILED` before TMU import or fit because the worker-parent PID contract did not account for the Windows virtual-environment launcher process
 - Active integration validation: stopped after the single authorised attempt; C8 did not reach TMU fit, C11 was not launched, and no retry is authorised
 - Completed scoped implementation: `system/split_redd_blocks.py` treats every source CSV as one independent segment; Protocol R segments are split positionally into B1–B5 and Protocol X remains a separate unsplit `PX` held-out path; Tianhang explicitly authorised the reviewed preprocessed source copy and deterministic split outputs for Git publication under `system/data/`
+- Completed code-only patch: require exact same-house segment column sets, assert concat row/column shape, and add per-segment appliance statistics; Tianhang then ran the script manually and regenerated `system/data/split_manifest.json`
+- Public implementation environment: `system/.python-version`, `pyproject.toml` and `uv.lock` freeze Python 3.11, NumPy 1.26.4, Pandas 2.2.3 and TMU 0.8.3; the local `system/.venv/` is not versioned
 - Next planned formal task: define the next public workflow increment only after Tianhang's review; feature, Booleanisation, target and training decisions remain pending; any TMU execution still requires a repaired bounded adapter and separate RunSpec authority; R006 remains HALTED / INCONCLUSIVE and T006 model work remains PAUSED
 - T004 authority: completed on 2026-07-28; no continuing execution authority
 - Candidate/locked test development access: prohibited

@@ -11,12 +11,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from split_redd_blocks import (  # noqa: E402
     BLOCK_NAMES,
+    assert_combined_shape,
     calculate_block_boundaries,
     discover_source_files,
     label_protocol_r_segment,
     label_protocol_x_segment,
     read_segment,
     validate_block_boundaries,
+    validate_house_segment_columns,
 )
 
 
@@ -133,6 +135,34 @@ class SegmentLabellingTests(unittest.TestCase):
             self.assertTrue(pd.isna(frame.loc[0, "main"]))
             self.assertEqual(summary["main"]["missing_values"], 1)
 
+    def test_manifest_summary_includes_columns_and_appliance_activity(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "redd_house1_0.csv"
+            pd.DataFrame(
+                {
+                    "Unnamed: 0": np.arange(4),
+                    "fridge": [0.0, 10.0, 20.0, np.nan],
+                    "microwave": [0.0, 0.0, 30.0, 0.0],
+                    "main": [100.0, 110.0, 150.0, 105.0],
+                }
+            ).to_csv(path, index=False)
+
+            _, summary = read_segment(
+                path, 1, 0, constant_run_warning=100
+            )
+
+            self.assertEqual(
+                summary["columns"], ["fridge", "microwave", "main"]
+            )
+            fridge = summary["appliances"]["fridge"]
+            self.assertEqual(fridge["minimum"], 0.0)
+            self.assertEqual(fridge["maximum"], 20.0)
+            self.assertEqual(fridge["missing_rows"], 1)
+            self.assertEqual(fridge["nonzero_row_fraction"], 0.5)
+            self.assertEqual(
+                fridge["above_active_threshold_row_fraction"], 0.25
+            )
+
     def test_index_and_main_sanity_checks_fail_closed(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -154,6 +184,45 @@ class SegmentLabellingTests(unittest.TestCase):
             self.write_segment(constant_main, [10.0, 10.0, 10.0])
             with self.assertRaisesRegex(ValueError, "constant"):
                 read_segment(constant_main, 1, 2, constant_run_warning=100)
+
+
+class HouseSchemaAndConcatTests(unittest.TestCase):
+    def test_same_house_column_set_mismatch_is_rejected(self):
+        with self.assertRaisesRegex(
+            ValueError, "H1 segment columns differ"
+        ):
+            validate_house_segment_columns(
+                1,
+                ["fridge", "microwave", "main"],
+                ["fridge", "main"],
+                "redd_house1_7",
+            )
+
+    def test_same_column_set_in_a_different_order_is_allowed(self):
+        validate_house_segment_columns(
+            1,
+            ["fridge", "microwave", "main"],
+            ["main", "fridge", "microwave"],
+            "redd_house1_7",
+        )
+
+    def test_concat_shape_assertion_rejects_silent_column_expansion(self):
+        first = pd.DataFrame(
+            {
+                "house": [1],
+                "segment_id": ["redd_house1_0"],
+                "row_in_segment": [0],
+                "block": ["B1"],
+                "main": [100.0],
+            }
+        )
+        second = first.assign(fridge=20.0)
+        silently_expanded = pd.concat([first, second], ignore_index=True)
+
+        with self.assertRaisesRegex(
+            AssertionError, "concat shape changed"
+        ):
+            assert_combined_shape([first, second], silently_expanded, house=1)
 
 
 if __name__ == "__main__":

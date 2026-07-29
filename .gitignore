@@ -45,6 +45,7 @@ venv/
 env/
 ENV/
 .python-version
+!/system/.python-version
 .ipynb_checkpoints/
 
 # Python packaging
