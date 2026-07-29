@@ -220,6 +220,20 @@ documentation there when they belong to the final prototype.
   when the runnable workflow needs their concrete responsibility.
 - This location boundary does not approve a research method or execution. The
   same method-authority, data-access and experiment-budget rules still apply.
+- Treat work in `system/` as collaborative code engineering that Tianhang will
+  inspect directly in VS Code, explain to a supervisor and demonstrate live.
+  Make small coherent changes with an obvious entry point; do not generate a
+  broad finished-looking system in one autonomous pass.
+- Optimise public code for deliberate human readability: direct control flow,
+  concrete names and locally understandable modules. Preserve Tianhang's edits
+  and avoid sweeping rewrites while the system is being reviewed together.
+- Comments and docstrings in public code are concise. Explain non-obvious
+  definitions, units, causality or boundary rules, assumptions and design
+  intent. Do not restate each line, narrate routine syntax, add defensive
+  commentary for hypothetical cases or produce long template-style prose.
+- Each runnable milestone should have one simple command or short sequence that
+  Tianhang can execute and demonstrate. Additional validation remains
+  proportional to actual claim, data-safety and failure risk.
 
 ## Starting Work
 

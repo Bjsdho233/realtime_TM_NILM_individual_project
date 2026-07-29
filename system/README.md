@@ -28,3 +28,14 @@ During development `system/` remains part of the surrounding research
 repository; it is not a nested Git repository. Public code should remain usable
 without runtime imports from the surrounding internal documentation and
 governance files.
+
+## Development style
+
+This is a supervisor-reviewed MSc prototype. It is developed in small,
+reviewable increments so that its control flow, definitions and outputs can be
+explained directly in VS Code and demonstrated from a simple command.
+
+Code favours concrete names, clear functional modules and visible data flow.
+Comments briefly explain definitions, units, causality or boundary rules,
+assumptions and design intent where they are not obvious. They do not repeat
+routine syntax or provide defensive explanations for hypothetical behaviour.
