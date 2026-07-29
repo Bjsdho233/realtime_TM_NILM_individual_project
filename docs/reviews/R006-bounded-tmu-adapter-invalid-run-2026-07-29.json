@@ -1,0 +1,81 @@
+{
+  "record_schema_version": "1.0",
+  "work_id": "R006",
+  "direct_name": "Bounded TMU Adapter synthetic integration attempt",
+  "date": "2026-07-29",
+  "execution_status": "INFRASTRUCTURE_FAILED",
+  "scientific_conclusion": "INCONCLUSIVE",
+  "implementation_commit": "8541cfdab69d3cdc36040579321f603f9bd73403",
+  "run_spec_sha256": "9c1585e54aa46fc31641740ed52e5ed608768146b901e65392626e009af340bd",
+  "probe_spec_sha256": "43636376d2f598052c1fbbdc2b1cd4b1381bd60ca8a392df4603c700eb7dfc89",
+  "execution_scope": {
+    "data": "deterministic synthetic Boolean inputs only",
+    "candidate_schedule": [
+      {
+        "candidate": "C8",
+        "rows": 256,
+        "input_bits": 56
+      },
+      {
+        "candidate": "C11",
+        "rows": 256,
+        "input_bits": 74
+      }
+    ],
+    "epochs": 1,
+    "max_workers": 1,
+    "per_step_timeout_s": 120,
+    "total_run_timeout_s": 300,
+    "minimum_available_ram_bytes": 1610612736,
+    "retry_allowed": false
+  },
+  "terminal_observation": {
+    "completed_steps": 0,
+    "total_steps": 2,
+    "total_wall_seconds": 1.5780000000004293,
+    "candidate_started": "C8",
+    "candidate_not_started": "C11",
+    "rows_started": 256,
+    "step_id": "001-C8-256",
+    "step_returncode": 2,
+    "step_peak_job_memory_bytes": 583540736,
+    "reason": "step process exited with code 2",
+    "worker_error": "WORKER_CONTRACT_ERROR: step authority bootstrap_pid mismatch: expected 4632, got 14376",
+    "tmu_import_reached": false,
+    "tmu_fit_reached": false,
+    "child_result_created": false
+  },
+  "process_observation": {
+    "supervisor_pid": 31756,
+    "bootstrap_pid": 14376,
+    "command_launcher_pid": 4632,
+    "all_recorded_processes_dead_after_terminal": true
+  },
+  "blocker": {
+    "classification": "supervised process identity integration defect",
+    "detail": "The Windows virtual-environment Python launcher added a process layer between the bootstrap and actual worker interpreter, but the worker contract required its direct parent PID to equal the supervisor-recorded bootstrap PID."
+  },
+  "raw_local_evidence": {
+    "locator": "runs/R006-bounded-tmu-synthetic-smoke/output",
+    "availability": "local ignored execution evidence; key facts and hashes are preserved in this tracked record",
+    "run_state_sha256": "d2d3730dba8486917c5ba62a647f6e899b639c8458d46e87095ac04b66d0dd97",
+    "step_terminal_sha256": "f7340db8001f79dfe196bff9ad5e604b7c66c41450dc7a8751f4d6afffd4fe2e",
+    "run_terminal_sha256": "2d3c2f14ad39bc7fba8b4519bd4ed26550c3212b297f4b4203333ac423d48bb6",
+    "stderr_sha256": "ea5089d2bbbef815f95654152690cb71656ed762e00ffe5936fb68bcaa73d6cf",
+    "step_authority_sha256": "d004c4a6341ef2068defdcc9f9d9dd1e91413cd94c995c937182c1ea9effb856",
+    "task_process_sha256": "1e940ad5a396a96efffe4f37d18252aa8894fa21b097aa6fd2193848683a7e92"
+  },
+  "forbidden_or_absent_outputs": {
+    "redd_accessed": false,
+    "predictive_metrics_computed": false,
+    "model_saved": false,
+    "capability_claim_made": false,
+    "retry_performed": false
+  },
+  "lifecycle": {
+    "r006_status": "HALTED",
+    "r006_outcome": "INCONCLUSIVE",
+    "t006_status": "PAUSED",
+    "next_execution_authorised": false
+  }
+}

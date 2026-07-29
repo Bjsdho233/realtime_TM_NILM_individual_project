@@ -61,3 +61,45 @@ approved, and T006 remains paused. Further execution requires a separate
 instruction; a future implementation-only repair should checkpoint each
 completed step before starting the next one and enforce the wall-time stop
 outside the blocking TMU `fit()` call.
+
+## Bounded TMU adapter integration attempt
+
+### Agent Brief
+
+- Status: `INFRASTRUCTURE_FAILED`
+- Date: 2026-07-29
+- Scope: deterministic synthetic integration only
+- Implementation commit:
+  `8541cfdab69d3cdc36040579321f603f9bd73403`
+- RunSpec SHA-256:
+  `9c1585e54aa46fc31641740ed52e5ed608768146b901e65392626e009af340bd`
+- Scientific conclusion: `INCONCLUSIVE`
+- R006: remains halted
+- T006: remains paused
+
+在 fake-task 专项测试和完整 repository check 通过后，唯一获准的
+real-TMU synthetic smoke 通过 `bounded_supervisor.py` 启动。RunSpec 冻结为
+C8/C11 各 `256` rows、one epoch、`max_workers: 1`、per-step `120 s`、
+total `300 s`、minimum available RAM `1.5 GiB`，并禁止 retry、REDD access、
+predictive metrics 和 capability claim。
+
+第一个 C8 step 在进入 TMU import 和 `fit()` 前被 worker contract 拒绝：
+
+```text
+WORKER_CONTRACT_ERROR: step authority bootstrap_pid mismatch: expected 4632, got 14376
+```
+
+观测到的 PID 是 supervisor `31756`、bootstrap `14376` 和 RunSpec command
+launcher `4632`。Windows virtual-environment Python launcher 在 bootstrap
+和实际 worker interpreter 之间增加了一层进程；现有 worker 错误地把其
+direct parent `4632` 当成 bootstrap，而 supervisor 签发的正确 bootstrap
+PID 是 `14376`。因此终态是 `INFRASTRUCTURE_FAILED`，wall time
+`1.578 s`，completed steps `0/2`。C11 未启动，没有 retry，没有 child
+result，没有模型、指标、REDD access 或科学结论。终止后复核三个已记录
+PID 均不再存活。
+
+机器可读的复核记录见
+[R006 bounded adapter invalid run](R006-bounded-tmu-adapter-invalid-run-2026-07-29.json)。
+该问题必须在另一轮明确授权的 implementation repair 中解决；本次不得
+把 synthetic timing 用于估计 C8/C11 REDD cost，也不构成 T006 method
+approval。
